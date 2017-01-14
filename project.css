@@ -126,24 +126,42 @@ button::-moz-focus-inner {
     padding:2px;
     border:1px solid #86B2D8;
     border-radius:2px;
-    background-color:#4E86B7;
+    //background-color:#4E86B7;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     color:white;
 }
 .btnInfo{
     padding:7px;
     padding-left:4px;
-    height:50px;
+    height:40px;
     margin:2px;
     margin-top:8px;
-    background-color:#C2E812;
+    background-color:#B1D607;
     border:1px solid #C9EC25;
-    border-radius:2px;
+    border-radius:5px;
     color:#FFFFFF;
     text-align:center;
     font-size:18px;
     cursor:pointer;
 }
+.btnInfo_report{
+    padding:7px;
+    padding-left:4px;
+    height:40px;
+    margin:2px;
+    margin-top:8px;
+    background-color:#ba1200;
+    border:1px solid #C9EC25;
+    border-radius:5px;
+    color:#FFFFFF;
+    text-align:center;
+    font-size:18px;
+    cursor:pointer;
+}
+.btnInfo_report:hover{background-color:#B84134;}
+
+
+
 
 .btnInfo:hover {background-color:#C9EC25;}
 

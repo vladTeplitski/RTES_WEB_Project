@@ -1,0 +1,215 @@
+﻿<!DOCTYPE html>
+
+<html lang="en-US" >
+<head>
+    <title>RTES - Real Time Emergency Solutions</title>
+	<meta charset="utf-8" />
+
+    <meta name="keywords" content="Web Course Project">
+    <meta name="description" content="Real Time Emergency Solution">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+     
+    <!--fonts-->
+    <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+
+    <!-- Project CSS files-->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link href="project.css" type="text/css" rel="stylesheet">
+    <link href="bootstrap.css" rel="stylesheet" />
+    <link href="login_register.css" rel="stylesheet" />
+
+    <!-- jquery -->
+    <script src="inc/jquery-1.10.2.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
+
+    <!-- JS functions library-->
+    <!--<script src="inc/funcLib.js"></script>-->
+    
+    <script src="inc/login_register_js.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- angularjs -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+    <script src="inc/angularScript.js"></script>
+
+</head>
+
+
+<body class="bodyDesign" ng-app="myApp" ng-controller="mainController"> 
+
+    <nav class="navbar navbar-inverse" style="margin-bottom:1px;">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <img href="#" class="resetApp" src="art/Design/rtes_header.jpg" />
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active aboutBtn"><a href="#root">Home</a></li>
+                <li class="dropdown">
+                    <a ng-click="$event.preventDefault();" class="dropdown-toggle" data-toggle="dropdown" href="#">Information <span class="caret"></span></a>
+                    <ul class="dropdown-menu" >
+                        <li ng-click="$event.preventDefault();"><a href="#">Accident Documentation</a></li>
+                        <li ng-click="$event.preventDefault();"><a href="#">How it works</a></li>
+                        <li ng-click="$event.preventDefault();"><a href="#">Towing Services</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <form class="navbar-form navbar-left">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="RTES Search">
+                </div>
+                <button type="submit" class="btn btn-default submitMy">Submit</button>
+            </form>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><a class="clientLogin" href="#clientPage"><span class=""></span> Client Login Test</a></li>
+                <li ng-click="$event.preventDefault();"><a class="regjs" href="#"><span class="glyphicon glyphicon-user"></span> Registration</a></li>
+                <li ng-click="$event.preventDefault();"><a class="logjs" href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="row userInfoMainBox">
+            <div class="col-lg-1 col-md-5 col-md-offset-1 col-xs-8 col-xs-offset-2 userBoxfirst">
+                <div style="display:inline;position:absolute;left:2px;"><i class="glyphicon glyphicon-th"></i></div>
+                User info:
+            </div>
+
+            <div class="col-lg-3 col-md-5 col-md-offset-0 col-xs-8 col-xs-offset-2 userBox">
+                <div style="display:inline;position:absolute;left:8px;"><i class="glyphicon glyphicon-user"></i></div>
+                First Name, Last Name
+            </div>
+            <div class="col-lg-3 col-lg-offset-0 col-md-5 col-md-offset-1 col-xs-8 col-xs-offset-2 userBox">
+                <div style="display:inline;position:absolute;left:8px;"><i class="glyphicon glyphicon-list-alt"></i></div>
+                Open Cases: [int]
+            </div>
+            <div class="col-lg-3 col-md-5 col-md-offset-0 col-xs-8 col-xs-offset-2 userBox">
+                <div style="display:inline;position:absolute;left:8px;"><i class="glyphicon glyphicon-list-alt"></i></div>
+                Estimation cases: [int]
+            </div>
+    </div>
+
+    <div class="loginBox">
+        <div class="loginHeader">
+            Login
+            <div class="closeLoginContainer x">x</div>
+        </div>
+
+        <!-- start login -->
+        <div class="text-center" style="padding:10px 0">
+
+            <div class="login-form-1">
+                <form id="login-form" class="text-left">
+                    <div class="login-form-main-message"></div>
+                    <div class="main-login-form">
+                        <div class="login-group">
+                            <div class="form-group">
+                                <label for="lg_username" class="sr-only">Username</label>
+                                <input type="text" class="form-control" id="lg_username" name="lg_username" placeholder="username">
+                            </div>
+                            <div class="form-group">
+                                <label for="lg_password" class="sr-only">Password</label>
+                                <input type="password" class="form-control" id="lg_password" name="lg_password" placeholder="password">
+                            </div>
+                            <div class="form-group login-group-checkbox">
+                                <input type="checkbox" id="lg_remember" name="lg_remember">
+                                <label for="lg_remember">remember</label>
+                            </div>
+                        </div>
+                        <button type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
+                    </div>
+
+                </form>
+            </div>
+            <!-- end login -->
+        </div>
+
+    </div>
+
+    <div class="registerBox">
+        <div class="registerHeader">
+            Registration
+            <div class="closeRegContainer x">x</div>
+        </div>
+
+        <!-- start register -->
+        <div class="text-center" style="padding:10px 0">
+
+            <!-- Main Form -->
+            <div class="login-form-1">
+                <form id="register-form" class="text-left">
+                    <div class="login-form-main-message"></div>
+                    <div class="main-login-form">
+                        <div class="login-group">
+                            <div class="form-group">
+                                <label for="reg_username" class="sr-only">Email address</label>
+                                <input type="text" class="form-control" id="reg_username" name="reg_username" placeholder="username">
+                            </div>
+                            <div class="form-group">
+                                <label for="reg_password" class="sr-only">Password</label>
+                                <input type="password" class="form-control" id="reg_password" name="reg_password" placeholder="password">
+                            </div>
+                            <div class="form-group">
+                                <label for="reg_password_confirm" class="sr-only">Password Confirm</label>
+                                <input type="password" class="form-control" id="reg_password_confirm" name="reg_password_confirm" placeholder="confirm password">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="reg_email" class="sr-only">Email</label>
+                                <input type="text" class="form-control" id="reg_email" name="reg_email" placeholder="email">
+                            </div>
+                            <div class="form-group">
+                                <label for="reg_fullname" class="sr-only">Full Name</label>
+                                <input type="text" class="form-control" id="reg_fullname" name="reg_fullname" placeholder="full name">
+                            </div>
+
+                            <div class="form-group login-group-checkbox">
+                                <input type="radio" class="" name="reg_gender" id="male" placeholder="username">
+                                <label for="male">male</label>
+
+                                <input type="radio" class="" name="reg_gender" id="female" placeholder="username">
+                                <label for="female">female</label>
+                            </div>
+
+                            <div class="form-group login-group-checkbox">
+                                <input type="checkbox" class="" id="reg_agree" name="reg_agree">
+                                <label for="reg_agree">i agree with <a href="#">terms</a></label>
+                            </div>
+                        </div>
+                        <button type="submit" class="login-button"><i class="fa-chevron-right"></i></button>
+                    </div>
+                </form>
+            </div>
+            <!-- end:Main Form -->
+        </div>
+        <!-- end register -->
+    </div>
+
+    
+    <!--Main container - angular routing injection-->
+    <div id="main" class="container-fluid">
+
+
+
+        <!--START Home Page-->
+        <!--END Home Page-->
+        <!--End Main container-->
+
+        <div ng-view>
+            {{message}}
+
+        </div>
+
+    </div>
+
+    <div class="bottomRow">
+        Web Development Project @ 2017. Designed by Vlad & Shai.
+        <div class="row" style="height:3px;background-color:#B1D607"></div>
+    </div>
+
+</body>
+</html>

@@ -2,7 +2,7 @@ $(document).ready(function() {   //after page loads
 
 
     //controlling the textContainers on main page
-    $(".resetApp").on("click", function () {
+    $(".resetApp,.aboutBtn").on("click", function () {
         $(".textContainer").hide();
         $(".chapter1").fadeIn();
     });
@@ -38,7 +38,6 @@ $(document).ready(function() {   //after page loads
     $(".closeRegContainer").on("click", function () {
         $(".registerBox").hide();
     });
-
 
 
 });
