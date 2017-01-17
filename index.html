@@ -44,16 +44,22 @@
     <nav class="navbar navbar-inverse" style="margin-bottom:1px;">
         <div class="container-fluid">
             <div class="navbar-header">
+		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar" style="background-color:#B1D607;">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+        </button>
                 <img href="#" class="resetApp" src="art/Design/rtes_header.jpg" />
             </div>
+			<div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
                 <li class="active aboutBtn"><a href="#root">Home</a></li>
                 <li class="dropdown">
                     <a ng-click="$event.preventDefault();" class="dropdown-toggle" data-toggle="dropdown" href="#">Information <span class="caret"></span></a>
                     <ul class="dropdown-menu" >
-                        <li ng-click="$event.preventDefault();"><a href="#">Accident Documentation</a></li>
-                        <li ng-click="$event.preventDefault();"><a href="#">How it works</a></li>
-                        <li ng-click="$event.preventDefault();"><a href="#">Towing Services</a></li>
+                        <li class="drop1" ng-click="$event.preventDefault();" style=""><a href="#">Emergency Phones</a></li>
+                        <li class="drop2" ng-click="$event.preventDefault();"><a href="#">Contact us</a></li>
+                        <li class="drop3" ng-click="$event.preventDefault();"><a href="#">About RTES group</a></li>
                     </ul>
                 </li>
             </ul>
@@ -70,7 +76,7 @@
                 <li ng-click="$event.preventDefault();"><a class="regjs" href="#"><span class="glyphicon glyphicon-user"></span> Registration</a></li>
                 <li ng-click="$event.preventDefault();"><a class="logjs" href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
             </ul>
-        </div>
+        </div></div>
     </nav>
 
     <div class="row userInfoMainBox">
@@ -120,7 +126,7 @@
                                 <label for="lg_remember">remember</label>
                             </div>
                         </div>
-                        <button type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
+                        <button ng-click="$event.preventDefault();" type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
                     </div>
 
                 </form>
@@ -177,16 +183,96 @@
 
                             <div class="form-group login-group-checkbox">
                                 <input type="checkbox" class="" id="reg_agree" name="reg_agree">
-                                <label for="reg_agree">i agree with <a href="#">terms</a></label>
+                                <label for="reg_agree">i agree with <a ng-click="$event.preventDefault();" href="#">terms</a></label>
                             </div>
                         </div>
-                        <button type="submit" class="login-button"><i class="fa-chevron-right"></i></button>
+                        <button ng-click="$event.preventDefault();" type="submit" class="login-button"><i class="fa-chevron-right"></i></button>
                     </div>
                 </form>
             </div>
             <!-- end:Main Form -->
         </div>
         <!-- end register -->
+    </div>
+
+    <!--dropdown information-->
+    <div class="infoFormBox EmrgPhones">
+        <div class="infoFormHeader">
+            Emergency Phones
+            <div class="CloseEmrgPhones x">x</div>
+        </div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Organization</th>
+                    <th>Phone</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="background-color:#3D4BD5">
+                    <td>Police</td>
+                    <td><a href="tel:100">100</a></td>
+                </tr>
+                <tr style="background-color:#E52C2C">
+                    <td>Ambulance</td>
+                    <td><a href="tel:101">101</a></td>
+                </tr>
+                <tr style="background-color:#E5C92C">
+                    <td>Fire Fighters</td>
+                    <td><a href="tel:102">102</a></td>
+                </tr>
+            </tbody>
+        </table>
+
+
+        <div class="CloseEmrgPhones CloseBtn">Close</div>
+
+    </div>
+
+    <div class="infoFormBox ContactRtes">
+        <div class="infoFormHeader">
+            Contact RTES
+            <div class="CloseContactRtes x">x</div>
+        </div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Developers</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="background-color:#78ABD8">
+                    <td>Vlad Teplitski</td>
+                    <td><a href="tel:04-1234567">04-1234567</a></td>
+                    <td><a href="mailto:vl4d89@gmail.com">vl4d89@gmail.com</a></td>
+                </tr>
+                <tr style="background-color:#78ABD8">
+                    <td>Shai Zafran</td>
+                    <td><a href="tel:04-1234567">04-5566778</a></td>
+                    <td><a href="mailto:shayzaf25@gmail.com">shayzaf25@gmail.com</a></td>
+                </tr>
+            </tbody>
+        </table>
+
+
+        <div class="CloseContactRtes CloseBtn">Close</div>
+
+    </div>
+
+    <div class="infoFormBox AboutRTES">
+        <div class="infoFormHeader">
+            About RTES
+            <div class="CloseAboutRTES x">x</div>
+        </div>
+
+        Students @ Ort Braude - Information Systems Engineering.<br />
+        The system is developed as a part of WEB-Developing course project.
+
+        <div class="CloseAboutRTES CloseBtn">Close</div>
     </div>
 
     

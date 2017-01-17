@@ -7,9 +7,8 @@ html,body {
     background-size: cover;
    }
 
-html { 
-
-}
+a:link{color:white}
+a:hover{color:black}
 
 .bodyDesign{
     background-color:#D5D5D5;
@@ -66,6 +65,31 @@ button::-moz-focus-inner {
     padding:2px;
     height:15%;
     background-color:#6B9BC5;
+    border-bottom:2px solid #86B2D8;
+    border-radius:12px;
+    text-align:center;
+}
+.infoFormBox{
+    display:none;
+    position:fixed;
+
+    left:50%;
+    top:10%;
+    margin-left:-250px;
+    width:500px;
+    height:auto;
+    padding:4px;
+    border:1px solid #86B2D8;
+    border-radius:12px;
+    background-color:#4E86B7;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    color:white;
+    z-index:100;
+}
+.infoFormHeader{
+    padding:2px;
+    height:15%;
+    background-color:#B1D607;
     border-bottom:2px solid #86B2D8;
     border-radius:12px;
     text-align:center;
@@ -158,7 +182,8 @@ button::-moz-focus-inner {
     font-size:18px;
     cursor:pointer;
 }
-.btnInfo_report:hover{background-color:#B84134;}
+.btnInfo_report:hover{background-color:#B84134;text-decoration:underline;}
+
 
 
 
@@ -200,13 +225,29 @@ button::-moz-focus-inner {
     cursor:pointer;
 }
 
-
 .chapter2{display:none;}
 .chapter3{display:none;}
 .chapter4{display:none;}
 .chapter5{display:none;}
 .chapter6{display:none;}
 
+.CloseBtn{
+    padding:0px;
+    height:25px;
+    width:70px;
+    margin:3px;
+    margin-top:2px;
+    margin-left:20px;
+    background-color:#B1D607;
+    border:1px solid #C9EC25;
+    border-radius:5px;
+    color:#FFFFFF;
+    text-align:center;
+    font-size:medium;
+    cursor:pointer;
+}
+
+.CloseBtn:hover{background-color:#C9ED24}
 
 
 
@@ -229,5 +270,16 @@ button::-moz-focus-inner {
     }
     .submitMy{
         margin-left:40%;
+    }
+    .bottomRow{
+        font-size:small;
+        }
+    .userInfoMainBox{
+        font-size:small;
+    }
+    .infoFormBox{
+        margin-left:0;
+        left:0;
+        width:100%
     }
 }

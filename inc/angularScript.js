@@ -19,7 +19,10 @@ myApp.config(function ($routeProvider) {
         templateUrl: "ClientPage.html",
         controller: 'clientController'        
     })
-    .otherwise
+    .when("/emergForm", {
+            templateUrl: "emergForm.html",
+            controller: 'clientController'
+    })
 });
 
 
