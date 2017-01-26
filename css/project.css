@@ -2,7 +2,6 @@ html,body {
     margin:0;
     padding:0;
     height:100%;
-    //overflow:hidden;
     background: url(art/bg.jpg) no-repeat center center fixed; 
     background-size: cover;
    }
@@ -17,7 +16,6 @@ a:hover{color:black}
 button::-moz-focus-inner {
   border: 0;
 }
-*:focus {outline:0; !important;} /*hide chrome outline stroke*/
 
 .loginBox{
     display:none;
@@ -150,7 +148,6 @@ button::-moz-focus-inner {
     padding:2px;
     border:1px solid #86B2D8;
     border-radius:2px;
-    //background-color:#4E86B7;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     color:white;
 }
@@ -184,10 +181,6 @@ button::-moz-focus-inner {
 }
 .btnInfo_report:hover{background-color:#B84134;text-decoration:underline;}
 
-
-
-
-
 .btnInfo:hover {background-color:#C9EC25;}
 
 .bodyRow{
@@ -202,6 +195,7 @@ button::-moz-focus-inner {
     background-color:#4E86B7;
     text-align:center;
     color:white;
+    border-top:1px solid #C9EC25;
 }
 
 .mainWindow{
@@ -250,6 +244,40 @@ button::-moz-focus-inner {
 .CloseBtn:hover{background-color:#C9ED24}
 
 
+.driverDetails,.carDetails,.insuranceDetails{
+    background-color:#D9DBF1;
+    color:#5E6572;
+    padding:20px;
+    border-top:1px solid #B1D607;
+    border-bottom:1px solid #B1D607;
+    border-radius: 15px;
+}
+
+
+#TableDetails{
+    border-collapse: collapse;
+    width: 100%;
+    color:#000000;
+    border: 6px solid #043565;
+    padding:8px;
+    text-align: left;
+    width:35%;
+}
+
+
+.colD{width:50%; text-align:center;}
+.colT:nth-child(even){background-color: #D0CDD7}
+.colT{height:100%;}
+
+
+.emergFormInp{
+    width:50px;
+}
+
+label{
+    margin-top:10px;
+}
+
 
 @media (max-width: 767px) {
     .div {
@@ -281,5 +309,8 @@ button::-moz-focus-inner {
         margin-left:0;
         left:0;
         width:100%
+    }
+    .TableDetails2{
+        font-size:small;
     }
 }

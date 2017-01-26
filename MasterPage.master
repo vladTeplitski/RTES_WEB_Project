@@ -1,6 +1,8 @@
-﻿<!DOCTYPE html>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
 
-<html lang="en-US" >
+<!DOCTYPE html>
+
+<html lang="en-US">
 <head>
     <title>RTES - Real Time Emergency Solutions</title>
 	<meta charset="utf-8" />
@@ -14,34 +16,35 @@
      
     <!--fonts-->
     <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Tangerine">
 
     <!-- Project CSS files-->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    <link href="project.css" type="text/css" rel="stylesheet">
-    <link href="bootstrap.css" rel="stylesheet" />
-    <link href="login_register.css" rel="stylesheet" />
+    <link href="css/project.css" type="text/css" rel="stylesheet" />
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/login_register.css" rel="stylesheet" />
 
     <!-- jquery -->
     <script src="inc/jquery-1.10.2.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
 
-    <!-- JS functions library-->
-    <!--<script src="inc/funcLib.js"></script>-->
-    
+    <!-- JS -->
     <script src="inc/login_register_js.js"></script>
+    
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <!-- angularjs -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
     <script src="inc/angularScript.js"></script>
+    <script src="inc/funcLib.js"></script> 
+
 
 </head>
 
-
-<body class="bodyDesign" ng-app="myApp" ng-controller="mainController"> 
-
-    <nav class="navbar navbar-inverse" style="margin-bottom:1px;">
+<body class="bodyDesign" ng-app="myApp"> 
+  
+    <div ng-controller="mainController">
+    <nav class="navbar navbar-inverse" style="margin-bottom:1px;" 
         <div class="container-fluid">
             <div class="navbar-header">
 		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar" style="background-color:#B1D607;">
@@ -49,11 +52,11 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
         </button>
-                <img href="#" class="resetApp" src="art/Design/rtes_header.jpg" />
+                <img href="#" class="resetApp" src="css/art/Design/rtes_header.jpg" />
             </div>
 			<div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li class="active aboutBtn"><a href="#root">Home</a></li>
+                <li class="active aboutBtn"><a href="homePage.aspx">Home</a></li>
                 <li class="dropdown">
                     <a ng-click="$event.preventDefault();" class="dropdown-toggle" data-toggle="dropdown" href="#">Information <span class="caret"></span></a>
                     <ul class="dropdown-menu" >
@@ -72,7 +75,8 @@
             </form>
 
             <ul class="nav navbar-nav navbar-right">
-                <li><a class="clientLogin" href="#clientPage"><span class=""></span> Client Login Test</a></li>
+                <li><a class="clientLogin" href="clientPage.aspx"><span class=""></span> Client Login Test</a></li>
+                <li><a class="operatorLogin" href="operatorPage.aspx"><span class=""></span> Operator Login Test</a></li>
                 <li ng-click="$event.preventDefault();"><a class="regjs" href="#"><span class="glyphicon glyphicon-user"></span> Registration</a></li>
                 <li ng-click="$event.preventDefault();"><a class="logjs" href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
             </ul>
@@ -274,23 +278,19 @@
 
         <div class="CloseAboutRTES CloseBtn">Close</div>
     </div>
-
-    
-    <!--Main container - angular routing injection-->
-    <div id="main" class="container-fluid">
-
-        <div ng-view>
-            
-
         </div>
 
-    </div>
-    <!--END Main container - angular routing injection-->
+    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
 
-    <div class="bottomRow">
-        Web Development Project @ 2017. Designed by Vlad & Shai.
+    </asp:ContentPlaceHolder>
+
+
+    
+    <div class="bottomRow" ng-controller="mainController">
+      {{bottomText}}
         <div class="row" style="height:3px;background-color:#B1D607"></div>
     </div>
+   
 
 </body>
 </html>

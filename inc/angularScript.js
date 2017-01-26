@@ -1,35 +1,25 @@
-//use ng-click="$event.preventDefault();"  into html tags where routing is not needed
-
-var myApp = angular.module("myApp", ["ngRoute"]);
-
-
-myApp.config(function ($routeProvider) {
-    $routeProvider
-    .when("/", {
-        templateUrl: "HomePage.html",
-        controller: 'mainController'
-    })
-
-    .when("/root", {
-        templateUrl: "HomePage.html",
-        controller: 'mainController'
-    })
-
-    .when("/clientPage", {
-        templateUrl: "ClientPage.html",
-        controller: 'clientController'        
-    })
-    .when("/emergForm", {
-            templateUrl: "emergForm.html",
-            controller: 'clientController'
-    })
-});
+var myApp = angular.module("myApp", []);
 
 
 //main controller
 myApp.controller('mainController', function ($scope) {
+        
+    //Text from json
 
-        //Main functions
+    //HomePage
+    $scope.welcomeText = HomePage[0].text;
+    $scope.theServiceText = HomePage[1].text;
+    $scope.registrationText = HomePage[2].text;
+    $scope.emergencyText = HomePage[3].text;
+    $scope.appraisingText = HomePage[4].text;
+    $scope.towingText = HomePage[5].text;
+
+    //bottom
+    $scope.bottomText = bottom[0].bottomText;
+
+    //END Text from json
+
+        //Main nav functions
         $(".resetApp,.aboutBtn").on("click", function () {
             $(".textContainer").hide();
             $(".chapter1").fadeIn();
@@ -46,6 +36,8 @@ myApp.controller('mainController', function ($scope) {
         $(".closeRegContainer").on("click", function () {
             $(".registerBox").hide();
         });
+        //end main nav functions
+
         //Home page functions
         $(".btn1").on("click", function () {
             $(".textContainer").hide();
@@ -67,16 +59,13 @@ myApp.controller('mainController', function ($scope) {
             $(".textContainer").hide();
             $(".chapter6").fadeIn();
         });
-
-
-
+    
 });
 
 
 //client controller
 myApp.controller('clientController', function ($scope) {
-
-    //Main functions
+    //Main nav functions
     $(".resetApp,.aboutBtn").on("click", function () {
         $(".textContainer").hide();
         $(".chapter1").fadeIn();
@@ -93,8 +82,9 @@ myApp.controller('clientController', function ($scope) {
     $(".closeRegContainer").on("click", function () {
         $(".registerBox").hide();
     });
+    //end main nav functions
 
-    //Home page functions  (The part of client functions)
+    //Client functions:
     $(".btn1").on("click", function () {
         $(".textContainer").hide();
         $(".chapter2").fadeIn();
@@ -115,5 +105,84 @@ myApp.controller('clientController', function ($scope) {
         $(".textContainer").hide();
         $(".chapter6").fadeIn();
     });
+
+    $scope.myPersonalDetails = function () {
+        $scope.personal = !$scope.personal;
+    }
+
+});
+
+
+//Emergency form controller
+myApp.controller('emergFormController', function ($scope) {
+
+    //Main nav functions
+    $(".resetApp,.aboutBtn").on("click", function () {
+        $(".textContainer").hide();
+        $(".chapter1").fadeIn();
+    });
+    $(".logjs").on("click", function () {
+        $(".loginBox").toggle();
+    });
+    $(".closeLoginContainer").on("click", function () {
+        $(".loginBox").hide();
+    });
+    $(".regjs").on("click", function () {
+        $(".registerBox").toggle();
+    });
+    $(".closeRegContainer").on("click", function () {
+        $(".registerBox").hide();
+    });
+    //end main nav functions
+
+    $scope.myPersonalDetails = function () {
+        $scope.personal = !$scope.personal;
+    }
+
+    $scope.thirdPartyDetails = function () {
+
+        $scope.driverDetailsBut = !$scope.driverDetailsBut;
+        $scope.carDetailsBut = !$scope.carDetailsBut;
+        $scope.insuranceDetailsBut = !$scope.insuranceDetailsBut;
+        if ($scope.driverDetailsBut == false) { $scope.showMe = false; }
+        if ($scope.carDetailsBut == false) { $scope.myValue = false; }
+        if ($scope.insuranceDetailsBut == false) { $scope.myValue1 = false; }
+    }
+
+    $scope.myFunc = function () {
+        $scope.showMe = !$scope.showMe;
+    }
+    $scope.myFunc1 = function () {
+        $scope.myValue = !$scope.myValue;
+    }
+    $scope.myFunc2 = function () {
+        $scope.myValue1 = !$scope.myValue1;
+    }
+
+});
+
+    //operator controller
+myApp.controller('operatorController', function ($scope) {
+    //Main nav functions
+    $(".resetApp,.aboutBtn").on("click", function () {
+        $(".textContainer").hide();
+        $(".chapter1").fadeIn();
+    });
+    $(".logjs").on("click", function () {
+        $(".loginBox").toggle();
+    });
+    $(".closeLoginContainer").on("click", function () {
+        $(".loginBox").hide();
+    });
+    $(".regjs").on("click", function () {
+        $(".registerBox").toggle();
+    });
+    $(".closeRegContainer").on("click", function () {
+        $(".registerBox").hide();
+    });
+    //end main nav functions
+
+    //operator functions:
+
 
 });
