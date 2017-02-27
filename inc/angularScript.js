@@ -24,18 +24,6 @@ myApp.controller('mainController', function ($scope) {
             $(".textContainer").hide();
             $(".chapter1").fadeIn();
         });
-        $(".logjs").on("click", function () {
-            $(".loginBox").toggle();
-        });
-        $(".closeLoginContainer").on("click", function () {
-            $(".loginBox").hide();
-        });
-        $(".regjs").on("click", function () {
-            $(".registerBox").toggle();
-        });
-        $(".closeRegContainer").on("click", function () {
-            $(".registerBox").hide();
-        });
         //end main nav functions
 
         //Home page functions
@@ -69,9 +57,6 @@ myApp.controller('clientController', function ($scope) {
     $(".resetApp,.aboutBtn").on("click", function () {
         $(".textContainer").hide();
         $(".chapter1").fadeIn();
-    });
-    $(".logjs").on("click", function () {
-        $(".loginBox").toggle();
     });
     $(".closeLoginContainer").on("click", function () {
         $(".loginBox").hide();
@@ -120,9 +105,6 @@ myApp.controller('emergFormController', function ($scope) {
     $(".resetApp,.aboutBtn").on("click", function () {
         $(".textContainer").hide();
         $(".chapter1").fadeIn();
-    });
-    $(".logjs").on("click", function () {
-        $(".loginBox").toggle();
     });
     $(".closeLoginContainer").on("click", function () {
         $(".loginBox").hide();

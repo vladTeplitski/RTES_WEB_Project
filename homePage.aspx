@@ -1,13 +1,14 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/MasterPage.master" CodeFile="homePage.aspx.cs" Inherits="_Default" %>
 
+<asp:Content ID="homeContent" ContentPlaceHolderID="home" runat="Server">
 
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    <script src="../json/infoTexts.json"></script>
+    <script src="../inc/funcLib.js"></script>
+    <script src="../inc/angularScript.js"></script>
 
-    <script src="json/infoTexts.json"></script>
+</asp:Content>
 
-    <script src="inc/funcLib.js"></script>
-    <script src="inc/angularScript.js"></script>
-
+<asp:Content ID="mainContent" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
     <!--Home Page container-->
 
