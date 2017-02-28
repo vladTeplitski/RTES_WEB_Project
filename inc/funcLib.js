@@ -26,18 +26,6 @@ $(document).ready(function() {   //after page loads
         $(".textContainer").hide();
         $(".chapter6").fadeIn();
     });
-    $(".logjs").on("click", function () {
-        $(".loginBox").toggle();
-    });
-    $(".closeLoginContainer").on("click", function () {
-        $(".loginBox").hide();
-    });
-    $(".regjs").on("click", function () {
-        $(".registerBox").toggle();
-    });
-    $(".closeRegContainer").on("click", function () {
-        $(".registerBox").hide();
-    });
 
     //info dropdown
     $(".drop1").on("click", function () {
@@ -58,6 +46,7 @@ $(document).ready(function() {   //after page loads
     $(".CloseAboutRTES").on("click", function () {
         $(".AboutRTES").hide();
     });
+
 
 
 });

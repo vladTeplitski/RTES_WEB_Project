@@ -19,6 +19,7 @@
                 <div class="textContainer chapter1">
                     {{ welcomeText }}
                         <br />
+                    <asp:Literal runat="server" ID="vladLabel"></asp:Literal>
                 </div>
                 <div class="textContainer chapter2">
                     {{ theServiceText }}

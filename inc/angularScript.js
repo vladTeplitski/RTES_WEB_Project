@@ -58,15 +58,6 @@ myApp.controller('clientController', function ($scope) {
         $(".textContainer").hide();
         $(".chapter1").fadeIn();
     });
-    $(".closeLoginContainer").on("click", function () {
-        $(".loginBox").hide();
-    });
-    $(".regjs").on("click", function () {
-        $(".registerBox").toggle();
-    });
-    $(".closeRegContainer").on("click", function () {
-        $(".registerBox").hide();
-    });
     //end main nav functions
 
     //Client functions:
@@ -95,6 +86,17 @@ myApp.controller('clientController', function ($scope) {
         $scope.personal = !$scope.personal;
     }
 
+    //settings
+    $(".changePswdJS").on("click", function () {
+        $(".subchangePswdJS").toggle();
+    });
+    $(".changeEmailJS").on("click", function () {
+        $(".subchangeEmailJS").toggle();
+    });
+    $(".changePhoneJS").on("click", function () {
+        $(".subchangePhoneJS").toggle();
+    });
+
 });
 
 
@@ -105,15 +107,6 @@ myApp.controller('emergFormController', function ($scope) {
     $(".resetApp,.aboutBtn").on("click", function () {
         $(".textContainer").hide();
         $(".chapter1").fadeIn();
-    });
-    $(".closeLoginContainer").on("click", function () {
-        $(".loginBox").hide();
-    });
-    $(".regjs").on("click", function () {
-        $(".registerBox").toggle();
-    });
-    $(".closeRegContainer").on("click", function () {
-        $(".registerBox").hide();
     });
     //end main nav functions
 
@@ -149,18 +142,6 @@ myApp.controller('operatorController', function ($scope) {
     $(".resetApp,.aboutBtn").on("click", function () {
         $(".textContainer").hide();
         $(".chapter1").fadeIn();
-    });
-    $(".logjs").on("click", function () {
-        $(".loginBox").toggle();
-    });
-    $(".closeLoginContainer").on("click", function () {
-        $(".loginBox").hide();
-    });
-    $(".regjs").on("click", function () {
-        $(".registerBox").toggle();
-    });
-    $(".closeRegContainer").on("click", function () {
-        $(".registerBox").hide();
     });
     //end main nav functions
 

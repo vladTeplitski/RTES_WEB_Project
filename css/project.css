@@ -207,6 +207,7 @@ button::-moz-focus-inner {
 }
 .textContainer{
     padding:2px;
+    padding-bottom:20px;
     background-color:#FEFEFE;
     border:1px solid #E9EBF3;
     border-radius:5px;
@@ -277,6 +278,46 @@ button::-moz-focus-inner {
 label{
     margin-top:10px;
 }
+
+.SettingClass{
+    width:80%;
+    height:auto;
+    padding:5px;
+    padding-left:10px;
+    margin-left:10px;
+    margin-top:8px;
+
+    background-color:#48639C;
+    border:1px solid #7A95D0;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius:5px;
+
+    color:white;
+
+    cursor:pointer;
+
+}
+.SettingClass:hover{background-color:#5872AA}
+
+.subSettingClass{
+    display:none;
+
+    width:80%;
+    height:auto;
+    padding:5px;
+    padding-left:10px;
+    padding-bottom:10px;
+    margin-left:10px;
+    margin-top:8px;
+
+    background-color:#48639C;
+    border:1px solid #7A95D0;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius:5px;
+
+    color:white;
+}
+
 
 
 @media (max-width: 767px) {

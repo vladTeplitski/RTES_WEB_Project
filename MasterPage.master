@@ -86,7 +86,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     
                     
-                    <li><a class="clientLogin" href="../pages/clientPage.aspx"><span class=""></span>Client Login Test</a></li>
+                    <li><a class="clientLogin" href="../pages/clientMainPage.aspx"><span class=""></span>Client Login Test</a></li>
                     <li><a class="operatorLogin" href="../pages/operatorPage.aspx"><span class=""></span>Operator Login Test</a></li>
                     <li runat="server" id="regBtn"><a href="../pages/register.aspx"><span class="glyphicon glyphicon-user"></span>Registration</a></li>
                     <li runat="server" id="loginBtn"><a href="../pages/login.aspx"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
