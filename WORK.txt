@@ -1,0 +1,16 @@
+work to do:
+-nav client/operator on login
+-reports library - client - distinguish between library of client and operator (change names)
+-report library - client - design
+
+-operator page
+-new report page
+
+-floating box - show client/operator
+-report library - client - on click open details
+
+-js/jquery/angular WTF is going on!?
+
+make it better:
+-href in <a> ?
+-

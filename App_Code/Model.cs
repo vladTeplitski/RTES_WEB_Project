@@ -20,9 +20,9 @@ public partial class abstract_user
     public string gender { get; set; }
     public Nullable<byte> status { get; set; }
     public string password { get; set; }
-    public Nullable<int> phoneNumber { get; set; }
     public string role { get; set; }
     public string company { get; set; }
+    public string userPhoneNumber { get; set; }
 }
 
 public partial class @case
@@ -62,7 +62,6 @@ public partial class client
 
 public partial class emergencyReport
 {
-    public int client_abstractUserId { get; set; }
     public Nullable<int> caseCaseId { get; set; }
     public string date { get; set; }
     public string hour { get; set; }
@@ -72,6 +71,8 @@ public partial class emergencyReport
     public Nullable<int> accident_witness_phone { get; set; }
     public string comments { get; set; }
     public Nullable<byte> callForTowing { get; set; }
+    public int reportID { get; set; }
+    public int clientAbstractUserId { get; set; }
 }
 
 public partial class third_party

@@ -146,6 +146,21 @@ myApp.controller('operatorController', function ($scope) {
     //end main nav functions
 
     //operator functions:
-
+    $(".btn1").on("click", function () {
+        $(".textContainer").hide();
+        $(".chapter1").fadeIn();
+    });
+    $(".btn2").on("click", function () {
+        $(".textContainer").hide();
+        $(".chapter2").fadeIn();
+    });
+    $(".btn3").on("click", function () {
+        $(".textContainer").hide();
+        $(".chapter3").fadeIn();
+    });
+    $(".btn4").on("click", function () {
+        $(".textContainer").hide();
+        $(".chapter4").fadeIn();
+    });
 
 });

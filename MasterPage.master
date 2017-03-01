@@ -36,7 +36,7 @@
     <!-- angularjs -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
     <script src="../inc/angularScript.js"></script>
-    <script src="../inc/funcLib.js"></script> 
+    <script src="../inc/funcLib.js"></script>
 
 
     <asp:ContentPlaceHolder ID="home" runat="server">

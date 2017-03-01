@@ -46,7 +46,7 @@
                 <!-- end login -->
             </div>
 
-            <div style="width: 400px; margin: 10px auto; text-align: center; padding: 8px 0px">
+            <div style="width: 80%; margin: 10px auto; text-align: center; padding: 8px 0px">
             <asp:Panel runat="server" CssClass="alert alert-danger" ID="pnlMessage" Visible="false">
                 Invalid user name or password, please try again.
             </asp:Panel>

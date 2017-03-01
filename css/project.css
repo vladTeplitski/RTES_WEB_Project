@@ -9,6 +9,10 @@ html,body {
 a:link{color:white}
 a:hover{color:black}
 
+a {
+    text-decoration: none !important;
+}
+
 .bodyDesign{
     background-color:#D5D5D5;
 }
@@ -204,6 +208,7 @@ button::-moz-focus-inner {
     padding:4px;
     border-left:2px solid #C9EC25;
     border-radius:5px;
+    
 }
 .textContainer{
     padding:2px;
@@ -213,6 +218,7 @@ button::-moz-focus-inner {
     border-radius:5px;
     font-size:medium;
     color:black;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .textContainer:hover {border-color:#D1D6ED}
 
@@ -280,11 +286,12 @@ label{
 }
 
 .SettingClass{
-    width:80%;
+    width:95%;
     height:auto;
     padding:5px;
     padding-left:10px;
-    margin-left:10px;
+    margin:auto;
+    
     margin-top:8px;
 
     background-color:#48639C;
@@ -307,7 +314,7 @@ label{
     padding:5px;
     padding-left:10px;
     padding-bottom:10px;
-    margin-left:10px;
+    margin:auto;
     margin-top:8px;
 
     background-color:#48639C;
@@ -317,7 +324,25 @@ label{
 
     color:white;
 }
+.personalDetailsClass{
+    width:98%;
+    height:auto;
+    padding:5px;
+    padding-left:10px;
+    margin-bottom:5px;
+    margin:auto;
+    
+    margin-top:8px;
 
+    background-color:#5A95C9;
+    border:1px solid #7A95D0;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius:5px;
+
+    color:white;
+
+    cursor:default;
+}
 
 
 @media (max-width: 767px) {
@@ -351,7 +376,7 @@ label{
         left:0;
         width:100%
     }
-    .TableDetails2{
+    #TableDetails2{
         font-size:small;
     }
 }

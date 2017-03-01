@@ -17,9 +17,9 @@
           <Property Name="gender" Type="nchar" MaxLength="10" />
           <Property Name="status" Type="tinyint" />
           <Property Name="password" Type="varchar" MaxLength="50" />
-          <Property Name="phoneNumber" Type="int" />
           <Property Name="role" Type="varchar" MaxLength="50" />
           <Property Name="company" Type="varchar" MaxLength="50" />
+          <Property Name="userPhoneNumber" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="case">
           <Key>
@@ -57,9 +57,10 @@
         </EntityType>
         <EntityType Name="emergencyReport">
           <Key>
-            <PropertyRef Name="client_abstractUserId" />
+            <PropertyRef Name="reportID" />
           </Key>
-          <Property Name="client_abstractUserId" Type="int" Nullable="false" />
+          <Property Name="reportID" Type="int" Nullable="false" />
+          <Property Name="clientAbstractUserId" Type="int" Nullable="false" />
           <Property Name="caseCaseId" Type="int" />
           <Property Name="date" Type="varchar" MaxLength="50" />
           <Property Name="hour" Type="varchar" MaxLength="50" />
@@ -142,9 +143,9 @@
           <Property Name="gender" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="status" Type="Byte" />
           <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="phoneNumber" Type="Int32" />
           <Property Name="role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="company" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="userPhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="case">
           <Key>
@@ -184,9 +185,8 @@
         </EntityType>
         <EntityType Name="emergencyReport">
           <Key>
-            <PropertyRef Name="client_abstractUserId" />
+            <PropertyRef Name="reportID" />
           </Key>
-          <Property Name="client_abstractUserId" Type="Int32" Nullable="false" />
           <Property Name="caseCaseId" Type="Int32" />
           <Property Name="date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="hour" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -196,6 +196,8 @@
           <Property Name="accident_witness_phone" Type="Int32" />
           <Property Name="comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="callForTowing" Type="Byte" />
+          <Property Name="reportID" Type="Int32" Nullable="false" />
+          <Property Name="clientAbstractUserId" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="third_party">
           <Key>
@@ -240,9 +242,9 @@
           <EntitySetMapping Name="abstract_user">
             <EntityTypeMapping TypeName="rtesModel.abstract_user">
               <MappingFragment StoreEntitySet="abstract_user">
+                <ScalarProperty Name="userPhoneNumber" ColumnName="userPhoneNumber" />
                 <ScalarProperty Name="company" ColumnName="company" />
                 <ScalarProperty Name="role" ColumnName="role" />
-                <ScalarProperty Name="phoneNumber" ColumnName="phoneNumber" />
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="status" ColumnName="status" />
                 <ScalarProperty Name="gender" ColumnName="gender" />
@@ -293,6 +295,8 @@
           <EntitySetMapping Name="emergencyReport">
             <EntityTypeMapping TypeName="rtesModel.emergencyReport">
               <MappingFragment StoreEntitySet="emergencyReport">
+                <ScalarProperty Name="clientAbstractUserId" ColumnName="clientAbstractUserId" />
+                <ScalarProperty Name="reportID" ColumnName="reportID" />
                 <ScalarProperty Name="callForTowing" ColumnName="callForTowing" />
                 <ScalarProperty Name="comments" ColumnName="comments" />
                 <ScalarProperty Name="accident_witness_phone" ColumnName="accident_witness_phone" />
@@ -302,7 +306,6 @@
                 <ScalarProperty Name="hour" ColumnName="hour" />
                 <ScalarProperty Name="date" ColumnName="date" />
                 <ScalarProperty Name="caseCaseId" ColumnName="caseCaseId" />
-                <ScalarProperty Name="client_abstractUserId" ColumnName="client_abstractUserId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
