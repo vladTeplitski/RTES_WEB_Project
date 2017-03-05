@@ -75,6 +75,14 @@ public partial class emergencyReport
     public int clientAbstractUserId { get; set; }
 }
 
+public partial class messagesTable
+{
+    public int msgNum { get; set; }
+    public Nullable<int> userID { get; set; }
+    public string content { get; set; }
+    public string date { get; set; }
+}
+
 public partial class third_party
 {
     public int emergencyReportId { get; set; }

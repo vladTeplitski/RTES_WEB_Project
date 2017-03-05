@@ -1,16 +1,20 @@
 work to do:
--nav client/operator on login
--reports library - client - distinguish between library of client and operator (change names)
--report library - client - design
 
--operator page
--new report page
+*client CP
+--messages - delete message icon
+--new report page
+-registration
+-save login details check box
 
--floating box - show client/operator
--report library - client - on click open details
+-js angular
+-links to social
+-restrictions,tooltips
+-search option
+-ideas for navbar content
 
--js/jquery/angular WTF is going on!?
+*overral:
+-social - buttons/effects
 
-make it better:
--href in <a> ?
--
+Important:
+----------
+-Operator page: Only open

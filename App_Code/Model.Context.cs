@@ -28,4 +28,5 @@ public partial class rtesEntities1 : DbContext
     public virtual DbSet<client> client { get; set; }
     public virtual DbSet<emergencyReport> emergencyReport { get; set; }
     public virtual DbSet<third_party> third_party { get; set; }
+    public virtual DbSet<messagesTable> messagesTable { get; set; }
 }

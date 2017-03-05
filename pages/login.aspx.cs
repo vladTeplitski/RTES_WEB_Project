@@ -25,7 +25,19 @@ public partial class login : System.Web.UI.Page
             {
                 Session["user"] = user.name;
                 Session["uid"] = user.id;
-                Response.Redirect("../homePage.aspx");
+                //navigation to pages
+                if (user.role == "Operator")
+                {
+                    Response.Redirect("operatorPage.aspx");
+                }
+                else if (user.role == "Client")
+                {
+                    Response.Redirect("clientMainPage.aspx");
+                }
+                else
+                {
+                    Response.Redirect("../homePage.aspx");
+                }
             }
         }
     }

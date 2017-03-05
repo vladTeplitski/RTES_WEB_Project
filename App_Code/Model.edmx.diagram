@@ -11,6 +11,7 @@
         <EntityTypeShape EntityType="rtesModel.emergencyReport" Width="1.5" PointX="4.5" PointY="0.5" />
         <EntityTypeShape EntityType="rtesModel.third_party" Width="1.5" PointX="6.375" PointY="3.125" />
         <AssociationConnector Association="rtesModel.FK_client_client" />
+        <EntityTypeShape EntityType="rtesModel.messagesTable" Width="1.5" PointX="0.5" PointY="3.875" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

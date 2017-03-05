@@ -61,12 +61,14 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
         </button>
-                <img href="#" class="resetApp" src="../css/art/Design/rtes_header.jpg" />
+            <img style="padding-left:1px;" href="#" class="resetApp" src="../css/art/Design/rtes_header.jpg" />
             </div>
 			<div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li class="active aboutBtn"><a href="../homePage.aspx">Home</a></li>
-                <li class="dropdown">
+                <li class="active aboutBtn" style="padding-left:10px;"><a href="../homePage.aspx">Home</a></li>
+                <li runat="server" id="clientZoneBtn" class="active aboutBtn navBtnMy" Style="display:none"><a Style="background-color:#4E86B7" class="hoverMy" href="../pages/clientMainPage.aspx"><i class="glyphicon glyphicon-triangle-right rotateNav"></i>Client CP</a></li>
+                <li runat="server" id="opZoneBtn" class="active aboutBtn" Style="display:none"><a Style="background-color:#4E86B7" class="hoverMy" href="../pages/operatorPage.aspx"><i class="glyphicon glyphicon-triangle-right rotateNav"></i>Operator Zone</a></li>
+                <li class="dropdown" style="padding-left:10px;">
                     <a ng-click="$event.preventDefault();" class="dropdown-toggle" data-toggle="dropdown" href="#">Information <span class="caret"></span></a>
                     <ul class="dropdown-menu" >
                         <li class="drop1" ng-click="$event.preventDefault();" style=""><a href="#">Emergency Phones</a></li>
@@ -75,22 +77,14 @@
                     </ul>
                 </li>
             </ul>
-
-                <form class="navbar-form navbar-left">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="RTES Search">
-                    </div>
-                    <button type="submit" class="btn btn-default submitMy">Submit</button>
-                </form>
+                     <span class="fa fa-linkedin-square social" style="font-size:xx-large;"></span>
+                     <span class="fa fa-twitter social" style="font-size:xx-large;"></span>
+                     <span class="fa fa-facebook-official social" style="font-size:xx-large;"></span>
                 
                 <ul class="nav navbar-nav navbar-right">
-                    
-                    
-                    <li><a class="clientLogin" href="../pages/clientMainPage.aspx"><span class=""></span>Client Login Test</a></li>
-                    <li><a class="operatorLogin" href="../pages/operatorPage.aspx"><span class=""></span>Operator Login Test</a></li>
                     <li runat="server" id="regBtn"><a href="../pages/register.aspx"><span class="glyphicon glyphicon-user"></span>Registration</a></li>
-                    <li runat="server" id="loginBtn"><a href="../pages/login.aspx"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
-                    <li runat="server" id="logoutButton"><a  href="../pages/logout.aspx"><span class="glyphicon glyphicon-log-in"></span>LogOut</a></li>
+                    <li runat="server" id="loginBtn"><a class="hoverMy" href="../pages/login.aspx"><span class="glyphicon glyphicon-log-in rotateNav"></span>Login</a></li>
+                    <li runat="server" id="logoutButton"><a class="hoverMy" href="../pages/logout.aspx"><span class="glyphicon glyphicon-log-in rotateNav"></span>LogOut</a></li>
                 </ul>
                 
                 
@@ -114,24 +108,9 @@
                 <asp:label runat="server" id="companyLabel"></asp:label>
             </div>
             <div runat="server" id="openCasesPanel" class="col-lg-3 col-md-5 col-md-offset-0 col-xs-8 col-xs-offset-2 userBox">
-                <div style="display: inline; position: absolute; left: 8px;"><i class="glyphicon glyphicon-list-alt"></i></div>
-                <asp:label runat="server" id="openCasesLabel"></asp:label>
+                <div style="display: inline; position: absolute; left: 8px;"><i class="glyphicon glyphicon-envelope"></i></div>
+                <asp:label runat="server" id="msgsNumLabel"></asp:label>
             </div>
-        </div>
-
-        <div class="loginBox">
-            <div class="loginHeader">
-                Login
-            <div class="closeLoginContainer x">x</div>
-            </div>
-        </div>
-
-        <div class="registerBox">
-            <div class="registerHeader">
-                Registration
-            <div class="closeRegContainer x">x</div>
-            </div>
-
         </div>
 
         <!--dropdown information-->

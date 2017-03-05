@@ -36,10 +36,19 @@ public partial class MasterPage : System.Web.UI.MasterPage
                 //update user cp
                 companyLabel.Text = "Company:" + " " + user.company;
                 usernameLabel.Text = userName + " " + user.familyName;
-                //count cases
-                var userCasesCount = db.@case.Where(i => i.caseAbstractUserId == userId).Count();
+                //count messages
+                var msgs = db.messagesTable.Where(i => i.userID == userId).Count();
+                msgsNumLabel.Text = "Messages: [" + msgs + "]";
 
-                openCasesLabel.Text = "Open Cases: [" + userCasesCount + "]";
+                if(user.role=="Client")
+                {
+                    clientZoneBtn.Style["display"] = "inline";
+                }
+                else if(user.role == "Operator")
+                {
+                    opZoneBtn.Style["display"] = "inline";
+                    clientZoneBtn.Style["display"] = "inline";
+                }
 
             }
         }
@@ -49,7 +58,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
             //control the buttons and panels to display
             usernameLabel.Text = "Guest (please login)";
             companyLabel.Text = "Company: [Guest]";
-            openCasesLabel.Text = "Open Cases: [Guest]";
+            msgsNumLabel.Text = "Messages: [Guest]";
 
             companyPanel.Style["display"] = "none";
             openCasesPanel.Style["display"] = "none";

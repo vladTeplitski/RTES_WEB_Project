@@ -21,23 +21,24 @@ button::-moz-focus-inner {
   border: 0;
 }
 
-.loginBox{
-    display:none;
-    position:fixed;
-
-    left:50%;
-    bottom:40%;
-    margin-left:-125px;
-    width:250px;
-    height:220px;
-    padding:4px;
-    border:1px solid #86B2D8;
-    border-radius:12px;
-    background-color:#4E86B7;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    color:white;
-    z-index:200;
+.social{
+    margin-left:5px;
+    margin-top:15px;
 }
+
+.navBtnMy{
+    display:none;
+}
+
+.rotateNav{
+    font-size:medium;
+    margin-right:1px;
+}
+.hoverMy:hover .rotateNav {
+  color: white;
+  transform: rotate(450deg);
+}
+
 .loginHeader{
     padding:2px;
     height:15%;
@@ -45,23 +46,6 @@ button::-moz-focus-inner {
     border-bottom:2px solid #86B2D8;
     border-radius:12px;
     text-align:center;
-}
-.registerBox{
-    display:none;
-    position:fixed;
-
-    left:50%;
-    top:10%;
-    margin-left:-125px;
-    width:250px;
-    height:auto;
-    padding:4px;
-    border:1px solid #86B2D8;
-    border-radius:12px;
-    background-color:#4E86B7;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    color:white;
-    z-index:100;
 }
 .registerHeader{
     padding:2px;
@@ -99,7 +83,7 @@ button::-moz-focus-inner {
 .x{
 	position:absolute;
 	right:12px;
-	top:4px;
+	top:2px;
 	font-family: Arial Black;
 	color:white;
 	cursor:pointer;
@@ -183,7 +167,7 @@ button::-moz-focus-inner {
     font-size:18px;
     cursor:pointer;
 }
-.btnInfo_report:hover{background-color:#B84134;text-decoration:underline;}
+.btnInfo_report:hover{background-color:#B84134;text-decoration:none;}
 
 .btnInfo:hover {background-color:#C9EC25;}
 
@@ -344,6 +328,40 @@ label{
     cursor:default;
 }
 
+.infoTableClass{
+    display:none;
+    position:fixed;
+    left:50%;
+    top:15%;
+    margin-left:-150px;
+    width:300px;
+    height:auto;
+    padding:4px;
+    border:1px solid #86B2D8;
+    border-radius:12px;
+    background-color:#4E86B7;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    color:white;
+    font-size:small;
+    z-index:200;
+}
+
+.reportLabelHead{
+    padding:2px;
+    height:15%;
+    background-color:#6B9BC5;
+    border-bottom:1px solid #86B2D8;
+    border-radius:12px;
+    text-align:center;
+}
+.button101{
+    width:50px;
+    padding:4px;
+    height:15px;
+    background-color:#B1D607;
+    border-radius:3px;
+}
+.button101:hover{color:white;background-color:#B8D920}
 
 @media (max-width: 767px) {
     .div {
@@ -352,12 +370,13 @@ label{
     .bottomRow{
         position:unset;
     }
-    .textContainer{
-        font-size:small;
-    }
     .btnInfo{
-        font-size:small;
+        font-size:x-small;
         padding-top:11px;
+        width:auto;
+    }
+    .btnInfo_report{
+        font-size:small;
     }
     .resetApp{
         margin-left:40%;
@@ -379,4 +398,20 @@ label{
     #TableDetails2{
         font-size:small;
     }
+
+     .textContainer{
+        font-size:x-small;
+        
+    }
+     .personalDetailsClass{
+         font-size:medium;
+     }
+
+    .infoTableClass {
+        left: 50%;
+        top: 15%;
+        margin-left: -125px;
+        width: 250px;
+    }
+
 }

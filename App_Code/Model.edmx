@@ -71,6 +71,15 @@
           <Property Name="comments" Type="text" />
           <Property Name="callForTowing" Type="tinyint" />
         </EntityType>
+        <EntityType Name="messagesTable">
+          <Key>
+            <PropertyRef Name="msgNum" />
+          </Key>
+          <Property Name="msgNum" Type="int" Nullable="false" />
+          <Property Name="userID" Type="int" />
+          <Property Name="content" Type="text" />
+          <Property Name="date" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="third_party">
           <Key>
             <PropertyRef Name="emergencyReportId" />
@@ -110,6 +119,7 @@
           <EntitySet Name="case" EntityType="Self.case" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="client" EntityType="Self.client" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="emergencyReport" EntityType="Self.emergencyReport" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="messagesTable" EntityType="Self.messagesTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="third_party" EntityType="Self.third_party" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_client_client" Association="Self.FK_client_client">
             <End Role="client" EntitySet="client" />
@@ -130,6 +140,7 @@
             <End Role="client" EntitySet="client" />
             <End Role="client1" EntitySet="client" />
           </AssociationSet>
+          <EntitySet Name="messagesTable" EntityType="rtesModel.messagesTable" />
         </EntityContainer>
         <EntityType Name="abstract_user">
           <Key>
@@ -233,6 +244,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="messagesTable">
+          <Key>
+            <PropertyRef Name="msgNum" />
+          </Key>
+          <Property Name="msgNum" Type="Int32" Nullable="false" />
+          <Property Name="userID" Type="Int32" />
+          <Property Name="content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -329,6 +349,16 @@
                 <ScalarProperty Name="driverId" ColumnName="driverId" />
                 <ScalarProperty Name="driverName" ColumnName="driverName" />
                 <ScalarProperty Name="emergencyReportId" ColumnName="emergencyReportId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="messagesTable">
+            <EntityTypeMapping TypeName="rtesModel.messagesTable">
+              <MappingFragment StoreEntitySet="messagesTable">
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="content" ColumnName="content" />
+                <ScalarProperty Name="userID" ColumnName="userID" />
+                <ScalarProperty Name="msgNum" ColumnName="msgNum" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

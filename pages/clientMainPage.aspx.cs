@@ -58,58 +58,39 @@ public partial class clientMainPage : System.Web.UI.Page
                     //client welcome init
                     clientWelcome.Text = "Welcome " + "<b>"+user.name +"</b>" + " to client CP!";
 
+                    //init messages
+
+                    var msgs = db.messagesTable.Where(i => i.userID == userId).OrderBy(a=> a.date).ToList();
+                    var cnt = db.messagesTable.Where(i => i.userID == userId).Count();
+                    RepeaterMsgs.DataSource = msgs;
+                    RepeaterMsgs.DataBind();
+                    if(cnt==0)   //if no messages
+                    {
+                        noMessages.Visible = true;
+                        RepeaterMsgs.Visible = false;
+                    }
+
+
                     //Emergency reports library init
 
                     var reportsDb = db.emergencyReport.Where(i => i.clientAbstractUserId == userId).ToList();
                    
                     if (reportsDb.Any())  //show all reports @ table
-                    {  
-                        System.Text.StringBuilder table = new StringBuilder();  //create StringBuilder instance for table code string
-                        //create table code via StringBuilder
-                        table.AppendLine("<table class=\"table table - striped\" id=\"ReportsLib\">");
-                        table.AppendLine("<thead Style=\"background-color:#659FD3   \">");
-                        table.AppendLine("<tr>");
-                        table.AppendLine("<th>Report ID</th>");
-                        table.AppendLine("<th>Case ID</th>");
-                        table.AppendLine("<th>Date</th>");
-                        table.AppendLine("<th>Hour</th>");
-                        table.AppendLine("</tr>");
-                        table.AppendLine("</thead>");
-                        table.AppendLine("<tbody>");
-
-                        foreach (var st in reportsDb)  //add row for each report
-                        {
-                            table.AppendLine("<tr>");
-                            table.AppendLine("<td>");
-                            table.AppendLine(st.reportID.ToString());  //report ID - from int to string
-                            table.AppendLine("</td>");
-                            table.AppendLine("<td>");
-                            table.AppendLine(st.caseCaseId.ToString()); //content2
-                            table.AppendLine("</td>");
-                            table.AppendLine("<td>");
-                            table.AppendLine(st.date); //content3
-                            table.AppendLine("</td>");
-                            table.AppendLine("<td>");
-                            table.AppendLine(st.hour); //content4
-                            table.AppendLine("</td>");
-                            table.AppendLine("</tr>");
-
-                        }
-
-                        table.AppendLine("<tbody>");
-                        table.AppendLine("</table>");  //end table assemble
-                        rowsContent.Text = table.ToString();
+                    {
+                        //fill reports table from DB using repeater
+                        RepeaterClientRep.DataSource = reportsDb;
+                        RepeaterClientRep.DataBind();
                     }
                     else
                     {
                         repLibNotifPanel.Visible = true;
                     }
 
-
-
                 }
                 else  //if there is no client account
                 {
+                    noMsgAlertanel.Visible = true;  //no messages available
+                    messagesMain.Style["display"] = "none";
                     noClientAccount.Visible = true;
                     repLibNotifPanel.Visible = true;
                     TableDetails2.Style["display"] = "none";
@@ -229,4 +210,64 @@ public partial class clientMainPage : System.Web.UI.Page
             Response.Redirect("login.aspx");
         }
     }
+
+
+    protected void clientRepRowClick(Object Sender, RepeaterCommandEventArgs e)
+    {
+        switch (e.CommandName)
+        {
+            case "click":
+                clientRepContainer.Style["display"] = "block";
+                using (var db = new rtesEntities1())
+                {
+                    int x = Int32.Parse(e.CommandArgument.ToString());
+                    var reportsDb = db.emergencyReport.Where(i => i.reportID == x).FirstOrDefault();
+
+                    System.Text.StringBuilder list = new StringBuilder();
+
+                    list.AppendLine("<table class=\"table table-bordered\">");
+                    list.AppendLine("<tr><td>Client ID:</td>");
+                    list.AppendLine("<td>");
+                    list.AppendLine(reportsDb.clientAbstractUserId.ToString());
+                    list.AppendLine("</td></tr>");
+                    list.AppendLine("<tr><td>report ID:</td>");
+                    list.AppendLine("<td>");
+                    list.AppendLine(reportsDb.reportID.ToString());
+                    list.AppendLine("</td></tr>");
+                    list.AppendLine("<tr><td>Location:</td>");
+                    list.AppendLine("<td>");
+                    list.AppendLine(reportsDb.location);
+                    list.AppendLine("</td></tr>");
+                    list.AppendLine("<tr><td>Towing destination:</td>");
+                    list.AppendLine("<td>");
+                    list.AppendLine(reportsDb.towing_destination);
+                    list.AppendLine("</td></tr>");
+                    list.AppendLine("<tr>");
+                    list.AppendLine("<tr><td>Witness name:</td>");
+                    list.AppendLine("<td>");
+                    list.AppendLine(reportsDb.accident_witness_name);
+                    list.AppendLine("</td></tr>");
+                    list.AppendLine("<tr><td>Witness phone number:</td>");
+                    list.AppendLine("<td>");
+                    list.AppendLine(reportsDb.accident_witness_phone.ToString());
+                    list.AppendLine("</td></tr>");
+                    list.AppendLine("<tr><td>Comments:</td>");
+                    list.AppendLine("<td>");
+                    list.AppendLine(reportsDb.comments);
+                    list.AppendLine("</td></tr>");
+                    list.AppendLine("</table>");
+
+                    clientRepLabel.Text = list.ToString();
+                    break;
+                }
+        }
+    }
+
+    protected void closeClientRep(object sender, EventArgs e)  //button x
+    {
+        clientRepContainer.Style["display"] = "none";
+
+    }
+
+
 }
