@@ -3,6 +3,45 @@ var myApp = angular.module("myApp", []);
 
 //main controller
 myApp.controller('mainController', function ($scope) {
+
+
+    //login
+
+    $scope.loginText = "Please Enter your user-name and password, provided by the insurance company.";
+    $scope.validUser = true;
+    $scope.validPass = true;
+    $scope.notValidPass = true;
+    $scope.notValidUser = true  // for future use
+
+    $scope.loginField = function () {
+        $scope.validUser = false;
+        $scope.notValidUser = true;
+    };
+    $scope.loginFieldclick = function () {
+        $scope.loginText = "User name must contain only letters!";
+    };
+    $scope.loginPass = function () {
+        $scope.notValidPass = true;
+        if ($scope.lgPass.length >= 5)
+        {
+            $scope.validPass = false;
+            $scope.notValidPass = true;
+        }
+        else {
+            $scope.validPass = true;
+            $scope.notValidPass = false;
+        }
+    };
+
+    $scope.loginPassclick = function () {
+        $scope.loginText = "Minimal password length is 5 digits.";
+    }; 
+    $scope.loginFieldleave = function () {
+        $scope.loginText = "Please Enter your user-name and password, provided by the insurance company.";
+    };
+
+    
+
         
     //Text from json
 
@@ -19,96 +58,163 @@ myApp.controller('mainController', function ($scope) {
 
     //END Text from json
 
-        //Main nav functions
-        $(".resetApp,.aboutBtn").on("click", function () {
-            $(".textContainer").hide();
-            $(".chapter1").fadeIn();
-        });
-        //end main nav functions
+    //social icons
+    $scope.socialFunc = function (x) {
+        if (x == 1) {
+            window.location = "https://www.linkedin.com/";
+        }
+        else if(x==2)
+        {
+            window.location = "https://twitter.com/";
+        }
+        else if(x==3)
+        {
+            window.location = "https://www.facebook.com/";
+        }
+    };
 
-        //Home page functions
-        $(".btn1").on("click", function () {
-            $(".textContainer").hide();
-            $(".chapter2").fadeIn();
-        });
-        $(".btn2").on("click", function () {
-            $(".textContainer").hide();
-            $(".chapter3").fadeIn();
-        });
-        $(".btn3").on("click", function () {
-            $(".textContainer").hide();
-            $(".chapter4").fadeIn();
-        });
-        $(".btn4").on("click", function () {
-            $(".textContainer").hide();
-            $(".chapter5").fadeIn();
-        });
-        $(".btn5").on("click", function () {
-            $(".textContainer").hide();
-            $(".chapter6").fadeIn();
-        });
+
+       //home page buttons
+
+        $scope.home0 = false;
+        $scope.home1 = true;
+        $scope.home2 = true;
+        $scope.home3 = true;
+        $scope.home4 = true;
+        $scope.home5 = true;
+
+
+        $scope.buttonsClick = function (btn) {
+            if (btn == 0) {
+                $scope.home0 = false;
+                $scope.home1 = true;
+                $scope.home2 = true;
+                $scope.home3 = true;
+                $scope.home4 = true;
+                $scope.home5 = true;
+            }
+            else if (btn == 1) {
+                $scope.home0 = true;
+                $scope.home1 = false;
+                $scope.home2 = true;
+                $scope.home3 = true;
+                $scope.home4 = true;
+                $scope.home5 = true;
+            }
+            else if (btn == 2) {
+                $scope.home0 = true;
+                $scope.home1 = true;
+                $scope.home2 = false;
+                $scope.home3 = true;
+                $scope.home4 = true;
+                $scope.home5 = true;
+            }
+            else if (btn == 3) {
+                $scope.home0 = true;
+                $scope.home1 = true;
+                $scope.home2 = true;
+                $scope.home3 = false;
+                $scope.home4 = true;
+                $scope.home5 = true;
+            }
+            else if (btn == 4) {
+                $scope.home0 = true;
+                $scope.home1 = true;
+                $scope.home2 = true;
+                $scope.home3 = true;
+                $scope.home4 = false;
+                $scope.home5 = true;
+            }
+            else if (btn == 5) {
+                $scope.home0 = true;
+                $scope.home1 = true;
+                $scope.home2 = true;
+                $scope.home3 = true;
+                $scope.home4 = true;
+                $scope.home5 = false;
+            }
+        }
+
     
 });
 
 
 //client controller
 myApp.controller('clientController', function ($scope) {
-    //Main nav functions
-    $(".resetApp,.aboutBtn").on("click", function () {
-        $(".textContainer").hide();
-        $(".chapter1").fadeIn();
-    });
-    //end main nav functions
 
-    //Client functions:
-    $(".btn1").on("click", function () {
-        $(".textContainer").hide();
-        $(".chapter2").fadeIn();
-    });
-    $(".btn2").on("click", function () {
-        $(".textContainer").hide();
-        $(".chapter3").fadeIn();
-    });
-    $(".btn3").on("click", function () {
-        $(".textContainer").hide();
-        $(".chapter4").fadeIn();
-    });
-    $(".btn4").on("click", function () {
-        $(".textContainer").hide();
-        $(".chapter5").fadeIn();
-    });
-    $(".btn5").on("click", function () {
-        $(".textContainer").hide();
-        $(".chapter6").fadeIn();
-    });
+    
+    //client page main buttons
+
+    $scope.client0 = false;
+    $scope.client1 = true;
+    $scope.client2 = true;
+    $scope.client3 = true;
+    $scope.client4 = true;
+
+
+    $scope.buttonsClick = function (btn) {
+        if (btn == 1) {
+            $scope.client0 = true;
+            $scope.client1 = false;
+            $scope.client2 = true;
+            $scope.client3 = true;
+            $scope.client4 = true;
+        }
+        else if (btn == 2) {
+            $scope.client0 = true;
+            $scope.client1 = true;
+            $scope.client2 = false;
+            $scope.client3 = true;
+            $scope.client4 = true;
+
+        }
+        else if (btn == 3) {
+            $scope.client0 = true;
+            $scope.client1 = true;
+            $scope.client2 = true;
+            $scope.client3 = false;
+            $scope.client4 = true;
+        }
+        else if (btn == 4) {
+            $scope.client0 = true;
+            $scope.client1 = true;
+            $scope.client2 = true;
+            $scope.client3 = true;
+            $scope.client4 = false;
+        }
+    }
+
+
+
 
     $scope.myPersonalDetails = function () {
         $scope.personal = !$scope.personal;
     }
 
-    //settings
-    $(".changePswdJS").on("click", function () {
-        $(".subchangePswdJS").toggle();
-    });
-    $(".changeEmailJS").on("click", function () {
-        $(".subchangeEmailJS").toggle();
-    });
-    $(".changePhoneJS").on("click", function () {
-        $(".subchangePhoneJS").toggle();
-    });
+    //settings buttons
+
+    $scope.op1 = true;
+    $scope.op2 = true;
+    $scope.op3 = true;
+
+    $scope.toggleOptions = function (op) {
+        if (op == 1){
+            $scope.op1 = !$scope.op1;
+        }
+        else if (op == 2){
+            $scope.op2 = !$scope.op2;
+        }
+        else if (op == 3) {
+            $scope.op3 = !$scope.op3;
+        }
+        
+    };
 
 });
 
 
 //Emergency form controller
-myApp.controller('emergFormController', function ($scope) {
-
-    //Main nav functions
-    $(".resetApp,.aboutBtn").on("click", function () {
-        $(".textContainer").hide();
-        $(".chapter1").fadeIn();
-    });
-    //end main nav functions
+myApp.controller('emergFormController', function ($scope, $filter ) {
 
     $scope.myPersonalDetails = function () {
         $scope.personal = !$scope.personal;
@@ -133,34 +239,37 @@ myApp.controller('emergFormController', function ($scope) {
     $scope.myFunc2 = function () {
         $scope.myValue1 = !$scope.myValue1;
     }
-
+  
 });
 
     //operator controller
 myApp.controller('operatorController', function ($scope) {
-    //Main nav functions
-    $(".resetApp,.aboutBtn").on("click", function () {
-        $(".textContainer").hide();
-        $(".chapter1").fadeIn();
-    });
-    //end main nav functions
 
-    //operator functions:
-    $(".btn1").on("click", function () {
-        $(".textContainer").hide();
-        $(".chapter1").fadeIn();
-    });
-    $(".btn2").on("click", function () {
-        $(".textContainer").hide();
-        $(".chapter2").fadeIn();
-    });
-    $(".btn3").on("click", function () {
-        $(".textContainer").hide();
-        $(".chapter3").fadeIn();
-    });
-    $(".btn4").on("click", function () {
-        $(".textContainer").hide();
-        $(".chapter4").fadeIn();
-    });
+    $scope.oper0 = false;
+    $scope.oper1 = true;
+    $scope.oper2 = true;
+    $scope.oper3 = true;
+
+
+    $scope.operatorClick = function (btn) {
+        if (btn == 1) {
+            $scope.oper0 = true;
+            $scope.oper1 = false;
+            $scope.oper2 = true;
+            $scope.oper3 = true;
+        }
+        else if (btn == 2) {
+            $scope.oper0 = true;
+            $scope.oper1 = true;
+            $scope.oper2 = false;
+            $scope.oper3 = true;
+        }
+        else if (btn == 3) {
+            $scope.oper0 = true;
+            $scope.oper1 = true;
+            $scope.oper2 = true;
+            $scope.oper3 = false;
+        }
+    }
 
 });

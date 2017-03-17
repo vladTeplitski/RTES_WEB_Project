@@ -10,47 +10,46 @@
 
 <asp:Content ID="mainContent" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
-
-
     <div class="container-fluid" ng-controller="operatorController">
 
         <!--START Operator Page-->
+
         <div class="row bodyRow operatorWindow">
             <form runat="server" id="writeMessageBox">
 
+            <!-- Start Operator buttons -->
             <div class="col-lg-3 col-lg-offset-1 col-md-4 col-md-offset-0 col-xs-8 col-xs-offset-2">
                 <div class="getStartedBox" style="position: relative; margin-top: 8px; margin-bottom: 8px;">
      
-                <div class="btnInfo btn1">
+                <div ng-click="operatorClick(1)" class="btnInfo">
                     <div style="display: inline; position: absolute; left: 8px;"><i class="glyphicon glyphicon-folder-open"></i></div>
                     Existing Reports Folder
                 </div>
 
-               <div class="btnInfo btn2">
+               <div ng-click="operatorClick(2)" class="btnInfo">
                    <div style="display: inline; position: absolute; left: 8px;"><i class="glyphicon glyphicon-pencil"></i></div>
                    Send Message To Client
                </div>
   
-                <div class="btnInfo btn3">
+                <div ng-click="operatorClick(3)" class="btnInfo">
                     <div style="display: inline; position: absolute; left: 8px;"><i class="glyphicon glyphicon-folder-open"></i></div>
                     View Users Details
                 </div>
-                
-                <a href="clientMainPage.aspx">
-                <div class="btnInfo btn4">
-                    <div style="display: inline; position: absolute; left: 8px;"><i class="glyphicon glyphicon-th-large"></i></div>
-                    Client CP
-                </div>
-                </a>
+
                 </div>
             </div>
 
             <div class="col-lg-6 col-lg-offset-1 col-md-6 col-md-offset-1 col-xs-12">
             <div class="mainWindow">
-                <div class="textContainer chapter1">
+
+             <!--Start Operator home window-->
+                <div ng-hide="oper0" class="textContainer">
                     operator Home.
                 </div>
-                <div class="textContainer chapter2" style="overflow:auto;">
+
+             <!--Start Existing reports in system -->
+
+                <div ng-hide="oper1" class="textContainer" style="overflow:auto;">
 
                 <div runat="server" id="reportsInSystem" class="personalDetailsClass">
                    <i Style="font-size:23px;" class="glyphicon glyphicon-list-alt"></i>
@@ -108,21 +107,25 @@
                                 <%#Eval("towing_destination")%>
                              </td>
                            <td>
-                                <asp:LinkButton ID="Button1" CommandName="click" Text="More" runat="server" CssClass="button101"  CommandArgument='<%# DataBinder.Eval(Container.DataItem, "reportID") %>'/>
+                                <asp:LinkButton data-toggle="tooltip" title="More details" data-placement="right"  ID="Button1" CommandName="click" Text="More" runat="server" CssClass="button101"  CommandArgument='<%# DataBinder.Eval(Container.DataItem, "reportID") %>'/>
                            </td>
                       </tr>
                    
-
                </ItemTemplate>
                <FooterTemplate>
                   </table>
                </FooterTemplate>
                </asp:Repeater>
-                            </ContentTemplate>
-                            </asp:updatepanel>
+               </ContentTemplate>
+               </asp:updatepanel>
                 </div>
-                <div class="textContainer chapter3">
-                    
+
+
+                <!--Start - send message to client -->
+                <div ng-hide="oper2" class="textContainer">
+               <asp:updatepanel runat="server">
+               <ContentTemplate>
+               
                          <div runat="server" id="Div1" class="personalDetailsClass">
                              <i Style="font-size:23px;" class="glyphicon glyphicon-user"></i>
                              <span style="margin-left:10px;">Send message to client</span>
@@ -132,12 +135,29 @@
                              <span style="margin-left:10px;">Choose client:</span>
                               <asp:DropDownList ID="dropList" runat="server" ToolTip="Choose the wanted user ID" Style="margin-left:10px;width:200px;color:black;height:40px;border-radius:5px;"></asp:DropDownList>
                          </div><br/>
+
+                     <div style="width: 50%; margin: 3px auto; text-align: center; padding: 8px 0px">
+                      <asp:Panel runat="server" CssClass="alert alert-danger" ID="msgEmpty" Visible="false">
+                      Text field is empty!
+                      </asp:Panel>
+                     </div>
+
+                     <div style="width: 50%; margin: 3px auto; text-align: center; padding: 8px 0px">
+                     <asp:Panel runat="server" CssClass="alert alert-success" ID="msgSuccess" Visible="false">
+                      Message sent successfully!
+                      </asp:Panel>
+                     </div>
+
                     <asp:TextBox id="Textbox1" TextMode="multiline" Columns="50" Rows="5" runat="server" Style="width:100%;margin:auto"/>
+                    
                     <asp:Button runat="server" ID="sendMsgBtn" onclick="sendMessage" CssClass="btn btn-default settingsBtn" Text="Send" Style="margin-top:5px; margin-left:2%;" />
 
-                    
+                </ContentTemplate>
+                </asp:updatepanel>
                 </div>
-                <div class="textContainer chapter4"  style="overflow:auto;">
+
+                <!--Start Users List -->
+                <div ng-hide="oper3" class="textContainer" style="overflow:auto;">
 
                 <div runat="server" id="userDetailsPanel" class="personalDetailsClass">
                    <i Style="font-size:23px;" class="glyphicon glyphicon-user"></i>
@@ -183,7 +203,7 @@
                                 <%#Eval("familyName")%>
                              </td>
                              <td>
-                                <asp:LinkButton ID="Button2" CommandName="click" Text="Info" runat="server" CssClass="button101"  CommandArgument='<%# DataBinder.Eval(Container.DataItem, "id") %>'/>
+                                <asp:LinkButton data-toggle="tooltip" title="More details" data-placement="right" ID="Button2" CommandName="click" Text="Info" runat="server" CssClass="button101"  CommandArgument='<%# DataBinder.Eval(Container.DataItem, "id") %>'/>
                              </td>
                       </tr>
                </ItemTemplate>
@@ -191,17 +211,12 @@
                   </table>
                </FooterTemplate>
                </asp:Repeater>
-                            </ContentTemplate>
-                            </asp:updatepanel>
+               </ContentTemplate>
+               </asp:updatepanel>
                 </div>
-            </div>
-
-            </div>
-        </form>
-        </div>
-
-
-
-    </div>
-
-</asp:Content>
+         </div>
+         </div>
+         </form>
+         </div>
+         </div>
+         </asp:Content>

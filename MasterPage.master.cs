@@ -18,7 +18,6 @@ public partial class MasterPage : System.Web.UI.MasterPage
         {
             //show hiddent user cp fields
             loginBtn.Style["display"] = "none";
-            regBtn.Style["display"] = "none";
             logoutButton.Style["display"] = "inline";  //show logout button
             
 
@@ -64,7 +63,6 @@ public partial class MasterPage : System.Web.UI.MasterPage
             openCasesPanel.Style["display"] = "none";
 
             loginBtn.Style["display"] = "inline";
-            regBtn.Style["display"] = "inline";
             logoutButton.Style["display"] = "none";
             
         }

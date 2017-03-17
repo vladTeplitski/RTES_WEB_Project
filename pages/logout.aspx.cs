@@ -14,8 +14,6 @@ public partial class logout : System.Web.UI.Page
 
     protected void logout_func(object sender, EventArgs e)
     {
-        //Session.Clear();
-        //Session.RemoveAll();
         Session.Abandon();
         Response.Redirect("../homepage.aspx");
     }

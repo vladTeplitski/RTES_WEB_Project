@@ -13,45 +13,42 @@
     <div runat="server" class="container-fluid" ng-controller="clientController">
 
         <!--START Client Page-->
+
         <div class="row bodyRow clientWindow">
 
+            <!-- Start client buttons -->
             <div class="col-lg-3 col-lg-offset-1 col-md-4 col-md-offset-0 col-xs-8 col-xs-offset-2">
                 <div class="getStartedBox" style="position: relative; margin-top: 8px; margin-bottom: 8px;">
 
-                    <a runat="server" id="backOperator" href="operatorPage.aspx">
-                    <div class="btnInfo">
-                       <div style="display: inline; position: absolute; left: 8px;"><i class="glyphicon glyphicon-home"></i></div>
-                        Operator Page
-                    </div>
-                    </a>
                     <a runat="server" ID="reportButton" href="emergForm.aspx">
                     <div class="btnInfo_report">
                         <div style="display: inline; position: absolute; left: 8px;"><i class="glyphicon glyphicon-pencil"></i></div>
                         New Report</div>
                     </a>
-                    <div class="btnInfo btn5">
+                    <div ng-click="buttonsClick(4)" class="btnInfo">
                         <div style="display: inline; position: absolute; left: 8px;"><i class="glyphicon glyphicon-envelope" aria-hidden="true" style="font-size: 20px;"></i></div>
                         Messages</div>
-                    <div class="btnInfo btn2">
+                    <div ng-click="buttonsClick(1)" class="btnInfo">
                         <div style="display: inline; position: absolute; left: 8px;"><i class="glyphicon glyphicon-folder-open"></i></div>
                         Reports Library</div>
-                    <div class="btnInfo btn3">
+                    <div ng-click="buttonsClick(2)" class="btnInfo">
                         <div style="display: inline; position: absolute; left: 8px;"><i class="glyphicon glyphicon-cog"></i></div>
                         Settings</div>
-                    <div class="btnInfo btn4">
+                    <div ng-click="buttonsClick(3)" class="btnInfo">
                         <div style="display: inline; position: absolute; left: 8px;"><i class="fa fa-info-circle" aria-hidden="true" style="font-size: 20px;"></i></div>
                         Personal Details</div>
-
                 </div>
-
             </div>
+
+            <!-- Main window client content -->
             <div class="col-lg-6 col-lg-offset-1 col-md-6 col-md-offset-1 col-xs-12">
 
-                <!-- client content -->
                 <div class="mainWindow" style="margin-top: 8px;">
-                    <div class="textContainer chapter1">
+                    <form runat="server" id="settingsForm">
+                    <div ng-hide="client0" class="textContainer">
                         <asp:Label runat="server" ID="clientWelcome"></asp:Label>
                         <asp:Label runat="server" ID="clientOps"></asp:Label>
+
                         <!-- Notifications-->
                          <div runat="server" id="notifications" style="font-size:small; width: 80%; margin: 10px auto; text-align: center; padding: 3px 0px;">
                             <asp:Panel runat="server" CssClass="alert alert-danger" ID="pswdWrongPanel" Visible="false">
@@ -70,14 +67,13 @@
                              Phone number changed successfully!
                              </asp:Panel>
                          </div>
-
-                        <br />
-                        <asp:Literal runat="server" ID="vladLabel"></asp:Literal>
+                         <br />
+                         <asp:Literal runat="server" ID="vladLabel"></asp:Literal>
                     </div>
 
-                    <!--Reports Library-->
-            <form runat="server" id="settingsForm">
-                    <div class="textContainer chapter3" style="overflow:auto;">
+                    <!--StartReports Library-->
+
+                    <div ng-hide="client1" class="textContainer" style="overflow:auto;">
 
                        <div runat="server" id="reportsInSystem" class="personalDetailsClass">
                             <i Style="font-size:23px;" class="glyphicon glyphicon-list-alt"></i>
@@ -90,10 +86,10 @@
                             </asp:Panel>
                          </div>
                              
-               <asp:ScriptManager runat="server" ID="sm2">
-               </asp:ScriptManager>
-               <asp:updatepanel runat="server">
-               <ContentTemplate>
+                    <asp:ScriptManager runat="server" ID="sm2">
+                    </asp:ScriptManager>
+                    <asp:updatepanel runat="server">
+                    <ContentTemplate>
                          <div runat="server" id="clientRepContainer" class="infoTableClass opRepLabelJs">
                            <div class="reportLabelHead">
                                  <b>Report Overview</b>
@@ -104,8 +100,8 @@
                              </div>
                          </div>
                              
-               <asp:Repeater ID="RepeaterClientRep" runat="server" OnItemCommand="clientRepRowClick">
-               <HeaderTemplate>
+                     <asp:Repeater ID="RepeaterClientRep" runat="server" OnItemCommand="clientRepRowClick">
+                    <HeaderTemplate>
                    <table class="table table - striped" style="font-size:small;">
                         <tr>
                             <th>Report ID</th>
@@ -113,8 +109,8 @@
                             <th>Hour</th>
                             <th>Location</th>
                         </tr>
-               </HeaderTemplate>
-               <ItemTemplate>
+                 </HeaderTemplate>
+                 <ItemTemplate>
                        <tr>
                              <td>
                                <%#Eval("reportID")%>
@@ -129,45 +125,44 @@
                                 <%#Eval("location")%>
                              </td>
                            <td>
-                                <asp:LinkButton ID="Button200" CommandName="click" Text="View" runat="server" CssClass="button101"  CommandArgument='<%# DataBinder.Eval(Container.DataItem, "reportID") %>'/>
+                                <asp:LinkButton data-toggle="tooltip" title="More details" data-placement="right"  ID="Button200" CommandName="click" Text="View" runat="server" CssClass="button101"  CommandArgument='<%# DataBinder.Eval(Container.DataItem, "reportID") %>'/>
                            </td>
                       </tr>
                    
 
-               </ItemTemplate>
-               <FooterTemplate>
-                  </table>
-               </FooterTemplate>
-               </asp:Repeater>
-               </ContentTemplate>
-               </asp:updatepanel>
+                    </ItemTemplate>
+                    <FooterTemplate>
+                          </table>
+                    </FooterTemplate>
+                    </asp:Repeater>
+                    </ContentTemplate>
+                    </asp:updatepanel>
 
                     </div>
 
-                    <div class="textContainer chapter4">
-                        <!--Start settings -->
-                        
 
-                        <div id="changePswd" class="SettingClass changePswdJS">
+                    <!--Start user settings -->
+
+                    <div ng-hide="client2" class="textContainer">
+
+                        <div ng-click="toggleOptions(1)" id="changePswd" class="SettingClass">
                         <i Style="font-size:23px;" class="glyphicon glyphicon-lock"></i>
                         Change password
                         </div>
-                        <div id="subChangePswd" class="subSettingClass subchangePswdJS">
+                        <div id="subChangePswd" ng-hide="op1" class="subSettingClass">
                             Present password:
                             <asp:TextBox runat="server" CssClass="form-control" ID="changePswTxtPresent" Style="color:#646464" placeholder="Present pass"></asp:TextBox>
                             New password:
                             <asp:TextBox runat="server" CssClass="form-control" ID="changePswNew" Style="color:#646464" placeholder="New pass"></asp:TextBox>
                         
                             <asp:Button runat="server" ID="changePswdBtn" OnClick="changePswd" CssClass="btn btn-default settingsBtn" Text="Save" Style="margin-left:2%; margin-top:5px; "/>
-
                         </div>
 
-
-                        <div id="changeEmail" class="SettingClass changeEmailJS">
+                        <div ng-click="toggleOptions(2)" id="changeEmail" class="SettingClass">
                         <i Style="font-size:23px;" class="glyphicon glyphicon-envelope"></i>
                         Edit Email
                         </div>
-                        <div id="subChangeEmail" class="subSettingClass subchangeEmailJS">
+                        <div id="subChangeEmail" ng-hide="op2" class="subSettingClass">
                             Present email:
                             <asp:TextBox runat="server" CssClass="form-control" ID="presentEmailBox" Style="color:#646464" placeholder="Present email@"></asp:TextBox>
                             New email:
@@ -176,22 +171,20 @@
 
                         </div>
 
-                        <div id="changePhone" class="SettingClass changePhoneJS">
+                        <div ng-click="toggleOptions(3)" id="changePhone" class="SettingClass">
                         <i Style="font-size:23px;" class="glyphicon glyphicon-earphone"></i>
-                        Edit Phone number
+                            Edit Phone number
                         </div>
-                        <div id="subChangePhone" class="subSettingClass subchangePhoneJS">
+                        <div id="subChangePhone" ng-hide="op3" class="subSettingClass">
                             New phone number:
                             <asp:TextBox runat="server" CssClass="form-control" ID="newPhoneBox" Style="color:#646464" placeholder="New Phone-num#"></asp:TextBox>
                         <asp:Button runat="server" ID="changePhoneBtn" onclick="changePhone" CssClass="btn btn-default settingsBtn" Text="Save" Style="margin-top:5px; margin-left:2%;" />
 
                         </div>
-
-
-                     </form>
-                        <!--End settings -->
                     </div>
-                    <div class="textContainer chapter5">
+
+                    <!-- Start personal Details-->
+                    <div ng-hide="client3" class="textContainer">
 
                      <div style="width: 80%; margin: 10px auto; text-align: center;">
                      <asp:Panel runat="server" CssClass="alert alert-danger" ID="noClientAccount" Visible="false">
@@ -280,21 +273,28 @@
 
                         </table>
                     </div>
-                    <div class="textContainer chapter6">
+
+                    <!-- Start Messages container -->
+                    <div ng-hide="client4" class="textContainer">
+                     
+                        <asp:updatepanel runat="server">
+                        <ContentTemplate>
+
                         <div runat="server" id="messagesMain" class="personalDetailsClass">
                              <i Style="font-size:23px;" class="glyphicon glyphicon-tasks"></i>
                              <span style="margin-left:10px;">Messages</span>
                         </div><br />
-                     <div style="width: 80%; margin: 10px auto; text-align: center;">
-                     <asp:Panel runat="server" CssClass="alert alert-danger" ID="noMsgAlertanel" Visible="false">
-                      No messages available!
-                      </asp:Panel>
-                     <asp:Panel runat="server" CssClass="alert alert-success" ID="noMessages" Visible="false">
-                      There are no messages!
-                      </asp:Panel>
-                      </div>
+                           <!--Alert messages  -->
+                           <div style="width: 80%; margin: 10px auto; text-align: center;">
+                              <asp:Panel runat="server" CssClass="alert alert-danger" ID="noMsgAlertanel" Visible="false">
+                                  No messages available!
+                              </asp:Panel>
+                              <asp:Panel runat="server" CssClass="alert alert-success" ID="noMessages" Visible="false">
+                                  There are no messages!
+                              </asp:Panel>
+                           </div>
 
-                        <asp:Repeater ID="RepeaterMsgs" runat="server" Visible="true">
+                        <asp:Repeater ID="RepeaterMsgs" runat="server" Visible="true" OnItemCommand="delMessage">
                         <HeaderTemplate>
                              <table class="table table - striped" style="font-size:small;">
                                  <tr>
@@ -310,6 +310,9 @@
                               <td>
                                 <%#Eval("content")%>
                              </td>
+                              <td>
+                                 <asp:LinkButton data-toggle="tooltip" title="Delete message" data-placement="right" ID="Button2" CommandName="click" Text="X" runat="server" CssClass="button102" CommandArgument='<%# DataBinder.Eval(Container.DataItem, "msgNum") %>'/>
+                             </td>
                           </tr>
                        </ItemTemplate>
                         <FooterTemplate>
@@ -317,13 +320,18 @@
                         </FooterTemplate>
                         </asp:Repeater>
 
+                     
+                     </ContentTemplate>
+                     </asp:updatepanel>
 
                     </div>
-                </div>
 
-            </div>
+                  </form>
+                </div>
+             </div>
         </div>
     </div>
+     
     <!--END Client Page-->
 
 </asp:Content>

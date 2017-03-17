@@ -21,7 +21,7 @@ public partial class clientMainPage : System.Web.UI.Page
         emailChangeSuccess.Visible = false;
         phoneChangeSuccess.Visible = false;
 
-        //checkk session for logged in user
+        //check session for logged in user
 
         if (Session["user"] != null)  //logged in user
         {
@@ -31,15 +31,12 @@ public partial class clientMainPage : System.Web.UI.Page
                 userName = Session["user"].ToString();  //read the user name
                 userId = (int)(Session["uid"]);    //convert session to int - read the id
 
-
                 //read from database
                 var user = db.abstract_user.Where(i => i.id == userId).FirstOrDefault();
                 var client = db.client.Where(i => i.abstractUserId == userId).DefaultIfEmpty().First(); ;
 
                 if (client != null)  //if there is a client account
                 {
-                    //buttons init
-                    backOperator.Style["display"] = "none"; //hide oprator navigation button
 
                     //read personal details fields from database
                     carCategory.Text = client.carCategory;
@@ -56,15 +53,15 @@ public partial class clientMainPage : System.Web.UI.Page
                     carOwnerId.Text = client.carOwnerId.ToString();
 
                     //client welcome init
-                    clientWelcome.Text = "Welcome " + "<b>"+user.name +"</b>" + " to client CP!";
+                    clientWelcome.Text = "Welcome " + "<b>" + user.name + "</b>" + " to client CP!";
 
                     //init messages
 
-                    var msgs = db.messagesTable.Where(i => i.userID == userId).OrderBy(a=> a.date).ToList();
+                    var msgs = db.messagesTable.Where(i => i.userID == userId).OrderBy(a => a.date).ToList();
                     var cnt = db.messagesTable.Where(i => i.userID == userId).Count();
                     RepeaterMsgs.DataSource = msgs;
                     RepeaterMsgs.DataBind();
-                    if(cnt==0)   //if no messages
+                    if (cnt == 0)   //if no messages
                     {
                         noMessages.Visible = true;
                         RepeaterMsgs.Visible = false;
@@ -74,7 +71,7 @@ public partial class clientMainPage : System.Web.UI.Page
                     //Emergency reports library init
 
                     var reportsDb = db.emergencyReport.Where(i => i.clientAbstractUserId == userId).ToList();
-                   
+
                     if (reportsDb.Any())  //show all reports @ table
                     {
                         //fill reports table from DB using repeater
@@ -100,9 +97,7 @@ public partial class clientMainPage : System.Web.UI.Page
                     reportButton.Attributes["href"] = "#";   //no click on New Report
                     reportButton.Attributes.Add("title", "You must be a client to open a report!");
 
-                    backOperator.Style["display"] = "block"; //show oprator navigation button
-
-                    clientWelcome.Text = "Welcome " + "<b>" + user.name + "</b>!" + " You are not registred as a 'client'.<br>User mode: "+ user.role;
+                    clientWelcome.Text = "Welcome " + "<b>" + user.name + "</b>!" + " You are not registred as a 'client'.<br>User mode: " + user.role;
                 }
             }
         }
@@ -132,7 +127,7 @@ public partial class clientMainPage : System.Web.UI.Page
                 if (changePswTxtPresent.Text == user.password)  //present password validation
                 {
                     user.password = changePswNew.Text; //change the password in db
-                    
+
                     pswdWrongPanel.Visible = false;
                     pswdChangeSuccess.Visible = true;
 
@@ -154,8 +149,6 @@ public partial class clientMainPage : System.Web.UI.Page
             Response.Redirect("login.aspx");
         }
     }
-
-
 
     protected void changeEmail(object sender, EventArgs e)
     {
@@ -188,8 +181,7 @@ public partial class clientMainPage : System.Web.UI.Page
             Response.Redirect("login.aspx");
         }
     }
-
-
+    
     protected void changePhone(object sender, EventArgs e)
     {
         if (Session["user"] != null)  //logged in user
@@ -210,8 +202,7 @@ public partial class clientMainPage : System.Web.UI.Page
             Response.Redirect("login.aspx");
         }
     }
-
-
+    
     protected void clientRepRowClick(Object Sender, RepeaterCommandEventArgs e)
     {
         switch (e.CommandName)
@@ -269,5 +260,34 @@ public partial class clientMainPage : System.Web.UI.Page
 
     }
 
+    protected void delMessage(Object Sender, RepeaterCommandEventArgs e)
+    {
+        switch (e.CommandName)
+        {
+            case "click":
 
+                using (var db = new rtesEntities1())
+                {
+                    int x = Int32.Parse(e.CommandArgument.ToString());
+                    var msg = db.messagesTable.Where(i => i.msgNum == x).FirstOrDefault();
+
+                    db.messagesTable.Remove(msg);
+                    db.SaveChanges();
+
+                    //init messages again
+                    var msgs = db.messagesTable.Where(i => i.userID == userId).OrderBy(a => a.date).ToList();
+                    var cnt = db.messagesTable.Where(i => i.userID == userId).Count();
+                    RepeaterMsgs.DataSource = msgs;
+                    RepeaterMsgs.DataBind();
+                    if (cnt == 0)   //if no messages
+                    {
+                        noMessages.Visible = true;
+                        RepeaterMsgs.Visible = false;
+                    }
+
+
+                    break;
+                }
+        }
+    }
 }

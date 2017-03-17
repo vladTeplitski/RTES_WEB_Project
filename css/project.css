@@ -25,9 +25,29 @@ button::-moz-focus-inner {
     margin-left:5px;
     margin-top:15px;
 }
+.hoveringIcon{
+    cursor:pointer;
+}
+.hoveringIcon:hover{
+color:#F3F3F3;
+}
 
 .navBtnMy{
     display:none;
+}
+
+.tableDetails{
+    color:black;
+}
+
+.rowForm{
+    height:auto;
+    width:90%;
+    border-bottom:1px solid #B1D607;
+    border-radius:2px;
+    margin-top:2px;
+    margin-bottom:4px;
+
 }
 
 .rotateNav{
@@ -84,7 +104,8 @@ button::-moz-focus-inner {
 	position:absolute;
 	right:12px;
 	top:2px;
-	font-family: Arial Black;
+	font-family: Consolas;
+    font-weight:500;
 	color:white;
 	cursor:pointer;
     font-size:large;
@@ -210,12 +231,6 @@ button::-moz-focus-inner {
     cursor:pointer;
 }
 
-.chapter2{display:none;}
-.chapter3{display:none;}
-.chapter4{display:none;}
-.chapter5{display:none;}
-.chapter6{display:none;}
-
 .CloseBtn{
     padding:0px;
     height:25px;
@@ -239,27 +254,65 @@ button::-moz-focus-inner {
     background-color:#D9DBF1;
     color:#5E6572;
     padding:20px;
-    border-top:1px solid #B1D607;
-    border-bottom:1px solid #B1D607;
+    border-top:2px solid #B1D607;
+    border-bottom:2px solid #B1D607;
     border-radius: 15px;
+    text-align:center;
+    width:80%;
+    margin:auto;
+}
+
+.driverDetails .form-control{
+    border:2px solid white;
+    margin-left:1px;
+    width:80%;
+}
+.formContainer{
+    width:70%;
+    margin:auto;
+    border-radius:5px;
+}
+
+.carDetails  .form-control{
+    border:2px solid white;
+    margin:auto;
+}
+.insuranceDetails  .form-control{
+    border:2px solid white;
+    margin:auto;
 }
 
 
 #TableDetails{
-    border-collapse: collapse;
-    width: 100%;
-    color:#000000;
-    border: 6px solid #043565;
+    color:white;
+    background-color:#5A95C9;
+    
+    border-radius:10px;
     padding:8px;
+    padding-bottom:5px;
     text-align: left;
-    width:35%;
+    width:100%;
+    margin-top:1px;
+    margin-bottom:1px;
+    
+}
+
+.TableDetailsCover{
+    margin-top:20px;
+    width:50%;
+    border:1px solid white;
+    border-radius:10px;
 }
 
 
 .colD{width:50%; text-align:center;}
-.colT:nth-child(even){background-color: #D0CDD7}
-.colT{height:100%;}
 
+.colT{
+    height:100%;
+    }
+
+.colT:nth-child(even){ 
+    background-color:#60A0D8;}
 
 .emergFormInp{
     width:50px;
@@ -286,12 +339,29 @@ label{
     color:white;
 
     cursor:pointer;
-
 }
 .SettingClass:hover{background-color:#5872AA}
 
+.emergFormBtn{
+    width:40%;
+    height:auto;
+    padding:5px;
+    padding-left:10px;
+    margin:auto;
+    margin-top:5px;
+
+    background-color:#B1D607;
+    border:1px solid #BDE30F;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius:5px;
+
+    color:white;
+    cursor:pointer;
+}
+.emergFormBtn:hover{background-color:#B9DB1D;}
+
 .subSettingClass{
-    display:none;
+    
 
     width:80%;
     height:auto;
@@ -363,6 +433,16 @@ label{
 }
 .button101:hover{color:white;background-color:#B8D920}
 
+.button102{
+    width:50px;
+    padding:4px;
+    height:15px;
+    background-color:#FF6029;
+    border-radius:3px;
+}
+.button102:hover{color:white;background-color:#FF8054}
+
+
 @media (max-width: 767px) {
     .div {
         text-align: center;
@@ -413,5 +493,16 @@ label{
         margin-left: -125px;
         width: 250px;
     }
+    .emergFormBtn{
+        font-size:small;
+        width:70%;
+    }
 
+    .driverDetails,.carDetails,.insuranceDetails{
+    font-size:small;
+}
+
+    .driverDetails .form-control {
+        font-size:small;
+        }
 }

@@ -16,13 +16,10 @@ public partial class operatorPage : System.Web.UI.Page
 
         if (!IsPostBack)
         {
-            //init
-
-
-            //checkk session for logged in user
+            //check session for logged in user
 
             if (Session["user"] != null)  //logged in user
-        {
+            {
 
             using (var db = new rtesEntities1())
             {
@@ -46,20 +43,18 @@ public partial class operatorPage : System.Web.UI.Page
                 {  //!IsPostBack fixes problem of first option choose by default
                     var clients = db.abstract_user.Where(i => i.role == "Client");
 
-
                     dropList.DataSource = clients.ToList();
                     dropList.DataTextField = "id";
                     dropList.DataValueField = "id";
                     dropList.DataBind();
                 }
-
             }
         }
         else
         {
             Response.Redirect("login.aspx");
         }
-        }
+      }
     }
 
     override protected void OnInit(EventArgs e)  //when property AutoEventWireup="false" override OnInit
@@ -73,11 +68,18 @@ public partial class operatorPage : System.Web.UI.Page
         if (Session["user"] != null)  //logged in user
         {
 
+            if(Textbox1.Text.Length==0)  //text field is empty
+            {
+                msgEmpty.Visible = true;
+                msgSuccess.Visible = false;
+            }
+
+            else { 
+
             using (var db = new rtesEntities1())
             {
                 int val = Int32.Parse(dropList.SelectedValue);  //get selected value
                                                                 //var client = db.client.Where(i => i.abstractUserId == val).FirstOrDefault();
-
                 //generate message number - key in db
 
                 Random rand = new Random();
@@ -100,7 +102,10 @@ public partial class operatorPage : System.Web.UI.Page
                 };
                 db.messagesTable.Add(msg); //add new row to db
                 db.SaveChanges();
+                msgSuccess.Visible = true;
+                msgEmpty.Visible = false;
 
+                }
             }
         }
         else
@@ -170,8 +175,7 @@ public partial class operatorPage : System.Web.UI.Page
         userListLable.Style["display"] = "none";
 
     }
-
-
+    
     protected void clientListClick(Object Sender, RepeaterCommandEventArgs e)
     {
         switch (e.CommandName)
@@ -230,7 +234,4 @@ public partial class operatorPage : System.Web.UI.Page
                 }
         }
     }
-
-
-
 }

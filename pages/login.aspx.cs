@@ -25,6 +25,7 @@ public partial class login : System.Web.UI.Page
             {
                 Session["user"] = user.name;
                 Session["uid"] = user.id;
+
                 //navigation to pages
                 if (user.role == "Operator")
                 {

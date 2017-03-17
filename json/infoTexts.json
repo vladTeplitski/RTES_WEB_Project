@@ -9,7 +9,7 @@ var HomePage = [
   },
   {
     "name": "Registration",
-    "text": "Insurance companies working with RTES system offer clients the service, for a symbolic price.\nBy joining the service, the client is authorized to perform a registration, using his secret number.\nFor registration code faults, please contact RTES group or your insurance company."
+    "text": "Insurance companies working with RTES system offer clients the service, for a symbolic price.\nBy joining the service, the client is registered automaticly by the insurance company.\nWhile the service applied by the insurance company,\nThe user may login using his Username and Password."
   },
   {
     "name": "Emergency",
