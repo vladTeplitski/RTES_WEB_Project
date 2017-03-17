@@ -11,7 +11,6 @@
 <asp:Content ID="mainContent" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
     <!--Home Page container-->
-
     <div class="row bodyRow homeWindow" ng-controller="mainController">
 
         <!-- Start home information switching content -->
