@@ -15,6 +15,7 @@
 
         <!-- Start home information switching content -->
         <!-- GITTTTTTTTTTTTTTTTTTTTT TTT222 CMDDD-->
+        <!-- NEW GIT CMD TEST-->
 
         <div class="col-lg-6 col-lg-offset-1 col-md-6 col-md-offset-1 col-xs-6">
             <div class="mainWindow">
