@@ -23,6 +23,7 @@
     <link href="../css/project.css" type="text/css" rel="stylesheet" />
     <link href="../css/bootstrap.css" rel="stylesheet" />
     <link href="../css/login_register.css" rel="stylesheet" />
+    <link href="../css/tooltip.css" rel="stylesheet" />
 
     <!-- jquery -->
     <script src="../inc/jquery-1.10.2.js"></script>
@@ -62,7 +63,7 @@
             </div>
 			<div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li  class="active aboutBtn" style="padding-left:10px;"><a href="../homePage.aspx" data-toggle="tooltip" title="Home page" data-placement="bottom">Home</a></li>
+                <li  class="active aboutBtn" style="padding-left:10px;"><a toolstyle="toolcssBottom" toolinfo="Go to Home page" tooltip href ="../homePage.aspx" data-placement="bottom">Home</a></li>
                 <li runat="server" id="clientZoneBtn" class="active aboutBtn navBtnMy" Style="display:none"><a data-toggle="tooltip" title="Go to client page" data-placement="bottom" Style="background-color:#4E86B7" class="hoverMy" href="../pages/clientMainPage.aspx"><i class="glyphicon glyphicon-triangle-right rotateNav"></i>Client CP</a></li>
                 <li runat="server" id="opZoneBtn" class="active aboutBtn" Style="display:none"><a data-toggle="tooltip" title="Go to operator page" data-placement="bottom"  Style="background-color:#4E86B7" class="hoverMy" href="../pages/operatorPage.aspx"><i class="glyphicon glyphicon-triangle-right rotateNav"></i>Operator Zone</a></li>
                 <li class="dropdown" style="padding-left:10px;">
@@ -91,7 +92,7 @@
         <!--Start static user CP  -->
 
         <div class="row userInfoMainBox">
-            <div class="col-lg-1 col-md-5 col-md-offset-1 col-xs-8 col-xs-offset-2 userBoxfirst"  data-toggle="tooltip" title="User details" data-placement="bottom">
+            <div toolstyle="toolcssBottom" toolinfo="Account Info" tooltip class="col-lg-1 col-md-5 col-md-offset-1 col-xs-8 col-xs-offset-2 userBoxfirst"  data-toggle="tooltip" title="User details" data-placement="bottom">
                 <div style="display: inline; position: absolute; left: 2px;"><i Style="cursor:default" class="glyphicon glyphicon-th hoveringIcon"></i></div>
                 User CP:
             </div>

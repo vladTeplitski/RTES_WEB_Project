@@ -1,6 +1,62 @@
 var myApp = angular.module("myApp", []);
 
 
+//custom angular tooltip directive
+//usage: toolstyle="toolcssBottom" toolinfo="Go to Home page" tooltip
+myApp.directive('tooltip', function () {  //tool-tip directive
+    
+    return {
+        restrict: 'A', //We want our directive to be attribute directive
+
+        scope: {
+            toolinfo: '@',   // the tooltip text
+            toolstyle:'@'    //for custom css style
+        },
+
+        controller:
+            function ($scope, $element) { //controller to the tool tip directive which would control the visibility of the tool tip
+            $scope.isShown = false;
+            this.showHover = function () {
+                $scope.isShown = $scope.isShown == true ? false : true;
+            }
+            this.hideHover = function () {
+                $scope.isShown = $scope.isShown == true ? false : true;
+            }
+        },
+
+        transclude: true, //transclude option prevents the directive from replacing the existing items
+
+        link:
+            function (scope, element, attr, ctrl) {
+            element.bind('mouseenter', function () {
+                scope.$apply(function () {
+                    ctrl.showHover();
+                });
+               
+            });
+            element.bind('mouseleave', function () {
+                scope.$apply(function () {
+                    ctrl.hideHover();
+                });
+            });
+            },
+        //template to the tool tip directive
+        template: '<div ng-transclude></div>' +
+                  '<div ng-show="isShown">' +
+                  '<div class="{{toolstyle}}">' +   //use style chosen by user
+                  '<span>' +
+                  '{{toolinfo}}' +   //bind with the text added to the directive
+                  '</span>' +
+                  '</div>'+
+                  '</div>' +
+                  '</div>'
+                  }
+    });
+
+
+//end custom angular tooltip directive
+
+
 //main controller
 myApp.controller('mainController', function ($scope) {
 
@@ -20,8 +76,10 @@ myApp.controller('mainController', function ($scope) {
     $scope.loginFieldclick = function () {
         $scope.loginText = "User name must contain only letters!";
     };
+
     $scope.loginPass = function () {
         $scope.notValidPass = true;
+        $scope.validPass = true;
         if ($scope.lgPass.length >= 5)
         {
             $scope.validPass = false;

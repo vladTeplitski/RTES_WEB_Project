@@ -18,10 +18,10 @@
                     
                     <form runat="server" name="myLogin" class="text-left" >
                         <div class="login-form-main-message"></div>
-                        <div class="main-login-form">
+                        <div toolstyle="toolcssBottomWide" toolinfo="Please use your username and password provided by the insurance company!" tooltip class="main-login-form">
                             <div class="login-group">
                                 <div class="form-group">
-                                    <asp:TextBox ng-keypress="loginField()" ng-click="loginFieldclick()" ng-mouseleave="loginFieldleave()" ng-model="lgUser" type="text"  runat="server" TextMode="SingleLine" CssClass="form-control" ID="lgUser" name="lgUser" placeholder="User Name" ng-required="true"/>
+                                    <asp:TextBox  ng-keypress="loginField()" ng-click="loginFieldclick()" ng-mouseleave="loginFieldleave()" ng-model="lgUser" type="text"  runat="server" TextMode="SingleLine" CssClass="form-control" ID="lgUser" name="lgUser" placeholder="User Name" ng-required="true"/>
                                     <span ng-hide="!lgUser.length" ng-hide="validUser" Style="color:lightgreen;padding-left:5px;" class="glyphicon glyphicon-ok form-control-feedback"></span>
                                     <span ng-hide="notValidUser" Style="color:red;padding-left:5px;" class="glyphicon glyphicon-remove form-control-feedback"></span>
                                     <span ng-show="!lgUser.length" Style="color:#FFC600;padding-left:5px;" class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
@@ -33,16 +33,18 @@
                                     <span ng-show="!lgPass.length" Style="color:#FFC600;padding-left:5px;" class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
                                  </div>
                             </div>
-                             <asp:LinkButton runat="server" OnClick="login_Func" type="submit" class="login-button"><i Style="font-size:23px;" class="fa fa-chevron-right"></i></asp:LinkButton>
-                        </div>
+                                 <asp:LinkButton runat="server" OnClick="login_Func" type="submit" class="login-button"><i Style="font-size:23px;" class="fa fa-chevron-right"></i></asp:LinkButton>
+                         </div>
                     </form>
                 </div>
 
-                    <div style="width: 50%; margin: 10px auto; text-align: center; padding: 8px 0px;font-size:small;">
+               
+                    <div class="loginAlertBoxCss">
                     <div class="alert alert-success" ID="panel1">
                        {{loginText}}
                      </div>
                      </div>
+                 
 
                 
                 <!-- end login -->

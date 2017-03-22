@@ -23,8 +23,16 @@ $(document).ready(function() {   //after page loads
         $(".opRepLabelJs").hide();
     });
 
-    $('[data-toggle="tooltip"]').tooltip();
-
-
 });
+
+
+
+
+$(function () {
+    $.ajaxComplete(function () {
+        $("[data-toggle='tooltip']").tooltip();
+    });
+});
+
+
 
