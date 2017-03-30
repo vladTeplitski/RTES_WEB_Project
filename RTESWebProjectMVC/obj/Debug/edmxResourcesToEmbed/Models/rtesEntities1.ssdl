@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="rtesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="abstract_user">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" />
+    <Property Name="familyName" Type="varchar" MaxLength="50" />
+    <Property Name="email" Type="varchar" MaxLength="50" />
+    <Property Name="address" Type="varchar" MaxLength="50" />
+    <Property Name="gender" Type="nchar" MaxLength="10" />
+    <Property Name="status" Type="tinyint" />
+    <Property Name="password" Type="varchar" MaxLength="50" />
+    <Property Name="role" Type="varchar" MaxLength="50" />
+    <Property Name="company" Type="varchar" MaxLength="50" />
+    <Property Name="userPhoneNumber" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="case">
+    <Key>
+      <PropertyRef Name="caseId" />
+    </Key>
+    <Property Name="caseId" Type="int" Nullable="false" />
+    <Property Name="caseAbstractUserId" Type="int" />
+    <Property Name="operatorComments" Type="text" />
+    <Property Name="statusCase" Type="tinyint" />
+    <Property Name="creation_date" Type="varchar" MaxLength="50" />
+    <Property Name="creation_time" Type="varchar" MaxLength="50" />
+    <Property Name="needsTowingService" Type="tinyint" />
+  </EntityType>
+  <EntityType Name="client">
+    <Key>
+      <PropertyRef Name="abstractUserId" />
+    </Key>
+    <Property Name="abstractUserId" Type="int" Nullable="false" />
+    <Property Name="insuranceCompanyName" Type="varchar" MaxLength="50" />
+    <Property Name="licensePlate" Type="int" />
+    <Property Name="carCategory" Type="varchar" MaxLength="50" />
+    <Property Name="carModel" Type="varchar" MaxLength="50" />
+    <Property Name="originalTowingDestination" Type="varchar" MaxLength="50" />
+    <Property Name="insurancePolicyNum" Type="int" />
+    <Property Name="clientDrivingLicenseNumber" Type="int" />
+    <Property Name="policyEndDate" Type="varchar" MaxLength="50" />
+    <Property Name="updates" Type="text" />
+    <Property Name="emergencyReportId" Type="int" />
+    <Property Name="carOwnerName" Type="varchar" MaxLength="50" />
+    <Property Name="carOwnerId" Type="int" />
+    <Property Name="carLicenseNumber" Type="int" />
+    <Property Name="insuranceAgentName" Type="varchar" MaxLength="50" />
+    <Property Name="insuranceAgentPhoneNum" Type="int" />
+    <Property Name="carManufactureYear" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="emergencyReport">
+    <Key>
+      <PropertyRef Name="reportID" />
+    </Key>
+    <Property Name="reportID" Type="int" Nullable="false" />
+    <Property Name="clientAbstractUserId" Type="int" Nullable="false" />
+    <Property Name="caseCaseId" Type="int" />
+    <Property Name="date" Type="varchar" MaxLength="50" />
+    <Property Name="hour" Type="varchar" MaxLength="50" />
+    <Property Name="location" Type="text" />
+    <Property Name="towing_destination" Type="text" />
+    <Property Name="accident_witness_name" Type="varchar" MaxLength="50" />
+    <Property Name="accident_witness_phone" Type="int" />
+    <Property Name="comments" Type="text" />
+    <Property Name="callForTowing" Type="tinyint" />
+  </EntityType>
+  <EntityType Name="messagesTable">
+    <Key>
+      <PropertyRef Name="msgNum" />
+    </Key>
+    <Property Name="msgNum" Type="int" Nullable="false" />
+    <Property Name="userID" Type="int" />
+    <Property Name="content" Type="text" />
+    <Property Name="date" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="third_party">
+    <Key>
+      <PropertyRef Name="emergencyReportId" />
+    </Key>
+    <Property Name="emergencyReportId" Type="int" Nullable="false" />
+    <Property Name="driverName" Type="varchar" MaxLength="50" />
+    <Property Name="driverId" Type="int" />
+    <Property Name="carOwnerName" Type="varchar" MaxLength="50" />
+    <Property Name="carOwnerId" Type="int" />
+    <Property Name="licensePlateNumber" Type="int" />
+    <Property Name="carCategory" Type="varchar" MaxLength="50" />
+    <Property Name="carModel" Type="varchar" MaxLength="50" />
+    <Property Name="carColor" Type="varchar" MaxLength="50" />
+    <Property Name="drivingLicenseNumber" Type="int" />
+    <Property Name="insuranceCompanyName" Type="varchar" MaxLength="50" />
+    <Property Name="insurancePolicyNumber" Type="int" />
+    <Property Name="address" Type="varchar" MaxLength="50" />
+    <Property Name="phoneNumber" Type="int" />
+    <Property Name="insuranceAgentName" Type="varchar" MaxLength="50" />
+    <Property Name="insuranceAgentPhone" Type="int" />
+    <Property Name="yearOfManufacture" Type="int" />
+  </EntityType>
+  <Association Name="FK_client_client">
+    <End Role="client" Type="Self.client" Multiplicity="1" />
+    <End Role="client1" Type="Self.client" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="client">
+        <PropertyRef Name="abstractUserId" />
+      </Principal>
+      <Dependent Role="client1">
+        <PropertyRef Name="abstractUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="rtesModelStoreContainer">
+    <EntitySet Name="abstract_user" EntityType="Self.abstract_user" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="case" EntityType="Self.case" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="client" EntityType="Self.client" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="emergencyReport" EntityType="Self.emergencyReport" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="messagesTable" EntityType="Self.messagesTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="third_party" EntityType="Self.third_party" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_client_client" Association="Self.FK_client_client">
+      <End Role="client" EntitySet="client" />
+      <End Role="client1" EntitySet="client" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

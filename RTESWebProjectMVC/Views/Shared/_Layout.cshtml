@@ -1,0 +1,200 @@
+﻿<!-- Default static layout -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RTES - Real Time Emergency Solutions</title>
+    
+    <meta charset="utf-8" />
+
+    <meta name="keywords" content="RTES Portal">
+    <meta name="description" content="Real Time Emergency Solutions">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!--fonts-->
+    <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Tangerine">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    
+
+</head>
+
+<body class="bodyDesign" ng-app="myApp">
+    
+    <div ng-controller="mainController">
+
+        <!--Start nav code  -->
+
+        <nav class="navbar navbar-inverse" style="margin-bottom:1px;">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar" style="background-color:#B1D607;">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <img style="padding-left:1px;cursor:default;" src="../Content/art/rtes_header.jpg" />
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                        <li class="active aboutBtn" style="padding-left:10px;"><a toolstyle="toolcssBottom" toolinfo="Go to Home page" tooltip href="@Url.Action("Index","web")" data-placement="bottom">Home</a></li>
+                        <li runat="server" id="clientZoneBtn" class="active aboutBtn navBtnMy" Style="display:@ViewBag.clientZone"><a data-toggle="tooltip" title="Go to client page" data-placement="bottom" Style="background-color:#4E86B7" class="hoverMy" href="@Url.Action("client","client")"><i class="glyphicon glyphicon-triangle-right rotateNav"></i>Client CP</a></li>
+                        <li runat="server" id="opZoneBtn" class="active aboutBtn" Style="display:@ViewBag.operatorZone"><a data-toggle="tooltip" title="Go to operator page" data-placement="bottom" Style="background-color:#4E86B7" class="hoverMy" href="@Url.Action("operatorHome","operator")"><i class="glyphicon glyphicon-triangle-right rotateNav"></i>Operator Zone</a></li>
+                        <li class="dropdown" style="padding-left:10px;">
+                            <a ng-click="$event.preventDefault();" class="dropdown-toggle" data-toggle="dropdown" href="#">Information <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li class="drop1" ng-click="$event.preventDefault();" style=""><a href="#">Emergency Phones</a></li>
+                                <li class="drop2" ng-click="$event.preventDefault();"><a href="#">Contact us</a></li>
+                                <li class="drop3" ng-click="$event.preventDefault();"><a href="#">About RTES group</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <span ng-click="socialFunc(1)" class="fa fa-linkedin-square hoveringIcon" style="font-size:xx-large;"></span>
+                    <span ng-click="socialFunc(2)" class="fa fa-twitter social hoveringIcon" style="font-size:xx-large;"></span>
+                    <span ng-click="socialFunc(3)" class="fa fa-facebook-official social hoveringIcon" style="font-size:xx-large;"></span>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li id="loginBtn"  style="display: @ViewBag.loginBtnDisp"><a class="hoverMy" href="@Url.Action("Login","web")"><span class="glyphicon glyphicon-log-in rotateNav"></span>Login</a></li>
+                        <li id="logoutButton"  style="display: @ViewBag.logoutBtnDisp"><a class="hoverMy" href="@Url.Action("Logout","web")"><span class="glyphicon glyphicon-log-in rotateNav"></span>LogOut</a></li>
+                    </ul>
+
+
+                </div>
+            </div>
+
+        </nav>
+
+        <!--Start static user CP  -->
+
+        <div class="row userInfoMainBox">
+            <div toolstyle="toolcssBottom" toolinfo="Account Info" tooltip class="col-lg-1 col-md-5 col-md-offset-1 col-xs-8 col-xs-offset-2 userBoxfirst"  data-placement="bottom">
+                <div style="display: inline; position: absolute; left: 2px;"><i Style="cursor:default" class="glyphicon glyphicon-th hoveringIcon"></i></div>
+                User CP:
+            </div>
+
+            <div toolstyle="toolcssBottom" toolinfo="User Name" tooltip class="col-lg-3 col-md-5 col-md-offset-0 col-xs-8 col-xs-offset-2 userBox">
+                <div style="display: inline; position: absolute; left: 8px;"><i Style="cursor:default" class="glyphicon glyphicon-user hoveringIcon"></i></div>
+                @ViewBag.usernameLabel
+            </div>
+
+            <div toolstyle="toolcssBottom" toolinfo="Insurance Company" tooltip runat="server" id="companyPanel" class="col-lg-3 col-lg-offset-0 col-md-5 col-md-offset-1 col-xs-8 col-xs-offset-2 userBox" style="display: @ViewBag.companyPanelDisp">
+                <div style="display: inline; position: absolute; left: 8px;"><i Style="cursor:default" class="glyphicon glyphicon-list-alt hoveringIcon"></i></div>
+                @ViewBag.companyLabel
+            </div>
+            <div toolstyle="toolcssBottom" toolinfo="Messages from system" tooltip data-placement="bottom" runat="server" id="openCasesPanel" class="col-lg-3 col-md-5 col-md-offset-0 col-xs-8 col-xs-offset-2 userBox" style="display: @ViewBag.messagesPanelDisp">
+                <div style="display: inline; position: absolute; left: 8px;"><i Style="cursor:default" class="glyphicon glyphicon-envelope hoveringIcon"></i></div>
+                @ViewBag.msgsNumLabel
+            </div>
+        </div>
+
+        <!-- Start dropdown information box -->
+        <div class="infoFormBox EmrgPhones">
+            <div class="infoFormHeader">
+                Emergency Phones
+                <div class="CloseEmrgPhones x">x</div>
+            </div>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Organization</th>
+                        <th>Phone</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="background-color: #3D4BD5">
+                        <td>Police</td>
+                        <td><a href="tel:100">100</a></td>
+                    </tr>
+                    <tr style="background-color: #E52C2C">
+                        <td>Ambulance</td>
+                        <td><a href="tel:101">101</a></td>
+                    </tr>
+                    <tr style="background-color: #E5C92C">
+                        <td>Fire Fighters</td>
+                        <td><a href="tel:102">102</a></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="CloseEmrgPhones CloseBtn">Close</div>
+
+        </div>
+
+        <div class="infoFormBox ContactRtes">
+            <div class="infoFormHeader">
+                Contact RTES
+                <div class="CloseContactRtes x">x</div>
+            </div>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Developers</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="background-color: #78ABD8">
+                        <td>Vlad Teplitski</td>
+                        <td><a href="tel:04-1234567">04-1234567</a></td>
+                        <td><a href="mailto:vl4d89@gmail.com">vl4d89@gmail.com</a></td>
+                    </tr>
+                    <tr style="background-color: #78ABD8">
+                        <td>Shai Zafran</td>
+                        <td><a href="tel:04-1234567">04-5566778</a></td>
+                        <td><a href="mailto:shayzaf25@gmail.com">shayzaf25@gmail.com</a></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="CloseContactRtes CloseBtn">Close</div>
+
+        </div>
+
+        <div class="infoFormBox AboutRTES">
+            <div class="infoFormHeader">
+                About RTES
+                <div class="CloseAboutRTES x">x</div>
+            </div>
+
+            Students at Ort Braude - Information Systems Engineering.<br />
+            The system is developed as a part of WEB-Developing course project.
+
+            <div class="CloseAboutRTES CloseBtn">Close</div>
+        </div>
+    </div>
+
+
+
+    <!--Main content -- dynamic-->
+
+    @RenderBody()
+
+    <!--END Main content -- dynamic-->
+
+
+    <!--Static bottom  -->
+    <div class="bottomRow" ng-controller="mainController">
+        {{bottomText}}
+        <div class="row" style="height:3px;background-color:#B1D607"></div>
+    </div>
+
+
+    @Styles.Render("~/Content/css")  <!-- Load style first to avoid messy startup -->
+    @Scripts.Render("~/bundles/jquery") <!-- include JQuery files -->
+    @Scripts.Render("~/bundles/angular") <!-- include angular files -->
+    @Scripts.Render("~/bundles/bootstrap") <!-- include bootstrap scripts -->
+    @Scripts.Render("~/bundles/app") <!-- include application scripts -->
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+
+    <!--Json files-->
+    <script src="../json/infoTexts.json"></script>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

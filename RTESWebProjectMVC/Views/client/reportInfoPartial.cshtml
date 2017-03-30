@@ -1,0 +1,20 @@
+﻿<div id="clientRepContainer" class="infoTableClass opRepLabelJs" style="display:@ViewBag.showClientRepInfo">
+    <div class="reportLabelHead">
+        <b>Report Overview</b>
+        <div onclick="closeView()" class="x">x</div>
+    </div>
+
+    <div ng-hide="clientRepCont" style="margin-top:5px;">
+        <Label ID="clientRepLabel">
+            @ViewBag.clientRepInfo
+        </Label>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function closeView() {
+        $('#clientRepContainer').hide();
+
+    }
+</script>
+

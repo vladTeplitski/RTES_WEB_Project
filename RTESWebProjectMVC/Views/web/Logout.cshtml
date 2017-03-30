@@ -1,0 +1,20 @@
+﻿            <!-- logout page-->
+<div class="text-center" style="padding: 10px 0">
+
+    <div class="login-form-1">
+
+        <form runat="server" class="text-left">
+            <div class="login-form-main-message"></div>
+            
+            <div toolstyle="toolcssBottom" toolinfo="Perform system logout" tooltip class="main-login-form logoutPage">
+                <i Style="font-size:23px;margin-right:10px;cursor:default" class="fa fa-key"></i>
+                Are you sure you want to logout ?
+
+                @Html.ActionLink("Logout", "LogoutFunc", "web",new { @class = "btn btn-default submitMyLogout" })
+                
+            </div>
+        </form>
+    </div>
+
+    <!-- end logout -->
+</div>

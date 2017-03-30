@@ -1,0 +1,30 @@
+var HomePage = [
+  {
+    "name": "Welcome Text",
+    "text": "Welcome to RTES - Real Time Emergency Solutions.\nRTES (Real time emergency solutions), focuses on handling the operative steps of a property damage,\ncaused by a car accident, in real time.\nRTES offers an information system which constitutes a layer connecting clients and insurance companies.\nThe system handles all the steps and difficulties on the way to an efficient event treatment.\nTo use the system, please register, or login."
+  },
+  {
+    "name": "The Service",
+    "text": "RTES is a web based information system, offers clients an easy way to cope with car accident documentation, efficient towing service assignment with best arraival times,\nappraising services and friendly access to the cases library, updates and information."
+  },
+  {
+    "name": "Registration",
+    "text": "Insurance companies working with RTES system offer clients the service, for a symbolic price.\nBy joining the service, the client is registered automaticly by the insurance company.\nWhile the service applied by the insurance company,\nThe user may login using his Username and Password."
+  },
+  {
+    "name": "Emergency",
+    "text": "An emergency is a situation that poses an immediate risk to health and property.\nMost emergencies require urgent intervention to prevent a worsening of the situation.\nCoping with most of the emergencies, require psychological strength and knowledge in very specific fields. In most of the cases, having the right tools and aids, may give much peace and confidence to the involved figures in the case. Car accidents constitute a major reason for emergencies, which involve property and health damage.\nIn 100% of the accidents, there is a property damage, which should be operated and documented in the most efficient way."
+  },
+  {
+    "name": "Appraising",
+    "text": "Appraisers manage cases using the RTES system, gathering all the new cases and the information collected in the progress.\Clients get updates about the appraising status, may contact appraisers and view final results.\nIn the final stage, the data is delivered automatically to the insurance company."
+  },
+  {
+    "name": "Towing Service",
+    "text": "Managing a group of tow-truck drivers, by an efficient tasks assignment algorithm, considering real-time accident and tow-truck driver's locations,\ntruck driver's unloading locations, intervention in courses and re-calculating new courses.\nThe aim is obtaining the shortest time for the client to wait and for the truck-driver to drive, considering his cargo and tasks."
+  }
+]; var bottom = [
+  {
+    "bottomText": "Web Development Project @ 2017. Designed by Vlad & Shai."
+  }
+];
