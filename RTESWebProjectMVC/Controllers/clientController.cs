@@ -148,11 +148,18 @@ namespace RTESWebProjectMVC.Controllers
         }//end showReportInfo function
 
 
-       public ActionResult openNewReport()
-      {
+     //  public ActionResult openNewReport()
+    //  {
+            
+          //  return View("NewReport");
+          //  return RedirectToAction("wrongLogin", "web");
+        //}//end openNewReport
+
+        public ActionResult NewReport()
+        {
             base.initFunc();//init the base functions - user CP
-            return View("NewReport");
-        }//end openNewReport
+            return View();
+        }
     }
 
 

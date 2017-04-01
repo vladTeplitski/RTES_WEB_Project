@@ -299,3 +299,34 @@ myApp.controller('operatorController',['$scope',function ($scope) {
 
 }]);
 
+
+//Emergency form controller
+myApp.controller('emergFormController', ['$scope', function ($scope) {
+                  
+
+    $scope.myPersonalDetails = function () {
+        $scope.personal = !$scope.personal;
+    }
+
+    $scope.thirdPartyDetails = function () {
+
+        $scope.driverDetailsBut = !$scope.driverDetailsBut;
+        $scope.carDetailsBut = !$scope.carDetailsBut;
+        $scope.insuranceDetailsBut = !$scope.insuranceDetailsBut;
+        if ($scope.driverDetailsBut == false) { $scope.showMe = false; }
+        if ($scope.carDetailsBut == false) { $scope.myValue = false; }
+        if ($scope.insuranceDetailsBut == false) { $scope.myValue1 = false; }
+    }
+
+    $scope.myFunc = function () {
+        $scope.showMe = !$scope.showMe;
+    }
+    $scope.myFunc1 = function () {
+        $scope.myValue = !$scope.myValue;
+    }
+    $scope.myFunc2 = function () {
+        $scope.myValue1 = !$scope.myValue1;
+    }
+
+}]);
+
