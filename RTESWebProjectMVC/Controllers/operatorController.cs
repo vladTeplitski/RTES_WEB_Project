@@ -12,6 +12,30 @@ namespace RTESWebProjectMVC.Controllers
         public ActionResult operatorHome()
         {
             base.initFunc();  //init the base functions - user CP
+
+            string userName;
+            int userId;
+
+            using (var db = new Models.rtesEntities1())
+            {
+                userName = Session["user"].ToString();  //read the user name
+                userId = (int)(Session["uid"]);    //convert session to int - read the id
+
+
+
+                //clients list for dropdown - from DB
+
+
+                var clients = db.abstract_user.Where(i => i.role == "Client").ToList();
+
+                ViewBag.dropListUsers = clients;
+
+
+            }
+
+
+
+
             return View();
         }
     }

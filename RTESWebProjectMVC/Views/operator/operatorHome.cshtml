@@ -114,26 +114,46 @@
                         <asp:updatepanel runat="server">
                             <ContentTemplate>
 
-                                <div runat="server" id="Div1" class="personalDetailsClass">
+                                <div id="Div1" class="personalDetailsClass">
                                     <i Style="font-size:23px;" class="glyphicon glyphicon-user"></i>
                                     <span style="margin-left:10px;">Send message to client</span>
                                 </div><br />
-                                <div runat="server" id="Div2" class="personalDetailsClass">
+                                <div id="Div2" class="personalDetailsClass">
                                     <i Style="font-size:23px;" class="glyphicon glyphicon-user"></i>
                                     <span style="margin-left:10px;">Choose client:</span>
-                                    <asp:DropDownList ID="dropList" runat="server" ToolTip="Choose the wanted user ID" Style="margin-left:10px;width:200px;color:black;height:40px;border-radius:5px;"></asp:DropDownList>
+
+                                    <select name="listbox" id="listbox">
+
+                                        @{ 
+                                            if (ViewBag.dropListUsers != null)
+                                            {
+
+                                                foreach (var item in ViewBag.dropListUsers)
+                                                {
+
+                                            <option value="@item.id">
+                                                @item.id
+                                            </option>
+                                                    }
+                                                }
+
+                                            }
+                                    </select>
+
+
+                                    <asp:DropDownList ID="dropList" ToolTip="Choose the wanted user ID" Style="margin-left:10px;width:200px;color:black;height:40px;border-radius:5px;"></asp:DropDownList>
                                 </div><br />
 
                                 <div style="width: 50%; margin: 3px auto; text-align: center; padding: 8px 0px">
-                                    <asp:Panel runat="server" CssClass="alert alert-danger" ID="msgEmpty" Visible="false">
+                                    <Div Class="alert alert-danger" ID="msgEmpty">
                                         Text field is empty!
-                                    </asp:Panel>
+                                    </Div>
                                 </div>
 
                                 <div style="width: 50%; margin: 3px auto; text-align: center; padding: 8px 0px">
-                                    <asp:Panel runat="server" CssClass="alert alert-success" ID="msgSuccess" Visible="false">
+                                    <Div sClass="alert alert-success" ID="msgSuccess">
                                         Message sent successfully!
-                                    </asp:Panel>
+                                    </Div>
                                 </div>
 
                                 <asp:TextBox id="Textbox1" TextMode="multiline" Columns="50" Rows="5" runat="server" Style="width:100%;margin:auto" />

@@ -284,52 +284,69 @@
                     <!-- Start Messages container -->
                     <div ng-hide="client4" class="textContainer">
 
-                        <asp:updatepanel runat="server">
-                            <ContentTemplate>
+   
 
-                                <div runat="server" id="messagesMain" class="personalDetailsClass">
+                                <div id="messagesMain" class="personalDetailsClass">
                                     <i Style="font-size:23px;" class="glyphicon glyphicon-tasks"></i>
                                     <span style="margin-left:10px;">Messages</span>
                                 </div><br />
+
                                 <!--Alert messages  -->
-                                <div style="width: 80%; margin: 10px auto; text-align: center;">
-                                    <asp:Panel runat="server" CssClass="alert alert-danger" ID="noMsgAlertanel" Visible="false">
-                                        No messages available!
-                                    </asp:Panel>
-                                    <asp:Panel runat="server" CssClass="alert alert-success" ID="noMessages" Visible="false">
+                                <div style="width: 80%; margin: 10px auto; text-align: center;display:@ViewBag.showMsgAlert">
+                                    <div Class="alert alert-danger" ID="noMessages">
                                         There are no messages!
-                                    </asp:Panel>
+                                    </div>
                                 </div>
 
-                                <asp:Repeater ID="RepeaterMsgs" runat="server" Visible="true" OnItemCommand="delMessage">
-                                    <HeaderTemplate>
-                                        <table class="table table - striped" style="font-size:small;">
-                                            <tr>
-                                                <th>Date</th>
-                                                <th>Message</th>
-                                            </tr>
-                                    </HeaderTemplate>
-                                    <ItemTemplate>
-                                        <tr>
+                                <!--Messages Table  -->
+
+                        <table class="table table - striped" style="font-size:small;display:@ViewBag.showMsgDb">
+                            <tr>
+                                <th>Date</th>
+                                <th>Message</th>
+                                <th></th>
+                            </tr>
+                            @{
+
+                                if (ViewBag.messagesDb != null)
+                                {
+                                    foreach (var item in ViewBag.messagesDb)
+                                    {
+
+                                        <tr id="updatePannelAngular">
                                             <td>
-                                                <%#Eval("date")%>
+                                                @item.date
+
                                             </td>
                                             <td>
-                                                <%#Eval("content")%>
+                                                @item.content
                                             </td>
                                             <td>
-                                                <asp:LinkButton data-toggle="tooltip" title="Delete message" data-placement="right" ID="Button2" CommandName="click" Text="X" runat="server" CssClass="button102" CommandArgument='<%# DataBinder.Eval(Container.DataItem, "msgNum") %>' />
+                                                @Ajax.ActionLink("click", "showReportInfo", "client", new { id = item.msgNum }, new AjaxOptions { UpdateTargetId = "divResult" })
+
+                                                <script>
+                                                      function getView() {
+                                                             $('#divResult').show();
+                                                      }
+                                                </script>
+
                                             </td>
                                         </tr>
-                                    </ItemTemplate>
-                                    <FooterTemplate>
-                                        </table>
-                                    </FooterTemplate>
-                                </asp:Repeater>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr id="updatePannelAngular">
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                }
 
-
-                            </ContentTemplate>
-                        </asp:updatepanel>
+                            }
+                        </table>
 
                     </div>
 

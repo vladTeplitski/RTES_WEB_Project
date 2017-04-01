@@ -42,17 +42,22 @@ namespace RTESWebProjectMVC.Controllers
                     //Emergency reports library init - client
                     reportsFromDB(userId);
 
+                    //Messages init - client
+                    messagesFromDB(userId);
+
 
 
                 }
 
 
-                else  //there is no client account
+                else  //NOT a client account
                 {
                     //reports table - non client
                     ViewBag.repDB = null;
                     ViewBag.clientRepListAlert = "inline";  //show reports alert
                     ViewBag.showRepDb = "none"; //hide reports table
+
+                    ViewBag.showMsgDb = "none";  //hide messages table
 
 
 
@@ -147,6 +152,33 @@ namespace RTESWebProjectMVC.Controllers
                 return PartialView("reportInfoPartial");
 
         }//end showReportInfo function
+
+
+        public void messagesFromDB(int userId)  //show the client messages
+        {
+
+            using (var db = new Models.rtesEntities1())
+            {
+
+                ViewBag.showMsgAlert = "none";  //hide alert
+                ViewBag.showMsgDb = "table";  //show table
+                                              //read from database
+                var msgs = db.messagesTable.Where(i => i.userID == userId).OrderBy(a => a.date).ToList();
+                var cnt = db.messagesTable.Where(i => i.userID == userId).Count();
+
+                if (cnt == 0)   //if no messages
+                {
+                    ViewBag.showMsgAlert = "inline"; // show alert
+                    ViewBag.showMsgDb = "none"; //hide table
+                }
+                else
+                {
+                    ViewBag.messagesDB = msgs;
+                }
+
+            }
+        }//end messagesFromDB function
+
 
 
 
