@@ -31,6 +31,12 @@ namespace RTESWebProjectMVC
                 defaults: new { controller = "web", action = "Logout", id = UrlParameter.Optional }
             );
 
+         // routes.MapRoute(
+         // name: "ReportForm",
+         // url: "{controller}/{action}/{id}",
+         // defaults: new { controller = "NewREport", action = "openNewReport2", id = UrlParameter.Optional }
+          //  );
+
         }
     }
 }

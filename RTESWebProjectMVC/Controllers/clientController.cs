@@ -148,12 +148,11 @@ namespace RTESWebProjectMVC.Controllers
         }//end showReportInfo function
 
 
-       // public ActionResult openNewReport()
-       // {
-
-
-
-        //}//end openNewReport
+       public ActionResult openNewReport()
+      {
+            base.initFunc();//init the base functions - user CP
+            return View("NewReport");
+        }//end openNewReport
     }
 
 

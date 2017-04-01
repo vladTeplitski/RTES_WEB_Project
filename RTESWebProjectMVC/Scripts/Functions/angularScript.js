@@ -247,7 +247,8 @@ myApp.controller('clientController', function ($scope) {
 
 
     $scope.myPersonalDetails = function () {
-        $scope.personal = !$scope.personal;
+        // $scope.personal = !$scope.personal;
+        $scope.personal = false;
     }
 
     //settings buttons

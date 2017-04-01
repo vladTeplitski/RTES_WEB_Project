@@ -33,10 +33,12 @@ namespace RTESWebProjectMVC.Controllers
         [HttpPost] //main login function
         public ActionResult loginFunc(String lgUser,String lgPass)
         {
-
+                
             using (var db = new Models.rtesEntities1())  // create new DB object
             {
+                
                 var user = db.abstract_user.Where(i => i.name == lgUser && i.password == lgPass).FirstOrDefault();  // SQL query using "Linq"
+               
                 if (user == null)  // no results
                 {
                       //show alert
@@ -78,6 +80,11 @@ namespace RTESWebProjectMVC.Controllers
             Session.Abandon();  //empty the session
             return RedirectToAction("Index", "web");  //back to homepage
         }
+
+       // public ActionResult NewReport()
+       // {
+          //  return RedirectToAction("openNewReport", "client");
+       // }
 
     }
 }
