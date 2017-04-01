@@ -61,7 +61,8 @@ namespace RTESWebProjectMVC.Controllers
             }
             return View();
 
-        }
+        }//end client function
+
 
         public void reportsFromDB(int userId)  //show the client reports function
         {
@@ -88,6 +89,7 @@ namespace RTESWebProjectMVC.Controllers
                 }
             }
         }//end reportsFromDB function
+
 
         public ActionResult showReportInfo(int id)  //Show client report info window
         {
@@ -139,27 +141,20 @@ namespace RTESWebProjectMVC.Controllers
                     ViewBag.clientRepInfo = list.ToString();
                 }
 
-                return PartialView("reportInfoPartial");
+                return PartialView("reportInfoPartial");  //using partial view
             }
             else
                 return PartialView("reportInfoPartial");
 
-
         }//end showReportInfo function
 
 
-     //  public ActionResult openNewReport()
-    //  {
-            
-          //  return View("NewReport");
-          //  return RedirectToAction("wrongLogin", "web");
-        //}//end openNewReport
 
         public ActionResult NewReport()
         {
             base.initFunc();//init the base functions - user CP
             return View();
-        }
+        }//end NewReport function
     }
 
 
