@@ -12,7 +12,9 @@ namespace RTESWebProjectMVC
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/Lib/jquery-{version}.js",
                         "~/Scripts/Lib/jquery.unobtrusive-ajax.js",  // Microsoft jQuery Unobtrusive Ajax 3.2.3 for ajax
-                        "~/Scripts/Lib/jquery.unobtrusive-ajax.min.js"));
+                        "~/Scripts/Lib/jquery.unobtrusive-ajax.min.js",
+                        "~/Scripts/Lib/jquery.autocomplete.js",
+                        "~/Scripts/Lib/jquery.autocomplete.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/Lib/jquery.validate*"));
@@ -36,6 +38,7 @@ namespace RTESWebProjectMVC
                       "~/Content/project.css",
                       "~/Content/bootstrap.css",
                       "~/Content/tooltip.css",
+                      "~/Content/jquery.autocomplete.css",
                       "~/Content/login_register.css"));
         }
     }

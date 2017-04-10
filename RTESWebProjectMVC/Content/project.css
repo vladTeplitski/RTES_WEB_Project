@@ -6,8 +6,6 @@ html,body {
     background-size: cover;
    }
 
-
-
  .floatLeft {
    float: left;
  }
@@ -101,9 +99,48 @@ color:#F3F3F3;
     color:white;
     z-index:100;
 }
+
+.infoFormBoxSettings{
+    display:none;
+    position:fixed;
+    overflow-y:scroll;
+
+    left:50%;
+    top:5%;
+    margin-left:-250px;
+    width:500px;
+    height:350px;
+    padding:4px;
+    border:1px solid #86B2D8;
+    border-radius:12px;
+    background-color:#4E86B7;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    color:white;
+    z-index:100;
+}
+
+.notifBox{
+    display:none;
+    position:fixed;
+
+    left:50%;
+    top:10%;
+    margin-left:-250px;
+    width:500px;
+    height:auto;
+    padding:4px;
+    border:1px solid #86B2D8;
+    border-radius:12px;
+    background-color:#4E86B7;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    color:white;
+    z-index:100;
+}
+
+
 .infoFormHeader{
     padding:2px;
-    height:15%;
+    height:30px;
     background-color:#B1D607;
     border-bottom:2px solid #86B2D8;
     border-radius:12px;
@@ -264,7 +301,7 @@ color:#F3F3F3;
     height:25px;
     width:70px;
     margin:3px;
-    margin-top:2px;
+    margin-top:8px;
     margin-left:20px;
     background-color:#B1D607;
     border:1px solid #C9EC25;
@@ -477,6 +514,7 @@ label{
      margin-top:10px;
      margin-left:35%;
  }
+ .submitMy:hover {border-color:none;}
 .panelDanger{
     display:none;
 }
@@ -492,9 +530,20 @@ label{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+.UserListContainer{
+    height:250px;
+    overflow-y:scroll;
+}
+
 
 
 @media (max-width: 767px) {
+    .UserListContainer{
+        height:300px;
+        overflow-y:scroll;
+        overflow-x:scroll;
+    }
+
     .div {
         text-align: center;
     }
@@ -526,6 +575,17 @@ label{
         left:0;
         width:100%
     }
+    .infoFormBoxSettings{
+        width:100%;
+        margin-left:0;
+        left:0;
+    }
+    .notifBox{
+        top:150px;
+        width:100%;
+        margin-left:0;
+        left:0;
+    }
     #TableDetails2{
         font-size:small;
     }
@@ -556,4 +616,8 @@ label{
     .driverDetails .form-control {
         font-size:small;
         }
+
+    .formLowRes{
+        margin-left:36px;
+    }
 }

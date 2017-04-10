@@ -31,7 +31,7 @@ namespace RTESWebProjectMVC.Controllers
         }
 
         [HttpPost] //main login function
-        public ActionResult loginFunc(String lgUser,String lgPass)
+        public ActionResult loginFunc(String lgUser,String lgPass)//login functionality 
         {
                 
             using (var db = new Models.rtesEntities1())  // create new DB object
@@ -66,7 +66,7 @@ namespace RTESWebProjectMVC.Controllers
                     }
                 }
             }
-        }
+        } 
 
 
         public ActionResult Logout()  // Logout action
@@ -79,12 +79,8 @@ namespace RTESWebProjectMVC.Controllers
         {
             Session.Abandon();  //empty the session
             return RedirectToAction("Index", "web");  //back to homepage
-        }
+        }  // logout functionality
 
-       // public ActionResult NewReport()
-       // {
-          //  return RedirectToAction("openNewReport", "client");
-       // }
 
     }
 }

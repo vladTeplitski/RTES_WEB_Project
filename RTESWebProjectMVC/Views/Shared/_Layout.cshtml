@@ -27,7 +27,6 @@
     <div ng-controller="mainController">
 
         <!--Start nav code  -->
-
         <nav class="navbar navbar-inverse" style="margin-bottom:1px;">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -41,8 +40,8 @@
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
                         <li class="active aboutBtn" style="padding-left:10px;"><a toolstyle="toolcssBottom" toolinfo="Go to Home page" tooltip href="@Url.Action("Index","web")" data-placement="bottom">Home</a></li>
-                        <li runat="server" id="clientZoneBtn" class="active aboutBtn navBtnMy" Style="display:@ViewBag.clientZone"><a data-toggle="tooltip" title="Go to client page" data-placement="bottom" Style="background-color:#4E86B7" class="hoverMy" href="@Url.Action("client","client")"><i class="glyphicon glyphicon-triangle-right rotateNav"></i>Client CP</a></li>
-                        <li runat="server" id="opZoneBtn" class="active aboutBtn" Style="display:@ViewBag.operatorZone"><a data-toggle="tooltip" title="Go to operator page" data-placement="bottom" Style="background-color:#4E86B7" class="hoverMy" href="@Url.Action("operatorHome","operator")"><i class="glyphicon glyphicon-triangle-right rotateNav"></i>Operator Zone</a></li>
+                        <li id="clientZoneBtn" class="active aboutBtn navBtnMy" Style="display:@ViewBag.clientZone"><a data-toggle="tooltip" title="Go to client page" data-placement="bottom" Style="background-color:#4E86B7" class="hoverMy" href="@Url.Action("client","client")"><i class="glyphicon glyphicon-triangle-right rotateNav"></i>Client CP</a></li>
+                        <li id="opZoneBtn" class="active aboutBtn" Style="display:@ViewBag.operatorZone"><a data-toggle="tooltip" title="Go to operator page" data-placement="bottom" Style="background-color:#4E86B7" class="hoverMy" href="@Url.Action("operatorHome","operator")"><i class="glyphicon glyphicon-triangle-right rotateNav"></i>Operator Zone</a></li>
                         <li class="dropdown" style="padding-left:10px;">
                             <a ng-click="$event.preventDefault();" class="dropdown-toggle" data-toggle="dropdown" href="#">Information <span class="caret"></span></a>
                             <ul class="dropdown-menu">
@@ -57,6 +56,17 @@
                     <span ng-click="socialFunc(3)" class="fa fa-facebook-official social hoveringIcon" style="font-size:xx-large;"></span>
 
                     <ul class="nav navbar-nav navbar-right">
+
+                        
+                        <li class="dropdown" style="padding-left:1px;">
+                            <a Style="display:@ViewBag.showOptionsBtn" ng-click="$event.preventDefault();" class="dropdown-toggle" data-toggle="dropdown" href="#"><i Style="font-size:20px;" class="glyphicon glyphicon-cog"></i><span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li class="opt1" ng-click="$event.preventDefault();" style=""><a href="#">Settings</a></li>
+                                <li class="opt2" ng-click="$event.preventDefault();"><a href="#">Option 2</a></li>
+                                <li class="opt3" ng-click="$event.preventDefault();"><a href="#">Option 3</a></li>
+                            </ul>
+                        </li>
+
                         <li id="loginBtn"  style="display: @ViewBag.loginBtnDisp"><a class="hoverMy" href="@Url.Action("Login","web")"><span class="glyphicon glyphicon-log-in rotateNav"></span>Login</a></li>
                         <li id="logoutButton"  style="display: @ViewBag.logoutBtnDisp"><a class="hoverMy" href="@Url.Action("Logout","web")"><span class="glyphicon glyphicon-log-in rotateNav"></span>LogOut</a></li>
                     </ul>
@@ -66,9 +76,9 @@
             </div>
 
         </nav>
+        <!--END nav code  -->
 
         <!--Start static user CP  -->
-
         <div class="row userInfoMainBox">
             <div toolstyle="toolcssBottom" toolinfo="Account Info" tooltip class="col-lg-1 col-md-5 col-md-offset-1 col-xs-8 col-xs-offset-2 userBoxfirst"  data-placement="bottom">
                 <div style="display: inline; position: absolute; left: 2px;"><i Style="cursor:default" class="glyphicon glyphicon-th hoveringIcon"></i></div>
@@ -89,86 +99,137 @@
                 @ViewBag.msgsNumLabel
             </div>
         </div>
+        <!--END static user CP  -->
 
         <!-- Start dropdown information box -->
-        <div class="infoFormBox EmrgPhones">
+        <div>
+            <div class="infoFormBox EmrgPhones">
+                <div class="infoFormHeader">
+                    Emergency Phones
+                    <div class="CloseEmrgPhones x">x</div>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Organization</th>
+                            <th>Phone</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="background-color: #3D4BD5">
+                            <td>Police</td>
+                            <td><a href="tel:100">100</a></td>
+                        </tr>
+                        <tr style="background-color: #E52C2C">
+                            <td>Ambulance</td>
+                            <td><a href="tel:101">101</a></td>
+                        </tr>
+                        <tr style="background-color: #E5C92C">
+                            <td>Fire Fighters</td>
+                            <td><a href="tel:102">102</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="CloseEmrgPhones CloseBtn">Close</div>
+            </div>
+            <div class="infoFormBox ContactRtes">
+                <div class="infoFormHeader">
+                    Contact RTES
+                    <div class="CloseContactRtes x">x</div>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Developers</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="background-color: #78ABD8">
+                            <td>Vlad Teplitski</td>
+                            <td><a href="tel:04-1234567">04-1234567</a></td>
+                            <td><a href="mailto:vl4d89@gmail.com">vl4d89@gmail.com</a></td>
+                        </tr>
+                        <tr style="background-color: #78ABD8">
+                            <td>Shai Zafran</td>
+                            <td><a href="tel:04-1234567">04-5566778</a></td>
+                            <td><a href="mailto:shayzaf25@gmail.com">shayzaf25@gmail.com</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="CloseContactRtes CloseBtn">Close</div>
+            </div>
+            <div class="infoFormBox AboutRTES">
+                <div class="infoFormHeader">
+                    About RTES
+                    <div class="CloseAboutRTES x">x</div>
+                </div>
+                Students at Ort Braude - Information Systems Engineering.<br />
+                The system is developed as a part of the final project.
+
+                <div class="CloseAboutRTES CloseBtn">Close</div>
+            </div>
+        </div>
+        <!-- End Dropdown information -->
+
+
+        <!-- Start Settings Content -->
+        <div class="infoFormBoxSettings settingsGui">
             <div class="infoFormHeader">
-                Emergency Phones
-                <div class="CloseEmrgPhones x">x</div>
+                Edit Settings
+                <div class="CloseSettings x">x</div>
             </div>
 
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Organization</th>
-                        <th>Phone</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr style="background-color: #3D4BD5">
-                        <td>Police</td>
-                        <td><a href="tel:100">100</a></td>
-                    </tr>
-                    <tr style="background-color: #E52C2C">
-                        <td>Ambulance</td>
-                        <td><a href="tel:101">101</a></td>
-                    </tr>
-                    <tr style="background-color: #E5C92C">
-                        <td>Fire Fighters</td>
-                        <td><a href="tel:102">102</a></td>
-                    </tr>
-                </tbody>
-            </table>
+            <!--Content-->
+            <div>
 
-            <div class="CloseEmrgPhones CloseBtn">Close</div>
 
-        </div>
+                <div ng-click="toggleOptions(1)" id="changePswd" class="SettingClass">
+                    <i Style="font-size:23px;" class="glyphicon glyphicon-lock"></i>
+                    Change password
+                </div>
+                <div id="subChangePswd" ng-hide="op1" class="subSettingClass">
+                    Present password:
+                    <TextBox Class="form-control" ID="changePswTxtPresent" Style="color:#646464" placeholder="Present pass">
+                    </TextBox>
+                    New password:
+                    <TextBox Class="form-control" ID="changePswNew" Style="color:#646464" placeholder="New pass"></TextBox>
+                    <Button ID="changePswdBtn" OnClick="changePswd" Class="btn btn-default settingsBtn" Text="Save" Style="margin-left:2%; margin-top:5px; ">Save</Button>
+                </div>
 
-        <div class="infoFormBox ContactRtes">
-            <div class="infoFormHeader">
-                Contact RTES
-                <div class="CloseContactRtes x">x</div>
+
+                <div ng-click="toggleOptions(2)" id="changeEmail" class="SettingClass">
+                    <i Style="font-size:23px;" class="glyphicon glyphicon-envelope"></i>
+                    Edit Email
+                </div>
+                <div id="subChangeEmail" ng-hide="op2" class="subSettingClass">
+                    Present email:
+                    <TextBox Class="form-control" ID="presentEmailBox" Style="color:#646464" placeholder="Present email"></TextBox>
+                    New email:
+                    <TextBox Class="form-control" ID="newEmailBox" Style="color:#646464" placeholder="New email"></TextBox>
+                    <Button ID="changeEmailBtn" onclick="changeEmail" Class="btn btn-default settingsBtn" Text="Save" Style="margin-top:5px; margin-left:2%;">Save</Button>
+                </div>
+
+
+                <div ng-click="toggleOptions(3)" id="changePhone" class="SettingClass">
+                    <i Style="font-size:23px;" class="glyphicon glyphicon-earphone"></i>
+                    Edit Phone number
+                </div>
+                <div id="subChangePhone" ng-hide="op3" class="subSettingClass">
+                    New phone number:
+                    <TextBox Class="form-control" ID="newPhoneBox" Style="color:#646464" placeholder="New Phone-num#"></TextBox>
+                    <Button ID="changePhoneBtn" onclick="changePhone" Class="btn btn-default settingsBtn" Text="Save" Style="margin-top:5px; margin-left:2%;">Save</Button>
+                </div>
+
             </div>
 
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Developers</th>
-                        <th>Phone</th>
-                        <th>Email</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr style="background-color: #78ABD8">
-                        <td>Vlad Teplitski</td>
-                        <td><a href="tel:04-1234567">04-1234567</a></td>
-                        <td><a href="mailto:vl4d89@gmail.com">vl4d89@gmail.com</a></td>
-                    </tr>
-                    <tr style="background-color: #78ABD8">
-                        <td>Shai Zafran</td>
-                        <td><a href="tel:04-1234567">04-5566778</a></td>
-                        <td><a href="mailto:shayzaf25@gmail.com">shayzaf25@gmail.com</a></td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <div class="CloseContactRtes CloseBtn">Close</div>
-
+            <!--End Content-->
+            <div class="CloseSettings CloseBtn">Close</div>
         </div>
+        <!-- END Settings Content -->
 
-        <div class="infoFormBox AboutRTES">
-            <div class="infoFormHeader">
-                About RTES 
-                <div class="CloseAboutRTES x">x</div>
-            </div>
-
-            Students at Ort Braude - Information Systems Engineering.<br />
-            The system is developed as a part of WEB-Developing course project.
-
-            <div class="CloseAboutRTES CloseBtn">Close</div>
-        </div>
     </div>
-
 
 
     <!--Main content -- dynamic-->

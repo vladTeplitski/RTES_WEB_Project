@@ -14,7 +14,8 @@ namespace RTESWebProjectMVC.Controllers
 
             initFunc();
         }
-        public void initFunc()
+
+        public void initFunc()//base controller functionality - init
         {
             string userName;
             int userId;
@@ -59,11 +60,12 @@ namespace RTESWebProjectMVC.Controllers
                     if (user.role == "Client")
                     {
                         ViewBag.clientZone = "inline";
+                        ViewBag.showOptionsBtn = "block";  //show options button
                     }
                     else if (user.role == "Operator")
                     {
-                        ViewBag.clientZone = "inline";
                         ViewBag.operatorZone = "inline";
+                        ViewBag.showOptionsBtn = "block";   //show options button
                     }
 
                 }
@@ -72,6 +74,7 @@ namespace RTESWebProjectMVC.Controllers
             else  //guest mode
             {
                 //control the buttons and panels to display
+                ViewBag.showOptionsBtn = "none";
                 ViewBag.usernameLabel = "Guest (please login)";
                 ViewBag.companyLabel = "Company: [Guest]";
                 ViewBag.msgsNumLabel = "Messages: [Guest]";

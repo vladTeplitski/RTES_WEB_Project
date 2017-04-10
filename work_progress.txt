@@ -1,0 +1,3 @@
+to do:
+-----
+* if logged in user - on client controller  / security

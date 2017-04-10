@@ -182,7 +182,7 @@
 .toolcssLeft {
   position: relative;
   bottom:10px;
-  left:-160px;
+  left:-90px;
   display:inline;
   z-index: 4;
   cursor:default;
@@ -191,7 +191,7 @@
 }
 .toolcssLeft span {
   position: absolute;
-  width:140px;
+  width:80px;
   color: #000000;
   background: #FFFFFF;
   border: 2px solid #4E86B7;

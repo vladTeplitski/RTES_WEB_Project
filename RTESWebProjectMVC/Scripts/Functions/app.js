@@ -108,6 +108,30 @@ myApp.controller('mainController', ['$scope', function ($scope) {
 
     //END Text from json
 
+    //Settings
+
+    //settings buttons
+
+    $scope.op1 = true;
+    $scope.op2 = true;
+    $scope.op3 = true;
+
+    $scope.toggleOptions = function (op) {
+        if (op == 1) {
+            $scope.op1 = !$scope.op1;
+        }
+        else if (op == 2) {
+            $scope.op2 = !$scope.op2;
+        }
+        else if (op == 3) {
+            $scope.op3 = !$scope.op3;
+        }
+
+    };
+
+    //end settings
+
+
     //social icons
     $scope.socialFunc = function (x) {
         if (x == 1) {
@@ -245,24 +269,7 @@ myApp.controller('clientController', ['$scope', function ($scope) {
         $scope.personal = !$scope.personal;
     }
 
-    //settings buttons
 
-    $scope.op1 = true;
-    $scope.op2 = true;
-    $scope.op3 = true;
-
-    $scope.toggleOptions = function (op) {
-        if (op == 1) {
-            $scope.op1 = !$scope.op1;
-        }
-        else if (op == 2) {
-            $scope.op2 = !$scope.op2;
-        }
-        else if (op == 3) {
-            $scope.op3 = !$scope.op3;
-        }
-
-    };
 
 }]);
 

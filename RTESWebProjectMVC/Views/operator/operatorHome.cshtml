@@ -3,7 +3,7 @@
     <!--START Operator Page-->
 
     <div class="row bodyRow operatorWindow">
-        <form id="writeMessageBox">
+        
 
             <!-- Start Operator buttons -->
             <div class="col-lg-3 col-lg-offset-1 col-md-4 col-md-offset-0 col-xs-8 col-xs-offset-2">
@@ -16,18 +16,37 @@
 
                     <div ng-click="operatorClick(2)" class="btnInfo">
                         <div style="display: inline; position: absolute; left: 8px;"><i class="glyphicon glyphicon-pencil"></i></div>
-                        Send Message To Client
+                        Users Management
                     </div>
 
                     <div ng-click="operatorClick(3)" class="btnInfo">
                         <div style="display: inline; position: absolute; left: 8px;"><i class="glyphicon glyphicon-folder-open"></i></div>
-                        View Users Details
+                        Future Option
                     </div>
 
                 </div>
             </div>
 
             <div class="col-lg-6 col-lg-offset-1 col-md-6 col-md-offset-1 col-xs-12">
+
+                <!-- Message sent notification -->
+
+                <div class="notifBox msgANorifGui" style="display:@ViewBag.showMsgANorifGui">
+                    <div class="infoFormHeader">
+                        System Notification
+                        <div class="CloseMsgNotif x">x</div>
+                    </div>
+                    <div style="margin-top:20px;margin-bottom:20px;margin-left:6px;">
+                        Message to:
+                        <ul>
+                            <li>@ViewBag.sentName</li>
+                            <li>@ViewBag.sentId</li>
+                        </ul>
+                        Sent Successfully !
+                    </div>
+                </div>
+
+
                 <div class="mainWindow">
 
                     <!--Start Operator home window-->
@@ -35,195 +54,219 @@
                         operator Home.
                     </div>
 
+
                     <!--Start Existing reports in system -->
 
                     <div ng-hide="oper1" class="textContainer" style="overflow:auto;">
 
-                        <div runat="server" id="reportsInSystem" class="personalDetailsClass">
+                        <div id="reportsInSystem" class="personalDetailsClass" Style="background-color:#4786BD;border-color:#5E97C9">
                             <i Style="font-size:23px;" class="glyphicon glyphicon-list-alt"></i>
-                            <span style="margin-left:10px;">Existing reports in system</span>
-                        </div><br />
+                            <span style="margin-left:10px;">Reports Database</span>
+                        </div>
 
-                        <asp:ScriptManager runat="server" ID="sm1">
-                        </asp:ScriptManager>
-                        <asp:updatepanel runat="server">
-                            <ContentTemplate>
-                                <div runat="server" id="InfoLable" class="infoTableClass opRepLabelJs">
-                                    <div class="reportLabelHead">
-                                        <b>Report Information</b>
-                                        <asp:LinkButton runat="server" CssClass="x" Text="x" OnClick="closeFrame" />
-                                    </div>
-                                    <div style="margin-top:5px;">
-                                        <asp:Label runat="server" ID="moreInfoLabel"></asp:Label>
-                                    </div>
-                                </div>
-
-                                <asp:Repeater ID="Repeater1" runat="server" OnItemCommand="rowClick">
-                                    <HeaderTemplate>
-                                        <table class="table table - striped" style="font-size:small;">
-                                            <tr>
-                                                <th>Report ID</th>
-                                                <th>Client ID</th>
-                                                <th>Case ID</th>
-                                                <th>Date</th>
-                                                <th>Hour</th>
-                                                <th>Location</th>
-                                                <th>Towing Dest</th>
-                                            </tr>
-                                    </HeaderTemplate>
-                                    <ItemTemplate>
-                                        <tr>
-                                            <td>
-                                                <%#Eval("reportID")%>
-                                            </td>
-                                            <td>
-                                                <%#Eval("clientAbstractUserId")%>
-                                            </td>
-                                            <td>
-                                                <%#Eval("caseCaseId")%>
-                                            </td>
-                                            <td>
-                                                <%#Eval("date")%>
-                                            </td>
-                                            <td>
-                                                <%#Eval("hour")%>
-                                            </td>
-                                            <td>
-                                                <%#Eval("location")%>
-                                            </td>
-                                            <td>
-                                                <%#Eval("towing_destination")%>
-                                            </td>
-                                            <td>
-                                                <asp:LinkButton data-toggle="tooltip" title="More details" data-placement="right" ID="Button1" CommandName="click" Text="More" runat="server" CssClass="button101" CommandArgument='<%# DataBinder.Eval(Container.DataItem, "reportID") %>' />
-                                            </td>
-                                        </tr>
-
-                                    </ItemTemplate>
-                                    <FooterTemplate>
-                                        </table>
-                                    </FooterTemplate>
-                                </asp:Repeater>
-                            </ContentTemplate>
-                        </asp:updatepanel>
-                    </div>
+                        <div style="width: 50%; margin: 3px auto; text-align: center; padding: 8px 0px; display:@ViewBag.allReportsFromDbAlert">
+                            <Div Class="alert alert-danger" ID="msgAlert1">
+                                No reports found in database!
+                            </Div>
+                        </div>
 
 
-                    <!--Start - send message to client -->
-                    <div ng-hide="oper2" class="textContainer">
-                        <asp:updatepanel runat="server">
-                            <ContentTemplate>
+                        <div class="personalDetailsClass" toolstyle="toolcssBottom" toolinfo="Search Report" tooltip>
+                            <i Style="margin-right:10px;font-size:23px;" class="glyphicon glyphicon-search"></i>
+                            <input type="text" class="form-control" id="repInput1" style="color:black;width:190px;display:inline;" onkeyup="searchAllReportsByIdJs()" placeholder="Report ID">
+                            <input type="text" class="form-control formLowRes" id="repInput2" style="color:black;width:190px;display:inline;" onkeyup="searchAllReportsByClientIdJs()" placeholder="Client ID">
+                        </div>
 
-                                <div id="Div1" class="personalDetailsClass">
-                                    <i Style="font-size:23px;" class="glyphicon glyphicon-user"></i>
-                                    <span style="margin-left:10px;">Send message to client</span>
-                                </div><br />
-                                <div id="Div2" class="personalDetailsClass">
-                                    <i Style="font-size:23px;" class="glyphicon glyphicon-user"></i>
-                                    <span style="margin-left:10px;">Choose client:</span>
+                        <div id="Div2" class="personalDetailsClass">
+                            <i Style="font-size:19px;" class="glyphicon glyphicon-th-list"></i>
+                            <span style="margin-left:10px;margin-bottom:5px;">Reports List</span>
 
-                                    <select name="listbox" id="listbox">
+                            <br />
 
-                                        @{ 
-                                            if (ViewBag.dropListUsers != null)
+                            <div class="UserListContainer">
+
+                                <table id="allReportsTable" class="table table - striped" style="font-size:small;">
+                                    <tr>
+                                        <th>Report ID</th>
+                                        <th>Date</th>
+                                        <th>Client ID</th>
+                                    </tr>
+
+                                    @{
+
+                                        if (ViewBag.allReportsDB != null)
+                                        {
+                                            foreach (var item in ViewBag.allReportsDB)
                                             {
 
-                                                foreach (var item in ViewBag.dropListUsers)
-                                                {
+                                                <tr id="updatePannelAngular">
+                                                    <td>
+                                                        @item.reportID
 
-                                            <option value="@item.id">
-                                                @item.id
-                                            </option>
-                                                    }
-                                                }
+                                                    </td>
+                                                    <td>
+                                                        @item.date
+                                                    </td>
+                                                    <td>
+                                                        @item.clientAbstractUserId
+                                                    </td>
+                                                    <td>
+                                                        <ul style="list-style-type: none;">
+                                                            <li class="dropdown" style="margin-left:-20px;padding-left:1px;">
+                                                                <a toolstyle="toolcssLeft" toolinfo="Menu" tooltip ng-click="$event.preventDefault();" class="dropdown-toggle" data-toggle="dropdown" href="#"><i Style="font-size:20px;" class="glyphicon glyphicon-option-horizontal"></i></a>
+                                                                <ul class="dropdown-menu pull-right" style="right:0;">
+                                                                    <li>@Ajax.ActionLink("View Details", "openReportDetails", "operator", new { id = item.reportID, @class = "button101" }, new AjaxOptions { UpdateTargetId = "reportDest" })</li>
+                                                                    <li class="opt3" ng-click="$event.preventDefault();"><a href="#">Comment</a></li>
+                                                                </ul>
+                                                            </li>
+                                                        </ul>
 
+                                                    </td>
+                                                </tr>
                                             }
-                                    </select>
+                                        }
+                                        else
+                                        {
+                                            <tr id="updatePannelAngular">
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                        }
+
+                                    }
+                                </table>
 
 
-                                    <asp:DropDownList ID="dropList" ToolTip="Choose the wanted user ID" Style="margin-left:10px;width:200px;color:black;height:40px;border-radius:5px;"></asp:DropDownList>
-                                </div><br />
+                            </div>
 
-                                <div style="width: 50%; margin: 3px auto; text-align: center; padding: 8px 0px">
-                                    <Div Class="alert alert-danger" ID="msgEmpty">
-                                        Text field is empty!
-                                    </Div>
-                                </div>
+                            <!--Partial View-->
+                            <div id="reportDest">
 
-                                <div style="width: 50%; margin: 3px auto; text-align: center; padding: 8px 0px">
-                                    <Div sClass="alert alert-success" ID="msgSuccess">
-                                        Message sent successfully!
-                                    </Div>
-                                </div>
+                            </div>
 
-                                <asp:TextBox id="Textbox1" TextMode="multiline" Columns="50" Rows="5" runat="server" Style="width:100%;margin:auto" />
-
-                                <asp:Button runat="server" ID="sendMsgBtn" onclick="sendMessage" CssClass="btn btn-default settingsBtn" Text="Send" Style="margin-top:5px; margin-left:2%;" />
-
-                            </ContentTemplate>
-                        </asp:updatepanel>
+                        </div>
+                        
+                        
                     </div>
 
-                    <!--Start Users List -->
+
+                    <!--Start - Users Management -->
+
+                    <div ng-hide="oper2" class="textContainer">
+
+                        <div id="Div1" class="personalDetailsClass" Style="background-color:#4786BD;border-color:#5E97C9">
+                            <i Style="font-size:23px;" class="glyphicon glyphicon-user"></i>
+                            <span style="margin-left:10px;">Users Management</span>
+                        </div>
+
+                        <div style="width: 50%; margin: 3px auto; text-align: center; padding: 8px 0px; display:@ViewBag.usersFromDbAlert">
+                            <Div Class="alert alert-danger" ID="msgAlert1">
+                                No users found in database!
+                            </Div>
+                        </div>
+
+                        <div class="personalDetailsClass" toolstyle="toolcssBottom" toolinfo="Search User" tooltip>
+                            <i Style="margin-right:10px;font-size:23px;" class="glyphicon glyphicon-search"></i>
+                            <input type="text" class="form-control" id="myInput" style="color:black;width:190px;display:inline;" onkeyup="searchIdJs()" placeholder="Search for ID...">
+                            <input type="text" class="form-control formLowRes" id="myInput2" style="color:black;width:190px;display:inline;" onkeyup="searchNameJs()" placeholder="Search for Name...">
+                        </div>
+
+                        <div id="Div2" class="personalDetailsClass">
+                            <i Style="font-size:19px;" class="glyphicon glyphicon-th-list"></i>
+                            <span style="margin-left:10px;margin-bottom:5px;">Users List</span>
+
+                            <br />
+
+                            <div class="UserListContainer">
+
+                                <table id="myTable" class="table table - striped" style="font-size:small;">
+                                    <tr>
+                                        <th>User ID</th>
+                                        <th>Name</th>
+                                        <th>family_name</th>
+                                    </tr>
+
+                                    @{
+
+                                        if (ViewBag.usersDB != null)
+                                        {
+                                            foreach (var item in ViewBag.usersDB)
+                                            {
+
+                                                <tr id="updatePannelAngular">
+                                                    <td>
+                                                        @item.id
+
+                                                    </td>
+                                                    <td>
+                                                        @item.name
+                                                    </td>
+                                                    <td>
+                                                        @item.familyName
+                                                    </td>
+                                                    <td>
+                                                        <ul style="list-style-type: none;">
+                                                            <li class="dropdown" style="margin-left:-20px;padding-left:1px;">
+                                                                <a toolstyle="toolcssLeft" toolinfo="Menu" tooltip ng-click="$event.preventDefault();" class="dropdown-toggle" data-toggle="dropdown" href="#"><i Style="font-size:15px;" class="glyphicon glyphicon-menu-hamburger"></i></a>
+                                                                <ul class="dropdown-menu pull-right" style="right:0;">
+                                                                    <li>@Ajax.ActionLink("Message", "openMessageUser", "operator", new { id = item.id, @class = "button101" }, new AjaxOptions { UpdateTargetId = "msgDest" })</li>
+                                                                    <li class="opt2" ng-click="$event.preventDefault();"><a href="#">Details</a></li>
+                                                                    <li class="opt3" ng-click="$event.preventDefault();"><a href="#">Edit</a></li>
+                                                                </ul>
+                                                            </li>
+                                                        </ul>
+
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <tr id="updatePannelAngular">
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                        }
+
+                                    }
+                                </table>
+
+
+                            </div>
+
+                            <!--Partial View-->
+                            <div id="msgDest">
+
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+                    <!--END - Users Management -->
+
+                    <!--Start Future Option -->
                     <div ng-hide="oper3" class="textContainer" style="overflow:auto;">
 
-                        <div runat="server" id="userDetailsPanel" class="personalDetailsClass">
+                        <div id="userDetailsPanel" class="personalDetailsClass">
                             <i Style="font-size:23px;" class="glyphicon glyphicon-user"></i>
-                            <span style="margin-left:10px;">Users List</span>
+                            <span style="margin-left:10px;">Future Option</span>
                         </div><br />
 
 
-                        <asp:updatepanel runat="server">
-                            <ContentTemplate>
-                                <div runat="server" id="userListLable" class="infoTableClass opRepLabelJs">
-                                    <div class="reportLabelHead">
-                                        <b>Client Information</b>
-                                        <asp:LinkButton runat="server" CssClass="x" Text="x" OnClick="closeClientList" />
-                                    </div>
-                                    <div style="margin-top:5px;">
-                                        <asp:Label runat="server" ID="clientListLabel"></asp:Label>
-                                    </div>
-                                </div>
-
-                                <asp:Repeater ID="Repeater2" runat="server" OnItemCommand="clientListClick">
-                                    <HeaderTemplate>
-                                        <table class="table table - striped" style="font-size:small;">
-                                            <tr>
-                                                <th>Rank</th>
-                                                <th>User ID</th>
-                                                <th>First Name</th>
-                                                <th>Family Name</th>
-
-                                            </tr>
-                                    </HeaderTemplate>
-                                    <ItemTemplate>
-                                        <tr>
-                                            <td>
-                                                <%#Eval("role")%>
-                                            </td>
-                                            <td>
-                                                <%#Eval("id")%>
-                                            </td>
-                                            <td>
-                                                <%#Eval("name")%>
-                                            </td>
-                                            <td>
-                                                <%#Eval("familyName")%>
-                                            </td>
-                                            <td>
-                                                <asp:LinkButton data-toggle="tooltip" title="More details" data-placement="right" ID="Button2" CommandName="click" Text="Info" runat="server" CssClass="button101" CommandArgument='<%# DataBinder.Eval(Container.DataItem, "id") %>' />
-                                            </td>
-                                        </tr>
-                                    </ItemTemplate>
-                                    <FooterTemplate>
-                                        </table>
-                                    </FooterTemplate>
-                                </asp:Repeater>
-                            </ContentTemplate>
-                        </asp:updatepanel>
+                        
                     </div>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
+                     <!--END Future Option -->
+
+                </div><!--Main window div-->
+            </div><!--bootstrap col content div-->
+          </div> <!--End Operator Page-->
+    </div><!--Main container-->
+

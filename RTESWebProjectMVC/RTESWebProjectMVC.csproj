@@ -199,6 +199,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>rtesEntities1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\selectedInfo.cs" />
     <Compile Include="Models\third_party.cs">
       <DependentUpon>rtesEntities1.tt</DependentUpon>
     </Compile>
@@ -206,8 +207,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\art\bg.jpg" />
+    <Content Include="Content\art\indicator.gif" />
     <Content Include="Content\art\rtes_header.jpg" />
     <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\jquery.autocomplete.css" />
     <Content Include="Content\login_register.css" />
     <Content Include="Content\project.css" />
     <Content Include="Content\tooltip.css" />
@@ -225,6 +228,8 @@
     </Content>
     <Content Include="Scripts\Functions\app.js" />
     <Content Include="Scripts\Functions\funcLib.js" />
+    <Content Include="Scripts\Lib\jquery.autocomplete.js" />
+    <Content Include="Scripts\Lib\jquery.autocomplete.min.js" />
     <Content Include="Scripts\Lib\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\Lib\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\Lib\angular.min.js" />
@@ -271,6 +276,7 @@
     <Content Include="Views\operator\operatorHome.cshtml" />
     <Content Include="Views\client\reportInfoPartial.cshtml" />
     <Content Include="Views\client\NewReport.cshtml" />
+    <Content Include="Views\operator\messagePartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
