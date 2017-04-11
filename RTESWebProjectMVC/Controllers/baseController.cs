@@ -34,6 +34,9 @@ namespace RTESWebProjectMVC.Controllers
             if (Session != null && Session["user"] != null)  //logged in user
             {
 
+                //Settings inits & check status of flags
+                settingsInit();
+
                 //show hiddent user cp fields
                 ViewBag.loginBtnDisp = "none";
                 ViewBag.logoutBtnDisp = "inline";  //show logout button
@@ -85,5 +88,73 @@ namespace RTESWebProjectMVC.Controllers
 
             }
         }
+
+        public void settingsInit()  // init user settings functionality
+        {
+            //init viewbags of settings alerts
+            ViewBag.presentPswdNotif = "none";
+            ViewBag.successPswdNotif = "none";
+            ViewBag.successEmailNotif = "none";
+            ViewBag.presentEmailNotif = "none";
+            ViewBag.successPhoneNotif = "none";
+
+            if (Session["settingsFlag"] != null)
+            {
+                ViewBag.showSettingsBox = "inline"; // show settings = settings were changed.
+                Session["settingsFlag"] = null;
+
+                if (TempData["settingsFlag1"] != null) // check if flag is not null - pass notification
+                {
+                    //password alert
+                    if ((int)TempData["settingsFlag1"] == 1)
+                    {
+                        ViewBag.presentPswdNotif = "none";
+                        ViewBag.successPswdNotif = "inline";
+                        TempData["settingsFlag1"] = null;  //init flag
+                    }
+                    else if ((int)TempData["settingsFlag1"] == 0)
+                    {
+                        ViewBag.presentPswdNotif = "inline";
+                        ViewBag.successPswdNotif = "none";
+                        TempData["settingsFlag1"] = null;  //init flag
+                    }
+                }
+
+
+                    //email alert
+                    if (TempData["settingsFlag2"] != null) // check if flag is not null - email notification
+                {
+                        if ((int)TempData["settingsFlag2"] == 1)
+                        {
+                            ViewBag.successEmailNotif = "inline";
+                            ViewBag.presentEmailNotif = "none";
+                            TempData["settingsFlag2"] = null;  //init flag
+                        }
+                        else if ((int)TempData["settingsFlag2"] == 0)
+                        {
+                            ViewBag.successEmailNotif = "none";
+                            ViewBag.presentEmailNotif = "inline";
+                            TempData["settingsFlag2"] = null;  //init flag
+                        }
+                    }
+
+                    //phone alert
+                    if (TempData["settingsFlag3"] != null) // check if flag is not null - phone notification
+                {
+                        
+                        if ((int)TempData["settingsFlag3"] == 1)
+                        {
+                            ViewBag.successPhoneNotif = "inline";
+                            TempData["settingsFlag3"] = null;  //init flag
+                        }
+                    }
+            }
+            else
+            {
+                ViewBag.showSettingsBox = "none";
+            }
+
+
+        }//END Settings inits & check status of flags
     }
 }

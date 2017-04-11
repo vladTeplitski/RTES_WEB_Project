@@ -1,0 +1,50 @@
+                <!--Notifications-->
+                <div id="notifications" style="display:"font-size:small; width: 80%; margin: 10px auto; text-align: center; padding: 3px 0px;">
+                    <Panel Class="alert alert-danger" id="pswdWrongPanel" style="@ViewBag.presentPswdNotif;">
+                        Present passsword is wrong!
+                    </Panel>
+                    <Panel Class="alert" id="pswdChangeSuccess" Style="display:@ViewBag.successPswdNotif;background-color:#22B14C">
+                        Password changed successfully!
+                    </Panel>
+                    <Panel Class="alert alert-danger" id="emailWrongPanel" style="display:@ViewBag.presentEmailNotif;">
+                        Present email is wrong!
+                    </Panel>
+                    <Panel Class="alert" ID="emailChangeSuccess" Style="display:@ViewBag.successEmailNotif;background-color:#22B14C">
+                        Email changed successfully!
+                    </Panel>
+                    <Panel Class="alert" ID="phoneChangeSuccess" Style="display:@ViewBag.successPhoneNotif;background-color:#22B14C">
+                        Phone number changed successfully!
+                    </Panel>
+                </div>
+                <!--END Notifications-->
+
+
+
+
+                @*@using (Html.BeginForm("changeEmail", "web"))
+                {
+                <div ng-click="toggleOptions(2)" id="changeEmail" class="SettingClass">
+                    <i Style="font-size:23px;" class="glyphicon glyphicon-envelope"></i>
+                    Edit Email
+                </div>
+                <div id="subChangeEmail" ng-hide="op2" class="subSettingClass">
+                    Present email:
+                    <TextBox Class="form-control" id="presentEmailBox" name="presentEmailBox" Style="color:#646464" placeholder="Present email"></TextBox>
+                    New email:
+                    <TextBox Class="form-control" id="newEmailBox" name="newEmailBox" Style="color:#646464" placeholder="New email"></TextBox>
+                    <Button id="changeEmailBtn" onclick="location.href='@Url.Action("changeEmail", "web")'" Class="btn btn-default settingsBtn" Text="Save" Style="margin-top:5px; margin-left:2%;">Save</Button>
+                </div>
+                }
+
+                @using (Html.BeginForm("changePhone", "web"))
+                {
+                <div ng-click="toggleOptions(3)" id="changePhone" class="SettingClass">
+                    <i Style="font-size:23px;" class="glyphicon glyphicon-earphone"></i>
+                    Edit Phone number
+                </div>
+                <div id="subChangePhone" ng-hide="op3" class="subSettingClass">
+                    New phone number:
+                    <TextBox Class="form-control" id="newPhoneBox" name="newPhoneBox" Style="color:#646464" placeholder="New Phone-num#"></TextBox>
+                    <Button id="changePhoneBtn" onclick="location.href='@Url.Action("changePhone", "web")'" Class="btn btn-default settingsBtn" Text="Save" Style="margin-top:5px; margin-left:2%;">Save</Button>
+                </div>
+                }*@

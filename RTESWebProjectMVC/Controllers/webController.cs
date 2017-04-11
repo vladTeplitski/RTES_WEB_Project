@@ -68,7 +68,6 @@ namespace RTESWebProjectMVC.Controllers
             }
         } 
 
-
         public ActionResult Logout()  // Logout action
         {
             base.initFunc();  //init the base functions
@@ -81,6 +80,77 @@ namespace RTESWebProjectMVC.Controllers
             return RedirectToAction("Index", "web");  //back to homepage
         }  // logout functionality
 
+        //settings methods
+        public ActionResult changePswd(String changePswTxtPresent, String changePswNew) // change password
+        {
+            int userId;
+
+            userId = (int)(Session["uid"]);    //convert session to int - read the id
+
+            using (var db = new Models.rtesEntities1())
+            {
+                var user = db.abstract_user.Where(i => i.id == userId).FirstOrDefault();
+                if (changePswTxtPresent == user.password)  //present password validation
+                {
+                    user.password = changePswNew; //change the password in db
+
+                    db.SaveChanges();  //update database with the changes made
+
+                    TempData["settingsFlag1"] = 1;  // success alert
+                }
+                else
+                {
+                    TempData["settingsFlag1"] = 0;  // fail alert
+                }
+            }
+
+            Session["settingsFlag"] = "true";  // set session value to display settings after action
+            return Redirect(Request.UrlReferrer.PathAndQuery);  //get back to the present view
+        }
+
+        public ActionResult changeEmail(String presentEmailBox, String newEmailBox)// change email
+        {
+            int userId;
+
+            userId = (int)(Session["uid"]);    //convert session to int - read the id
+
+            using (var db = new Models.rtesEntities1())
+                {
+                    var user = db.abstract_user.Where(i => i.id == userId).FirstOrDefault();
+                    if (presentEmailBox == user.email)  //present password validation
+                    {
+                        user.email = newEmailBox; //change the password in db
+                        db.SaveChanges();  //update database with the changes made
+                        TempData["settingsFlag2"] = 1;  // success alert
+                    }
+                    else
+                    {
+                    TempData["settingsFlag2"] = 0;  // fail alert
+                    }
+                }
+
+            Session["settingsFlag"] = "true";  // set session value to display settings after action
+            return Redirect(Request.UrlReferrer.PathAndQuery);  //get back to the present view
+        }
+
+        public ActionResult changePhone(String newPhoneBox)// change phone number 
+        {
+            int userId;
+
+            userId = (int)(Session["uid"]);    //convert session to int - read the id
+
+            using (var db = new Models.rtesEntities1())
+                {
+                    var user = db.abstract_user.Where(i => i.id == userId).FirstOrDefault();
+                    user.userPhoneNumber = newPhoneBox;
+                    db.SaveChanges();  //update database with the changes made
+
+                    TempData["settingsFlag3"] = 1;  // success alert
+                }
+
+            Session["settingsFlag"] = "true";  // set session value to display settings after action
+            return Redirect(Request.UrlReferrer.PathAndQuery);  //get back to the present view
+        }
 
     }
 }

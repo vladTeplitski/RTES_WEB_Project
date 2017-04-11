@@ -6,11 +6,47 @@ html,body {
     background-size: cover;
    }
 
+.deviceConfigsGui{
+    position:absolute;
+    left:60%;
+    top:4px;
+
+    cursor:default;
+
+    padding-left:9px;
+    padding-right:5px;
+    padding-top:3px;
+    width:105px;
+    height:45px;
+    border:1px solid #5B99C0;
+    background-color:#4A8BB5;
+
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+    font-size:small;
+
+    z-index:100;
+}
+
+.desktopRes{
+    display:inline;
+}
+.phoneRes{
+    display:none;
+}
+.tabletRes{
+    display:none;
+}
+
  .floatLeft {
    float: left;
  }
  .margin3 {
    margin-top: 3px;
+ }
+
+ .hideMyAlert{
+     display:none;
  }
 
 a:link{color:white}
@@ -148,13 +184,14 @@ color:#F3F3F3;
 }
 .x{
 	position:absolute;
-	right:12px;
-	top:2px;
+	right:11px;
+	top:3px;
 	font-family: Consolas;
     font-weight:500;
 	color:white;
 	cursor:pointer;
     font-size:large;
+    font-weight: bold;
 }
 .x:hover{color:#E8E8E8;}
 
@@ -426,7 +463,6 @@ label{
 .emergFormBtn:hover{background-color:#B9DB1D;}
 
 .subSettingClass{
-    
 
     width:80%;
     height:auto;
@@ -537,7 +573,47 @@ label{
 
 
 
+@media (max-width:980px){
+.deviceConfigsGui{
+    left:5px;
+    top:100px;
+    font-size:smaller;
+    width:95px;
+    height:45px;
+}
+.desktopRes{
+    display:none;
+}
+.phoneRes{
+    display:none;
+}
+.tabletRes{
+    display:inline;
+}
+}
+
+
+
 @media (max-width: 767px) {
+
+.deviceConfigsGui{
+    top:4px;
+    left:40%;
+    font-size:smaller;
+    width:95px;
+    height:45px;
+}
+.desktopRes{
+    display:none;
+}
+.phoneRes{
+    display:inline;
+}
+.tabletRes{
+    display:none;
+}
+
+
     .UserListContainer{
         height:300px;
         overflow-y:scroll;
@@ -619,5 +695,9 @@ label{
 
     .formLowRes{
         margin-left:36px;
+    }
+    .settingsNotifCss{
+        width:100%;
+
     }
 }

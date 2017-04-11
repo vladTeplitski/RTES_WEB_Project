@@ -25,7 +25,7 @@ $(document).ready(function () {
         $(".opRepLabelJs").hide();
     });
 
-    //Settings
+    //Settings drop down
     $(".opt1").on("click", function () {
         $(".settingsGui").fadeIn();
     });

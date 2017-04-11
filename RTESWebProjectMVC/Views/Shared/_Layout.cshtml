@@ -17,6 +17,7 @@
     <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Tangerine">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <!---->
     
 
@@ -28,6 +29,25 @@
 
         <!--Start nav code  -->
         <nav class="navbar navbar-inverse" style="margin-bottom:1px;">
+            
+            <div class="deviceConfigsGui">
+                <div toolstyle="toolcssBottom" toolinfo="GPS Status" tooltip Style="display:block;float:left;margin-right:10px;text-align:center;">
+                    <div>Gps</div>
+                    <div><i Style="display:none;color:#FF8787;font-size:15px" class="material-icons">gps_off</i></div>
+                    <div><i Style="color:#41FF53;font-size:15px" class="material-icons">gps_fixed</i></div>
+                </div>
+                <div Style="height:30px;border-right:3px solid #B1D607;margin-right:8px;float:left"></div>
+                
+                <div toolstyle="toolcssBottom" toolinfo="Your device" tooltip Style="display:block;text-align:center;">
+                    <div>Device</div>
+                    <div class="desktopRes"><i Style="color:#FFC600;font-size:15px;" class="material-icons">desktop_windows</i></div>
+                    <div class="phoneRes"><i Style="color:#B1D607;font-size:15px;" class="material-icons">phone_android</i></div>
+                    <div class="tabletRes"><i Style="color:#FFFFFF;font-size:15px;" class="material-icons">tablet</i></div>
+                </div>
+            </div>
+
+            
+
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar" style="background-color:#B1D607;">
@@ -60,10 +80,10 @@
                         
                         <li class="dropdown" style="padding-left:1px;">
                             <a Style="display:@ViewBag.showOptionsBtn" ng-click="$event.preventDefault();" class="dropdown-toggle" data-toggle="dropdown" href="#"><i Style="font-size:20px;" class="glyphicon glyphicon-cog"></i><span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li class="opt1" ng-click="$event.preventDefault();" style=""><a href="#">Settings</a></li>
-                                <li class="opt2" ng-click="$event.preventDefault();"><a href="#">Option 2</a></li>
-                                <li class="opt3" ng-click="$event.preventDefault();"><a href="#">Option 3</a></li>
+                            <ul class="dropdown-menu" style="margin-top:-10px;border:1px solid #4E86B7; border-radius:3px;">
+                                <li class="opt1" ng-click="$event.preventDefault();" style=""><a href="#"><i Style="font-size:14px;margin-right:5px;" class="material-icons">build</i>Settings</a></li>
+                                <li class="opt2" ng-click="$event.preventDefault();"><a href="#"><i Style="font-size:14px;margin-right:5px;" class="material-icons">radio_button_unchecked</i>Option 2</a></li>
+                                <li class="opt3" ng-click="$event.preventDefault();"><a href="#"><i Style="font-size:14px;margin-right:5px;" class="material-icons">radio_button_unchecked</i>Option 3</a></li>
                             </ul>
                         </li>
 
@@ -175,57 +195,86 @@
 
 
         <!-- Start Settings Content -->
-        <div class="infoFormBoxSettings settingsGui">
+        <div class="infoFormBoxSettings settingsGui" style="height:400px;overflow:hidden;display:@ViewBag.showSettingsBox;">
             <div class="infoFormHeader">
-                Edit Settings
+                <i Style="font-size:18px;margin-right:5px;" class="material-icons">build</i>Edit Settings
                 <div class="CloseSettings x">x</div>
             </div>
 
             <!--Content-->
-            <div>
+            <div style="width:100%;margin-top:8px;overflow-y:scroll;height:350px;">
 
+                <!--Notifications-->
+                <div id="notifications" style="font-size:small;width:80%;margin:auto;margin-top:15px;margin-bottom:15px;text-align:center;padding:3px 0px;">
+                    <Panel Class="alert alert-danger" id="pswdWrongPanel" Style="display:@ViewBag.presentPswdNotif;">
+                        Present passsword is wrong!
+                    </Panel>
+                    <Panel Class="alert" id="pswdChangeSuccess" Style="display:@ViewBag.successPswdNotif;background-color:#22B14C">
+                        Password changed successfully!
+                    </Panel>
+                    <Panel Class="alert alert-danger" id="emailWrongPanel" Style="display:@ViewBag.presentEmailNotif;">
+                        Present email is wrong!
+                    </Panel>
+                    <Panel Class="alert" ID="emailChangeSuccess" Style="display:@ViewBag.successEmailNotif;background-color:#22B14C">
+                        Email changed successfully!
+                    </Panel>
+                    <Panel Class="alert" ID="phoneChangeSuccess" Style="display:@ViewBag.successPhoneNotif;background-color:#22B14C">
+                        Phone number changed successfully!
+                    </Panel>
+                </div>
+                <!--END Notifications-->
 
+                @using (Html.BeginForm("changePswd", "web"))
+                { 
                 <div ng-click="toggleOptions(1)" id="changePswd" class="SettingClass">
                     <i Style="font-size:23px;" class="glyphicon glyphicon-lock"></i>
                     Change password
                 </div>
                 <div id="subChangePswd" ng-hide="op1" class="subSettingClass">
                     Present password:
-                    <TextBox Class="form-control" ID="changePswTxtPresent" Style="color:#646464" placeholder="Present pass">
-                    </TextBox>
+                    <input type="text" Class="form-control" id="changePswTxtPresent" name="changePswTxtPresent" Style="color:#646464" placeholder="Present pass" />
+                    
                     New password:
-                    <TextBox Class="form-control" ID="changePswNew" Style="color:#646464" placeholder="New pass"></TextBox>
-                    <Button ID="changePswdBtn" OnClick="changePswd" Class="btn btn-default settingsBtn" Text="Save" Style="margin-left:2%; margin-top:5px; ">Save</Button>
-                </div>
+                    <input type="text" Class="form-control" id="changePswNew" name="changePswNew" Style="color:#646464" placeholder="New pass" />
+                    
+                    <button type="submit" id="changePswd" value="changePswd" Class="btn btn-default settingsBtn" Style="margin-left:2%; margin-top:5px;" onclick="location.href='@Url.Action("changePswd", "web")'">Save</button>
+
+                 </div>
+                }
+                @using (Html.BeginForm("changeEmail", "web"))
+                {
+                    <div ng-click="toggleOptions(2)" id="changeEmail" class="SettingClass">
+                        <i Style="font-size:23px;" class="glyphicon glyphicon-envelope"></i>
+                        Edit Email
+                    </div>
+                    <div id="subChangeEmail" ng-hide="op2" class="subSettingClass">
+                        Present email:
+                        <input Class="form-control" id="presentEmailBox" name="presentEmailBox" Style="color:#646464" placeholder="Present email"/>
+                        New email:
+                        <input Class="form-control" id="newEmailBox" name="newEmailBox" Style="color:#646464" placeholder="New email"/>
+                        <Button id="changeEmailBtn" onclick="location.href='@Url.Action("changeEmail", "web")'" Class="btn btn-default settingsBtn" Text="Save" Style="margin-top:5px; margin-left:2%;">Save</Button>
+                    </div>
+                }
+
+                @using (Html.BeginForm("changePhone", "web"))
+                {
+                    <div ng-click="toggleOptions(3)" id="changePhone" class="SettingClass">
+                        <i Style="font-size:23px;" class="glyphicon glyphicon-earphone"></i>
+                        Edit Phone number
+                    </div>
+                    <div id="subChangePhone" ng-hide="op3" class="subSettingClass">
+                        New phone number:
+                        <input Class="form-control" id="newPhoneBox" name="newPhoneBox" Style="color:#646464" placeholder="New Phone-num#"/>
+                        <Button id="changePhoneBtn" onclick="location.href='@Url.Action("changePhone", "web")'" Class="btn btn-default settingsBtn" Text="Save" Style="margin-top:5px; margin-left:2%;">Save</Button>
+                    </div>
+                }
 
 
-                <div ng-click="toggleOptions(2)" id="changeEmail" class="SettingClass">
-                    <i Style="font-size:23px;" class="glyphicon glyphicon-envelope"></i>
-                    Edit Email
-                </div>
-                <div id="subChangeEmail" ng-hide="op2" class="subSettingClass">
-                    Present email:
-                    <TextBox Class="form-control" ID="presentEmailBox" Style="color:#646464" placeholder="Present email"></TextBox>
-                    New email:
-                    <TextBox Class="form-control" ID="newEmailBox" Style="color:#646464" placeholder="New email"></TextBox>
-                    <Button ID="changeEmailBtn" onclick="changeEmail" Class="btn btn-default settingsBtn" Text="Save" Style="margin-top:5px; margin-left:2%;">Save</Button>
-                </div>
-
-
-                <div ng-click="toggleOptions(3)" id="changePhone" class="SettingClass">
-                    <i Style="font-size:23px;" class="glyphicon glyphicon-earphone"></i>
-                    Edit Phone number
-                </div>
-                <div id="subChangePhone" ng-hide="op3" class="subSettingClass">
-                    New phone number:
-                    <TextBox Class="form-control" ID="newPhoneBox" Style="color:#646464" placeholder="New Phone-num#"></TextBox>
-                    <Button ID="changePhoneBtn" onclick="changePhone" Class="btn btn-default settingsBtn" Text="Save" Style="margin-top:5px; margin-left:2%;">Save</Button>
-                </div>
-
+                <div class="CloseSettings CloseBtn">Close</div>
             </div>
 
             <!--End Content-->
-            <div class="CloseSettings CloseBtn">Close</div>
+            
         </div>
         <!-- END Settings Content -->
 
