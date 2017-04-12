@@ -1,0 +1,272 @@
+﻿<div class="container-fluid" ng-controller="operatorController">
+
+    <!--START Operator Page-->
+
+    <div class="row bodyRow operatorWindow">
+        
+
+            <!-- Start Operator buttons -->
+            <div class="col-lg-3 col-lg-offset-1 col-md-4 col-md-offset-0 col-xs-8 col-xs-offset-2">
+                <div class="getStartedBox" style="position: relative; margin-top: 8px; margin-bottom: 8px;">
+
+                    <div ng-click="operatorClick(1)" class="btnInfo">
+                        <div style="display: inline; position: absolute; left: 8px;"><i class="glyphicon glyphicon-folder-open"></i></div>
+                        Existing Reports Folder
+                    </div>
+
+                    <div ng-click="operatorClick(2)" class="btnInfo">
+                        <div style="display: inline; position: absolute; left: 8px;"><i class="glyphicon glyphicon-pencil"></i></div>
+                        Users Management
+                    </div>
+
+                    <div ng-click="operatorClick(3)" class="btnInfo">
+                        <div style="display: inline; position: absolute; left: 8px;"><i class="glyphicon glyphicon-folder-open"></i></div>
+                        Future Option
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-lg-offset-1 col-md-6 col-md-offset-1 col-xs-12">
+
+                <!-- Message sent notification -->
+
+                <div class="notifBox msgANorifGui" style="display:@ViewBag.showMsgANorifGui">
+                    <div class="infoFormHeader">
+                        System Notification
+                        <div class="CloseMsgNotif x">x</div>
+                    </div>
+                    <div style="margin-top:20px;margin-bottom:20px;margin-left:6px;">
+                        Message to:
+                        <ul>
+                            <li>@ViewBag.sentName</li>
+                            <li>@ViewBag.sentId</li>
+                        </ul>
+                        Sent Successfully !
+                    </div>
+                </div>
+
+
+                <div class="mainWindow">
+
+                    <!--Start Operator home window-->
+                    <div ng-hide="oper0" class="textContainer">
+                        operator Home.
+                    </div>
+
+
+                    <!--Start Existing reports in system -->
+
+                    <div ng-hide="oper1" class="textContainer" style="overflow:auto;">
+
+                        <div id="reportsInSystem" class="personalDetailsClass" Style="background-color:#4786BD;border-color:#5E97C9">
+                            <i Style="font-size:23px;" class="glyphicon glyphicon-list-alt"></i>
+                            <span style="margin-left:10px;">Reports Database</span>
+                        </div>
+
+                        <div style="width: 50%; margin: 3px auto; text-align: center; padding: 8px 0px; display:@ViewBag.allReportsFromDbAlert">
+                            <Div Class="alert alert-danger" ID="msgAlert1">
+                                No reports found in database!
+                            </Div>
+                        </div>
+
+
+                        <div class="personalDetailsClass" toolstyle="toolcssBottom" toolinfo="Search Report" tooltip>
+                            <i Style="margin-right:10px;font-size:23px;" class="glyphicon glyphicon-search"></i>
+                            <input type="text" class="form-control" id="repInput1" style="color:black;width:190px;display:inline;" onkeyup="searchAllReportsByIdJs()" placeholder="Report ID">
+                            <input type="text" class="form-control formLowRes" id="repInput2" style="color:black;width:190px;display:inline;" onkeyup="searchAllReportsByClientIdJs()" placeholder="Client ID">
+                        </div>
+
+                        <div id="Div2" class="personalDetailsClass">
+                            <i Style="font-size:19px;" class="glyphicon glyphicon-th-list"></i>
+                            <span style="margin-left:10px;margin-bottom:5px;">Reports List</span>
+
+                            <br />
+
+                            <div class="UserListContainer">
+
+                                <table id="allReportsTable" class="table table - striped" style="font-size:small;">
+                                    <tr>
+                                        <th>Report ID</th>
+                                        <th>Date</th>
+                                        <th>Client ID</th>
+                                    </tr>
+
+                                    @{
+
+                                        if (ViewBag.allReportsDB != null)
+                                        {
+                                            foreach (var item in ViewBag.allReportsDB)
+                                            {
+
+                                                <tr id="updatePannelAngular">
+                                                    <td>
+                                                        @item.reportID
+
+                                                    </td>
+                                                    <td>
+                                                        @item.date
+                                                    </td>
+                                                    <td>
+                                                        @item.clientAbstractUserId
+                                                    </td>
+                                                    <td>
+                                                        <ul style="list-style-type: none;">
+                                                            <li class="dropdown" style="margin-left:-20px;padding-left:1px;">
+                                                                <a toolstyle="toolcssLeft" toolinfo="Menu" tooltip ng-click="$event.preventDefault();" class="dropdown-toggle" data-toggle="dropdown" href="#"><i Style="font-size:20px;" class="glyphicon glyphicon-option-horizontal"></i></a>
+                                                                <ul class="dropdown-menu pull-right" style="right:0;">
+                                                                    <li>@Ajax.ActionLink("View Details", "openReportDetails", "operator", new { id = item.reportID, @class = "button101" }, new AjaxOptions { UpdateTargetId = "reportDest" })</li>
+                                                                    <li class="opt3" ng-click="$event.preventDefault();"><a href="#">Comment</a></li>
+                                                                </ul>
+                                                            </li>
+                                                        </ul>
+
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <tr id="updatePannelAngular">
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                        }
+
+                                    }
+                                </table>
+
+
+                            </div>
+
+                            <!--Partial View-->
+                            <div id="reportDest">
+
+                            </div>
+
+                        </div>
+                        
+                        
+                    </div>
+
+
+                    <!--Start - Users Management -->
+
+                    <div ng-hide="oper2" class="textContainer">
+
+                        <div id="Div1" class="personalDetailsClass" Style="background-color:#4786BD;border-color:#5E97C9">
+                            <i Style="font-size:23px;" class="glyphicon glyphicon-user"></i>
+                            <span style="margin-left:10px;">Users Management</span>
+                        </div>
+
+                        <div style="width: 50%; margin: 3px auto; text-align: center; padding: 8px 0px; display:@ViewBag.usersFromDbAlert">
+                            <Div Class="alert alert-danger" ID="msgAlert1">
+                                No users found in database!
+                            </Div>
+                        </div>
+
+                        <div class="personalDetailsClass" toolstyle="toolcssBottom" toolinfo="Search User" tooltip>
+                            <i Style="margin-right:10px;font-size:23px;" class="glyphicon glyphicon-search"></i>
+                            <input type="text" class="form-control" id="myInput" style="color:black;width:190px;display:inline;" onkeyup="searchIdJs()" placeholder="Search for ID...">
+                            <input type="text" class="form-control formLowRes" id="myInput2" style="color:black;width:190px;display:inline;" onkeyup="searchNameJs()" placeholder="Search for Name...">
+                        </div>
+
+                        <div id="Div2" class="personalDetailsClass">
+                            <i Style="font-size:19px;" class="glyphicon glyphicon-th-list"></i>
+                            <span style="margin-left:10px;margin-bottom:5px;">Users List</span>
+
+                            <br />
+
+                            <div class="UserListContainer">
+
+                                <table id="myTable" class="table table - striped" style="font-size:small;">
+                                    <tr>
+                                        <th>User ID</th>
+                                        <th>Name</th>
+                                        <th>family_name</th>
+                                    </tr>
+
+                                    @{
+
+                                        if (ViewBag.usersDB != null)
+                                        {
+                                            foreach (var item in ViewBag.usersDB)
+                                            {
+
+                                                <tr id="updatePannelAngular">
+                                                    <td>
+                                                        @item.id
+
+                                                    </td>
+                                                    <td>
+                                                        @item.name
+                                                    </td>
+                                                    <td>
+                                                        @item.familyName
+                                                    </td>
+                                                    <td>
+                                                        <ul style="list-style-type: none;">
+                                                            <li class="dropdown" style="margin-left:-20px;padding-left:1px;">
+                                                                <a toolstyle="toolcssLeft" toolinfo="Menu" tooltip ng-click="$event.preventDefault();" class="dropdown-toggle" data-toggle="dropdown" href="#"><i Style="font-size:15px;" class="glyphicon glyphicon-menu-hamburger"></i></a>
+                                                                <ul class="dropdown-menu pull-right" style="right:0;">
+                                                                    <li>@Ajax.ActionLink("Message", "openMessageUser", "operator", new { id = item.id, @class = "button101" }, new AjaxOptions { UpdateTargetId = "msgDest" })</li>
+                                                                    <li class="opt2" ng-click="$event.preventDefault();"><a href="#">Details</a></li>
+                                                                    <li class="opt3" ng-click="$event.preventDefault();"><a href="#">Edit</a></li>
+                                                                </ul>
+                                                            </li>
+                                                        </ul>
+
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <tr id="updatePannelAngular">
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                        }
+
+                                    }
+                                </table>
+
+
+                            </div>
+
+                            <!--Partial View-->
+                            <div id="msgDest">
+
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+                    <!--END - Users Management -->
+
+                    <!--Start Future Option -->
+                    <div ng-hide="oper3" class="textContainer" style="overflow:auto;">
+
+                        <div id="userDetailsPanel" class="personalDetailsClass">
+                            <i Style="font-size:23px;" class="glyphicon glyphicon-user"></i>
+                            <span style="margin-left:10px;">Future Option</span>
+                        </div><br />
+
+
+                        
+                    </div>
+                     <!--END Future Option -->
+
+                </div><!--Main window div-->
+            </div><!--bootstrap col content div-->
+          </div> <!--End Operator Page-->
+    </div><!--Main container-->
+

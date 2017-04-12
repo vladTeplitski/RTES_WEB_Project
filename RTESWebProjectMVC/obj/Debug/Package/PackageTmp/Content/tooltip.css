@@ -1,0 +1,231 @@
+﻿/*=== Tooltip angular script by Vlad ===*/ 
+/*===  CSS ===*/ 
+
+/*=== Bottom tooltip ===*/ 
+.toolcssBottom {
+  position: relative;
+  top:15px;
+  left:-20px;
+  cursor:default;
+  opacity:0.9;
+  font-size:small;
+  z-index: 999;
+}
+.toolcssBottom span {
+  position: absolute;
+  width:140px;
+  color: #000000;
+  background: #FFFFFF;
+  border: 2px solid #4E86B7;
+  height: 37px;
+  text-align:center;
+  line-height: 37px;
+  border-radius: 12px;
+  z-index: 999;
+}
+.toolcssBottom span:before {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 20%;
+  margin-left: -12px;
+  width: 0; height: 0;
+  border-bottom: 12px solid #4E86B7;
+  border-right: 12px solid transparent;
+  border-left: 12px solid transparent;
+}
+.toolcssBottom span:after {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 20%;
+  margin-left: -8px;
+  width: 0; height: 0;
+  border-bottom: 8px solid #FFFFFF;
+  border-right: 8px solid transparent;
+  border-left: 8px solid transparent;
+}
+
+/*=== Bottom *Wide* tooltip ===*/ 
+.toolcssBottomWide {
+  position: relative;
+  top:12px;
+  left:-20px;
+  cursor:default;
+  opacity:0.9;
+  font-size:small;
+  z-index: 999;
+}
+.toolcssBottomWide span {
+  position: absolute;
+  width:300px;
+  color: #000000;
+  background: #FFFFFF;
+  border: 2px solid #4E86B7;
+  height: auto;
+  text-align:center;
+  line-height: 37px;
+  border-radius: 12px;
+  z-index: 999;
+}
+.toolcssBottomWide span:before {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 20%;
+  margin-left: -12px;
+  width: 0; height: 0;
+  border-bottom: 12px solid #4E86B7;
+  border-right: 12px solid transparent;
+  border-left: 12px solid transparent;
+}
+.toolcssBottomWide span:after {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 20%;
+  margin-left: -8px;
+  width: 0; height: 0;
+  border-bottom: 8px solid #FFFFFF;
+  border-right: 8px solid transparent;
+  border-left: 8px solid transparent;
+}
+
+/*=== Top tooltip ===*/ 
+.toolcssTop {
+  position: relative;
+  z-index: 998;
+  cursor:default;
+  opacity:0.9;
+  font-size:small;
+}
+.toolcssTop span {
+  position: absolute;
+  top:-80px;
+  left:-20px;
+  width:140px;
+  color: #000000;
+  background: #FFFFFF;
+  border: 2px solid #4E86B7;
+  height: 37px;
+  text-align:center;
+  line-height: 37px;
+  border-radius: 12px;
+}
+.toolcssTop span:before {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 20%;
+  margin-left: -12px;
+  width: 0; height: 0;
+  border-top: 12px solid #4E86B7;
+  border-right: 12px solid transparent;
+  border-left: 12px solid transparent;
+}
+.toolcssTop span:after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 20%;
+  margin-left: -8px;
+  width: 0; height: 0;
+  border-top: 8px solid #FFFFFF;
+  border-right: 8px solid transparent;
+  border-left: 8px solid transparent;
+}
+
+/*=== right tooltip ===*/ 
+.toolcssRight {
+  position: relative;
+  bottom:10px;
+  right:5px;
+  z-index: 3;
+  cursor:default;
+  opacity:0.9;
+}
+.toolcssRight span {
+  position: absolute;
+  width:140px;
+  color: #000000;
+  background: #FFFFFF;
+  border: 2px solid #4E86B7;
+  height: 40px;
+  line-height: 37px;
+  text-align: center;
+  border-radius: 5px;
+}
+.toolcssRight span:before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  margin-top: -12px;
+  width: 0; height: 0;
+  border-right: 12px solid #4E86B7;
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+}
+.toolcssRight span:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  margin-top: -8px;
+  width: 0; height: 0;
+  border-right: 8px solid #FFFFFF;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+}
+
+/*=== left tooltip ===*/ 
+.toolcssLeft {
+  position: relative;
+  bottom:10px;
+  left:-90px;
+  display:inline;
+  z-index: 4;
+  cursor:default;
+  font-size:small;
+  opacity:0.9;
+}
+.toolcssLeft span {
+  position: absolute;
+  width:80px;
+  color: #000000;
+  background: #FFFFFF;
+  border: 2px solid #4E86B7;
+  height: 40px;
+  line-height: 37px;
+  text-align: center;
+  border-radius: 5px;
+}
+.toolcssLeft span:before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  margin-top: -12px;
+  width: 0; height: 0;
+  border-left: 12px solid #4E86B7;
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+}
+.toolcssLeft span:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  margin-top: -8px;
+  width: 0; height: 0;
+  border-left: 8px solid #FFFFFF;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+}
+
+@media (max-width: 767px) {
+    .toolcssBottomWide span {
+        width:200px;
+    }
+
+}

@@ -1,0 +1,59 @@
+﻿<div ng-controller="mainController">
+
+    <!-- start login page -->
+    <div class="text-center" style="padding: 10px 0; ">
+
+        <div class="login-form-1" style="background-color:white; border:1px solid #6394C0;width:50%">
+
+            
+            @using (Html.BeginForm("loginFunc", "web"))
+            {
+            <form name="myLogin" class="text-left">
+                <div class="login-form-main-message"></div>
+                <div class="main-login-form">
+                    <div class="login-group">
+                        <div class="form-group">
+
+                            <input ng-keypress="loginField()" ng-click="loginFieldclick()" ng-mouseleave="loginFieldleave()" ng-model="lgUser" type="text" TextMode="SingleLine" class="form-control" id="lgUser" name="lgUser" placeholder="User Name" ng-required="true" />
+                            
+                            <span ng-hide="!lgUser.length" ng-hide="validUser" Style="color:lightgreen;padding-left:5px;" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                            <span ng-hide="notValidUser" Style="color:red;padding-left:5px;" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                            <span ng-show="!lgUser.length" Style="color:#FFC600;padding-left:5px;" class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
+                        </div>
+                        <div class="form-group">
+
+                            <input ng-keypress="loginPass()" ng-keydown="loginPass()" ng-keyup="loginPass()" ng-click="loginPassclick()" ng-mouseleave="loginFieldleave()" ng-model="lgPass" TextMode="password" class="logInput form-control" id="lgPass" name="lgPass" placeholder="password" ng-required="true" />
+                            
+                            <span ng-hide="validPass" Style="color:lightgreen;padding-left:5px;" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                            <span ng-hide="notValidPass" Style="color:red;padding-left:5px;" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                            <span ng-show="!lgPass.length" Style="color:#FFC600;padding-left:5px;" class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
+                        </div>
+                    </div>
+                    <button type="submit" id="loginFunc" value="loginFunc" class="login-button" onclick="location.href='@Url.Action("loginFunc", "web")'"><i Style="font-size:23px;" class="fa fa-chevron-right"></i></button>
+                    @ViewBag.passedUser
+                    @ViewBag.passedPass
+                </div>
+            </form>
+            }
+        </div>
+
+
+        <div class="loginAlertBoxCss">
+            <div class="alert alert-success" ID="panel1">
+                {{loginText}}
+            </div>
+        </div>
+
+
+
+        <!-- end login -->
+    </div>
+    <!-- END login page -->
+
+    <div style="width: 50%; margin: 3px auto; text-align: center; padding: 8px 0px">
+        <div class="alert alert-danger panelDanger" ID="pnlMessage" Style="Display: @ViewBag.loginAlert1">
+            Invalid user name or password, please try again.
+        </div>
+    </div>
+
+</div>

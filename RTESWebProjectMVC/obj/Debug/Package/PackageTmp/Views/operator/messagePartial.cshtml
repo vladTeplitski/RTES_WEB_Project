@@ -1,0 +1,47 @@
+﻿
+<!--Start message window-->
+<div id="messageWindowContainer">
+    <div id="messageContainer" class="infoTableClass opRepLabelJs" style="display:@ViewBag.showMessageWindow">
+        <div class="reportLabelHead">
+            <b><i Style="font-size:15px;margin-right:5px;" class="glyphicon glyphicon-envelope"></i>Send Message</b>
+            <div onclick="closeView()" class="x">x</div>
+        </div>
+
+        <div style="margin-top:5px;">
+
+            <ul>
+                <li>@ViewBag.foundUserName</li>
+                <li>@ViewBag.foundUserId</li>
+                <li>@ViewBag.foundUserEmail</li>
+            </ul>
+
+        </div>
+
+        @using (Html.BeginForm("sendMessage", "operator"))
+        {
+
+            <textarea class="form-control"
+                      id="Message"
+                      name="Message"
+                      rows="3"
+                      style="color:#444444;max-width:300px;"
+                      cols="30">
+                Type your message
+            </textarea>
+
+
+                <button type="submit" id="sendMessage" value="sendMessage" class="btn btn-default submitMy" Style="margin-left:4px;margin-top:2px;" onclick="location.href='@Url.Action("sendMessage", "operator")'"><i Style="font-size:18px;margin-right:4px;" class="glyphicon glyphicon-share-alt"></i>Send</button>
+        }
+    </div>
+</div>
+<!--END message window-->
+
+
+<!--Javascript-->
+<script type="text/javascript">
+    function closeView() {
+        $('#messageContainer').hide();
+
+    }
+</script>
+
