@@ -31,19 +31,20 @@
         <nav class="navbar navbar-inverse" style="margin-bottom:1px;">
             
             <div class="deviceConfigsGui">
-                <div toolstyle="toolcssBottom" toolinfo="GPS Status" tooltip Style="display:block;float:left;margin-right:10px;text-align:center;">
+                <div toolstyle="toolcssBottom" toolinfo="GPS Status" tooltip Style="display:block;float:left;margin-right:15px;text-align:center;">
                     <div>Gps</div>
                     <div><i Style="display:none;color:#FF8787;font-size:15px" class="material-icons">gps_off</i></div>
                     <div><i Style="color:#41FF53;font-size:15px" class="material-icons">gps_fixed</i></div>
                 </div>
-                <div Style="height:30px;border-right:3px solid #B1D607;margin-right:8px;float:left"></div>
+                @*<div Style="height:30px;border-right:3px solid #B1D607;margin-right:5px;float:left"></div>*@
                 
-                <div toolstyle="toolcssBottom" toolinfo="Your device" tooltip Style="display:block;text-align:center;">
+                <div toolstyle="toolcssBottom" toolinfo="Your device" tooltip Style="display:block;text-align:center;float:left">
                     <div>Device</div>
                     <div class="desktopRes"><i Style="color:#FFC600;font-size:15px;" class="material-icons">desktop_windows</i></div>
-                    <div class="phoneRes"><i Style="color:#B1D607;font-size:15px;" class="material-icons">phone_android</i></div>
+                    <div class="phoneRes"><i Style="color:#FDF23E;font-size:15px;" class="material-icons">phone_android</i></div>
                     <div class="tabletRes"><i Style="color:#FFFFFF;font-size:15px;" class="material-icons">tablet</i></div>
                 </div>
+                <div style="clear:both;border:none;height:0px;margin:0px"></div>
             </div>
 
             
@@ -282,17 +283,17 @@
 
 
     <!--Main content -- dynamic-->
-
-    @RenderBody()
-
+        @RenderBody()
     <!--END Main content -- dynamic-->
 
 
     <!--Static bottom  -->
-    <div class="bottomRow" ng-controller="mainController">
-        {{bottomText}}
-        <div class="row" style="height:3px;background-color:#B1D607"></div>
-    </div>
+    <footer>
+        <div class="bottomRow" ng-controller="mainController">
+            {{bottomText}}
+            <div class="row" style="height:3px;background-color:#B1D607"></div>
+        </div>
+    </footer>
 
 
     @Styles.Render("~/Content/css")  <!-- Load style first to avoid messy startup -->
