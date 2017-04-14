@@ -3,16 +3,19 @@
 
 
     <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-xs-12 col-centered " style="background: rgba(78, 134, 183, 0.8); border-left: 5px solid #C9EC25; border-right: 5px solid #C9EC25; border-radius: 5px; margin-top: 5px; margin-bottom: 5px; padding-bottom: 5px;">
+        
         <br />
         <div id="reportsInSystem" class="personalDetailsClass" style="width:80%;margin:auto;text-align:center">
             <i Style="font-size:20px;color:#D44E3C" class="fa fa-heartbeat"></i>
             <span style="margin-left:10px;font-size:15px;margin-top:10px;"><b>New Emergency Form</b></span>
         </div><br />
-@using (Html.BeginForm("send_Details_Func", "client"))
-{
 
-        <form style="color: #ffffff" name="myForm" id="loForm">
-          
+
+
+        <!--Start Emergency Form-->
+        @using (Html.BeginForm("send_Details_Func", "client", null, FormMethod.Post, new { @name = "myForm" , @id = "loForm" }))
+        {
+
             <!--personal details button-->
             
             <div ng-click="myPersonalDetails()" id="personalDtlsBtn" class="emergFormBtn">
@@ -103,7 +106,8 @@
                     </table>
                 </div>
             </div>
-          <!--Relevant real time information -->
+
+                <!--Relevant real time information -->
             <div id="Div1" class="personalDetailsClass" style="margin-top:20px; border-color:white;">
 
                 <div style="margin-left:10px;font-size:15px;margin-top:10px;">
@@ -170,6 +174,8 @@
                      Third Party Chapter
                  </label>
              </div>-->
+
+
             <!--Start Third party details -->
             <div ng-click="thirdPartyDetails()" id="addThirdPartyDtls" class="emergFormBtn">
                 <i Style="font-size:20px;margin-right:10px;" class="glyphicon glyphicon-th-list"></i>
@@ -241,7 +247,6 @@
 
 
             <!--Start car details-->
-
             <div ng-click="myFunc1()" id="carDtls" class="emergFormBtn carDetailsButt" ng-show="carDetailsBut">
                 <i Style="font-size:20px;margin-right:10px;" class="fa fa-car"></i>
                 Car Details
@@ -317,7 +322,6 @@
             </div>
             <br />
          
-        
             <!--Start Insurance details-->
            <div ng-click="myFunc2()" id="insCompDtls" class="emergFormBtn insuranceDetailsButt" ng-show="insuranceDetailsBut">
                 <i Style="font-size:20px;margin-right:10px;" class="fa fa-bank"></i>
@@ -325,6 +329,7 @@
             </div>
 
             <br />
+
             <!--slide down insurance company details div-->
             <div class="insuranceDetails" ng-show="myValue1">
 
@@ -386,15 +391,12 @@
             </div>-->
             <br />
             <Button type="submit" Text="Submit" OnClick="location.href='@Url.Action("send_Details_Func", "client")'" class="btn btn-default" style="margin-left:41%;">Submit</Button>
-        
-        </form>
-
 }
     
     </div>
   
 </div>
-<!--//end main new emergency report-->
+<!--end main new emergency report-->
 
 
 

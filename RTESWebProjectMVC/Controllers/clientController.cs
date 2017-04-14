@@ -255,7 +255,7 @@ namespace RTESWebProjectMVC.Controllers
                 DateTime now1 = DateTime.Now;
                 db.emergencyReport.Add(new Models.emergencyReport() { reportID = x, clientAbstractUserId = userId, date = now1.ToString("dd.MM.yyyy"), hour = now1.ToString("hh:mm tt"), comments = comments, location = location, towing_destination = towDest, accident_witness_name = witName ,accident_witness_phone= Convert.ToInt32(witPhone) });
                 //db.emergencyReport.Add(new Models.emergencyReport() { reportID = x, clientAbstractUserId = userId, date = date1, hour = hour1, comments = emerg.comments.ToString(), location = emerg.location.ToString(), towing_destination = emerg.towing_destination.ToString(), accident_witness_name = emerg.accident_witness_name.ToString() });
-
+                db.SaveChanges();
                 if (myName.ToString() != string.Empty)
                 
                 {

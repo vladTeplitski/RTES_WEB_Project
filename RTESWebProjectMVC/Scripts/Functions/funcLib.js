@@ -1,4 +1,8 @@
 
+
+
+
+
 //Start JQuery
 $(document).ready(function () {
 
@@ -42,10 +46,11 @@ $(document).ready(function () {
 
 });
 
-$(window).load(function () { $("#spinner").fadeOut("slow"); })
-$(window).load(function () { $("#spinnerLogin").fadeOut("slow"); })
-$(window).load(function () { $("#spinnerLogout").fadeOut("slow"); })
-$(window).load(function () { $("#spinnerOperator").fadeOut("slow"); })
+function loadControl() {
+    $(window).on('load', function () { $("#spinner").fadeOut('slow'); })
+    $(window).on('load', function () { $("#spinnerMobile").hide(); })
+}
+
 
 //Start search Javascript
 

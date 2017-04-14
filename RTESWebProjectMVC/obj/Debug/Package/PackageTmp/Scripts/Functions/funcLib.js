@@ -1,4 +1,8 @@
 
+
+
+
+
 //Start JQuery
 $(document).ready(function () {
 
@@ -42,6 +46,10 @@ $(document).ready(function () {
 
 });
 
+function loadControl() {
+    $(window).on('load', function () { $("#spinner").fadeOut('slow'); })
+    $(window).on('load', function () { $("#spinnerMobile").hide(); })
+}
 
 
 //Start search Javascript

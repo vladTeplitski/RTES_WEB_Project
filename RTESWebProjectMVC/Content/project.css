@@ -1,6 +1,5 @@
 /* System Main CSS */
 
-
 /* Page Loading Progress */
  #spinner{
 position: fixed;
@@ -11,7 +10,7 @@ height: 100%;
 z-index: 9999;
 background: url(art/indicator.gif) 50% 50% no-repeat #ede9df;
 }
-#spinnerLogin{
+#spinnerMobile{
 position: fixed;
 left: 0px;
 top: 0px;
@@ -20,25 +19,6 @@ height: 100%;
 z-index: 9999;
 background: url(art/indicator.gif) 50% 50% no-repeat #ede9df;
 }
-#spinnerLogout{
-position: fixed;
-left: 0px;
-top: 0px;
-width: 100%;
-height: 100%;
-z-index: 9999;
-background: url(art/indicator.gif) 50% 50% no-repeat #ede9df;
-}
-#spinnerOperator{
-position: fixed;
-left: 0px;
-top: 0px;
-width: 100%;
-height: 100%;
-z-index: 9999;
-background: url(art/indicator.gif) 50% 50% no-repeat #ede9df;
-}
-
 /* END Page Loading Progress */
 
 /* Inits */
@@ -604,6 +584,16 @@ label{
 }
 
 
+
+/* Validation */
+.errorFields{
+    color:red;
+    font-size:small;
+}
+/* END Validation */
+
+
+
 /*           Media query section           */
 
 @media (max-width:1030px){  /*Tables, Wide tablets & small dektops*/
@@ -629,6 +619,13 @@ label{
 
 
 @media (max-width: 767px) { /*Smartphones*/
+
+    #spinner{
+        display:none;
+    }
+    #spinnerMobile{
+        display:inline-block;
+    }
 
     .deviceConfigsGui{
     top:4px;

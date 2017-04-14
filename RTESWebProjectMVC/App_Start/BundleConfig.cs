@@ -8,6 +8,15 @@ namespace RTESWebProjectMVC
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
+
+            //CSS Files
+            bundles.Add(new StyleBundle("~/Content/css").Include(
+                      "~/Content/project.css",
+                      "~/Content/bootstrap.css",
+                      "~/Content/tooltip.css",
+                      "~/Content/jquery.autocomplete.css",
+                      "~/Content/login_register.css"));
+
             //Jquery
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/Lib/jquery-{version}.js",
@@ -33,13 +42,7 @@ namespace RTESWebProjectMVC
                       "~/Scripts/Lib/bootstrap.js",
                       "~/Scripts/Lib/respond.js"));
 
-            //CSS Files
-            bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/project.css",
-                      "~/Content/bootstrap.css",
-                      "~/Content/tooltip.css",
-                      "~/Content/jquery.autocomplete.css",
-                      "~/Content/login_register.css"));
+
         }
     }
 }
