@@ -1,6 +1,5 @@
 /* System Main CSS */
 
-
 /* Page Loading Progress */
  #spinner{
 position: fixed;
@@ -12,6 +11,7 @@ z-index: 9999;
 background: url(art/indicator.gif) 50% 50% no-repeat #ede9df;
 }
 #spinnerMobile{
+display:none;
 position: fixed;
 left: 0px;
 top: 0px;
@@ -583,6 +583,16 @@ label{
     height:250px;
     overflow-y:scroll;
 }
+
+
+
+/* Validation */
+.errorFields{
+    color:red;
+    font-size:small;
+}
+/* END Validation */
+
 
 
 /*           Media query section           */
