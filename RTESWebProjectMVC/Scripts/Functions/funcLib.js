@@ -42,7 +42,10 @@ $(document).ready(function () {
 
 });
 
-
+$(window).load(function () { $("#spinner").fadeOut("slow"); })
+$(window).load(function () { $("#spinnerLogin").fadeOut("slow"); })
+$(window).load(function () { $("#spinnerLogout").fadeOut("slow"); })
+$(window).load(function () { $("#spinnerOperator").fadeOut("slow"); })
 
 //Start search Javascript
 

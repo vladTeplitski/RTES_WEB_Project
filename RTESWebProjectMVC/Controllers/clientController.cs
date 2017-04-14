@@ -8,65 +8,91 @@ namespace RTESWebProjectMVC.Controllers
 {
     public class clientController : baseController
     {
-        
+        string userName;
+        int userId;
+        string date1;
+        string hour1;
+        int x;
+        //int check;
+
         // GET: client
         public ActionResult client()
         {
-            string userName;
-            int userId;
 
             base.initFunc();  //init the base functions - user CP
 
 
             //Startup inits
             ViewBag.showClientRepInfo = "none";
-
-
             //END Startup inits
 
+          
 
             //Build client page
 
             using (var db = new Models.rtesEntities1())
             {
-                userName = Session["user"].ToString();  //read the user name
-                userId = (int)(Session["uid"]);    //convert session to int - read the id
+                 userName = Session["user"].ToString();  //read the user name
+                 userId = Convert.ToInt32(Session["uid"]);    //convert session to int - read the id
 
+                personalDetail(userId);
                 //read data from database
+                
                 var user = db.abstract_user.Where(i => i.id == userId).FirstOrDefault();
-                var client = db.client.Where(i => i.abstractUserId == userId).DefaultIfEmpty().First(); ;
+                var client = db.client.Where(i => i.abstractUserId == userId).DefaultIfEmpty().First();
+
+
 
                 if (client != null)  //if client account exists
                 {
-
                     //Emergency reports library init - client
                     reportsFromDB(userId);
 
                     //Messages init - client
                     messagesFromDB(userId);
-
-
-
                 }
-
-
                 else  //NOT a client account
                 {
                     //reports table - non client
                     ViewBag.repDB = null;
                     ViewBag.clientRepListAlert = "inline";  //show reports alert
                     ViewBag.showRepDb = "none"; //hide reports table
-
                     ViewBag.showMsgDb = "none";  //hide messages table
-
-
-
-
                 }
+
+                
             }
             return View();
 
         }//end client function
+
+        //initial the personal details of the client
+        public void personalDetail(int userId)
+        {
+            userId = Convert.ToInt32(Session["uid"]);    //convert session to int - read the id
+
+            using (var db = new Models.rtesEntities1())
+            {
+                var client = db.client.Where(i => i.abstractUserId == userId).DefaultIfEmpty().First();
+
+                ViewBag.carCategory = client.carCategory.ToString();
+                ViewBag.carModel = client.carModel.ToString();
+                ViewBag.YearOfManuFacture = client.carManufactureYear.ToString();
+                ViewBag.liceansePlate = client.licensePlate.ToString();
+                ViewBag.InsuranceCompanyName = client.insuranceCompanyName.ToString();
+                ViewBag.InsuranceAgentName = client.insuranceAgentName.ToString();
+                ViewBag.InsuranceAgentPhone = client.insuranceAgentPhoneNum.ToString();
+                ViewBag.InsurancePolicyNumber = client.insurancePolicyNum.ToString();
+                ViewBag.PolicyExpiration = client.policyEndDate.ToString();
+                ViewBag.DrivingLicenseNumber = client.clientDrivingLicenseNumber.ToString();
+                ViewBag.CarOwnerName = client.carOwnerName.ToString();
+                ViewBag.CarOwnerID = client.carOwnerId.ToString();
+
+            }
+
+        }
+        //end initial of personal details client 
+
 
 
         public void reportsFromDB(int userId)  //show the client reports function
@@ -185,8 +211,88 @@ namespace RTESWebProjectMVC.Controllers
         public ActionResult NewReport()
         {
             base.initFunc();//init the base functions - user CP
+            personalDetail(Convert.ToInt32(Session["uid"]));//call to personal detials function
+
+            ViewBag.successfull = "none";
+            
+            //Current time and date
+            DateTime now = DateTime.Now;
+            ViewBag.date1 = now.ToString("dd.MM.yyyy");
+            date1= now.ToString("dd.MM.yyyy");
+            ViewBag.hour1 = now.ToString("hh:mm tt");
+            hour1= now.ToString("hh:mm tt");
+            //end
+
             return View();
         }//end NewReport function
+
+
+
+
+
+
+        //create new report in db
+        [HttpPost]
+        public ActionResult send_Details_Func(string location,string towDest,string witName,string witPhone, string comments,string myName,string driverID,string driverPhone,string driverLicenseNum,string address1,string carOwnerName,string carOwnerId,string carLicensePlate,string carCategory,string carModel,string color1,string year,string compName,string policyNum,string agentName,string agentPhone)
+        {
+            
+            using (var db = new Models.rtesEntities1())
+            {
+                userName = Session["user"].ToString();  //read the user name
+                userId = (int)(Session["uid"]);    //convert session to int - read the id
+                                                   // Create a new Order object.
+
+
+                var maxId = db.emergencyReport.DefaultIfEmpty().Max(r => r == null ? 0 : r.reportID); //get the max report Id
+                x = Convert.ToInt32(maxId.ToString());//convert type of string to int
+                x = x + 1;
+
+                // if (checkBox.ToString()!=null)
+                // {
+                // check = 1;
+                //case1.callForTowing = 1;
+                // }   
+                DateTime now1 = DateTime.Now;
+                db.emergencyReport.Add(new Models.emergencyReport() { reportID = x, clientAbstractUserId = userId, date = now1.ToString("dd.MM.yyyy"), hour = now1.ToString("hh:mm tt"), comments = comments, location = location, towing_destination = towDest, accident_witness_name = witName ,accident_witness_phone= Convert.ToInt32(witPhone) });
+                //db.emergencyReport.Add(new Models.emergencyReport() { reportID = x, clientAbstractUserId = userId, date = date1, hour = hour1, comments = emerg.comments.ToString(), location = emerg.location.ToString(), towing_destination = emerg.towing_destination.ToString(), accident_witness_name = emerg.accident_witness_name.ToString() });
+
+                if (myName.ToString() != string.Empty)
+                
+                {
+                    ViewBag.successfull = "block";
+                    string colorName = color1.ToString();
+                    db.third_party.Add(new Models.third_party()
+                    {
+                        emergencyReportId = x,
+                        driverName = myName,
+                        driverId = Convert.ToInt32(driverID),
+                        phoneNumber = Convert.ToInt32(driverPhone),
+                        drivingLicenseNumber = Convert.ToInt32(driverLicenseNum),
+                        address = address1.ToString(),
+                        carOwnerName = carOwnerName,
+                        carOwnerId = Convert.ToInt32(carOwnerId),
+                        licensePlateNumber = Convert.ToInt32(carLicensePlate),
+                        carCategory = carCategory,
+                        carModel = carModel,
+                        carColor = colorName,
+                        yearOfManufacture = Convert.ToInt32(year),
+                        insuranceCompanyName = compName,
+                        insurancePolicyNumber = Convert.ToInt32(policyNum),
+                        insuranceAgentName = agentName,
+                        insuranceAgentPhone = Convert.ToInt32(agentPhone)
+                    });
+                }
+
+                db.SaveChanges();
+
+            }
+
+           
+            return View("NewReport");
+        }
+        //end create new report in db
+       
+
     }
 
 

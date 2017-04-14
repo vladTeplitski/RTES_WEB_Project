@@ -3,6 +3,7 @@ html,body {
     position:fixed;
     margin-right:0;
     padding:0;
+    width:100%;
     height:100%;
     background: url(art/bg.jpg) no-repeat center center fixed; 
     background-size: cover;
@@ -298,7 +299,7 @@ color:#F3F3F3;
 }
 
 .bottomRow{
-    position:absolute;
+    position:fixed;
     bottom:0;
     width:100%;
     border-radius:4px;
@@ -572,7 +573,7 @@ label{
 
 
 
-@media (max-width:980px){
+@media (max-width:1030px){
 .deviceConfigsGui{
     left:5px;
     top:72px;
@@ -595,23 +596,22 @@ label{
 
 @media (max-width: 767px) {
 
-.deviceConfigsGui{
+    .deviceConfigsGui{
     top:4px;
     left:40%;
     font-size:smaller;
     width:97px;
     height:45px;
-}
-.desktopRes{
-    display:none;
-}
-.phoneRes{
-    display:inline;
-}
-.tabletRes{
-    display:none;
-}
-
+    }
+    .desktopRes{
+        display:none;
+    }
+    .phoneRes{
+       display:inline;
+    }
+    .tabletRes{
+        display:none;
+    }
 
     .UserListContainer{
         height:300px;
@@ -702,4 +702,11 @@ label{
     width: 90%; 
 
 }
+
+}
+
+@media (max-height: 350px) {
+    .footerCss{
+        display:none;
+    }
 }

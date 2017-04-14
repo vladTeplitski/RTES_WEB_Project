@@ -20,11 +20,13 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <!---->
     
-
 </head>
 
 <body class="bodyDesign" ng-app="myApp">
     
+    <div id="spinner"></div>
+
+
     <div ng-controller="mainController">
 
         <!--Start nav code  -->
@@ -33,8 +35,8 @@
             <div class="deviceConfigsGui">
                 <div toolstyle="toolcssBottom" toolinfo="GPS Status" tooltip Style="display:block;float:left;margin-right:15px;text-align:center;">
                     <div>Gps</div>
-                    <div><i Style="display:none;color:#FF8787;font-size:15px" class="material-icons">gps_off</i></div>
-                    <div><i Style="color:#41FF53;font-size:15px" class="material-icons">gps_fixed</i></div>
+                    <div><i Style="color:#FF8787;font-size:15px" class="material-icons">gps_off</i></div>
+                    <div><i Style="display:none;color:#41FF53;font-size:15px" class="material-icons">gps_fixed</i></div>
                 </div>
                 @*<div Style="height:30px;border-right:3px solid #B1D607;margin-right:5px;float:left"></div>*@
                 
@@ -194,7 +196,6 @@
         </div>
         <!-- End Dropdown information -->
 
-
         <!-- Start Settings Content -->
         <div class="infoFormBoxSettings settingsGui" style="height:400px;overflow:hidden;display:@ViewBag.showSettingsBox;">
             <div class="infoFormHeader">
@@ -288,12 +289,13 @@
 
 
     <!--Static bottom  -->
-    <footer style="height:auto">
+    <footer Class="footerCss" style="height:auto">
         <div class="bottomRow" ng-controller="mainController">
             {{bottomText}}
             <div class="row" style="height:3px;background-color:#B1D607"></div>
         </div>
     </footer>
+
 
 
     @Styles.Render("~/Content/css")  <!-- Load style first to avoid messy startup -->

@@ -335,5 +335,8 @@ myApp.controller('emergFormController', ['$scope', function ($scope) {
         $scope.myValue1 = !$scope.myValue1;
     }
 
+    $scope.onlyLetters = /^[a-zA-Z]+$/;
+    $scope.onlyNumbers = /^[0-9]*$/;
+
 }]);
 

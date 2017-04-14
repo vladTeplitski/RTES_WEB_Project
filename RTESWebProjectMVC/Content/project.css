@@ -1,13 +1,84 @@
+/* System Main CSS */
+
+
+/* Page Loading Progress */
+ #spinner{
+position: fixed;
+left: 0px;
+top: 0px;
+width: 100%;
+height: 100%;
+z-index: 9999;
+background: url(art/indicator.gif) 50% 50% no-repeat #ede9df;
+}
+#spinnerLogin{
+position: fixed;
+left: 0px;
+top: 0px;
+width: 100%;
+height: 100%;
+z-index: 9999;
+background: url(art/indicator.gif) 50% 50% no-repeat #ede9df;
+}
+#spinnerLogout{
+position: fixed;
+left: 0px;
+top: 0px;
+width: 100%;
+height: 100%;
+z-index: 9999;
+background: url(art/indicator.gif) 50% 50% no-repeat #ede9df;
+}
+#spinnerOperator{
+position: fixed;
+left: 0px;
+top: 0px;
+width: 100%;
+height: 100%;
+z-index: 9999;
+background: url(art/indicator.gif) 50% 50% no-repeat #ede9df;
+}
+
+/* END Page Loading Progress */
+
+/* Inits */
 html,body {
     margin-left:0;
     position:fixed;
     margin-right:0;
     padding:0;
+    width:100%;
     height:100%;
     background: url(art/bg.jpg) no-repeat center center fixed; 
     background-size: cover;
     overflow-x:hidden;
    }
+.desktopRes{
+    display:inline;
+}
+.phoneRes{
+    display:none;
+}
+.tabletRes{
+    display:none;
+}
+
+a:link{color:white}
+a:hover{color:black}
+
+a {
+    text-decoration: none !important;
+}
+
+.bodyDesign{
+    background-color:#D5D5D5;
+}
+
+button::-moz-focus-inner {/*remove dotted border on firefox 46+ */
+  border: 0;
+}
+
+/* END Inits */
 
 .deviceConfigsGui{
     position:absolute;
@@ -26,19 +97,10 @@ html,body {
     z-index:100;
 }
 
-.desktopRes{
-    display:inline;
-}
-.phoneRes{
-    display:none;
-}
-.tabletRes{
-    display:none;
-}
-
  .floatLeft {
    float: left;
  }
+
  .margin3 {
    margin-top: 3px;
  }
@@ -46,29 +108,16 @@ html,body {
  .hideMyAlert{
      display:none;
  }
-
-a:link{color:white}
-a:hover{color:black}
-
-a {
-    text-decoration: none !important;
-}
-
-.bodyDesign{
-    background-color:#D5D5D5;
-}
-/*remove dotted border on firefox 46+ */
-button::-moz-focus-inner {
-  border: 0;
-}
-
+ 
 .social{
     margin-left:5px;
     margin-top:15px;
 }
+
 .hoveringIcon{
     cursor:pointer;
 }
+
 .hoveringIcon:hover{
 color:#F3F3F3;
 }
@@ -108,6 +157,7 @@ color:#F3F3F3;
     border-radius:12px;
     text-align:center;
 }
+
 .registerHeader{
     padding:2px;
     height:15%;
@@ -116,6 +166,7 @@ color:#F3F3F3;
     border-radius:12px;
     text-align:center;
 }
+
 .infoFormBox{
     display:none;
     position:fixed;
@@ -138,7 +189,6 @@ color:#F3F3F3;
     display:none;
     position:fixed;
     overflow-y:scroll;
-
     left:50%;
     top:5%;
     margin-left:-250px;
@@ -156,7 +206,6 @@ color:#F3F3F3;
 .notifBox{
     display:none;
     position:fixed;
-
     left:50%;
     top:10%;
     margin-left:-250px;
@@ -171,7 +220,6 @@ color:#F3F3F3;
     z-index:100;
 }
 
-
 .infoFormHeader{
     padding:2px;
     height:30px;
@@ -180,6 +228,7 @@ color:#F3F3F3;
     border-radius:12px;
     text-align:center;
 }
+
 .x{
 	position:absolute;
 	right:11px;
@@ -222,13 +271,11 @@ color:#F3F3F3;
  }
 
 .userInfoMainBox{
-    
     border:1px solid #97C1E6;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     padding:2px;
     padding-left:5px;
     cursor:default;
-
 }
 
 .loginAlertBoxCss{
@@ -251,6 +298,7 @@ color:#F3F3F3;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     color:white;
 }
+
 .btnInfo{
     padding:7px;
     padding-left:4px;
@@ -260,20 +308,16 @@ color:#F3F3F3;
     background-color:#B1D607;
     border:1px solid #C9EC25;
     border-radius:2px;
-    
     color:#FFFFFF;
     text-align:center;
     font-size:18px;
     cursor:pointer;
-
     transition: all ease 0.8s;
 }
-    .btnInfo:hover {
+.btnInfo:hover {
         background-color: #C9EC25;
         box-shadow: inset 0 100px 0 0 #CEED42;
-    }
-
-
+}
 
 .btnInfo_report{
     padding:7px;
@@ -291,14 +335,12 @@ color:#F3F3F3;
 }
 .btnInfo_report:hover{background-color:#B84134;text-decoration:none;}
 
-
-
 .bodyRow{
     margin-top:5px;
 }
 
 .bottomRow{
-    position:absolute;
+    position:fixed;
     bottom:0;
     width:100%;
     border-radius:4px;
@@ -316,6 +358,7 @@ color:#F3F3F3;
     border-radius:5px;
     
 }
+
 .textContainer{
     padding:2px;
     padding-bottom:20px;
@@ -350,7 +393,6 @@ color:#F3F3F3;
 
 .CloseBtn:hover{background-color:#C9ED24}
 
-
 .driverDetails,.carDetails,.insuranceDetails{
     background-color:#D9DBF1;
     color:#5E6572;
@@ -368,6 +410,7 @@ color:#F3F3F3;
     margin-left:1px;
     width:80%;
 }
+
 .formContainer{
     width:70%;
     margin:auto;
@@ -378,11 +421,11 @@ color:#F3F3F3;
     border:2px solid white;
     margin:auto;
 }
+
 .insuranceDetails  .form-control{
     border:2px solid white;
     margin:auto;
 }
-
 
 #TableDetails{
     color:white;
@@ -395,7 +438,6 @@ color:#F3F3F3;
     width:100%;
     margin-top:1px;
     margin-bottom:1px;
-    
 }
 
 .TableDetailsCover{
@@ -405,15 +447,15 @@ color:#F3F3F3;
     border-radius:10px;
 }
 
-
 .colD{width:50%; text-align:center;}
 
 .colT{
     height:100%;
-    }
+}
 
 .colT:nth-child(even){ 
-    background-color:#60A0D8;}
+    background-color:#60A0D8;
+}
 
 .emergFormInp{
     width:50px;
@@ -429,16 +471,12 @@ label{
     padding:5px;
     padding-left:10px;
     margin:auto;
-    
     margin-top:8px;
-
     background-color:#48639C;
     border:1px solid #7A95D0;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius:5px;
-
     color:white;
-
     cursor:pointer;
 }
 .SettingClass:hover{background-color:#5872AA}
@@ -450,19 +488,16 @@ label{
     padding-left:10px;
     margin:auto;
     margin-top:5px;
-
     background-color:#B1D607;
     border:1px solid #BDE30F;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius:5px;
-
     color:white;
     cursor:pointer;
 }
 .emergFormBtn:hover{background-color:#B9DB1D;}
 
 .subSettingClass{
-
     width:80%;
     height:auto;
     padding:5px;
@@ -470,14 +505,13 @@ label{
     padding-bottom:10px;
     margin:auto;
     margin-top:8px;
-
     background-color:#48639C;
     border:1px solid #7A95D0;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius:5px;
-
     color:white;
 }
+
 .personalDetailsClass{
     width:98%;
     height:auto;
@@ -485,16 +519,12 @@ label{
     padding-left:10px;
     margin-bottom:5px;
     margin:auto;
-    
     margin-top:8px;
-
     background-color:#5A95C9;
     border:1px solid #7A95D0;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius:5px;
-
     color:white;
-
     cursor:default;
 }
 
@@ -524,6 +554,7 @@ label{
     border-radius:12px;
     text-align:center;
 }
+
 .button101{
     width:50px;
     padding:4px;
@@ -545,11 +576,13 @@ label{
 .submitMy{
         margin-left:35%;
  }
+
  .submitMyLogout{
      margin-top:10px;
      margin-left:35%;
  }
  .submitMy:hover {border-color:none;}
+
 .panelDanger{
     display:none;
 }
@@ -571,8 +604,10 @@ label{
 }
 
 
+/*           Media query section           */
 
-@media (max-width:980px){
+@media (max-width:1030px){  /*Tables, Wide tablets & small dektops*/
+
 .deviceConfigsGui{
     left:5px;
     top:72px;
@@ -589,29 +624,31 @@ label{
 .tabletRes{
     display:inline;
 }
+
 }
 
 
+@media (max-width: 767px) { /*Smartphones*/
 
-@media (max-width: 767px) {
-
-.deviceConfigsGui{
+    .deviceConfigsGui{
     top:4px;
     left:40%;
     font-size:smaller;
     width:97px;
     height:45px;
-}
-.desktopRes{
-    display:none;
-}
-.phoneRes{
-    display:inline;
-}
-.tabletRes{
-    display:none;
-}
+    }
 
+    .desktopRes{
+        display:none;
+    }
+
+    .phoneRes{
+       display:inline;
+    }
+
+    .tabletRes{
+        display:none;
+    }
 
     .UserListContainer{
         height:300px;
@@ -628,21 +665,27 @@ label{
         padding-top:11px;
         width:auto;
     }
+
     .btnInfo_report{
         font-size:small;
     }
+
     .resetApp{
         margin-left:40%;
     }
+
     .submitMy{
         margin-left:40%;
     }
+
     .bottomRow{
         font-size:small;
-        }
+    }
+
     .userInfoMainBox{
         font-size:small;
     }
+
     .infoFormBox{
         margin-left:0;
         left:0;
@@ -653,12 +696,14 @@ label{
         margin-left:0;
         left:0;
     }
+
     .notifBox{
         top:150px;
         width:100%;
         margin-left:0;
         left:0;
     }
+
     #TableDetails2{
         font-size:small;
     }
@@ -677,29 +722,40 @@ label{
         margin-left: -125px;
         width: 250px;
     }
+
     .emergFormBtn{
         font-size:small;
         width:70%;
     }
 
     .driverDetails,.carDetails,.insuranceDetails{
-    font-size:small;
-}
+        font-size:small;
+    }
 
     .driverDetails .form-control {
         font-size:small;
-        }
+    }
 
     .formLowRes{
         margin-left:36px;
     }
+
     .settingsNotifCss{
         width:100%;
 
     }
-    .loginAlertBoxCss{
 
-    width: 90%; 
+    .loginAlertBoxCss{
+        width: 90%; 
+    }
 
 }
+
+
+@media (max-height: 350px) { /*Fix for short heights - mobile*/
+
+    .footerCss{
+        display:none;
+    }
+
 }
