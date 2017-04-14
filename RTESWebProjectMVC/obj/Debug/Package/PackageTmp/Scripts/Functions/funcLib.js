@@ -48,7 +48,6 @@ $(document).ready(function () {
 
 function loadControl() {
     $(window).on('load', function () { $("#spinner").fadeOut('slow'); });
-    $(window).on('load', function () { $("#spinnerMobile").css("display", "none"); });
 }
 
 
