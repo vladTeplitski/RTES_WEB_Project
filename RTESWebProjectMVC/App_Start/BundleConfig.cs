@@ -8,7 +8,7 @@ namespace RTESWebProjectMVC
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
-            //jquery
+            //Jquery
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/Lib/jquery-{version}.js",
                         "~/Scripts/Lib/jquery.unobtrusive-ajax.js",  // Microsoft jQuery Unobtrusive Ajax 3.2.3 for ajax
