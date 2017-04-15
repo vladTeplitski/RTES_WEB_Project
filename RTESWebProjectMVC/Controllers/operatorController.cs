@@ -210,6 +210,98 @@ namespace RTESWebProjectMVC.Controllers
         }//end openReportDetails
 
 
+        public ActionResult openUserDetailsGui(String id) //openUserDetails Gui
+        {
+
+            int x = Int32.Parse(id.ToString());  //convert search id input to integer
+
+            Session["selected"] = x;
+
+            ViewBag.showUserDetailsWindow = "Block";
+
+            if (Session["user"] != null)  //if logged in user
+            {
+
+                if (Request.IsAjaxRequest())  //validate ajax
+                {
+
+                    using (var db = new Models.rtesEntities1())  //db
+                    {
+                        var resultData = db.abstract_user.Where(i => i.id == x).ToList();  //get the result from db
+
+                        ViewBag.userDetails = resultData;
+
+                    }
+
+                    return PartialView("userDetailsPartial");  //using partial view
+                }
+                else
+                    return PartialView("userDetailsPartial");
+
+            }
+            else
+            {
+                return RedirectToAction("Login", "web");  //if disconnected, redirect to login
+            }
+        }//end openUserDetails Gui
+
+
+        public ActionResult openEditUserGui(String id) //editUserDetails Gui
+        {
+
+            int x = Int32.Parse(id.ToString());  //convert search id input to integer
+
+            Session["selected"] = x;
+
+            ViewBag.showEditUserWindow = "Block";
+
+            if (Session["user"] != null)  //if logged in user
+            {
+
+                if (Request.IsAjaxRequest())  //validate ajax
+                {
+
+                        ViewBag.identify = x;
+                        Session["edituid"] = x;
+
+
+                    return PartialView("editPartial");  //using partial view
+                }
+                else
+                    return PartialView("editPartial");
+
+            }
+            else
+            {
+                return RedirectToAction("Login", "web");  //if disconnected, redirect to login
+            }
+        }//end editUserDetails Gui
+
+
+
+        public ActionResult updateEditsFunc(String editUsrPass)
+        {
+            int userId;
+            userId = (int)(Session["edituid"]);    //convert session to int - read the id passed
+
+            using (var db = new Models.rtesEntities1())
+            {
+                var user = db.abstract_user.Where(i => i.id == userId).FirstOrDefault();
+
+                    user.password = editUsrPass; //change the password in db
+
+                    db.SaveChanges();  //update database with the changes made
+
+                    TempData["opEditedFlag"] = 1;  // flag - settings edited by operator ViewBag.showOpNotif
+
+
+            }
+
+            return Redirect(Request.UrlReferrer.PathAndQuery);  //get back to the present view
+        }
+        
+
+
     }
 
 }

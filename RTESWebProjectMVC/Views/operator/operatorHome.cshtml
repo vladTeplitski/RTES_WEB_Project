@@ -54,6 +54,15 @@
                         operator Home.
                     </div>
 
+                <div id="operatorNotification" class="operatorNotif" style="display:@ViewBag.showOpNotif">
+                    <div class="reportLabelHead">
+                        <b><i Style="font-size:15px;margin-right:5px;" class="glyphicon glyphicon-envelope"></i>Notfication</b>
+                        <div onclick="closeViewOpNotif()" class="x">x</div>
+                    </div>
+                    
+                    Settings Edited Successfully.
+                </div>
+
 
                     <!--Start Existing reports in system -->
 
@@ -212,9 +221,9 @@
                                                             <li class="dropdown" style="margin-left:-20px;padding-left:1px;">
                                                                 <a toolstyle="toolcssLeft" toolinfo="Menu" tooltip ng-click="$event.preventDefault();" class="dropdown-toggle" data-toggle="dropdown" href="#"><i Style="font-size:15px;" class="glyphicon glyphicon-menu-hamburger"></i></a>
                                                                 <ul class="dropdown-menu pull-right" style="right:0;">
+                                                                    <li>@Ajax.ActionLink("Details", "openUserDetailsGui", "operator", new { id = item.id, @class = "button101" }, new AjaxOptions { UpdateTargetId = "msgDest" })</li>
                                                                     <li>@Ajax.ActionLink("Message", "openMessageUser", "operator", new { id = item.id, @class = "button101" }, new AjaxOptions { UpdateTargetId = "msgDest" })</li>
-                                                                    <li class="opt2" ng-click="$event.preventDefault();"><a href="#">Details</a></li>
-                                                                    <li class="opt3" ng-click="$event.preventDefault();"><a href="#">Edit</a></li>
+                                                                    <li>@Ajax.ActionLink("Edit", "openEditUserGui", "operator", new { id = item.id, @class = "button101" }, new AjaxOptions { UpdateTargetId = "msgDest" })</li>
                                                                 </ul>
                                                             </li>
                                                         </ul>
@@ -240,10 +249,14 @@
 
                             </div>
 
-                            <!--Partial View-->
-                            <div id="msgDest">
+                            <!--Partial Views-->
+                            <div id="msgDest"></div>
 
-                            </div>
+
+
+
+
+                            
 
                         </div>
                     </div>
@@ -269,4 +282,14 @@
             </div><!--bootstrap col content div-->
           </div> <!--End Operator Page-->
     </div><!--Main container-->
+
+
+
+<!--Close the notification-->
+<script type="text/javascript">
+    function closeViewOpNotif() {
+        $('#operatorNotification').hide();
+
+    }
+</script>
 

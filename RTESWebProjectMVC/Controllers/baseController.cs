@@ -37,6 +37,11 @@ namespace RTESWebProjectMVC.Controllers
                 //Settings inits & check status of flags
                 settingsInit();
 
+                if (TempData["opEditedFlag"] != null) // flag - settings edited by operator ViewBag.showOpNotif)
+                {
+                    ViewBag.showOpNotif = "block";
+                    TempData["opEditedFlag"] = null;
+                }
                 //show hiddent user cp fields
                 ViewBag.loginBtnDisp = "none";
                 ViewBag.logoutBtnDisp = "inline";  //show logout button

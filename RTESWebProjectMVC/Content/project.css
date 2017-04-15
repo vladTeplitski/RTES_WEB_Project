@@ -504,9 +504,36 @@ label{
     position:fixed;
     left:50%;
     top:15%;
-    margin-left:-150px;
-    width:300px;
+    margin-left:-165px;
+    width:330px;
     height:auto;
+    padding:4px;
+    border:1px solid #86B2D8;
+    border-radius:12px;
+    background-color:#4E86B7;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    color:white;
+    font-size:small;
+    z-index:200;
+}
+
+.tableContPartial{
+    margin-top:4px;
+    height:auto;
+    border-top:2px solid #B1D607;
+    border-bottom:2px solid #B1D607;
+    border-radius:5px;
+    padding:3px;
+}
+
+.operatorNotif{
+    display:none;
+    position:fixed;
+    left:50%;
+    top:15%;
+    margin-left:-165px;
+    width:330px;
+    height:100px;
     padding:4px;
     border:1px solid #86B2D8;
     border-radius:12px;
@@ -606,6 +633,16 @@ label{
     display:inline;
 }
 
+.infoTableClass {
+    height: 310px;
+}
+.tableContPartial{
+    margin-top:3px;
+    height:250px;
+    overflow-y:scroll;
+}
+
+
 }
 
 
@@ -703,9 +740,16 @@ label{
 
     .infoTableClass {
         left: 50%;
-        top: 15%;
+        top: 7%;
         margin-left: -125px;
         width: 250px;
+        height:310px;
+        
+    }
+    .tableContPartial{
+        margin-top:3px;
+        height:250px;
+        overflow-y:scroll;
     }
 
     .emergFormBtn{
