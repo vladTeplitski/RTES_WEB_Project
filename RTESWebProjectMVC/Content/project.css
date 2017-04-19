@@ -526,7 +526,7 @@ label{
     padding:3px;
 }
 
-.operatorNotif{
+.successNotif{
     display:none;
     position:fixed;
     left:50%;
@@ -535,13 +535,22 @@ label{
     width:330px;
     height:100px;
     padding:4px;
-    border:1px solid #86B2D8;
+    border:1px solid #4CEB66;
     border-radius:12px;
-    background-color:#4E86B7;
+    background-color:#2EE64C;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     color:white;
     font-size:small;
     z-index:200;
+}
+
+.successNotifHeader{
+    padding:2px;
+    height:auto;
+    background-color:#1BDA3B;
+    border-bottom:1px solid #49E663;
+    border-radius:12px;
+    text-align:center;
 }
 
 .reportLabelHead{
@@ -776,6 +785,10 @@ label{
 
     .loginAlertBoxCss{
         width: 90%; 
+    }
+
+    #allReportsTable{
+        font-size:xx-small;
     }
 
 }

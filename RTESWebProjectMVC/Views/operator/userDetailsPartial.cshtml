@@ -2,7 +2,7 @@
 <div id="mainUserDetailsContainer">
     <div id="userDetailsContainer" class="infoTableClass opRepLabelJs" style="display:@ViewBag.showUserDetailsWindow">
         <div class="reportLabelHead">
-            <b><i Style="font-size:15px;margin-right:5px;" class="glyphicon glyphicon-envelope"></i>User Details</b>
+            <b><i Style="font-size:15px;margin-right:5px;" class="glyphicon glyphicon-list-alt"></i>User Details</b>
             <div onclick="closeView2()" class="x">x</div>
         </div>
 
@@ -67,10 +67,20 @@
                             <tr id="updatePannelAngular" style="background-color:#5C91BF;">
                                 <td>
                                     Password:
-                                </td>
-                                <td style="color:red;font-size:small">
-                                    @item.password
-                                </td>
+                                </td> <!--Show password only for client accounts. Dont show operators' passwords-->
+                                @if (item.role == "Client")
+                                {
+                                    <td style="color:#5BDB18;font-size:small">
+                                        @item.password
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td style="color:red;font-size:small">
+                                        No Access (Operator)
+                                    </td>
+                                }
+
                             </tr>
                             <tr id="updatePannelAngular" style="background-color:#6DA0CD;">
                                 <td>

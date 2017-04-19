@@ -36,15 +36,23 @@ namespace RTESWebProjectMVC.Controllers
                     ViewBag.sentId = Session["selected"];
                     ViewBag.sentName = Session["selectedName"];
                 }
-                //END init messages gui
+                    //END init messages gui
 
-                //init DB
+                //init comments gui
+                ViewBag.showCommentNotifGui = "none";
+                if (Session["commentNotif"] != null && Session["selected"] != null)
+                {
+                    ViewBag.showCommentNotifGui = "inline";
+                    Session["commentNotif"] = null;
+                    ViewBag.sentId = Session["selected"];
+                    
+                }
 
+                //end init comments
 
                 //init functions
                 usersFromDB();   //update users list from db to view
                 allReportsFromDb(); //update existing reports list from db to view
-
                 //end init functions
 
                 return View();
@@ -204,10 +212,46 @@ namespace RTESWebProjectMVC.Controllers
 
         }//end allReportsFromDb
 
+
         public ActionResult openReportDetails(String id)  // show selected report details
         {
-            return RedirectToAction("operatorHome", "operator");
-        }//end openReportDetails
+            //
+            int x = Int32.Parse(id.ToString());  //convert search id input to integer
+
+            Session["selected"] = x;
+
+            ViewBag.showOpRepDetailsWindow = "Block";
+
+            if (Session["user"] != null)  //if logged in user
+            {
+
+                if (Request.IsAjaxRequest())  //validate ajax
+                {
+
+                    using (var db = new Models.rtesEntities1())  //db
+                    {
+                        var resultData = db.abstract_user.Where(i => i.id == x).ToList();  //get the result from db
+
+                        ViewBag.opRepDetails = "success window  "  + id;
+
+                    }
+
+                    return PartialView("reportDetailsPartial");  //using partial view
+                }
+                else
+                    return PartialView("reportDetailsPartial");
+
+            }
+            else
+            {
+                return RedirectToAction("Login", "web");  //if disconnected, redirect to login
+            }
+        
+
+
+        //
+
+    }//end openReportDetails
 
 
         public ActionResult openUserDetailsGui(String id) //openUserDetails Gui
@@ -278,8 +322,7 @@ namespace RTESWebProjectMVC.Controllers
         }//end editUserDetails Gui
 
 
-
-        public ActionResult updateEditsFunc(String editUsrPass)
+        public ActionResult updateEditsFunc(String editUsrPass) // Update (save) the user edits (changes) function
         {
             int userId;
             userId = (int)(Session["edituid"]);    //convert session to int - read the id passed
@@ -298,9 +341,57 @@ namespace RTESWebProjectMVC.Controllers
             }
 
             return Redirect(Request.UrlReferrer.PathAndQuery);  //get back to the present view
-        }
-        
+        }//END updateEditsFunc
 
+
+        public ActionResult openCommentGui(String id) // open comment Gui
+        {
+
+            int x = Int32.Parse(id.ToString());  //convert selected input to integer
+
+            Session["selected"] = x;
+
+            ViewBag.showCommentWindow = "Block";
+
+            if (Session["user"] != null)  //if logged in user
+            {
+
+                if (Request.IsAjaxRequest())  //validate ajax
+                {
+
+                    ViewBag.RepNum = x;
+                    return PartialView("addCommentPartial");  //using partial view
+                    
+                }
+                else
+                    return PartialView("addCommentPartial");
+
+            }
+            else
+            {
+                return RedirectToAction("Login", "web");  //if disconnected, redirect to login
+            }
+        }//end add Comment Gui
+
+
+        public ActionResult sendComment(String CommentBox)  // send operator comment
+        {
+            int selectedRep = 0;
+            selectedRep = (int)(Session["selected"]); //passed by session
+
+            using (var db = new Models.rtesEntities1())
+            {
+
+                var report = db.emergencyReport.Where(i => i.reportID == selectedRep).FirstOrDefault();
+                report.OperatorComment = CommentBox;  // save the comment to the selected report
+
+                db.SaveChanges();  // save changes to db
+            }
+
+
+            Session["commentNotif"] = "true";
+            return RedirectToAction("operatorHome", "operator");
+        }//end send operator comment
 
     }
 

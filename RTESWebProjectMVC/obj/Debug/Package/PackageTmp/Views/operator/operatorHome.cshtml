@@ -29,7 +29,19 @@
 
             <div class="col-lg-6 col-lg-offset-1 col-md-6 col-md-offset-1 col-xs-12">
 
-                <!-- Message sent notification -->
+                <!--Notifications-->
+
+                <div class="notifBox msgANorifGui" style="display:@ViewBag.showCommentNotifGui">
+                    <div class="infoFormHeader">
+                        System Notification
+                        <div class="CloseMsgNotif x">x</div>
+                    </div>
+                    <div style="margin-top:20px;margin-bottom:20px;margin-left:6px;">
+                        Report number: @ViewBag.sentId<br />
+                        Comment was set successfully!
+                    </div>
+                </div>
+
 
                 <div class="notifBox msgANorifGui" style="display:@ViewBag.showMsgANorifGui">
                     <div class="infoFormHeader">
@@ -46,12 +58,24 @@
                     </div>
                 </div>
 
+                <!--END notifications-->
+
 
                 <div class="mainWindow">
 
                     <!--Start Operator home window-->
                     <div ng-hide="oper0" class="textContainer">
                         operator Home.
+                    </div>
+
+                     <!--Changes by operator notification-->
+                    <div id="operatorNotification" class="successNotif" style="display:@ViewBag.showOpNotif">
+                    <div class="successNotifHeader">
+                        <b><i Style="font-size:15px;margin-right:5px;" class="glyphicon glyphicon-ok"></i>Notfication</b>
+                        <div onclick="closeViewOpNotif()" class="x">x</div>
+                    </div>
+                    <br />
+                    <b>Settings Edited Successfully.</b>
                     </div>
 
 
@@ -88,6 +112,7 @@
                                 <table id="allReportsTable" class="table table - striped" style="font-size:small;">
                                     <tr>
                                         <th>Report ID</th>
+                                        <th>Status</th>
                                         <th>Date</th>
                                         <th>Client ID</th>
                                     </tr>
@@ -105,6 +130,16 @@
 
                                                     </td>
                                                     <td>
+                                                        @if(item.status==true)
+                                                        {
+                                                            <span style="color:lawngreen;font-size:small">Open</span>
+                                                        }
+                                                        else
+                                                        {
+                                                            <span style="color:red;font-size:small">Closed</span>
+                                                        }
+                                                    </td>
+                                                    <td>
                                                         @item.date
                                                     </td>
                                                     <td>
@@ -116,7 +151,7 @@
                                                                 <a toolstyle="toolcssLeft" toolinfo="Menu" tooltip ng-click="$event.preventDefault();" class="dropdown-toggle" data-toggle="dropdown" href="#"><i Style="font-size:20px;" class="glyphicon glyphicon-option-horizontal"></i></a>
                                                                 <ul class="dropdown-menu pull-right" style="right:0;">
                                                                     <li>@Ajax.ActionLink("View Details", "openReportDetails", "operator", new { id = item.reportID, @class = "button101" }, new AjaxOptions { UpdateTargetId = "reportDest" })</li>
-                                                                    <li class="opt3" ng-click="$event.preventDefault();"><a href="#">Comment</a></li>
+                                                                    <li>@Ajax.ActionLink("Comment", "openCommentGui", "operator", new { id = item.reportID, @class = "button101" }, new AjaxOptions { UpdateTargetId = "reportDest" })</li>
                                                                 </ul>
                                                             </li>
                                                         </ul>
@@ -212,9 +247,16 @@
                                                             <li class="dropdown" style="margin-left:-20px;padding-left:1px;">
                                                                 <a toolstyle="toolcssLeft" toolinfo="Menu" tooltip ng-click="$event.preventDefault();" class="dropdown-toggle" data-toggle="dropdown" href="#"><i Style="font-size:15px;" class="glyphicon glyphicon-menu-hamburger"></i></a>
                                                                 <ul class="dropdown-menu pull-right" style="right:0;">
+                                                                    <li>@Ajax.ActionLink("Details", "openUserDetailsGui", "operator", new { id = item.id, @class = "button101" }, new AjaxOptions { UpdateTargetId = "msgDest" })</li>
+                                                                    @if (item.role == "Operator")  // if operator - disable message send
+                                                                    {
+                                                                        <li ng-click="$event.preventDefault();"><a Style="cursor:default;color:red;" href="#">Message</a></li>
+                                                                    }
+                                                                    else //enable send message to clients
+                                                                    {
                                                                     <li>@Ajax.ActionLink("Message", "openMessageUser", "operator", new { id = item.id, @class = "button101" }, new AjaxOptions { UpdateTargetId = "msgDest" })</li>
-                                                                    <li class="opt2" ng-click="$event.preventDefault();"><a href="#">Details</a></li>
-                                                                    <li class="opt3" ng-click="$event.preventDefault();"><a href="#">Edit</a></li>
+                                                                    }
+                                                                    <li>@Ajax.ActionLink("Edit", "openEditUserGui", "operator", new { id = item.id, @class = "button101" }, new AjaxOptions { UpdateTargetId = "msgDest" })</li>
                                                                 </ul>
                                                             </li>
                                                         </ul>
@@ -240,14 +282,17 @@
 
                             </div>
 
-                            <!--Partial View-->
-                            <div id="msgDest">
+                            <!--Partial Views-->
+                            <div id="msgDest"></div>
 
-                            </div>
+
+
+
+
+                            
 
                         </div>
                     </div>
-
 
 
                     <!--END - Users Management -->
@@ -269,4 +314,14 @@
             </div><!--bootstrap col content div-->
           </div> <!--End Operator Page-->
     </div><!--Main container-->
+
+
+
+<!--Close the notification-->
+<script type="text/javascript">
+    function closeViewOpNotif() {
+        $('#operatorNotification').hide();
+
+    }
+</script>
 

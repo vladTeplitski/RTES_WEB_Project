@@ -1,0 +1,26 @@
+﻿<!--Start User Details window-->
+<div id="mainOpRepDetailsContainer">
+    <div id="opRepDetailsContainer" class="infoTableClass opRepLabelJs" style="display:@ViewBag.showOpRepDetailsWindow">
+        <div class="reportLabelHead">
+            <b><i Style="font-size:15px;margin-right:5px;" class="glyphicon glyphicon-th"></i>Report Details</b>
+            <div onclick="closeViewRep()" class="x">x</div>
+        </div>
+
+        <div class="tableContPartial">
+
+            @ViewBag.opRepDetails
+            <table id="myTable" class="table table - striped tablePartial" style="font-size:small;">
+
+                
+            </table>
+        </div>
+    </div>
+</div>
+<!--END User Details window-->
+<!--Javascript-->
+<script type="text/javascript">
+    function closeViewRep() {
+        $('#opRepDetailsContainer').hide();
+
+    }
+</script>

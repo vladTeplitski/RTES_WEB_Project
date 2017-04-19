@@ -280,6 +280,8 @@
     <Content Include="Views\operator\messagePartial.cshtml" />
     <Content Include="Views\operator\userDetailsPartial.cshtml" />
     <Content Include="Views\operator\editPartial.cshtml" />
+    <Content Include="Views\operator\reportDetailsPartial.cshtml" />
+    <Content Include="Views\operator\addCommentPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

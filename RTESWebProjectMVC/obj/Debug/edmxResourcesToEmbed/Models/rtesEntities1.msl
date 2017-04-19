@@ -57,6 +57,8 @@
     <EntitySetMapping Name="emergencyReports">
       <EntityTypeMapping TypeName="rtesModel.emergencyReport">
         <MappingFragment StoreEntitySet="emergencyReport">
+          <ScalarProperty Name="OperatorComment" ColumnName="OperatorComment" />
+          <ScalarProperty Name="status" ColumnName="status" />
           <ScalarProperty Name="reportID" ColumnName="reportID" />
           <ScalarProperty Name="clientAbstractUserId" ColumnName="clientAbstractUserId" />
           <ScalarProperty Name="caseCaseId" ColumnName="caseCaseId" />

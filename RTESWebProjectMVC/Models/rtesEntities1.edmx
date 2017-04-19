@@ -69,7 +69,9 @@
           <Property Name="accident_witness_name" Type="varchar" MaxLength="50" />
           <Property Name="accident_witness_phone" Type="int" />
           <Property Name="comments" Type="text" />
-          <Property Name="callForTowing" Type="tinyint" />
+          <Property Name="callForTowing" Type="bit" Nullable="false" />
+          <Property Name="status" Type="bit" Nullable="false" />
+          <Property Name="OperatorComment" Type="text" />
         </EntityType>
         <EntityType Name="messagesTable">
           <Key>
@@ -86,21 +88,21 @@
           </Key>
           <Property Name="emergencyReportId" Type="int" Nullable="false" />
           <Property Name="driverName" Type="varchar" MaxLength="50" />
-          <Property Name="driverId" Type="int" />
+          <Property Name="driverId" Type="bigint" Nullable="false" />
           <Property Name="carOwnerName" Type="varchar" MaxLength="50" />
-          <Property Name="carOwnerId" Type="int" />
-          <Property Name="licensePlateNumber" Type="int" />
+          <Property Name="carOwnerId" Type="bigint" />
+          <Property Name="licensePlateNumber" Type="bigint" />
           <Property Name="carCategory" Type="varchar" MaxLength="50" />
           <Property Name="carModel" Type="varchar" MaxLength="50" />
           <Property Name="carColor" Type="varchar" MaxLength="50" />
-          <Property Name="drivingLicenseNumber" Type="int" />
+          <Property Name="drivingLicenseNumber" Type="bigint" />
           <Property Name="insuranceCompanyName" Type="varchar" MaxLength="50" />
-          <Property Name="insurancePolicyNumber" Type="int" />
+          <Property Name="insurancePolicyNumber" Type="bigint" />
           <Property Name="address" Type="varchar" MaxLength="50" />
-          <Property Name="phoneNumber" Type="int" />
+          <Property Name="phoneNumber" Type="bigint" Nullable="false" />
           <Property Name="insuranceAgentName" Type="varchar" MaxLength="50" />
-          <Property Name="insuranceAgentPhone" Type="int" />
-          <Property Name="yearOfManufacture" Type="int" />
+          <Property Name="insuranceAgentPhone" Type="bigint" />
+          <Property Name="yearOfManufacture" Type="bigint" />
         </EntityType>
         <Association Name="FK_client_client">
           <End Role="client" Type="Self.client" Multiplicity="1" />
@@ -196,7 +198,9 @@
           <Property Name="accident_witness_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="accident_witness_phone" Type="Int32" />
           <Property Name="comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="callForTowing" Type="Byte" />
+          <Property Name="callForTowing" Type="Boolean" Nullable="false" />
+          <Property Name="status" Type="Boolean" Nullable="false" />
+          <Property Name="OperatorComment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="messagesTable">
           <Key>
@@ -213,7 +217,7 @@
           </Key>
           <Property Name="emergencyReportId" Type="Int32" Nullable="false" />
           <Property Name="driverName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="driverId" Type="Int32" />
+          <Property Name="driverId" Type="Int32" Nullable="false" />
           <Property Name="carOwnerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="carOwnerId" Type="Int32" />
           <Property Name="licensePlateNumber" Type="Int32" />
@@ -224,7 +228,7 @@
           <Property Name="insuranceCompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="insurancePolicyNumber" Type="Int32" />
           <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="phoneNumber" Type="Int32" />
+          <Property Name="phoneNumber" Type="Int32" Nullable="false" />
           <Property Name="insuranceAgentName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="insuranceAgentPhone" Type="Int32" />
           <Property Name="yearOfManufacture" Type="Int32" />
@@ -315,6 +319,8 @@
           <EntitySetMapping Name="emergencyReports">
             <EntityTypeMapping TypeName="rtesModel.emergencyReport">
               <MappingFragment StoreEntitySet="emergencyReport">
+                <ScalarProperty Name="OperatorComment" ColumnName="OperatorComment" />
+                <ScalarProperty Name="status" ColumnName="status" />
                 <ScalarProperty Name="reportID" ColumnName="reportID" />
                 <ScalarProperty Name="clientAbstractUserId" ColumnName="clientAbstractUserId" />
                 <ScalarProperty Name="caseCaseId" ColumnName="caseCaseId" />

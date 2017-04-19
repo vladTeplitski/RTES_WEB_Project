@@ -504,8 +504,8 @@ label{
     position:fixed;
     left:50%;
     top:15%;
-    margin-left:-150px;
-    width:300px;
+    margin-left:-165px;
+    width:330px;
     height:auto;
     padding:4px;
     border:1px solid #86B2D8;
@@ -515,6 +515,42 @@ label{
     color:white;
     font-size:small;
     z-index:200;
+}
+
+.tableContPartial{
+    margin-top:4px;
+    height:auto;
+    border-top:2px solid #B1D607;
+    border-bottom:2px solid #B1D607;
+    border-radius:5px;
+    padding:3px;
+}
+
+.successNotif{
+    display:none;
+    position:fixed;
+    left:50%;
+    top:15%;
+    margin-left:-165px;
+    width:330px;
+    height:100px;
+    padding:4px;
+    border:1px solid #4CEB66;
+    border-radius:12px;
+    background-color:#2EE64C;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    color:white;
+    font-size:small;
+    z-index:200;
+}
+
+.successNotifHeader{
+    padding:2px;
+    height:auto;
+    background-color:#1BDA3B;
+    border-bottom:1px solid #49E663;
+    border-radius:12px;
+    text-align:center;
 }
 
 .reportLabelHead{
@@ -605,6 +641,16 @@ label{
 .tabletRes{
     display:inline;
 }
+
+.infoTableClass {
+    height: 310px;
+}
+.tableContPartial{
+    margin-top:3px;
+    height:250px;
+    overflow-y:scroll;
+}
+
 
 }
 
@@ -703,9 +749,16 @@ label{
 
     .infoTableClass {
         left: 50%;
-        top: 15%;
+        top: 7%;
         margin-left: -125px;
         width: 250px;
+        height:310px;
+        
+    }
+    .tableContPartial{
+        margin-top:3px;
+        height:250px;
+        overflow-y:scroll;
     }
 
     .emergFormBtn{

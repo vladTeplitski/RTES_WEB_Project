@@ -16,7 +16,7 @@ namespace RTESWebProjectMVC.Models
     {
         public int emergencyReportId { get; set; }
         public string driverName { get; set; }
-        public Nullable<int> driverId { get; set; }
+        public int driverId { get; set; }
         public string carOwnerName { get; set; }
         public Nullable<int> carOwnerId { get; set; }
         public Nullable<int> licensePlateNumber { get; set; }
@@ -27,7 +27,7 @@ namespace RTESWebProjectMVC.Models
         public string insuranceCompanyName { get; set; }
         public Nullable<int> insurancePolicyNumber { get; set; }
         public string address { get; set; }
-        public Nullable<int> phoneNumber { get; set; }
+        public int phoneNumber { get; set; }
         public string insuranceAgentName { get; set; }
         public Nullable<int> insuranceAgentPhone { get; set; }
         public Nullable<int> yearOfManufacture { get; set; }

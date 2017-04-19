@@ -1,0 +1,39 @@
+﻿<!--Start Comment window-->
+<div id="mainCommentWindowContainer">
+    <div id="commentContainer" class="infoTableClass opRepLabelJs" style="display:@ViewBag.showCommentWindow;overflow-y:scroll;">
+        <div class="reportLabelHead">
+            <b><i Style="font-size:15px;margin-right:5px;" class="glyphicon glyphicon-list-alt"></i>Operator Comment</b>
+            <div onclick="closeViewComment()" class="x">x</div>
+        </div>
+
+        <div style="margin-top:5px;">
+
+            Operator Comment to report number: @ViewBag.RepNum
+
+        </div>
+
+        @using (Html.BeginForm("sendComment", "operator"))
+        {
+
+            <textarea class="form-control"
+                      id="CommentBox"
+                      name="CommentBox"
+                      rows="3"
+                      style="color:#444444;max-width:300px;"
+                      cols="30">Report comment</textarea>
+
+
+                <button type="submit" id="sendComment" value="sendComment" class="btn btn-default submitMy" Style="margin-left:4px;margin-top:2px;" onclick="location.href='@Url.Action("sendComment", "operator")'"><i Style="font-size:18px;margin-right:4px;" class="glyphicon glyphicon-ok"></i>Set</button>
+        }
+    </div>
+</div>
+<!--END message window-->
+
+
+<!--Javascript-->
+<script type="text/javascript">
+    function closeViewComment() {
+        $('#commentContainer').hide();
+
+    }
+</script>

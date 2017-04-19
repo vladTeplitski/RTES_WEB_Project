@@ -1,0 +1,35 @@
+﻿<!--Start User Details window-->
+<div id="mainEditUserContainer">
+    <div id="editUserContainer" class="infoTableClass opRepLabelJs" style="display:@ViewBag.showEditUserWindow">
+        <div class="reportLabelHead">
+            <b><i Style="font-size:15px;margin-right:5px;" class="glyphicon glyphicon-pencil"></i>Edit User</b>
+            <div onclick="closeView3()" class="x">x</div>
+        </div>
+
+        <div class="tableContPartial">
+            
+            <!-- Content -->
+            edit settings for user: @ViewBag.identify
+            
+@using (Html.BeginForm("updateEditsFunc", "operator", null, FormMethod.Post, new { @name = "editForm", @id = "editForm" }))
+{
+    <label for="text">Edit User's Password:</label>
+    <div class="formContainer">
+        <input id="editUsrPass" type="text" class="form-control" name="editUsrPass" style="display: inline;color:black;" placeholder="New Password">
+    </div>
+
+    <button type="submit" id="updateEditsFunc" value="updateEditsFunc" Class="btn btn-default settingsBtn" Style="margin-left:2%;margin-top:5px;" onclick="location.href='@Url.Action("updateEditsFunc", "operator")'">Save</button>
+
+}
+
+        </div>
+    </div>
+</div>
+<!--END User Details window-->
+<!--Javascript-->
+<script type="text/javascript">
+    function closeView3() {
+        $('#editUserContainer').hide();
+
+    }
+</script>

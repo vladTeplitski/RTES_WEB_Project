@@ -1,7 +1,32 @@
 to do:
 -----
-* if logged in user - on client controller  / security
 * login angular validation
 * settings angular validation
-
 * gps - location - javascript
+
+* closed cases/open cases - db
+
+* keep user logged in - dont throw him out after x inutes.
+* remember user login info - keep him logged in
+
+* css late load - jquery problem
+
+Operator
+--------
+* operator cant send empty message
+* cant change password to another operator ?
+* refresh reports each (x seconds) - check project !
+
+
+client
+------
+-remove settings
+-delete messages - icon
+-reports - info button - partial view data to table
+
+*clients messages - date order
+*if logged in user - on client controller  / security
+
+
+android
+-------

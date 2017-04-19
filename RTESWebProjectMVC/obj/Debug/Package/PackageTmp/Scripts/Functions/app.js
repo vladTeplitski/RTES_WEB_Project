@@ -277,6 +277,9 @@ myApp.controller('clientController', ['$scope', function ($scope) {
 //operator controller
 myApp.controller('operatorController',['$scope',function ($scope) {
 
+    $scope.onlyLetters = /^[a-zA-Z]+$/;
+    $scope.onlyNumbers = /^[0-9]*$/;
+
     $scope.oper0 = false;
     $scope.oper1 = true;
     $scope.oper2 = true;
