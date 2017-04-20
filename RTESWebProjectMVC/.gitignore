@@ -1,2 +1,3 @@
 #RTES Ignore VS files
 *.suo
+*.dll
