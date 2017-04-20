@@ -9,7 +9,7 @@ namespace RTESWebProjectMVC.Controllers
     public class webController : baseController //extend from base controller
     {
         
-        public ActionResult Index() // home page action
+        public ActionResult Index() // home page  action
         {
             base.initFunc();  //init the base functions - user CP
             return View();  // show home page view = index
