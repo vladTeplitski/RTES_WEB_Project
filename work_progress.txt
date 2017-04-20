@@ -1,27 +1,31 @@
 to do:
 -----
+* build logo - RTES Portal
 * login angular validation
 * settings angular validation
 * gps - location - javascript
 
-* closed cases/open cases - db
+V closed cases/open cases - db
 
 * keep user logged in - dont throw him out after x inutes.
 * remember user login info - keep him logged in
 
-* css late load - jquery problem
+* css late load - jquery problem - MOBILE
 
 Operator
 --------
-* operator cant send empty message
-* cant change password to another operator ?
+* operator cant send empty message - angular ?
+* change report status
+V cant change settings to another operator
+
+-build operator panel
 * refresh reports each (x seconds) - check project !
 
 
 client
 ------
 -remove settings
--delete messages - icon
+-add option t messages - delete messages - with icon
 -reports - info button - partial view data to table
 
 *clients messages - date order
