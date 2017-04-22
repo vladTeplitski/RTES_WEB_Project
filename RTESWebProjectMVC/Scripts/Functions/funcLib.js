@@ -1,8 +1,3 @@
-
-
-
-
-
 //Start JQuery
 $(document).ready(function () {
 
@@ -51,7 +46,7 @@ function loadControl() {
 }
 
 
-//Start search Javascript
+//Start search Javascript//
 
 //operator - for users by ID
 function searchIdJs() {
@@ -130,4 +125,4 @@ function searchAllReportsByClientIdJs() {
     }
 }
 
-//END search Javascript
+//END search Javascript//

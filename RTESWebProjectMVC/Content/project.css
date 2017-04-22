@@ -51,6 +51,105 @@ button::-moz-focus-inner {/*remove dotted border on firefox 46+ */
 
 /* END Inits */
 
+/* Operator - Operations Room */
+
+.OperationsContainer{
+    
+    padding:3px;
+
+}
+
+.OperationsWindow{
+    padding:5px;
+    padding-bottom:20px;
+    height:auto;
+
+}
+
+.slot1{
+    background-color:#E9E9E9;
+    margin-top:3px;
+    margin-left:6px;
+    margin-bottom:3px;
+    width:24%;
+    float:left;
+    border:1px solid #FAFAFA;
+    border-bottom:7px solid #5A95C9;
+    border-radius:4px;
+    height:420px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.slot2{
+    background-color:#E9E9E9;
+    margin-top:3px;
+    margin-left:5px;
+    margin-bottom:3px;
+    width:25%;
+    float:left;
+    border:1px solid #FAFAFA;
+    border-bottom:7px solid #5A95C9;
+    border-radius:4px;
+    height:400px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.slot3{
+    background-color:#E9E9E9;
+    margin-top:3px;
+    margin-left:5px;
+    margin-bottom:3px;
+    width:24%;
+    float:left;
+    border:1px solid #FAFAFA;
+    border-bottom:7px solid #5A95C9;
+    border-radius:4px;
+    height:300px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.slot4{
+    background-color:#E9E9E9;
+    margin-top:3px;
+    margin-left:5px;
+    margin-bottom:3px;
+    width:24%;
+    float:left;
+    border:1px solid #FAFAFA;
+    border-bottom:7px solid #5A95C9;
+    border-radius:4px;
+    height:250px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+slotEnd{
+    clear:both;
+    border:none;
+    height:0px;
+    margin:0px
+}
+
+.tansView{
+    position:initial;
+    margin-left:40%;
+    color:lawngreen;
+}
+.tansView2{
+    position:initial;
+    margin-left:45%;
+    color:lawngreen;
+}
+.tansView3{
+    position:initial;
+    margin-left:33%;
+    color:lawngreen;
+}
+.tansView4{
+    position:initial;
+    margin-left:47%;
+    color:#FE5050;
+}
+
+
+/* END Operator - Operations Room */
+
+
 .deviceConfigsGui{
     position:absolute;
     left:60%;
@@ -341,6 +440,7 @@ color:#F3F3F3;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .textContainer:hover {border-color:#D1D6ED}
+
 
 .resetApp{
     cursor:pointer;

@@ -53,6 +53,8 @@ namespace RTESWebProjectMVC.Controllers
                 //init functions
                 usersFromDB();   //update users list from db to view
                 allReportsFromDb(); //update existing reports list from db to view
+
+                //GetOperationsRoom();
                 //end init functions
 
                 return View();
@@ -392,6 +394,35 @@ namespace RTESWebProjectMVC.Controllers
             Session["commentNotif"] = "true";
             return RedirectToAction("operatorHome", "operator");
         }//end send operator comment
+
+
+        [OutputCache(NoStore = true, Location = System.Web.UI.OutputCacheLocation.Client, Duration = 3)] // every 3 sec
+        public ActionResult GetOperationsRoom()
+
+        {
+
+            using (var db = new Models.rtesEntities1())
+            {
+
+                //read reports from database
+                var reports = db.emergencyReport.Where(t => t.status == true).OrderByDescending(t => t.date).OrderByDescending(t => t.hour).ToList();
+
+                if (reports.Any())
+                {
+                    ViewBag.reportsOperations = reports;
+                }
+                else //no reports in db
+                {
+                    ViewBag.reportsOperations = "No open reports.";
+                }
+            }
+
+            return PartialView("operationsPartial");
+
+
+
+        }
+
 
     }
 

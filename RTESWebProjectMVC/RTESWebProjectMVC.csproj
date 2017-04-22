@@ -282,6 +282,7 @@
     <Content Include="Views\operator\editPartial.cshtml" />
     <Content Include="Views\operator\reportDetailsPartial.cshtml" />
     <Content Include="Views\operator\addCommentPartial.cshtml" />
+    <Content Include="Views\operator\operationsPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

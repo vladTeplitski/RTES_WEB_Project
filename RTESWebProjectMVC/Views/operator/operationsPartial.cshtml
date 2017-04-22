@@ -1,0 +1,101 @@
+﻿<div class="OperationsWindow" style="overflow:auto;">
+
+    <div id="userDetailsPanel" class="personalDetailsClass" style="margin:auto;margin-top:2px;width:92%;">
+        <i Style="font-size:23px;color:yellow" class="glyphicon glyphicon-transfer"></i>
+        <span style="margin-left:10px;">Operations Room</span>
+    </div><br />
+
+    <div class="slot1">
+       
+        
+
+        <div id="userDetailsPanel" class="personalDetailsClass" style="margin:auto;margin-top:2px;width:92%;">
+            <i Style="font-size:23px;" class="glyphicon glyphicon-cloud-upload"></i>
+            <span style="margin-left:10px;">Open Reports</span>
+            <span class="tansView"><i Style="font-size:23px;" class="glyphicon glyphicon-arrow-right "></i></span>
+        </div><br />
+
+        <!-- TESTS-->
+
+        <table id="myTable5" class="table table - striped" style="font-size:small;color:black;">
+            <tr>
+                <th>Report ID</th>
+                <th>Date</th>
+                <th>Hour</th>
+            </tr>
+
+            @{
+
+                if (ViewBag.reportsOperations != null)
+                {
+                    foreach (var item in ViewBag.reportsOperations)
+                    {
+
+                        <tr id="updatePannelAngular">
+                            <td>
+                                @item.reportID
+                                
+                            </td>
+                            <td>
+                                @item.date
+                            </td>
+                            <td>
+                                @item.hour
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr id="updatePannelAngular">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                }
+
+            }
+        </table>
+
+
+        <!--END TESTS-->
+
+    </div>
+
+
+    <div class="slot2">
+        
+        <div id="userDetailsPanel" class="personalDetailsClass" style="margin:auto;margin-top:2px;width:92%;">
+            <i Style="font-size:23px;" class="fa fa-truck"></i>
+            <span style="margin-left:10px;">Towing Stage</span>
+            <span class="tansView2"><i Style="font-size:23px;" class="glyphicon glyphicon-arrow-right "></i></span>
+        </div><br />
+
+    </div>
+
+
+
+    <div class="slot3">
+        
+        <div id="userDetailsPanel" class="personalDetailsClass" style="margin:auto;margin-top:2px;width:92%;">
+            <i Style="font-size:23px;" class="glyphicon glyphicon-stats"></i>
+            <span style="margin-left:10px;">Appraising Stage</span>
+            <span class="tansView3"><i Style="font-size:23px;" class="glyphicon glyphicon-arrow-right "></i></span>
+        </div><br />
+
+    </div>
+
+
+
+    <div class="slot4">
+        <div id="userDetailsPanel" class="personalDetailsClass" style="margin:auto;margin-top:2px;width:92%;">
+            <i Style="font-size:23px;" class="glyphicon glyphicon-cloud-download"></i>
+            <span style="margin-left:10px;">Final Stage</span>
+            <span class="tansView4"><i Style="font-size:23px;" class="glyphicon glyphicon-arrow-down "></i></span>
+        </div><br />
+
+    </div>
+
+
+
+</div>
