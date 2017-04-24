@@ -67,11 +67,19 @@
           <Property Name="location" Type="text" />
           <Property Name="towing_destination" Type="text" />
           <Property Name="accident_witness_name" Type="varchar" MaxLength="50" />
-          <Property Name="accident_witness_phone" Type="int" />
+          <Property Name="accident_witness_phone" Type="varchar" MaxLength="50" />
           <Property Name="comments" Type="text" />
           <Property Name="callForTowing" Type="bit" Nullable="false" />
           <Property Name="status" Type="bit" Nullable="false" />
           <Property Name="OperatorComment" Type="text" />
+        </EntityType>
+        <EntityType Name="image">
+          <Key>
+            <PropertyRef Name="imgid" />
+          </Key>
+          <Property Name="id" Type="int" />
+          <Property Name="picture" Type="varbinary(max)" />
+          <Property Name="imgid" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="messagesTable">
           <Key>
@@ -88,20 +96,20 @@
           </Key>
           <Property Name="emergencyReportId" Type="int" Nullable="false" />
           <Property Name="driverName" Type="varchar" MaxLength="50" />
-          <Property Name="driverId" Type="bigint" Nullable="false" />
+          <Property Name="driverId" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="carOwnerName" Type="varchar" MaxLength="50" />
-          <Property Name="carOwnerId" Type="bigint" />
-          <Property Name="licensePlateNumber" Type="bigint" />
+          <Property Name="carOwnerId" Type="varchar" MaxLength="50" />
+          <Property Name="licensePlateNumber" Type="varchar" MaxLength="50" />
           <Property Name="carCategory" Type="varchar" MaxLength="50" />
           <Property Name="carModel" Type="varchar" MaxLength="50" />
           <Property Name="carColor" Type="varchar" MaxLength="50" />
-          <Property Name="drivingLicenseNumber" Type="bigint" />
+          <Property Name="drivingLicenseNumber" Type="varchar" MaxLength="50" />
           <Property Name="insuranceCompanyName" Type="varchar" MaxLength="50" />
-          <Property Name="insurancePolicyNumber" Type="bigint" />
+          <Property Name="insurancePolicyNumber" Type="varchar" MaxLength="50" />
           <Property Name="address" Type="varchar" MaxLength="50" />
-          <Property Name="phoneNumber" Type="bigint" Nullable="false" />
+          <Property Name="phoneNumber" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="insuranceAgentName" Type="varchar" MaxLength="50" />
-          <Property Name="insuranceAgentPhone" Type="bigint" />
+          <Property Name="insuranceAgentPhone" Type="varchar" MaxLength="50" />
           <Property Name="yearOfManufacture" Type="bigint" />
         </EntityType>
         <Association Name="FK_client_client">
@@ -121,6 +129,7 @@
           <EntitySet Name="case" EntityType="Self.case" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="client" EntityType="Self.client" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="emergencyReport" EntityType="Self.emergencyReport" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="image" EntityType="Self.image" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="messagesTable" EntityType="Self.messagesTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="third_party" EntityType="Self.third_party" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_client_client" Association="Self.FK_client_client">
@@ -196,7 +205,7 @@
           <Property Name="location" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="towing_destination" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="accident_witness_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="accident_witness_phone" Type="Int32" />
+          <Property Name="accident_witness_phone" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="callForTowing" Type="Boolean" Nullable="false" />
           <Property Name="status" Type="Boolean" Nullable="false" />
@@ -217,20 +226,20 @@
           </Key>
           <Property Name="emergencyReportId" Type="Int32" Nullable="false" />
           <Property Name="driverName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="driverId" Type="Int32" Nullable="false" />
+          <Property Name="driverId" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="carOwnerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="carOwnerId" Type="Int32" />
-          <Property Name="licensePlateNumber" Type="Int32" />
+          <Property Name="carOwnerId" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="licensePlateNumber" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="carCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="carModel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="carColor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="drivingLicenseNumber" Type="Int32" />
+          <Property Name="drivingLicenseNumber" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="insuranceCompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="insurancePolicyNumber" Type="Int32" />
+          <Property Name="insurancePolicyNumber" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="phoneNumber" Type="Int32" Nullable="false" />
+          <Property Name="phoneNumber" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="insuranceAgentName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="insuranceAgentPhone" Type="Int32" />
+          <Property Name="insuranceAgentPhone" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="yearOfManufacture" Type="Int32" />
         </EntityType>
         <Association Name="FK_client_client">
@@ -256,7 +265,16 @@
             <End Role="client" EntitySet="clients" />
             <End Role="client1" EntitySet="clients" />
           </AssociationSet>
+          <EntitySet Name="images" EntityType="rtesModel.image" />
         </EntityContainer>
+        <EntityType Name="image">
+          <Key>
+            <PropertyRef Name="imgid" />
+          </Key>
+          <Property Name="id" Type="Int32" />
+          <Property Name="picture" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="imgid" Type="Int32" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -365,6 +383,15 @@
                 <ScalarProperty Name="insuranceAgentName" ColumnName="insuranceAgentName" />
                 <ScalarProperty Name="insuranceAgentPhone" ColumnName="insuranceAgentPhone" />
                 <ScalarProperty Name="yearOfManufacture" ColumnName="yearOfManufacture" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="images">
+            <EntityTypeMapping TypeName="rtesModel.image">
+              <MappingFragment StoreEntitySet="image">
+                <ScalarProperty Name="imgid" ColumnName="imgid" />
+                <ScalarProperty Name="picture" ColumnName="picture" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

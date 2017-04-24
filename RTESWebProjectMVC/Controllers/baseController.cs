@@ -46,6 +46,16 @@ namespace RTESWebProjectMVC.Controllers
                 }
                 //END operator inits
 
+                //client inits
+                ViewBag.showReportNotif = "none";
+                if (TempData["reportNotifFlag"] != null) // flag - report sent by client - success notification
+                {
+                    ViewBag.showReportNotif = "block";
+                    TempData["reportNotifFlag"] = null;
+                }
+
+                //end client inits
+
                 //show hiddent user cp fields
                 ViewBag.loginBtnDisp = "none";
                 ViewBag.logoutBtnDisp = "inline";  //show logout button

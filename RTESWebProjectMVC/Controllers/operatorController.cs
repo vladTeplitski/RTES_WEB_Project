@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RTESWebProjectMVC.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -54,10 +55,18 @@ namespace RTESWebProjectMVC.Controllers
                 usersFromDB();   //update users list from db to view
                 allReportsFromDb(); //update existing reports list from db to view
 
-                //GetOperationsRoom();
-                //end init functions
 
-                return View();
+                    //image test
+                    //imageData img = new imageData();
+
+                    //var imagesList = db.image.Where(i => i.id == 32).FirstOrDefault();
+                    //img.picture = imagesList.picture;
+                    //end image test
+
+
+                    //end init functions
+
+                    return View();
                 }
                 else
                 {

@@ -64,7 +64,7 @@
     <Property Name="location" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="towing_destination" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="accident_witness_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="accident_witness_phone" Type="Int32" />
+    <Property Name="accident_witness_phone" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
     <Property Name="comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="callForTowing" Type="Boolean" Nullable="false" />
     <Property Name="status" Type="Boolean" Nullable="false" />
@@ -85,20 +85,20 @@
     </Key>
     <Property Name="emergencyReportId" Type="Int32" Nullable="false" />
     <Property Name="driverName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="driverId" Type="Int32" Nullable="false" />
+    <Property Name="driverId" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
     <Property Name="carOwnerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="carOwnerId" Type="Int32" />
-    <Property Name="licensePlateNumber" Type="Int32" />
+    <Property Name="carOwnerId" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="licensePlateNumber" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
     <Property Name="carCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="carModel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="carColor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="drivingLicenseNumber" Type="Int32" />
+    <Property Name="drivingLicenseNumber" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
     <Property Name="insuranceCompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="insurancePolicyNumber" Type="Int32" />
+    <Property Name="insurancePolicyNumber" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
     <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="phoneNumber" Type="Int32" Nullable="false" />
+    <Property Name="phoneNumber" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
     <Property Name="insuranceAgentName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="insuranceAgentPhone" Type="Int32" />
+    <Property Name="insuranceAgentPhone" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
     <Property Name="yearOfManufacture" Type="Int32" />
   </EntityType>
   <Association Name="FK_client_client">
@@ -124,5 +124,14 @@
       <End Role="client" EntitySet="clients" />
       <End Role="client1" EntitySet="clients" />
     </AssociationSet>
+    <EntitySet Name="images" EntityType="rtesModel.image" />
   </EntityContainer>
+  <EntityType Name="image">
+    <Key>
+      <PropertyRef Name="imgid" />
+    </Key>
+    <Property Name="id" Type="Int32" />
+    <Property Name="picture" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="imgid" Type="Int32" Nullable="false" />
+  </EntityType>
 </Schema>

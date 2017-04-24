@@ -181,6 +181,10 @@
     <Compile Include="Models\emergencyReport.cs">
       <DependentUpon>rtesEntities1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\image.cs">
+      <DependentUpon>rtesEntities1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\imageData.cs" />
     <Compile Include="Models\messagesTable.cs">
       <DependentUpon>rtesEntities1.tt</DependentUpon>
     </Compile>
@@ -229,6 +233,7 @@
     </Content>
     <Content Include="Scripts\Functions\app.js" />
     <Content Include="Scripts\Functions\funcLib.js" />
+    <Content Include="Scripts\Lib\bootstrap-filestyle.min.js" />
     <Content Include="Scripts\Lib\jquery.autocomplete.js" />
     <Content Include="Scripts\Lib\jquery.autocomplete.min.js" />
     <Content Include="Scripts\Lib\jquery.unobtrusive-ajax.js" />

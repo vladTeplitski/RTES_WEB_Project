@@ -62,11 +62,19 @@
     <Property Name="location" Type="text" />
     <Property Name="towing_destination" Type="text" />
     <Property Name="accident_witness_name" Type="varchar" MaxLength="50" />
-    <Property Name="accident_witness_phone" Type="int" />
+    <Property Name="accident_witness_phone" Type="varchar" MaxLength="50" />
     <Property Name="comments" Type="text" />
     <Property Name="callForTowing" Type="bit" Nullable="false" />
     <Property Name="status" Type="bit" Nullable="false" />
     <Property Name="OperatorComment" Type="text" />
+  </EntityType>
+  <EntityType Name="image">
+    <Key>
+      <PropertyRef Name="imgid" />
+    </Key>
+    <Property Name="id" Type="int" />
+    <Property Name="picture" Type="varbinary(max)" />
+    <Property Name="imgid" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="messagesTable">
     <Key>
@@ -83,20 +91,20 @@
     </Key>
     <Property Name="emergencyReportId" Type="int" Nullable="false" />
     <Property Name="driverName" Type="varchar" MaxLength="50" />
-    <Property Name="driverId" Type="bigint" Nullable="false" />
+    <Property Name="driverId" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="carOwnerName" Type="varchar" MaxLength="50" />
-    <Property Name="carOwnerId" Type="bigint" />
-    <Property Name="licensePlateNumber" Type="bigint" />
+    <Property Name="carOwnerId" Type="varchar" MaxLength="50" />
+    <Property Name="licensePlateNumber" Type="varchar" MaxLength="50" />
     <Property Name="carCategory" Type="varchar" MaxLength="50" />
     <Property Name="carModel" Type="varchar" MaxLength="50" />
     <Property Name="carColor" Type="varchar" MaxLength="50" />
-    <Property Name="drivingLicenseNumber" Type="bigint" />
+    <Property Name="drivingLicenseNumber" Type="varchar" MaxLength="50" />
     <Property Name="insuranceCompanyName" Type="varchar" MaxLength="50" />
-    <Property Name="insurancePolicyNumber" Type="bigint" />
+    <Property Name="insurancePolicyNumber" Type="varchar" MaxLength="50" />
     <Property Name="address" Type="varchar" MaxLength="50" />
-    <Property Name="phoneNumber" Type="bigint" Nullable="false" />
+    <Property Name="phoneNumber" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="insuranceAgentName" Type="varchar" MaxLength="50" />
-    <Property Name="insuranceAgentPhone" Type="bigint" />
+    <Property Name="insuranceAgentPhone" Type="varchar" MaxLength="50" />
     <Property Name="yearOfManufacture" Type="bigint" />
   </EntityType>
   <Association Name="FK_client_client">
@@ -116,6 +124,7 @@
     <EntitySet Name="case" EntityType="Self.case" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="client" EntityType="Self.client" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="emergencyReport" EntityType="Self.emergencyReport" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="image" EntityType="Self.image" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="messagesTable" EntityType="Self.messagesTable" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="third_party" EntityType="Self.third_party" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_client_client" Association="Self.FK_client_client">

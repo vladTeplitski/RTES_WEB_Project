@@ -617,6 +617,32 @@ label{
     z-index:200;
 }
 
+
+.reportsPartialClass{
+    display:none;
+    position:fixed;
+    left:50%;
+    
+    
+    
+    
+    padding:4px;
+    border:1px solid #86B2D8;
+    border-radius:12px;
+    background-color:#4E86B7;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    color:white;
+    font-size:small;
+    z-index:200;
+
+    top:40px;
+    height:450px;
+    width:400px;
+    margin-left:-200px;
+    overflow-y:auto;
+
+}
+
 .tableContPartial{
     margin-top:4px;
     height:auto;
@@ -719,11 +745,76 @@ label{
 }
 /* END Validation */
 
+.errorFields{
+    color:red;
+}
+
+.UploadWindow{
+ position:fixed;
+    left:50%;
+    top:15%;
+    margin-left:-200px;
+    width:400px;
+    height:350px;
+    padding:4px;
+    border:1px solid #86B2D8;
+    border-radius:12px;
+    background-color:#4E86B7;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    color:white;
+    font-size:small;
+    z-index:200;
+    }
+
+.UploadBtn{
+    width:35%;
+    height:auto;
+    padding:5px;
+    padding-left:10px;
+    margin:auto;
+    margin-top:5px;
+    background-color:#B1D607;
+    border:1px solid #BDE30F;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius:5px;
+    color:white;
+    cursor:pointer;
+}
+
+.imgPreview{
+border:1px solid #BDE30F;
+}
+
+.smallWindowUpload{
+    display:block;
+    margin-left:10px;
+    border-top:2px solid #6D9BC3;
+    border-bottom:2px solid #6D9BC3;
+    border-radius: 15px;
+}
+
+.UploadWindow1{
+    background-color:rgba(217,219,241,0.8);
+    color:#5E6572;
+    padding:20px;
+    border-top:2px solid #B1D607;
+    border-bottom:2px solid #B1D607;
+    border-radius: 15px;
+    text-align:center;
+    width:65%;
+    margin:auto;
+}
+
+.labelUploadButt{
+margin-left:30%;
+}
+
+
 
 
 /*           Media query section           */
 
-@media (max-width:1100px){  /*Tables, Wide tablets & small dektops*/
+@media (max-width:1100px){  /*Tablets, Wide tablets & small dektops*/
 
 .deviceConfigsGui{
     left:5px;
@@ -750,6 +841,11 @@ label{
     height:250px;
     overflow-y:scroll;
 }
+
+.labelUploadButt{
+margin-left:25%;
+}
+
 
 
 }
@@ -890,6 +986,41 @@ label{
     #allReportsTable{
         font-size:xx-small;
     }
+
+    .UploadWindow{
+       left: 50%;
+        top: 15%;
+        margin-left: -135px;
+        width: 250px;
+        height:300px;
+    }
+
+    .UploadWindow1{
+    font-size:small;
+    }
+
+.labelUploadButt{
+    margin-left:-15%;
+    }
+
+    .UploadBtn{
+       font-size:small;
+        width:70%;
+    }
+
+    .imgPreview{
+        width:110px;
+        height:115px;
+    }
+    .reportsPartialClass{
+        height:90%;
+        width:100%;
+        left:0;
+        top:0;
+        margin-top:0;
+        margin-left:0;
+    }
+
 
 }
 

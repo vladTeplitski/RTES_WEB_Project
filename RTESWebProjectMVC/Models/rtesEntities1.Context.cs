@@ -31,5 +31,6 @@ namespace RTESWebProjectMVC.Models
         public virtual DbSet<emergencyReport> emergencyReport { get; set; }
         public virtual DbSet<messagesTable> messagesTable { get; set; }
         public virtual DbSet<third_party> third_party { get; set; }
+        public virtual DbSet<image> image { get; set; }
     }
 }

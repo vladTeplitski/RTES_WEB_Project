@@ -106,5 +106,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="images">
+      <EntityTypeMapping TypeName="rtesModel.image">
+        <MappingFragment StoreEntitySet="image">
+          <ScalarProperty Name="imgid" ColumnName="imgid" />
+          <ScalarProperty Name="picture" ColumnName="picture" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

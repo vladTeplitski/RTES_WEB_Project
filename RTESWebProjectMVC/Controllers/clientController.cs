@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RTESWebProjectMVC.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -19,50 +20,59 @@ namespace RTESWebProjectMVC.Controllers
         public ActionResult client()
         {
 
-            base.initFunc();  //init the base functions - user CP
-
-
-            //Startup inits
-            ViewBag.showClientRepInfo = "none";
-            //END Startup inits
-
-          
-
-            //Build client page
-
-            using (var db = new Models.rtesEntities1())
+            if (Session["user"] != null)  //if logged in user
             {
-                 userName = Session["user"].ToString();  //read the user name
-                 userId = Convert.ToInt32(Session["uid"]);    //convert session to int - read the id
-
-                personalDetail(userId);
-                //read data from database
-                
-                var user = db.abstract_user.Where(i => i.id == userId).FirstOrDefault();
-                var client = db.client.Where(i => i.abstractUserId == userId).DefaultIfEmpty().First();
 
 
+                base.initFunc();  //init the base functions - user CP
 
-                if (client != null)  //if client account exists
+
+                //Startup inits
+                ViewBag.showClientRepInfo = "none";
+                //END Startup inits
+
+
+
+                //Build client page
+
+                using (var db = new Models.rtesEntities1())
                 {
-                    //Emergency reports library init - client
-                    reportsFromDB(userId);
+                    userName = Session["user"].ToString();  //read the user name
+                    userId = Convert.ToInt32(Session["uid"]);    //convert session to int - read the id
 
-                    //Messages init - client
-                    messagesFromDB(userId);
-                }
-                else  //NOT a client account
-                {
-                    //reports table - non client
-                    ViewBag.repDB = null;
-                    ViewBag.clientRepListAlert = "inline";  //show reports alert
-                    ViewBag.showRepDb = "none"; //hide reports table
-                    ViewBag.showMsgDb = "none";  //hide messages table
-                }
+                    personalDetail(userId);
+                    //read data from database
 
-                
+                    var user = db.abstract_user.Where(i => i.id == userId).FirstOrDefault();
+                    var client = db.client.Where(i => i.abstractUserId == userId).DefaultIfEmpty().First();
+
+
+
+                    if (client != null)  //if client account exists
+                    {
+                        //Emergency reports library init - client
+                        reportsFromDB(userId);
+
+                        //Messages init - client
+                        messagesFromDB(userId);
+                    }
+                    else  //NOT a client account
+                    {
+                        //reports table - non client
+                        ViewBag.repDB = null;
+                        ViewBag.clientRepListAlert = "inline";  //show reports alert
+                        ViewBag.showRepDb = "none"; //hide reports table
+                        ViewBag.showMsgDb = "none";  //hide messages table
+                    }
+
+
+                }
+                return View();
             }
-            return View();
+            else
+            {
+                return RedirectToAction("Login", "web");  //if not logged in, redirect to login
+            }
 
         }//end client function
 
@@ -124,7 +134,7 @@ namespace RTESWebProjectMVC.Controllers
 
         public ActionResult showReportInfo(int id)  //Show client report info window
         {
-            
+            imageData[] img;
             ViewBag.showClientRepInfo = "Block";  //show client report info panel
 
             if (Request.IsAjaxRequest())
@@ -132,44 +142,55 @@ namespace RTESWebProjectMVC.Controllers
 
                 using (var db = new Models.rtesEntities1())
                 {
-                    int x = Int32.Parse(id.ToString());
-                    var reportsDb = db.emergencyReport.Where(i => i.reportID == x).FirstOrDefault();
+                    // int x = Int32.Parse(id.ToString());
+                    int x = id;
+                    var reportsDb = db.emergencyReport.Where(i => i.reportID == x).ToList();
+                    var thirdPartyDb = db.third_party.Where(i => i.emergencyReportId == x).ToList();
+                    var imageDb = db.image.Where(i => i.id == x).DefaultIfEmpty();
 
-                    System.Text.StringBuilder list = new System.Text.StringBuilder();
+                    if (reportsDb.Any() && thirdPartyDb.Any())
+                    {
+                        ViewBag.clientReportsDBAlert = "none"; // hide alert no reports
+                        ViewBag.clientReportsDB = reportsDb;
+                        ViewBag.clientThirdPartyDb = thirdPartyDb;
 
-                    list.AppendLine("<table class=\"table table-bordered\">");
-                    list.AppendLine("<tr><td>Client ID:</td>");
-                    list.AppendLine("<td>");
-                    list.AppendLine(reportsDb.clientAbstractUserId.ToString());
-                    list.AppendLine("</td></tr>");
-                    list.AppendLine("<tr><td>report ID:</td>");
-                    list.AppendLine("<td>");
-                    list.AppendLine(reportsDb.reportID.ToString());
-                    list.AppendLine("</td></tr>");
-                    list.AppendLine("<tr><td>Location:</td>");
-                    list.AppendLine("<td>");
-                    list.AppendLine(reportsDb.location);
-                    list.AppendLine("</td></tr>");
-                    list.AppendLine("<tr><td>Towing destination:</td>");
-                    list.AppendLine("<td>");
-                    list.AppendLine(reportsDb.towing_destination);
-                    list.AppendLine("</td></tr>");
-                    list.AppendLine("<tr>");
-                    list.AppendLine("<tr><td>Witness name:</td>");
-                    list.AppendLine("<td>");
-                    list.AppendLine(reportsDb.accident_witness_name);
-                    list.AppendLine("</td></tr>");
-                    list.AppendLine("<tr><td>Witness phone number:</td>");
-                    list.AppendLine("<td>");
-                    list.AppendLine(reportsDb.accident_witness_phone.ToString());
-                    list.AppendLine("</td></tr>");
-                    list.AppendLine("<tr><td>Comments:</td>");
-                    list.AppendLine("<td>");
-                    list.AppendLine(reportsDb.comments);
-                    list.AppendLine("</td></tr>");
-                    list.AppendLine("</table>");
+                        if (imageDb != null)
+                        {
+                            //generate message number - key in db
 
-                    ViewBag.clientRepInfo = list.ToString();
+                             img = new imageData[5];
+
+
+
+                            int i = 0;
+                             foreach (var item in imageDb)
+                            {
+                                img[i].picture = item.picture;
+                                i++;
+                             }
+
+
+
+                           // Dictionary<int, string> postImages = new Dictionary<int, string>();
+                           // foreach (var item in imageDb)
+                            //{
+                             //   byte[] buffer = item.picture;
+                             //   postImages.Add(item.imgid, Convert.ToBase64String(buffer));
+                            //}
+                            //ViewBag.Images = postImages;
+
+
+                        }
+
+
+                    }
+                    else //no users in db
+                    {
+
+                        ViewBag.allReportsFromDbAlert = "inline"; // show alert
+
+                    }
+
                 }
 
                 return PartialView("reportInfoPartial");  //using partial view
@@ -206,90 +227,281 @@ namespace RTESWebProjectMVC.Controllers
         }//end messagesFromDB function
 
 
-
-
         public ActionResult NewReport()
         {
-            base.initFunc();//init the base functions - user CP
-            personalDetail(Convert.ToInt32(Session["uid"]));//call to personal detials function
 
-            ViewBag.successfull = "none";
-            
-            //Current time and date
-            DateTime now = DateTime.Now;
-            ViewBag.date1 = now.ToString("dd.MM.yyyy");
-            date1= now.ToString("dd.MM.yyyy");
-            ViewBag.hour1 = now.ToString("hh:mm tt");
-            hour1= now.ToString("hh:mm tt");
-            //end
+            if (Session["user"] != null)  //if logged in user
+            {
 
-            return View();
+                base.initFunc();//init the base functions - user CP
+                personalDetail(Convert.ToInt32(Session["uid"]));//call to personal detials function
+
+                ViewBag.successfull = "none";
+
+                //Current time and date
+                DateTime now = DateTime.Now;
+                ViewBag.date1 = now.ToString("dd.MM.yyyy");
+                date1 = now.ToString("dd.MM.yyyy");
+                ViewBag.hour1 = now.ToString("hh:mm tt");
+                hour1 = now.ToString("hh:mm tt");
+                //end
+
+                return View();
+
+            }
+            else
+            {
+                return RedirectToAction("Login", "web");  //if not logged in, redirect to login
+            }
+
+
         }//end NewReport function
-
-
-
 
 
 
         //create new report in db
         [HttpPost]
-        public ActionResult send_Details_Func(string location,string towDest,string witName,string witPhone, string comments,string myName,string driverID,string driverPhone,string driverLicenseNum,string address1,string carOwnerName,string carOwnerId,string carLicensePlate,string carCategory,string carModel,string color1,string year,string compName,string policyNum,string agentName,string agentPhone)
+        public ActionResult send_Details_Func(string location,string towDest,string witName,string witPhone, string comments,string myName,string driverID,string driverPhone,string driverLicenseNum,string address1,string carOwnerName,string carOwnerId,string carLicensePlate,string carCategory,string carModel,string color1,string year,string compName,string policyNum,string agentName,string agentPhone, bool checkBox1 = false)
         {
             
             using (var db = new Models.rtesEntities1())
             {
                 userName = Session["user"].ToString();  //read the user name
                 userId = (int)(Session["uid"]);    //convert session to int - read the id
-                                                   // Create a new Order object.
-
-
+                                                   
                 var maxId = db.emergencyReport.DefaultIfEmpty().Max(r => r == null ? 0 : r.reportID); //get the max report Id
                 x = Convert.ToInt32(maxId.ToString());//convert type of string to int
                 x = x + 1;
 
-                // if (checkBox.ToString()!=null)
-                // {
-                // check = 1;
-                //case1.callForTowing = 1;
-                // }   
                 DateTime now1 = DateTime.Now;
-                db.emergencyReport.Add(new Models.emergencyReport() { reportID = x, clientAbstractUserId = userId, date = now1.ToString("dd.MM.yyyy"), hour = now1.ToString("hh:mm tt"), comments = comments, location = location, towing_destination = towDest, accident_witness_name = witName ,accident_witness_phone= Convert.ToInt32(witPhone) });
-                //db.emergencyReport.Add(new Models.emergencyReport() { reportID = x, clientAbstractUserId = userId, date = date1, hour = hour1, comments = emerg.comments.ToString(), location = emerg.location.ToString(), towing_destination = emerg.towing_destination.ToString(), accident_witness_name = emerg.accident_witness_name.ToString() });
+                db.emergencyReport.Add(new Models.emergencyReport() {
+                    reportID = x,
+                    clientAbstractUserId = userId,
+                    date = now1.ToString("dd.MM.yyyy"),
+                    hour = now1.ToString("hh:mm tt"),
+                    comments = comments,
+                    location = location,
+                    towing_destination = towDest,
+                    accident_witness_name = witName,
+                    accident_witness_phone = witPhone,
+                    callForTowing = checkBox1
+                });       
                 db.SaveChanges();
+
+                //UPLOAD FILES//
+
+                //files
+                HttpPostedFileBase file = Request.Files["fileInput1"];
+                HttpPostedFileBase file2 = Request.Files["fileInput"];
+
+                //images
+                HttpPostedFileBase img1 = Request.Files["imgIn1"];
+                HttpPostedFileBase img2 = Request.Files["imgIn2"];
+                HttpPostedFileBase img3 = Request.Files["imgIn3"];
+
+
+                if (file != null)
+                {
+                    int imgNumber = 0;
+
+                    int contentLength = file.ContentLength;
+
+                    byte[] byteFile = new byte[contentLength];
+
+                    file.InputStream.Read(byteFile, 0, contentLength);
+
+                    //random image number
+                    Random rand = new Random();
+                    
+                    imgNumber = rand.Next(100, 100000);
+                    var imgsDb = db.image.Where(i => i.imgid == imgNumber).DefaultIfEmpty().First();
+                    while (imgsDb != null)
+                    {
+                        imgNumber = rand.Next(100, 100000);
+                        imgsDb = db.image.Where(i => i.imgid == imgNumber).DefaultIfEmpty().First();
+
+                    }
+                    //END random image number
+
+                    db.image.Add(new Models.image()
+                    {
+                        id = x,
+                        imgid = imgNumber,
+                        picture = byteFile
+
+                    });
+
+                    db.SaveChanges();
+                }
+
+
+                if (file2 != null)
+                {
+                    int contentLength2 = file2.ContentLength;
+
+                    byte[] byteFile = new byte[contentLength2];
+
+                    file2.InputStream.Read(byteFile, 0, contentLength2);
+
+                    //random image number
+                    Random rand = new Random();
+                    int imgNumber = 0;
+                    imgNumber = rand.Next(100, 100000);
+                    var imgsDb = db.image.Where(i => i.imgid == imgNumber).DefaultIfEmpty().First();
+                    while (imgsDb != null)
+                    {
+                        imgNumber = rand.Next(100, 100000);
+                        imgsDb = db.image.Where(i => i.imgid == imgNumber).DefaultIfEmpty().First();
+
+                    }
+                    //END random image number
+
+                    db.image.Add(new Models.image()
+                    {
+                        id = x,
+                        imgid = imgNumber,
+                        picture = byteFile
+
+                    });
+
+                    db.SaveChanges();
+                }
+
+
+                if (img1 != null)
+                {
+                    int contentLengthImg1 = img1.ContentLength;
+
+                    byte[] byteFile = new byte[contentLengthImg1];
+
+                    img1.InputStream.Read(byteFile, 0, contentLengthImg1);
+
+                    //random image number
+                    Random rand = new Random();
+                    int imgNumber = 0;
+                    imgNumber = rand.Next(100, 100000);
+                    var imgsDb = db.image.Where(i => i.imgid == imgNumber).DefaultIfEmpty().First();
+                    while (imgsDb != null)
+                    {
+                        imgNumber = rand.Next(100, 100000);
+                        imgsDb = db.image.Where(i => i.imgid == imgNumber).DefaultIfEmpty().First();
+
+                    }
+                    //END random image number
+
+                    db.image.Add(new Models.image()
+                    {
+                        id = x,
+                        imgid = imgNumber,
+                        picture = byteFile
+
+                    });
+
+                    db.SaveChanges();
+                }
+
+                if (img2 != null)
+                {
+                    int contentLengthImg2 = img2.ContentLength;
+
+                    byte[] byteFile = new byte[contentLengthImg2];
+
+                    img2.InputStream.Read(byteFile, 0, contentLengthImg2);
+
+                    //random image number
+                    Random rand = new Random();
+                    int imgNumber = 0;
+                    imgNumber = rand.Next(100, 100000);
+                    var imgsDb = db.image.Where(i => i.imgid == imgNumber).DefaultIfEmpty().First();
+                    while (imgsDb != null)
+                    {
+                        imgNumber = rand.Next(100, 100000);
+                        imgsDb = db.image.Where(i => i.imgid == imgNumber).DefaultIfEmpty().First();
+
+                    }
+                    //END random image number
+
+                    db.image.Add(new Models.image()
+                    {
+                        id = x,
+                        imgid = imgNumber,
+                        picture = byteFile
+
+                    });
+
+                    db.SaveChanges();
+                }
+
+
+                if (img3 != null)
+                {
+                    int contentLengthImg3 = img3.ContentLength;
+
+                    byte[] byteFile = new byte[contentLengthImg3];
+
+                    img3.InputStream.Read(byteFile, 0, contentLengthImg3);
+
+                    //random image number
+                    Random rand = new Random();
+                    int imgNumber = 0;
+                    imgNumber = rand.Next(100, 100000);
+                    var imgsDb = db.image.Where(i => i.imgid == imgNumber).DefaultIfEmpty().First();
+                    while (imgsDb != null)
+                    {
+                        imgNumber = rand.Next(100, 100000);
+                        imgsDb = db.image.Where(i => i.imgid == imgNumber).DefaultIfEmpty().First();
+
+                    }
+                    //END random image number
+
+                    db.image.Add(new Models.image()
+                    {
+                        id = x,
+                        imgid = imgNumber,
+                        picture = byteFile
+
+                    });
+
+                    db.SaveChanges();
+                }
+                
+
+
+                //END UPLOAD FILES//
 
                 if (myName.ToString() != string.Empty)
                 
-                {
+                { 
                     ViewBag.successfull = "block";
                     string colorName = color1.ToString();
                     db.third_party.Add(new Models.third_party()
                     {
                         emergencyReportId = x,
                         driverName = myName,
-                        driverId = Convert.ToInt32(driverID),
-                        phoneNumber = Convert.ToInt32(driverPhone),
-                        drivingLicenseNumber = Convert.ToInt32(driverLicenseNum),
+                        driverId = driverID,
+                        phoneNumber = driverPhone,
+                        drivingLicenseNumber = driverLicenseNum,
                         address = address1.ToString(),
                         carOwnerName = carOwnerName,
-                        carOwnerId = Convert.ToInt32(carOwnerId),
-                        licensePlateNumber = Convert.ToInt32(carLicensePlate),
+                        carOwnerId = carOwnerId,
+                        licensePlateNumber =carLicensePlate,
                         carCategory = carCategory,
                         carModel = carModel,
                         carColor = colorName,
                         yearOfManufacture = Convert.ToInt32(year),
                         insuranceCompanyName = compName,
-                        insurancePolicyNumber = Convert.ToInt32(policyNum),
+                        insurancePolicyNumber = policyNum,
                         insuranceAgentName = agentName,
-                        insuranceAgentPhone = Convert.ToInt32(agentPhone)
+                        insuranceAgentPhone = agentPhone
                     });
                 }
-
+                
                 db.SaveChanges();
 
             }
 
-           
-            return View("NewReport");
+            TempData["reportNotifFlag"] = 1;
+            return RedirectToAction("client", "client");
         }
         //end create new report in db
        

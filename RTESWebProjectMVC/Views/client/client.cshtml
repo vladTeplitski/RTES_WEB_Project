@@ -23,50 +23,46 @@
                     <div style="display: inline; position: absolute; left: 8px;"><i class="glyphicon glyphicon-folder-open"></i></div>
                     Reports Library
                 </div>
-                <div ng-click="buttonsClick(2)" class="btnInfo">
-                    <div style="display: inline; position: absolute; left: 8px;"><i class="glyphicon glyphicon-cog"></i></div>
-                    Settings(?)
-                </div>
                 <div ng-click="buttonsClick(3)" class="btnInfo">
                     <div style="display: inline; position: absolute; left: 8px;"><i class="fa fa-info-circle" aria-hidden="true" style="font-size: 20px;"></i></div>
                     Personal Details
                 </div>
             </div>
         </div>
+        <!--END Client Buttons-->
+
+
+
 
         <!-- Main window client content -->
         <div class="col-lg-6 col-lg-offset-1 col-md-6 col-md-offset-1 col-xs-12">
 
+            <!-- Client notifications-->
+            <div id="reportNotif" class="successNotif" style="display:@ViewBag.showReportNotif">
+                <div class="successNotifHeader">
+                    <b><i Style="font-size:15px;margin-right:5px;" class="glyphicon glyphicon-ok"></i>Notfication</b>
+                    <div onclick="closereportNotif()" class="x">x</div>
+                </div>
+
+                <br />
+                <b>Emergency form sent successfully.</b>
+                <br />
+            </div>
+            <!-- END Client notifications-->
+
             <div class="mainWindow" style="margin-top: 8px;">
                 <form id="settingsForm">
-                    <div ng-hide="client0" class="textContainer">
-                        <asp:Label runat="server" ID="clientWelcome"></asp:Label>
-                        <asp:Label runat="server" ID="clientOps"></asp:Label>
 
-                        <!-- Notifications-->
-                        <div runat="server" id="notifications" style="font-size:small; width: 80%; margin: 10px auto; text-align: center; padding: 3px 0px;">
-                            <asp:Panel runat="server" CssClass="alert alert-danger" ID="pswdWrongPanel" Visible="false">
-                                Present passsword is wrong!
-                            </asp:Panel>
-                            <asp:Panel runat="server" CssClass="alert" ID="pswdChangeSuccess" Visible="false" Style="background-color:#22B14C">
-                                Password changed successfully!
-                            </asp:Panel>
-                            <asp:Panel runat="server" CssClass="alert alert-danger" ID="emailWrongPanel" Visible="false">
-                                Present email is wrong!
-                            </asp:Panel>
-                            <asp:Panel runat="server" CssClass="alert" ID="emailChangeSuccess" Visible="false" Style="background-color:#22B14C">
-                                Email changed successfully!
-                            </asp:Panel>
-                            <asp:Panel runat="server" CssClass="alert" ID="phoneChangeSuccess" Visible="false" Style="background-color:#22B14C">
-                                Phone number changed successfully!
-                            </asp:Panel>
-                        </div>
+                    <!-- Client main window-->
+                    <div ng-hide="client0" class="textContainer">
+                        Welcome to client portal!
+
                         <br />
                         
                     </div>
+                    <!--END client main window-->
 
-                    <!--StartReports Library-->
-
+                    <!--Start Reports Library-->
                     <div ng-hide="client1" class="textContainer" style="overflow:auto;">
 
                         <div id="reportsInSystem" class="personalDetailsClass">
@@ -146,145 +142,104 @@
 
 
                     </div>
+                    <!--END Reports Library-->
 
-
-                    <!--Start user settings -->
-
-                    <div ng-hide="client2" class="textContainer">
-
-                        <div ng-click="toggleOptions(1)" id="changePswd" class="SettingClass">
-                            <i Style="font-size:23px;" class="glyphicon glyphicon-lock"></i>
-                            Change password
-                        </div>
-                        <div id="subChangePswd" ng-hide="op1" class="subSettingClass">
-                            Present password:
-                            <asp:TextBox runat="server" CssClass="form-control" ID="changePswTxtPresent" Style="color:#646464" placeholder="Present pass"></asp:TextBox>
-                            New password:
-                            <asp:TextBox runat="server" CssClass="form-control" ID="changePswNew" Style="color:#646464" placeholder="New pass"></asp:TextBox>
-
-                            <asp:Button runat="server" ID="changePswdBtn" OnClick="changePswd" CssClass="btn btn-default settingsBtn" Text="Save" Style="margin-left:2%; margin-top:5px; " />
-                        </div>
-
-                        <div ng-click="toggleOptions(2)" id="changeEmail" class="SettingClass">
-                            <i Style="font-size:23px;" class="glyphicon glyphicon-envelope"></i>
-                            Edit Email
-                        </div>
-                        <div id="subChangeEmail" ng-hide="op2" class="subSettingClass">
-                            Present email:
-                            <asp:TextBox runat="server" CssClass="form-control" ID="presentEmailBox" Style="color:#646464" placeholder="Present email"></asp:TextBox>
-                            New email:
-                            <asp:TextBox runat="server" CssClass="form-control" ID="newEmailBox" Style="color:#646464" placeholder="New email"></asp:TextBox>
-                            <asp:Button runat="server" ID="changeEmailBtn" onclick="changeEmail" CssClass="btn btn-default settingsBtn" Text="Save" Style="margin-top:5px; margin-left:2%;" />
-
-                        </div>
-
-                        <div ng-click="toggleOptions(3)" id="changePhone" class="SettingClass">
-                            <i Style="font-size:23px;" class="glyphicon glyphicon-earphone"></i>
-                            Edit Phone number
-                        </div>
-                        <div id="subChangePhone" ng-hide="op3" class="subSettingClass">
-                            New phone number:
-                            <asp:TextBox runat="server" CssClass="form-control" ID="newPhoneBox" Style="color:#646464" placeholder="New Phone-num#"></asp:TextBox>
-                            <asp:Button runat="server" ID="changePhoneBtn" onclick="changePhone" CssClass="btn btn-default settingsBtn" Text="Save" Style="margin-top:5px; margin-left:2%;" />
-
-                        </div>
-                    </div>
 
                     <!-- Start personal Details-->
                     <div ng-hide="client3" class="textContainer">
 
                         <div style="width: 80%; margin: 10px auto; text-align: center;">
-                            <asp:Panel runat="server" CssClass="alert alert-danger" ID="noClientAccount" Visible="false">
+                            <Panel  CssClass="alert alert-danger" ID="noClientAccount" Visible="false">
                                 No details available!
-                            </asp:Panel>
+                            </Panel>
                         </div>
-                        <div runat="server" id="personalDetailsPanel" class="personalDetailsClass">
+                        <div  id="personalDetailsPanel" class="personalDetailsClass">
                             <i Style="font-size:23px;" class="glyphicon glyphicon-tasks"></i>
                             <span style="margin-left:10px;">Personal Details</span>
                         </div><br />
-                        <table runat="server" class="table table-striped" id="TableDetails2" style="cursor:default">
+                        <table  class="table table-striped" id="TableDetails2" style="cursor:default">
 
                             <tr class="colT">
                                 <th>Car Category:</th>
                                 <td class="colD">
-                                    <asp:label runat="server" id="carCategory"></asp:label>
+                                    @ViewBag.carCategory
                                 </td>
                             </tr>
                             <tr class="colT">
                                 <th>Car Model:</th>
                                 <td class="colD">
-                                    <asp:label runat="server" id="carModel"></asp:label>
+                                    @ViewBag.carModel
                                 </td>
                             </tr>
                             <tr class="colT">
                                 <th>Year Of Manufacture:</th>
                                 <td class="colD">
-                                    <asp:label runat="server" id="yearManufact"></asp:label>
+                                    @ViewBag.YearOfManuFacture
                                 </td>
                             </tr>
                             <tr class="colT">
                                 <th>License Plate:</th>
                                 <td class="colD">
-                                    <asp:label runat="server" id="licensePlate"></asp:label>
+                                    @ViewBag.liceansePlate
                                 </td>
                             </tr>
                             <tr class="colT">
                                 <th>Insurance Company Name:</th>
                                 <td class="colD">
-                                    <asp:label runat="server" id="insuranceCompName"></asp:label>
+                                    @ViewBag.InsuranceCompanyName
                                 </td>
                             </tr>
                             <tr class="colT">
                                 <th>Insurance Agent Name:</th>
                                 <td class="colD">
-                                    <asp:label runat="server" id="insuranceAgentName"></asp:label>
+                                  @ViewBag.InsuranceAgentName
                                 </td>
                             </tr>
                             <tr class="colT">
                                 <th>Insurance Agent Phone:</th>
                                 <td class="colD">
-                                    <asp:label runat="server" id="insuranceAgentPhone"></asp:label>
+                                    @ViewBag.InsuranceAgentPhone
                                 </td>
                             </tr>
                             <tr class="colT">
                                 <th>Insurance Policy Number:</th>
                                 <td class="colD">
-                                    <asp:label runat="server" id="insPolicyNum"></asp:label>
+                                    @ViewBag.InsurancePolicyNumber
                                 </td>
                             </tr>
                             <tr class="colT">
                                 <th>Policy Expiration:</th>
                                 <td class="colD">
-                                    <asp:label runat="server" id="policyExp"></asp:label>
+                                    @ViewBag.PolicyExpiration
                                 </td>
                             </tr>
                             <tr class="colT">
                                 <th>Driving License Number:</th>
                                 <td class="colD">
-                                    <asp:label runat="server" id="drivingLicenseNum"></asp:label>
+                                    @ViewBag.DrivingLicenseNumber
                                 </td>
                             </tr>
 
                             <tr class="colT">
                                 <th>Car Owner Name:</th>
                                 <td class="colD">
-                                    <asp:label runat="server" id="carOwnerName"></asp:label>
+                                    @ViewBag.CarOwnerName
                                 </td>
                             </tr>
                             <tr class="colT">
                                 <th>Car Owner ID:</th>
                                 <td class="colD">
-                                    <asp:label runat="server" id="carOwnerId"></asp:label>
+                                    @ViewBag.CarOwnerID
                                 </td>
                             </tr>
 
                         </table>
                     </div>
+                    <!-- END personal Details-->
+
 
                     <!-- Start Messages container -->
                     <div ng-hide="client4" class="textContainer">
-
-   
 
                                 <div id="messagesMain" class="personalDetailsClass">
                                     <i Style="font-size:23px;" class="glyphicon glyphicon-tasks"></i>
@@ -349,6 +304,7 @@
                         </table>
 
                     </div>
+                    <!-- END Messages container -->
 
                 </form>
             </div>
@@ -357,3 +313,15 @@
 </div>
 
 <!--END Client Page-->
+
+
+<!-- JS Functions -->
+<script type="text/javascript">
+
+    function closereportNotif() {
+        $('#reportNotif').hide();
+
+    }
+</script>
+
+<!-- END JS Functions -->

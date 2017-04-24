@@ -40,7 +40,8 @@ namespace RTESWebProjectMVC
             //Bootstrap scripts
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/Lib/bootstrap.js",
-                      "~/Scripts/Lib/respond.js"));
+                      "~/Scripts/Lib/respond.js",
+                      "~/Scripts/Lib/bootstrap-filestyle.min.js"));
 
 
         }

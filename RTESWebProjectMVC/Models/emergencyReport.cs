@@ -22,7 +22,7 @@ namespace RTESWebProjectMVC.Models
         public string location { get; set; }
         public string towing_destination { get; set; }
         public string accident_witness_name { get; set; }
-        public Nullable<int> accident_witness_phone { get; set; }
+        public string accident_witness_phone { get; set; }
         public string comments { get; set; }
         public bool callForTowing { get; set; }
         public bool status { get; set; }
