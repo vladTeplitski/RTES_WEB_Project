@@ -263,6 +263,8 @@ namespace RTESWebProjectMVC.Controllers
         [HttpPost]
         public ActionResult send_Details_Func(string location,string towDest,string witName,string witPhone, string comments,string myName,string driverID,string driverPhone,string driverLicenseNum,string address1,string carOwnerName,string carOwnerId,string carLicensePlate,string carCategory,string carModel,string color1,string year,string compName,string policyNum,string agentName,string agentPhone, bool checkBox1 = false)
         {
+
+            int checkStat;
             
             using (var db = new Models.rtesEntities1())
             {
@@ -272,6 +274,15 @@ namespace RTESWebProjectMVC.Controllers
                 var maxId = db.emergencyReport.DefaultIfEmpty().Max(r => r == null ? 0 : r.reportID); //get the max report Id
                 x = Convert.ToInt32(maxId.ToString());//convert type of string to int
                 x = x + 1;
+
+                if(checkBox1 == true)
+                {
+                    checkStat = 0;   // move to towing status
+                }
+                else
+                {
+                    checkStat = 1;  // move to appraiser
+                }
 
                 DateTime now1 = DateTime.Now;
                 db.emergencyReport.Add(new Models.emergencyReport() {
@@ -284,7 +295,8 @@ namespace RTESWebProjectMVC.Controllers
                     towing_destination = towDest,
                     accident_witness_name = witName,
                     accident_witness_phone = witPhone,
-                    callForTowing = checkBox1
+                    callForTowing = checkBox1,
+                    status = checkStat
                 });       
                 db.SaveChanges();
 

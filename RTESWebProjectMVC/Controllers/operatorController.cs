@@ -49,22 +49,20 @@ namespace RTESWebProjectMVC.Controllers
                     
                 }
 
-                //end init comments
+                    //End init comments
+                 ViewBag.showClosedReportOpsNotif = "none";
+                 if (Session["commentNotifClose"] != null)
+                 {
+                        ViewBag.showClosedReportOpsNotif = "inline";
+                        Session["commentNotifClose"] = null;
+                 }
+                //init ops room notif
+
+                //END init ops room notif
 
                 //init functions
                 usersFromDB();   //update users list from db to view
                 allReportsFromDb(); //update existing reports list from db to view
-
-
-                    //image test
-                    //imageData img = new imageData();
-
-                    //var imagesList = db.image.Where(i => i.id == 32).FirstOrDefault();
-                    //img.picture = imagesList.picture;
-                    //end image test
-
-
-                    //end init functions
 
                     return View();
                 }
@@ -414,16 +412,74 @@ namespace RTESWebProjectMVC.Controllers
             {
 
                 //read reports from database
-                var reports = db.emergencyReport.Where(t => t.status == true).OrderByDescending(t => t.date).OrderByDescending(t => t.hour).ToList();
+                //status: 0: open, 1: finished towing - moving to appraising, 2: End appraising -> move to final stage
+
+                //update reports list
+                var reports = db.emergencyReport.Where(t => t.status == 0 || t.status == 1 || t.status == 2).OrderByDescending(t => t.date).ThenBy(t => t.hour).ToList(); ;
+                    
 
                 if (reports.Any())
                 {
+                    ViewBag.showSlot1 = "table";
+                    ViewBag.reportsOperationsNotif = "none";
                     ViewBag.reportsOperations = reports;
                 }
                 else //no reports in db
                 {
-                    ViewBag.reportsOperations = "No open reports.";
+                    ViewBag.showSlot1 = "none";
+                    ViewBag.reportsOperationsNotif = "inline";
                 }
+
+                //update towing events list
+                var towingEvents = db.emergencyReport.Where(t => t.status == 0 && t.callForTowing == true).OrderByDescending(t => t.date).OrderByDescending(t => t.hour).ToList();
+                
+
+                if (towingEvents.Any())
+                {
+                    ViewBag.showSlot2 = "table";
+                    ViewBag.towingEventsNotif = "none";
+                    ViewBag.towingEvents = towingEvents;
+                }
+                else //no towing events
+                {
+                    ViewBag.showSlot2 = "none";
+                    ViewBag.towingEventsNotif = "inline";
+                }
+
+
+                //update appraising events list
+                var appraisingEvents = db.emergencyReport.Where(t => t.status == 1).OrderByDescending(t => t.date).OrderByDescending(t => t.hour).ToList();
+
+
+                if (appraisingEvents.Any())
+                {
+                    ViewBag.showSlot3 = "table";
+                    ViewBag.appraisingEventsNotif = "none";
+                    ViewBag.appraisingEvents = appraisingEvents;
+                }
+                else //no appraising events
+                {
+                    ViewBag.showSlot3 = "none";
+                    ViewBag.appraisingEventsNotif = "inline";
+                }
+
+
+                //update final stage
+                var finalStageEvents = db.emergencyReport.Where(t => t.status == 2).OrderByDescending(t => t.date).OrderByDescending(t => t.hour).ToList();
+
+
+                if (finalStageEvents.Any())
+                {
+                    ViewBag.showSlot4 = "table";
+                    ViewBag.finalStageEventsNotif = "none";
+                    ViewBag.finalStageEvents = finalStageEvents;
+                }
+                else //no final stage
+                {
+                    ViewBag.showSlot4 = "none";
+                    ViewBag.finalStageEventsNotif = "inline";
+                }
+
             }
 
             return PartialView("operationsPartial");
@@ -433,6 +489,26 @@ namespace RTESWebProjectMVC.Controllers
         }
 
 
+        public ActionResult closeCase(String id)  // close whole case by operator - in operations room
+        {
+
+            int x = Int32.Parse(id.ToString());  //convert selected input to integer
+
+            using (var db = new Models.rtesEntities1())
+            {
+
+                var report = db.emergencyReport.Where(i => i.reportID == x).FirstOrDefault();
+                report.status = 3; // close case = status 3 is closed case.
+
+                db.SaveChanges();  // save changes to db
+            }
+
+            
+            Session["commentNotifClose"] = "true";
+
+
+            return RedirectToAction("operatorHome", "operator");
+        }//end closeCase
     }
 
 }

@@ -25,7 +25,7 @@ namespace RTESWebProjectMVC.Models
         public string accident_witness_phone { get; set; }
         public string comments { get; set; }
         public bool callForTowing { get; set; }
-        public bool status { get; set; }
+        public int status { get; set; }
         public string OperatorComment { get; set; }
     }
 }

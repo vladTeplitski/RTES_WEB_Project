@@ -37,6 +37,10 @@ html,body {
 a:link{color:white}
 a:hover{color:black}
 
+a:not(.default):link    { color: white; }
+a:not(.default):visited { color: white; }
+a:not(.default):hover { color: white; }
+
 a {
     text-decoration: none !important;
 }
@@ -71,7 +75,7 @@ button::-moz-focus-inner {/*remove dotted border on firefox 46+ */
     margin-top:3px;
     margin-left:6px;
     margin-bottom:3px;
-    width:24%;
+    width:27%;
     float:left;
     border:1px solid #FAFAFA;
     border-bottom:7px solid #5A95C9;
@@ -84,7 +88,7 @@ button::-moz-focus-inner {/*remove dotted border on firefox 46+ */
     margin-top:3px;
     margin-left:5px;
     margin-bottom:3px;
-    width:25%;
+    width:24%;
     float:left;
     border:1px solid #FAFAFA;
     border-bottom:7px solid #5A95C9;
@@ -97,7 +101,7 @@ button::-moz-focus-inner {/*remove dotted border on firefox 46+ */
     margin-top:3px;
     margin-left:5px;
     margin-bottom:3px;
-    width:24%;
+    width:22%;
     float:left;
     border:1px solid #FAFAFA;
     border-bottom:7px solid #5A95C9;
@@ -127,22 +131,22 @@ slotEnd{
 
 .tansView{
     position:initial;
-    margin-left:40%;
+    margin-left:43%;
     color:lawngreen;
 }
 .tansView2{
     position:initial;
-    margin-left:45%;
+    margin-left:41%;
     color:lawngreen;
 }
 .tansView3{
     position:initial;
-    margin-left:33%;
+    margin-left:25%;
     color:lawngreen;
 }
 .tansView4{
     position:initial;
-    margin-left:47%;
+    margin-left:46%;
     color:#FE5050;
 }
 
@@ -809,6 +813,62 @@ border:1px solid #BDE30F;
 margin-left:30%;
 }
 
+/*26.4*/
+.NotifOps{
+    display:none;
+    width:60%;
+    height:50px;
+    padding:15px;
+
+    margin:20%;
+
+    border:1px solid #4CEB66;
+    border-radius:12px;
+    background-color:#2EE64C;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    color:white;
+    font-size:small;
+    
+    z-index:200;
+}
+
+.btnOps{
+    border:1px solid #5A95C9;
+    background-color:#5A95C9;
+    border-radius:3px;
+    width:80px;
+    padding:2px;
+}
+
+.btnOps:hover {background-color:#6CA2D1;}
+
+.btnOps2{
+    border:1px solid #FE5050;
+    background-color:#FE5050;
+    border-radius:3px;
+    width:80px;
+    margin-left:2px;
+    padding:2px;
+   
+
+}
+.btnOps2:hover {background-color:#FF6D6D;}
+
+.btnOps3{
+    border:1px solid #F4E800;
+    background-color:#F4E800;
+    border-radius:3px;
+    width:80px;
+    margin-left:2px;
+    padding:2px;
+    padding-left:3px;
+    padding-right:3px;
+    font-weight:900;
+   
+
+}
+.btnOps3:hover {background-color:#F9EF3B;}
+
 
 
 
@@ -849,6 +909,9 @@ margin-left:25%;
 
 
 }
+
+
+
 
 
 @media (max-width: 767px) { /*Smartphones*/

@@ -65,7 +65,7 @@
     <Property Name="accident_witness_phone" Type="varchar" MaxLength="50" />
     <Property Name="comments" Type="text" />
     <Property Name="callForTowing" Type="bit" Nullable="false" />
-    <Property Name="status" Type="bit" Nullable="false" />
+    <Property Name="status" Type="int" Nullable="false" />
     <Property Name="OperatorComment" Type="text" />
   </EntityType>
   <EntityType Name="image">

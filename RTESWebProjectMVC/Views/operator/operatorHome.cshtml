@@ -99,6 +99,18 @@
                         Sent Successfully !
                     </div>
                 </div>
+        
+                <div id="opsRoomNotif" class="successNotif" style="display:@ViewBag.showClosedReportOpsNotif">
+                    <div class="successNotifHeader">
+                        <b><i Style="font-size:15px;margin-right:5px;" class="glyphicon glyphicon-ok"></i>Notfication</b>
+                        <div onclick="hideClosedRepNotif()" class="x">x</div>
+                    </div>
+
+                    <br />
+                    <b>Report closed successfully!</b>
+                    <br />
+                </div>        
+        
                 <!--END notifications-->
 
                 <div class="mainWindow">
@@ -173,7 +185,8 @@
 
                                                     </td>
                                                     <td>
-                                                        @if(item.status==true)
+                                                        <!--status: 0: open, 1: finished towing - moving to appraising, 2: End appraising -> move to final stage-, 3:closed report-->
+                                                        @if(item.status!=3)
                                                         {
                                                             <span style="color:lawngreen;font-size:small">Open</span>
                                                         }
@@ -192,7 +205,7 @@
                                                         <ul style="list-style-type: none;">
                                                             <li class="dropdown" style="margin-left:-20px;padding-left:1px;">
                                                                 <a toolstyle="toolcssLeft" toolinfo="Menu" tooltip ng-click="$event.preventDefault();" class="dropdown-toggle" data-toggle="dropdown" href="#"><i Style="font-size:20px;" class="glyphicon glyphicon-option-horizontal"></i></a>
-                                                                <ul class="dropdown-menu pull-right" style="right:0;">
+                                                                <ul class="dropdown-menu pull-right" style="background-color:#4786BD;border:1px solid #74B2E8;right:0;">
                                                                     <li>@Ajax.ActionLink("View Details", "openReportDetails", "operator", new { id = item.reportID, @class = "button101" }, new AjaxOptions { UpdateTargetId = "reportDest" })</li>
                                                                     <li>@Ajax.ActionLink("Comment", "openCommentGui", "operator", new { id = item.reportID, @class = "button101" }, new AjaxOptions { UpdateTargetId = "reportDest" })</li>
                                                                 </ul>
@@ -289,7 +302,7 @@
                                                         <ul style="list-style-type: none;">
                                                             <li class="dropdown" style="margin-left:-20px;padding-left:1px;">
                                                                 <a toolstyle="toolcssLeft" toolinfo="Menu" tooltip ng-click="$event.preventDefault();" class="dropdown-toggle" data-toggle="dropdown" href="#"><i Style="font-size:15px;" class="glyphicon glyphicon-menu-hamburger"></i></a>
-                                                                <ul class="dropdown-menu pull-right" style="right:0;">
+                                                                <ul class="dropdown-menu pull-right" style="background-color:#4786BD;border:1px solid #74B2E8;right:0;">
                                                                     <li>@Ajax.ActionLink("Details", "openUserDetailsGui", "operator", new { id = item.id, @class = "button101" }, new AjaxOptions { UpdateTargetId = "msgDest" })</li>
                                                                     @if (item.role == "Operator")  // if operator - disable message send
                                                                     {
@@ -343,27 +356,3 @@
             </div><!--bootstrap col content div-->
           </div> <!--End Operator Page-->
     </div><!--Main container-->
-
-
-
-<!--JS functions-->
-<script type="text/javascript">
-
-    function closeViewOpNotif() {
-        $('#operatorNotification').hide();
-
-    }
-
-    function setRefreshes() {
-        $("#opsContain").show();
-        setInterval(function () { $('#opsContain').load('/operator/GetOperationsRoom'); }, 3000); // every 3 sec
-
-    }
-
-    function hideOperations() {
-        $("#opsContain").hide();
-    }
-
-</script>
-<!--END JS functions-->
-
