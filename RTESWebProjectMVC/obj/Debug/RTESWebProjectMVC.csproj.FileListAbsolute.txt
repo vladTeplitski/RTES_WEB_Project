@@ -181,3 +181,4 @@ D:\Coding\RTES_WEB_Project\RTESWebProjectMVC\bin\Microsoft.AspNet.Identity.Entit
 D:\Coding\RTES_WEB_Project\RTESWebProjectMVC\obj\Debug\RTESWebProjectMVC.csprojResolveAssemblyReference.cache
 D:\Coding\RTES_WEB_Project\RTESWebProjectMVC\obj\Debug\RTESWebProjectMVC.dll
 D:\Coding\RTES_WEB_Project\RTESWebProjectMVC\obj\Debug\RTESWebProjectMVC.pdb
+D:\Coding\RTES_WEB_Project\RTESWebProjectMVC\bin\Jmelosegui.Mvc.GoogleMap.dll

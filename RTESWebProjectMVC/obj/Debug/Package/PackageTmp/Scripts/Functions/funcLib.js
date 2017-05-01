@@ -1,8 +1,3 @@
-
-
-
-
-
 //Start JQuery
 $(document).ready(function () {
 
@@ -46,12 +41,16 @@ $(document).ready(function () {
 
 });
 
+
+//System loading control
 function loadControl() {
+    
     $(window).on('load', function () { $("#spinner").fadeOut('slow'); });
+    
 }
 
 
-//Start search Javascript
+//Start search Javascript//
 
 //operator - for users by ID
 function searchIdJs() {
@@ -130,4 +129,58 @@ function searchAllReportsByClientIdJs() {
     }
 }
 
-//END search Javascript
+//END search Javascript//
+
+
+//operator js functions
+var refresh;
+var flag1=0;
+function closeViewOpNotif() {
+    $('#operatorNotification').hide();
+
+}
+
+function setRefreshes() {
+    $("#opsContain").show();
+    flag = 1; // flag for: if the user if in operations room, interval should be activated
+    refresh = setInterval(function () { $('#opsContain').load('/operator/GetOperationsRoom'); }, 3000); // every 3 sec
+}
+function stopRefresh() {
+    clearInterval(refresh);
+}
+
+function hideOperations() {
+    $("#opsContain").hide();
+}
+function hideClosedRepNotif() {
+    $('#opsRoomNotif').hide();
+}
+function closeViewComment() {  //also used in operations room - auto refresh
+    $('#commentContainer').hide();
+    if(flag==1) //if the user if in operations room, interval should be activated
+    {
+        refresh = setInterval(function () { $('#opsContain').load('/operator/GetOperationsRoom'); }, 3000); // every 3 sec
+    }
+}
+function closeView3() {
+    $('#editUserContainer').hide();
+
+}
+function closeView() {
+    $('#messageContainer').hide();
+
+}
+function closeViewRep() {
+    $('#opRepDetailsContainer').hide();
+    if (flag == 1) //if the user if in operations room, interval should be activated
+    {
+        refresh = setInterval(function () { $('#opsContain').load('/operator/GetOperationsRoom'); }, 3000); // every 3 sec
+    }
+
+}
+function closeView2() {
+    $('#userDetailsContainer').hide();
+
+}
+
+//END operator js functions

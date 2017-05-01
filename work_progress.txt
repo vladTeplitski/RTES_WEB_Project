@@ -7,29 +7,29 @@ to do:
 
 V closed cases/open cases - db
 
-* keep user logged in - dont throw him out after x inutes.
+* keep user logged in - dont throw him out after x minutes.
 * remember user login info - keep him logged in
 
 * css late load - jquery problem - MOBILE
 
 Operator
 --------
-* operator cant send empty message - angular ?
-* change report status
+* operator cant send empty message / comment - angular ?
+V change report status
 V cant change settings to another operator
 
--build operator panel
-* refresh reports each (x seconds) - check project !
+V build operator panel
+V refresh reports each (x seconds) - check project !
 
 
 client
 ------
--remove settings
--add option t messages - delete messages - with icon
--reports - info button - partial view data to table
+V remove settings
+- add option to messages - delete messages - with icon
+- reports - info button - partial view data to table
 
-*clients messages - date order
-*if logged in user - on client controller  / security
+* clients messages - date order
+V if logged in user - on client controller  / security
 
 
 android

@@ -1,0 +1,236 @@
+﻿<div class="OperationsWindow" style="overflow:auto;">
+
+    <div id="userDetailsPanel" class="personalDetailsClass" style="margin:auto;margin-top:2px;width:92%;">
+        <i Style="font-size:23px;color:yellow" class="glyphicon glyphicon-transfer"></i>
+        <span style="margin-left:10px;">Operations Room</span>
+    </div><br />
+
+    <!--Reports slot-->
+    <div class="slot1">
+
+
+        <div id="userDetailsPanel" class="personalDetailsClass" style="margin:auto;margin-top:2px;width:92%;">
+            <i Style="font-size:23px;" class="glyphicon glyphicon-cloud-upload"></i>
+            <span style="margin-left:10px;">Open Reports</span>
+            <span class="tansView"><i Style="font-size:23px;" class="glyphicon glyphicon-arrow-right "></i></span>
+        </div><br />
+
+        <!--notif-->
+        <div id="reportNotif" class="NotifOps" style="display:@ViewBag.reportsOperationsNotif">
+            <b>No open reports.</b>
+        </div>
+
+
+        <table id="myTable5" class="table table - striped" style="display:@ViewBag.showSlot1; font-size:small;color:black;">
+            <tr>
+                <th>Report ID</th>
+                <th>Date</th>
+                <th>Hour</th>
+            </tr>
+
+            @{
+
+                if (ViewBag.reportsOperations != null)
+                {
+                    foreach (var item in ViewBag.reportsOperations)
+                    {
+
+                        <tr id="updatePannelAngular">
+                            <td>
+                                @item.reportID
+                            </td>
+                            <td>
+                                @item.date
+                            </td>
+                            <td>
+                                @item.hour
+                            </td>
+                            <td>
+                                @Ajax.ActionLink("i", "openReportDetails", "operator", new { id = item.reportID }, new AjaxOptions { UpdateTargetId = "reportDest2" }, new { @class = "btnOps3", onclick = "stopRefresh()" })
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr id="updatePannelAngular">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                }
+
+            }
+        </table>
+
+    </div>
+
+    <!--Towing slot-->
+    <div class="slot2">
+        
+        <div id="userDetailsPanel" class="personalDetailsClass" style="margin:auto;margin-top:2px;width:92%;">
+            <i Style="font-size:23px;" class="fa fa-truck"></i>
+            <span style="margin-left:10px;">Towing Stage</span>
+            <span class="tansView2"><i Style="font-size:23px;" class="glyphicon glyphicon-arrow-right "></i></span>
+        </div><br />
+
+        <div id="reportNotif" class="NotifOps" style="display:@ViewBag.towingEventsNotif">
+            <b>No towing events.</b>
+        </div>
+
+        <table id="myTable6" class="table table - striped" style="display:@ViewBag.showSlot2;font-size:small;color:black;">
+            <tr>
+                <th>Report ID</th>
+                <th>Hour</th>
+                <th>Location</th>
+            </tr>
+
+            @{
+
+                if (ViewBag.towingEvents != null)
+                {
+                    foreach (var item in ViewBag.towingEvents)
+                    {
+
+                        <tr id="updatePannelAngular">
+                            <td>
+                                @item.reportID
+                            </td>
+                            <td>
+                                @item.hour
+                            </td>
+                            <td>
+                                @item.location
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr id="updatePannelAngular">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                }
+
+            }
+        </table>
+
+
+    </div>
+
+
+    <!--Appraising slot-->
+    <div class="slot3">
+        
+        <div id="userDetailsPanel" class="personalDetailsClass" style="margin:auto;margin-top:2px;width:92%;">
+            <i Style="font-size:23px;" class="glyphicon glyphicon-stats"></i>
+            <span style="margin-left:10px;">Appraising Stage</span>
+            <span class="tansView3"><i Style="font-size:23px;" class="glyphicon glyphicon-arrow-right "></i></span>
+        </div><br />
+
+        <div id="reportNotif" class="NotifOps" style="display:@ViewBag.appraisingEventsNotif">
+            <b>No reports for appraising.</b>
+        </div>
+
+        <table id="myTable7" class="table table - striped" style="display:@ViewBag.showSlot3;font-size:small;color:black;">
+            <tr>
+                <th>Report ID</th>
+                <th>Date</th>
+            </tr>
+
+            @{
+
+                if (ViewBag.appraisingEvents != null)
+                {
+                    foreach (var item in ViewBag.appraisingEvents)
+                    {
+
+                        <tr id="updatePannelAngular">
+                            <td>
+                                @item.reportID
+                            </td>
+                            <td>
+                                @item.date
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr id="updatePannelAngular">
+                        <td></td>
+                        <td></td>
+                    </tr>
+                }
+
+            }
+        </table>
+
+
+    </div>
+
+
+    <!--Final stage slot-->
+    <div class="slot4">
+        <div id="userDetailsPanel" class="personalDetailsClass" style="margin:auto;margin-top:2px;width:92%;">
+            <i Style="font-size:23px;" class="glyphicon glyphicon-cloud-download"></i>
+            <span style="margin-left:10px;">Final Stage</span>
+            <span class="tansView4"><i Style="font-size:23px;" class="glyphicon glyphicon-arrow-down "></i></span>
+        </div><br />
+        
+        <div id="reportNotif" class="NotifOps" style="display:@ViewBag.finalStageEventsNotif">
+            <b>No reports in final stage.</b>
+        </div>
+
+        <table id="myTable8" class="table table - striped" style="display:@ViewBag.showSlot4;font-size:small;color:black;">
+            <tr>
+                <th>Report ID</th>
+                <th>Date</th>
+            </tr>
+
+            @{
+
+                if (ViewBag.finalStageEvents != null)
+                {
+                    foreach (var item in ViewBag.finalStageEvents)
+                    {
+
+                        <tr id="updatePannelAngular">
+                            <td>
+                                @item.reportID
+                            </td>
+                            <td>
+                                @item.date
+                            </td>
+                            <td >
+                                    @Ajax.ActionLink("Comment", "openCommentGui", "operator", new { id = item.reportID }, new AjaxOptions { UpdateTargetId = "reportDest2" }, new { @class = "btnOps", onclick = "stopRefresh()" })
+                                    @Html.ActionLink("Close", "closeCase", "operator", new { id = item.reportID } ,new { @class = "btnOps2" , onclick = "stopRefresh()" })
+                                   
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr id="updatePannelAngular">
+                        <td></td>
+                        <td></td>
+                    </tr>
+                }
+
+            }
+        </table>
+
+
+        
+
+    </div>
+
+    <!--Partial View-->
+    <div id="reportDest2">
+
+    </div>
+
+</div>

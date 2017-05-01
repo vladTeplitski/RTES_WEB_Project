@@ -284,26 +284,42 @@ myApp.controller('operatorController',['$scope',function ($scope) {
     $scope.oper1 = true;
     $scope.oper2 = true;
     $scope.oper3 = true;
-
-
+    
+    $scope.btnPanel = false;
+    $scope.btnPanel2 = true;
+    
     $scope.operatorClick = function (btn) {
         if (btn == 1) {
             $scope.oper0 = true;
-            $scope.oper1 = false;
+            $scope.oper1 = false;  
             $scope.oper2 = true;
             $scope.oper3 = true;
+
+            $scope.btnPanel2 = true;
+            $scope.btnPanel = false;  //show main btn panel
+            
+            
         }
         else if (btn == 2) {
             $scope.oper0 = true;
             $scope.oper1 = true;
             $scope.oper2 = false;
             $scope.oper3 = true;
+
+            $scope.btnPanel2 = true;
+            $scope.btnPanel = false; //show main btn panel
+            
+            
         }
         else if (btn == 3) {
             $scope.oper0 = true;
             $scope.oper1 = true;
             $scope.oper2 = true;
             $scope.oper3 = false;
+
+            $scope.btnPanel = true;
+            $scope.btnPanel2 = false; //show secondary - operations room btn panel
+            
         }
     }
 
@@ -312,7 +328,7 @@ myApp.controller('operatorController',['$scope',function ($scope) {
 
 //Emergency form controller
 myApp.controller('emergFormController', ['$scope', function ($scope) {
-                  
+
 
     $scope.myPersonalDetails = function () {
         $scope.personal = !$scope.personal;
@@ -340,6 +356,46 @@ myApp.controller('emergFormController', ['$scope', function ($scope) {
 
     $scope.onlyLetters = /^[a-zA-Z]+$/;
     $scope.onlyNumbers = /^[0-9]*$/;
+
+
+    //shai-20.04.2017
+
+    //call for towing button
+    $scope.callTowingFunc = function () {
+        $scope.callTowingSucceed = !$scope.callTowingSucceed;
+    }
+    // end call for towing button
+
+    //Upload documents button
+    $scope.showUploadDocWindow = function () {
+        $scope.UploadDocuments = !$scope.UploadDocuments;
+    }
+    $scope.closeView = function () {
+        $scope.UploadDocuments = false;
+    }
+    //End Upload documents button
+
+    //Upload Images button
+    $scope.showUploadImageWindow = function () {
+        $scope.UploadImages = !$scope.UploadImages;
+    }
+
+    $scope.closeViewImage = function () {
+        $scope.UploadImages = false;
+    }
+    //End Upload Images button
+
+
+    //angular.element(document.getElementById('remove')).on('click', function () {
+    //angular.element(document.getElementById('fileInput1')).val('');
+    //});
+
+    //$scope.clear = function () {
+
+    // angular.element(document.getElementById('fileInput1')).val('');
+    // }
+
+    //End shai-20.04.2017
 
 }]);
 

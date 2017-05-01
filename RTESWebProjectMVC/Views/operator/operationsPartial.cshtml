@@ -69,10 +69,24 @@
     <div class="slot2">
         
         <div id="userDetailsPanel" class="personalDetailsClass" style="margin:auto;margin-top:2px;width:92%;">
-            <i Style="font-size:23px;" class="fa fa-truck"></i>
-            <span style="margin-left:10px;">Towing Stage</span>
+            <i Style="font-size:23px;float:left;" class="fa fa-truck"></i>
+            <span style="margin-left:10px;float:left;">Towing Stage</span>
+
+            <!--Settings DropDown-->
+              <ul style="list-style-type: none;float:left;">
+                <li class="dropdown" style="padding-left:1px;">
+                    <a onclick="stopRefresh()" class="dropdown-toggle" data-toggle="dropdown" Style="margin-left:15px;" href="#"><i Style="color:#FFC600;font-size:20px;" class="glyphicon glyphicon-cog"></i></a>
+                    <ul onmouseenter="stopRefresh()" onmouseleave="returnRefreshLoc()" class="dropdown-menu" style="background-color:#4786BD;border:1px solid #74B2E8;right:0;">
+                        <li class="opt1" ng-click="$event.preventDefault();" style="">@Ajax.ActionLink("Drivers Tracking", "openDriversLocation", "operator", null, new AjaxOptions { UpdateTargetId = "reportDest2" }, new { onclick = "stopRefreshLoc()" })</li>
+                    </ul>
+                </li>
+            </ul>
+            
+
             <span class="tansView2"><i Style="font-size:23px;" class="glyphicon glyphicon-arrow-right "></i></span>
-        </div><br />
+        </div>
+        <br />
+        
 
         <div id="reportNotif" class="NotifOps" style="display:@ViewBag.towingEventsNotif">
             <b>No towing events.</b>

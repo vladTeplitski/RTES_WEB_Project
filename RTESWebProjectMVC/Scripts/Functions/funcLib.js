@@ -41,8 +41,12 @@ $(document).ready(function () {
 
 });
 
+
+//System loading control
 function loadControl() {
+    
     $(window).on('load', function () { $("#spinner").fadeOut('slow'); });
+    
 }
 
 
@@ -141,11 +145,27 @@ function setRefreshes() {
     flag = 1; // flag for: if the user if in operations room, interval should be activated
     refresh = setInterval(function () { $('#opsContain').load('/operator/GetOperationsRoom'); }, 3000); // every 3 sec
 }
-
-
 function stopRefresh() {
     clearInterval(refresh);
 }
+function returnRefresh() {
+        refresh = setInterval(function () { $('#opsContain').load('/operator/GetOperationsRoom'); }, 3000); // every 3 sec
+}
+
+//location dropdown refreshes
+var flagLoc = 0;
+function stopRefreshLoc() {
+    clearInterval(refresh);
+    flagLoc = 1;
+}
+function returnRefreshLoc() {
+    if (flagLoc != 1)
+    {
+        refresh = setInterval(function () { $('#opsContain').load('/operator/GetOperationsRoom'); }, 3000); // every 3 sec
+    }
+    
+}
+
 
 function hideOperations() {
     $("#opsContain").hide();
@@ -178,7 +198,99 @@ function closeViewRep() {
 }
 function closeView2() {
     $('#userDetailsContainer').hide();
-
+}
+function closeViewDriversLocation() {
+    $('#DriversLocationContainer').hide();
+    if (flag == 1) //if the user if in operations room, interval should be activated
+    {
+        refresh = setInterval(function () { $('#opsContain').load('/operator/GetOperationsRoom'); }, 3000); // every 3 sec
+    }
+    flagLoc = 0;
+}
+function closeViewShiftReg() {
+    $('#shiftRegContainer').hide();
+    if (flag == 1) //if the user if in operations room, interval should be activated
+    {
+        refresh = setInterval(function () { $('#opsContain').load('/operator/GetOperationsRoom'); }, 3000); // every 3 sec
+    }
+}
+function closeViewPhoneBook() {
+    $('#PhoneBookContainer').hide();
+    if (flag == 1) //if the user if in operations room, interval should be activated
+    {
+        refresh = setInterval(function () { $('#opsContain').load('/operator/GetOperationsRoom'); }, 3000); // every 3 sec
+    }
 }
 
+
 //END operator js functions
+
+//Location
+var x = document.getElementById("coordinatesContent");
+var y = document.getElementById("addressGps");
+var publicLatLng;
+var publicLat;
+var publicLng;
+
+
+function getLocation() {
+    navigator.geolocation.getCurrentPosition(function (pos) {
+        var lat = pos.coords.latitude;
+        var lng = pos.coords.longitude;
+        publicLatLng = lat + ", " + lng;
+        publicLat = lat;
+        publicLng = lng;
+
+        if (lat != null) {
+            document.getElementById("gpsIconOff").style.display = "none";
+            document.getElementById("gpsIconOn").style.display = "inline";
+            alert("Latitude: " + lat + " , Longitude: " + lng);
+            x.innerHTML = "Latitude: " + lat + "<br>Longitude: " + lng;
+
+        }
+    });
+}
+
+
+
+function initMap() {
+    getLocation();
+    var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 8,
+        center: { lat: publicLat, lng: publicLng }
+    });
+    var geocoder = new google.maps.Geocoder;
+    var infowindow = new google.maps.InfoWindow;
+    var x = document.getElementById('show');
+    //geocodeLatLng(geocoder, map, infowindow, x);
+    document.getElementById('submit').addEventListener('click', function () {
+        geocodeLatLng(geocoder, map, infowindow, x);
+    });
+}
+
+function geocodeLatLng(geocoder, map, infowindow, x) {
+    
+    var input = publicLatLng;
+    var latlngStr = input.split(',', 2);
+    var latlng = { lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1]) };
+    geocoder.geocode({ 'location': latlng }, function (results, status) {
+        if (status === 'OK') {
+            if (results[1]) {
+                map.setZoom(11);
+                var marker = new google.maps.Marker({
+                    position: latlng,
+                    map: map
+                });
+                document.getElementById('latlng').value = results[0].formatted_address;
+                y.innerHTML = results[0].formatted_address;
+                alert(results[0].formatted_address);
+                infowindow.setContent(results[0].formatted_address);
+                infowindow.open(map, marker);
+            } else {
+                window.alert('No results found');
+            }
+        } else {
+            window.alert('Geocoder failed due to: ' + status);
+        }
+    });
+}

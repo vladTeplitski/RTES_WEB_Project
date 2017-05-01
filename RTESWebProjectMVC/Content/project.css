@@ -130,22 +130,19 @@ slotEnd{
 }
 
 .tansView{
-    position:initial;
     margin-left:43%;
     color:lawngreen;
 }
 .tansView2{
-    position:initial;
-    margin-left:41%;
+    
+    margin-left:10%;
     color:lawngreen;
 }
 .tansView3{
-    position:initial;
     margin-left:25%;
     color:lawngreen;
 }
 .tansView4{
-    position:initial;
     margin-left:46%;
     color:#FE5050;
 }
@@ -855,26 +852,59 @@ margin-left:30%;
 .btnOps2:hover {background-color:#FF6D6D;}
 
 .btnOps3{
-    border:1px solid #F4E800;
-    background-color:#F4E800;
+    border:1px solid #5A95C9;
+    background-color:#5A95C9;
     border-radius:3px;
     width:80px;
     margin-left:2px;
     padding:2px;
-    padding-left:3px;
-    padding-right:3px;
+    padding-left:4px;
+    padding-right:4px;
     font-weight:900;
    
 
 }
-.btnOps3:hover {background-color:#F9EF3B;}
+.btnOps3:hover {background-color:#77B2E5;}
 
+.btnOps4{
+    border:1px solid #5A95C9;
+    background-color:#5A95C9;
+    border-radius:3px;
+    width:80px;
+    margin-top:7px;
+    margin-bottom:7px;
+    margin-left:2px;
+    padding:2px;
+    padding-left:4px;
+    padding-right:4px;
+    font-weight:900;
+   
+
+}
+.btnOps4:hover {background-color:#77B2E5;}
+
+.opMobileDeviceAlert{
+    display:none;
+}
 
 
 
 /*           Media query section           */
 
 @media (max-width:1100px){  /*Tablets, Wide tablets & small dektops*/
+
+   /*no operator on smartphones*/
+   .opButtonsCont1{
+       display:none;
+   }
+   .opMobileDeviceAlert{
+       font-size:x-small;
+       display:inline;
+   }
+   .mainWindow{
+       display:none;
+   }
+   /*END no operator on smartphones*/
 
 .deviceConfigsGui{
     left:5px;
@@ -915,6 +945,20 @@ margin-left:25%;
 
 
 @media (max-width: 767px) { /*Smartphones*/
+
+
+   /*no operator on smartphones*/
+   .opButtonsCont1{
+       display:none;
+   }
+   .opMobileDeviceAlert{
+       font-size:x-small;
+       display:inline;
+   }
+   .mainWindow{
+       display:none;
+   }
+   /*END no operator on smartphones*/
 
     #spinner{
         display:none;

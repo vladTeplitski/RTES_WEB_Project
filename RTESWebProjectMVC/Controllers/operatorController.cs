@@ -49,7 +49,7 @@ namespace RTESWebProjectMVC.Controllers
                     
                 }
 
-                    //End init comments
+                 //End init comments
                  ViewBag.showClosedReportOpsNotif = "none";
                  if (Session["commentNotifClose"] != null)
                  {
@@ -509,6 +509,103 @@ namespace RTESWebProjectMVC.Controllers
 
             return RedirectToAction("operatorHome", "operator");
         }//end closeCase
+
+        public ActionResult openDriversLocation()  // show Driver Locations list
+        {
+            //
+
+
+            ViewBag.showDriversLocationWindow = "Block";
+
+            if (Session["user"] != null)  //if logged in user
+            {
+
+                if (Request.IsAjaxRequest())  //validate ajax
+                {
+
+                    //using (var db = new Models.rtesEntities1())  //db
+                    //{
+                    
+                    //}
+
+                    return PartialView("driversLocation");  //using partial view
+                }
+                else
+                    return PartialView("driversLocation");
+
+            }
+            else
+            {
+                return RedirectToAction("Login", "web");  //if disconnected, redirect to login
+            }
+
+
+        }//end openDriversLocation
+
+        public ActionResult openShiftRegister()  // show shift registration window
+        {
+            //
+
+
+            ViewBag.showShiftRegWindow = "Block";
+
+            if (Session["user"] != null)  //if logged in user
+            {
+
+                if (Request.IsAjaxRequest())  //validate ajax
+                {
+
+                    //using (var db = new Models.rtesEntities1())  //db
+                    //{
+
+                    //}
+
+                    return PartialView("shiftRegPartial");  //using partial view
+                }
+                else
+                    return PartialView("shiftRegPartial");
+
+            }
+            else
+            {
+                return RedirectToAction("Login", "web");  //if disconnected, redirect to login
+            }
+
+
+        }//end shiftRegister
+
+        public ActionResult openPhoneBook()  // show phone book window
+        {
+            //
+
+
+            ViewBag.showPhoneWindow = "Block";
+
+            if (Session["user"] != null)  //if logged in user
+            {
+
+                if (Request.IsAjaxRequest())  //validate ajax
+                {
+
+                    //using (var db = new Models.rtesEntities1())  //db
+                    //{
+
+                    //}
+
+                    return PartialView("phoneBookPartial");  //using partial view
+                }
+                else
+                    return PartialView("phoneBookPartial");
+
+            }
+            else
+            {
+                return RedirectToAction("Login", "web");  //if disconnected, redirect to login
+            }
+
+
+        }//end openPhoneBook
+
     }
 
 }

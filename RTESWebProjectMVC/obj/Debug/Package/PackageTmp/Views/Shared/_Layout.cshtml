@@ -22,8 +22,9 @@
     
 </head>
 
-<body onload="loadControl()" class="bodyDesign" ng-app="myApp">
+<body onload="getLocation(); loadControl();" class="bodyDesign" ng-app="myApp">
     
+    <!--Loading animation-->
     <div id="spinner"></div>
     <div id="spinnerMobile"></div>
 
@@ -33,14 +34,17 @@
         <!--Start nav code  -->
         <nav class="navbar navbar-inverse" style="margin-bottom:1px;">
             
-            <div class="deviceConfigsGui">
-                <div toolstyle="toolcssBottom" toolinfo="GPS Status" tooltip Style="display:block;float:left;margin-right:15px;text-align:center;">
-                    <div>Gps</div>
-                    <div><i Style="color:#FF8787;font-size:15px" class="material-icons">gps_off</i></div>
-                    <div><i Style="display:none;color:#41FF53;font-size:15px" class="material-icons">gps_fixed</i></div>
-                </div>
-                @*<div Style="height:30px;border-right:3px solid #B1D607;margin-right:5px;float:left"></div>*@
-                
+            <!--Start Status Icons-->
+                <div class="deviceConfigsGui">
+
+                <!--GPS Status Icon-->
+                    <div toolstyle="toolcssBottom" toolinfo="GPS Status" tooltip Style="display:block;float:left;margin-right:15px;text-align:center;">
+                        <div>Gps</div>
+                        <div><i id="gpsIconOff" Style="color:#FF8787;font-size:15px" class="material-icons">gps_off</i></div>
+                        <div><i id="gpsIconOn" Style="display:none;color:#41FF53;font-size:15px" class="material-icons">gps_fixed</i></div>
+                    </div>
+               
+                <!--Device type Icon-->
                 <div toolstyle="toolcssBottom" toolinfo="Your device" tooltip Style="display:block;text-align:center;float:left">
                     <div>Device</div>
                     <div class="desktopRes"><i Style="color:#FFC600;font-size:15px;" class="material-icons">desktop_windows</i></div>
@@ -49,6 +53,7 @@
                 </div>
                 <div style="clear:both;border:none;height:0px;margin:0px"></div>
             </div>
+            <!--END Status Icons-->
 
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -59,36 +64,47 @@
                     </button>
                     <img style="padding-left:1px;cursor:default;" src="../Content/art/rtes_header.jpg" />
                 </div>
+
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
+
+                        <!--Navigation buttons-->
                         <li class="active aboutBtn" style="padding-left:10px;"><a toolstyle="toolcssBottom" toolinfo="Go to Home page" tooltip href="@Url.Action("Index","web")" data-placement="bottom">Home</a></li>
                         <li id="clientZoneBtn" class="active aboutBtn navBtnMy" Style="display:@ViewBag.clientZone"><a data-toggle="tooltip" title="Go to client page" data-placement="bottom" Style="background-color:#4E86B7" class="hoverMy" href="@Url.Action("client","client")"><i class="glyphicon glyphicon-triangle-right rotateNav"></i>Client CP</a></li>
                         <li id="opZoneBtn" class="active aboutBtn" Style="display:@ViewBag.operatorZone"><a data-toggle="tooltip" title="Go to operator page" data-placement="bottom" Style="background-color:#4E86B7" class="hoverMy" href="@Url.Action("operatorHome","operator")"><i class="glyphicon glyphicon-triangle-right rotateNav"></i>Operator Zone</a></li>
+                        
+                        <!--Information DropDown-->
                         <li class="dropdown" style="padding-left:10px;">
                             <a ng-click="$event.preventDefault();" class="dropdown-toggle" data-toggle="dropdown" href="#">Information <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
+                            <ul class="dropdown-menu" style="background-color:#4786BD;border:1px solid #74B2E8;">
                                 <li class="drop1" ng-click="$event.preventDefault();" style=""><a href="#">Emergency Phones</a></li>
                                 <li class="drop2" ng-click="$event.preventDefault();"><a href="#">Contact us</a></li>
                                 <li class="drop3" ng-click="$event.preventDefault();"><a href="#">About RTES group</a></li>
                             </ul>
                         </li>
-                    </ul>
+                    
+                    
+                </ul>
+
+
+                    <!--Social Icons-->
                     <span ng-click="socialFunc(1)" class="fa fa-linkedin-square hoveringIcon" style="font-size:xx-large;"></span>
                     <span ng-click="socialFunc(2)" class="fa fa-twitter social hoveringIcon" style="font-size:xx-large;"></span>
                     <span ng-click="socialFunc(3)" class="fa fa-facebook-official social hoveringIcon" style="font-size:xx-large;"></span>
 
                     <ul class="nav navbar-nav navbar-right">
 
-                        
+                        <!--Settings DropDown-->
                         <li class="dropdown" style="padding-left:1px;">
                             <a Style="display:@ViewBag.showOptionsBtn" ng-click="$event.preventDefault();" class="dropdown-toggle" data-toggle="dropdown" href="#"><i Style="font-size:20px;" class="glyphicon glyphicon-cog"></i><span class="caret"></span></a>
-                            <ul class="dropdown-menu" style="margin-top:-10px;border:1px solid #4E86B7; border-radius:3px;">
+                            <ul class="dropdown-menu" style="background-color:#4786BD;border:1px solid #74B2E8;margin-top:-10px;border-radius:3px;">
                                 <li class="opt1" ng-click="$event.preventDefault();" style=""><a href="#"><i Style="font-size:14px;margin-right:5px;" class="material-icons">build</i>Settings</a></li>
                                 <li class="opt2" ng-click="$event.preventDefault();"><a href="#"><i Style="font-size:14px;margin-right:5px;" class="material-icons">radio_button_unchecked</i>Option 2</a></li>
                                 <li class="opt3" ng-click="$event.preventDefault();"><a href="#"><i Style="font-size:14px;margin-right:5px;" class="material-icons">radio_button_unchecked</i>Option 3</a></li>
                             </ul>
                         </li>
 
+                        <!--Login / Logout-->
                         <li id="loginBtn"  style="display: @ViewBag.loginBtnDisp"><a class="hoverMy" href="@Url.Action("Login","web")"><span class="glyphicon glyphicon-log-in rotateNav"></span>Login</a></li>
                         <li id="logoutButton"  style="display: @ViewBag.logoutBtnDisp"><a class="hoverMy" href="@Url.Action("Logout","web")"><span class="glyphicon glyphicon-log-in rotateNav"></span>LogOut</a></li>
                     </ul>
@@ -112,7 +128,7 @@
                 @ViewBag.usernameLabel
             </div>
 
-            <div toolstyle="toolcssBottom" toolinfo="Insurance Company" tooltip runat="server" id="companyPanel" class="col-lg-3 col-lg-offset-0 col-md-5 col-md-offset-1 col-xs-8 col-xs-offset-2 userBox" style="display: @ViewBag.companyPanelDisp">
+            <div toolstyle="toolcssBottom" toolinfo="Insurance Company" tooltip id="companyPanel" class="col-lg-3 col-lg-offset-0 col-md-5 col-md-offset-1 col-xs-8 col-xs-offset-2 userBox" style="display: @ViewBag.companyPanelDisp">
                 <div style="display: inline; position: absolute; left: 8px;"><i Style="cursor:default" class="glyphicon glyphicon-list-alt hoveringIcon"></i></div>
                 @ViewBag.companyLabel
             </div>
@@ -293,6 +309,15 @@
             {{bottomText}}
             <div class="row" style="height:3px;background-color:#B1D607"></div>
         </div>
+
+        <div style="border:1px solid lightgreen;background-color:forestgreen;border-radius:3px;">
+
+            <p id="coordinatesContent"></p>
+
+        </div>
+        
+
+
     </footer>
 
 
@@ -309,3 +334,25 @@
     @RenderSection("scripts", required: false)
 </body>
 </html>
+
+
+<!--Location Services onload-->
+<script>
+
+
+
+function getLocation() {
+    navigator.geolocation.getCurrentPosition(function (pos) {
+        var lat = pos.coords.latitude;
+        var lng = pos.coords.longitude;
+        if (lat != null) {
+            document.getElementById("gpsIconOff").style.display = "none";
+            document.getElementById("gpsIconOn").style.display = "inline";
+            alert("Latitude: " + lat + " , Longitude: " + lng);
+            
+        }
+        else {
+        }
+    });
+}
+</script>
