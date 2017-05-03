@@ -80,7 +80,7 @@ button::-moz-focus-inner {/*remove dotted border on firefox 46+ */
     border:1px solid #FAFAFA;
     border-bottom:7px solid #5A95C9;
     border-radius:4px;
-    height:420px;
+    height:auto;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .slot2{
@@ -93,7 +93,7 @@ button::-moz-focus-inner {/*remove dotted border on firefox 46+ */
     border:1px solid #FAFAFA;
     border-bottom:7px solid #5A95C9;
     border-radius:4px;
-    height:400px;
+    height:auto;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .slot3{
@@ -106,7 +106,7 @@ button::-moz-focus-inner {/*remove dotted border on firefox 46+ */
     border:1px solid #FAFAFA;
     border-bottom:7px solid #5A95C9;
     border-radius:4px;
-    height:300px;
+    height:auto;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .slot4{
@@ -119,7 +119,7 @@ button::-moz-focus-inner {/*remove dotted border on firefox 46+ */
     border:1px solid #FAFAFA;
     border-bottom:7px solid #5A95C9;
     border-radius:4px;
-    height:250px;
+    height:auto;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 slotEnd{
@@ -130,22 +130,19 @@ slotEnd{
 }
 
 .tansView{
-    position:initial;
     margin-left:43%;
     color:lawngreen;
 }
 .tansView2{
-    position:initial;
-    margin-left:41%;
+    
+    margin-left:10%;
     color:lawngreen;
 }
 .tansView3{
-    position:initial;
     margin-left:25%;
     color:lawngreen;
 }
 .tansView4{
-    position:initial;
     margin-left:46%;
     color:#FE5050;
 }
@@ -425,6 +422,14 @@ color:#F3F3F3;
 }
 
 .mainWindow{
+    margin-top:25px;
+    margin-bottom:40px;
+    padding:4px;
+    border-left:2px solid #C9EC25;
+    border-radius:5px;
+    
+}
+.mainWindow2{
     margin-top:25px;
     margin-bottom:40px;
     padding:4px;
@@ -869,12 +874,45 @@ margin-left:30%;
 }
 .btnOps3:hover {background-color:#77B2E5;}
 
+.btnOps4{
+    border:1px solid #5A95C9;
+    background-color:#5A95C9;
+    border-radius:3px;
+    width:80px;
+    margin-top:7px;
+    margin-bottom:7px;
+    margin-left:2px;
+    padding:2px;
+    padding-left:4px;
+    padding-right:4px;
+    font-weight:900;
+   
+
+}
+.btnOps4:hover {background-color:#77B2E5;}
+
+.opMobileDeviceAlert{
+    display:none;
+}
 
 
 
 /*           Media query section           */
 
 @media (max-width:1100px){  /*Tablets, Wide tablets & small dektops*/
+
+   /*no operator on smartphones*/
+   .opButtonsCont1{
+       display:none;
+   }
+   .opMobileDeviceAlert{
+       font-size:x-small;
+       display:inline;
+   }
+   .mainWindow2{
+       display:none;
+   }
+   /*END no operator on smartphones*/
 
 .deviceConfigsGui{
     left:5px;
@@ -915,6 +953,20 @@ margin-left:25%;
 
 
 @media (max-width: 767px) { /*Smartphones*/
+
+
+   /*no operator on smartphones*/
+   .opButtonsCont1{
+       display:none;
+   }
+   .opMobileDeviceAlert{
+       font-size:x-small;
+       display:inline;
+   }
+   .mainWindow2{
+       display:none;
+   }
+   /*END no operator on smartphones*/
 
     #spinner{
         display:none;

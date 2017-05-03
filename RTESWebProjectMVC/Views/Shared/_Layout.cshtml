@@ -25,7 +25,7 @@
 
 </head>
 
-<body onload="loadControl();" class="bodyDesign" ng-app="myApp">
+<body onload="loadControl(); initMap();" class="bodyDesign" ng-app="myApp">
     
     <!--Loading animation-->
     <div id="spinner"></div>
@@ -76,6 +76,9 @@
                         <li id="clientZoneBtn" class="active aboutBtn navBtnMy" Style="display:@ViewBag.clientZone"><a data-toggle="tooltip" title="Go to client page" data-placement="bottom" Style="background-color:#4E86B7" class="hoverMy" href="@Url.Action("client","client")"><i class="glyphicon glyphicon-triangle-right rotateNav"></i>Client CP</a></li>
                         <li id="opZoneBtn" class="active aboutBtn" Style="display:@ViewBag.operatorZone"><a data-toggle="tooltip" title="Go to operator page" data-placement="bottom" Style="background-color:#4E86B7" class="hoverMy" href="@Url.Action("operatorHome","operator")"><i class="glyphicon glyphicon-triangle-right rotateNav"></i>Operator Zone</a></li>
                         
+                        <li id="driverZoneBtn" class="active aboutBtn" Style="display:@ViewBag.driverZone"><a data-toggle="tooltip" title="Go to Driver App" data-placement="bottom" Style="background-color:#4E86B7" class="hoverMy" href="@Url.Action("truckDriverHome","truckDriver")"><i class="glyphicon glyphicon-triangle-right rotateNav"></i>Driver App</a></li>
+                        <li id="appraiserZoneBtn" class="active aboutBtn" Style="display:@ViewBag.appraiserZone"><a data-toggle="tooltip" title="Go to appraiser page" data-placement="bottom" Style="background-color:#4E86B7" class="hoverMy" href="@Url.Action("appraiserHome","appraiser")"><i class="glyphicon glyphicon-triangle-right rotateNav"></i>Appraiser Portal</a></li>
+
                         <!--Information DropDown-->
                         <li class="dropdown" style="padding-left:10px;">
                             <a ng-click="$event.preventDefault();" class="dropdown-toggle" data-toggle="dropdown" href="#">Information <span class="caret"></span></a>

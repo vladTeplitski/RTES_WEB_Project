@@ -134,9 +134,9 @@ namespace RTESWebProjectMVC.Controllers
 
         public ActionResult showReportInfo(int id)  //Show client report info window
         {
-            imageData[] img;
+            imageData[] img= new imageData[5]; ;
             ViewBag.showClientRepInfo = "Block";  //show client report info panel
-
+           // imageData img = new imageData();
             if (Request.IsAjaxRequest())
             {
 
@@ -158,18 +158,20 @@ namespace RTESWebProjectMVC.Controllers
                         {
                             //generate message number - key in db
 
-                             img = new imageData[5];
-
-
-
-                            int i = 0;
-                             foreach (var item in imageDb)
-                            {
-                                img[i].picture = item.picture;
-                                i++;
-                             }
-
-
+                            
+                            var imagesList = db.image.Where(i => i.id == x).ToList();
+                            for (int i = 0; i < imagesList.Count; i++) {
+                                img[i]=new imageData();
+                                img[i].picture = imagesList[i].picture;
+                            }
+                                     
+                            //int i = 0;
+                             //foreach(image item in imageDb)
+                            //{
+                            //    img[i] = new imageData();
+                             //   img[i].picture = item.picture;
+                             //   i++;
+                            // }
 
                            // Dictionary<int, string> postImages = new Dictionary<int, string>();
                            // foreach (var item in imageDb)
@@ -178,8 +180,7 @@ namespace RTESWebProjectMVC.Controllers
                              //   postImages.Add(item.imgid, Convert.ToBase64String(buffer));
                             //}
                             //ViewBag.Images = postImages;
-
-
+                           // img.
                         }
 
 
@@ -193,7 +194,7 @@ namespace RTESWebProjectMVC.Controllers
 
                 }
 
-                return PartialView("reportInfoPartial");  //using partial view
+                return PartialView("reportInfoPartial", img);  //using partial view  
             }
             else
                 return PartialView("reportInfoPartial");
@@ -263,9 +264,7 @@ namespace RTESWebProjectMVC.Controllers
         [HttpPost]
         public ActionResult send_Details_Func(string location,string towDest,string witName,string witPhone, string comments,string myName,string driverID,string driverPhone,string driverLicenseNum,string address1,string carOwnerName,string carOwnerId,string carLicensePlate,string carCategory,string carModel,string color1,string year,string compName,string policyNum,string agentName,string agentPhone, bool checkBox1 = false)
         {
-
-            int checkStat;
-            
+            int checkStat;   
             using (var db = new Models.rtesEntities1())
             {
                 userName = Session["user"].ToString();  //read the user name
@@ -275,14 +274,12 @@ namespace RTESWebProjectMVC.Controllers
                 x = Convert.ToInt32(maxId.ToString());//convert type of string to int
                 x = x + 1;
 
-                if(checkBox1 == true)
+                if (checkBox1 == true)// Checks if need towing service
                 {
-                    checkStat = 0;   // move to towing status
+                    checkStat = 0;//move to truck driver table
                 }
-                else
-                {
-                    checkStat = 1;  // move to appraiser
-                }
+                else checkStat = 1;//move to appraiser table
+
 
                 DateTime now1 = DateTime.Now;
                 db.emergencyReport.Add(new Models.emergencyReport() {

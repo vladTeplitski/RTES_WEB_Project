@@ -18,19 +18,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="cases">
-      <EntityTypeMapping TypeName="rtesModel.case">
-        <MappingFragment StoreEntitySet="case">
-          <ScalarProperty Name="caseId" ColumnName="caseId" />
-          <ScalarProperty Name="caseAbstractUserId" ColumnName="caseAbstractUserId" />
-          <ScalarProperty Name="operatorComments" ColumnName="operatorComments" />
-          <ScalarProperty Name="statusCase" ColumnName="statusCase" />
-          <ScalarProperty Name="creation_date" ColumnName="creation_date" />
-          <ScalarProperty Name="creation_time" ColumnName="creation_time" />
-          <ScalarProperty Name="needsTowingService" ColumnName="needsTowingService" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="clients">
       <EntityTypeMapping TypeName="rtesModel.client">
         <MappingFragment StoreEntitySet="client">
@@ -112,6 +99,40 @@
           <ScalarProperty Name="imgid" ColumnName="imgid" />
           <ScalarProperty Name="picture" ColumnName="picture" />
           <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="estimationForms">
+      <EntityTypeMapping TypeName="rtesModel.estimationForm">
+        <MappingFragment StoreEntitySet="estimationForm">
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="estimationText" ColumnName="estimationText" />
+          <ScalarProperty Name="appraiserUserID" ColumnName="appraiserUserID" />
+          <ScalarProperty Name="reportID" ColumnName="reportID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="truckDrivers">
+      <EntityTypeMapping TypeName="rtesModel.truckDriver">
+        <MappingFragment StoreEntitySet="truckDriver">
+          <ScalarProperty Name="TasksCounter" ColumnName="TasksCounter" />
+          <ScalarProperty Name="location" ColumnName="location" />
+          <ScalarProperty Name="workStatus" ColumnName="workStatus" />
+          <ScalarProperty Name="availability" ColumnName="availability" />
+          <ScalarProperty Name="cargo" ColumnName="cargo" />
+          <ScalarProperty Name="abstractUserId" ColumnName="abstractUserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="towingReportForms">
+      <EntityTypeMapping TypeName="rtesModel.towingReportForm">
+        <MappingFragment StoreEntitySet="towingReportForm">
+          <ScalarProperty Name="comments" ColumnName="comments" />
+          <ScalarProperty Name="towingDestinationLocation" ColumnName="towingDestinationLocation" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="arrivalTime" ColumnName="arrivalTime" />
+          <ScalarProperty Name="driverUserID" ColumnName="driverUserID" />
+          <ScalarProperty Name="reportID" ColumnName="reportID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

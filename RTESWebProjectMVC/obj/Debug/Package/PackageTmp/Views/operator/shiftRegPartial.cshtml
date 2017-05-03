@@ -1,0 +1,17 @@
+﻿<!--Start Shift Registration window-->
+<div id="mainShiftRegContainer">
+    <div id="shiftRegContainer" class="infoTableClass opRepLabelJs" style="display:@ViewBag.showShiftRegWindow;width:400px;margin-left:-200px;">
+        <div class="reportLabelHead">
+            <b><i Style="color:#45CCE0;font-size:20px;margin-right:5px;" class="glyphicon glyphicon-saved"></i>Shift Registration</b>
+            <div onclick="closeViewShiftReg()" class="x">x</div>
+        </div>
+        <br />
+        Confirm shift registration:
+
+        
+        <button type="submit" id="sendMessage" value="sendMessage" class="btn btn-default" Style="margin-left:4px;margin-top:2px;padding:1px;" onclick="location.href='@Url.Action("shiftRegister", "operator")'"><i Style="font-size:18px;margin-right:4px;" class="glyphicon glyphicon-ok"></i>Confirm</button>
+
+        <br /><br />
+    </div>
+</div>
+<!--END Shift Registration window-->

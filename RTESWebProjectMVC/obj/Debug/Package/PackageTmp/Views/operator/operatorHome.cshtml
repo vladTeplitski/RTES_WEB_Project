@@ -6,7 +6,7 @@
     <div class="row bodyRow operatorWindow">
         
         <!-- Start Operator buttons -->
-            <div ng-hide="btnPanel" class="col-lg-3 col-lg-offset-1 col-md-4 col-md-offset-0 col-xs-8 col-xs-offset-2">
+            <div ng-hide="btnPanel" class="col-lg-3 col-lg-offset-1 col-md-4 col-md-offset-0 col-xs-8 col-xs-offset-2 opButtonsCont1">
                 <div class="getStartedBox" style="position: relative; margin-top: 8px; margin-bottom: 8px;">
 
                     <div ng-click="operatorClick(3)" onclick="setRefreshes()" class="btnInfo">
@@ -44,11 +44,12 @@
 
                 <div onclick="" class="btnInfo" style="margin-left:5px;width:180px;float:left">
                     <div style="margin-right:3px;display: inline;"><i class="glyphicon glyphicon-th-list"></i></div>
-                    Phone Book
+                    @Ajax.ActionLink("Staff Phone Book", "openPhoneBook", "operator", null, new AjaxOptions { UpdateTargetId = "opsContainPartials" })
                 </div>
+
                 <div onclick="" class="btnInfo" style="margin-left:5px;width:210px;float:left">
                     <div style="margin-right:3px;display: inline;"><i class="glyphicon glyphicon-ok-circle"></i></div>
-                    Shift Registration
+                    @Ajax.ActionLink("Shift Registration", "openShiftRegister", "operator", null, new AjaxOptions { UpdateTargetId = "opsContainPartials" })
                 </div>
                 <div style="clear:both;border:none;height:0px;margin:0px"></div>
 
@@ -67,8 +68,13 @@
             </div>
         </div>
 
+        <div id="opsContainPartials"></div>
+
+
 
         <!--END Operations Room -->
+
+    
 
             <div class="col-lg-6 col-lg-offset-1 col-md-6 col-md-offset-1 col-xs-12">
 
@@ -84,6 +90,11 @@
                     </div>
                 </div>
 
+                <div style="margin: 3px auto; text-align: center; padding: 8px 0px">
+                    <div class="opMobileDeviceAlert alert alert-danger panelDanger" ID="pnlMessage">
+                        Operator panel is not available on your device.
+                    </div>
+                </div>
 
                 <div class="notifBox msgANorifGui" style="display:@ViewBag.showMsgANorifGui">
                     <div class="infoFormHeader">
@@ -113,15 +124,15 @@
         
                 <!--END notifications-->
 
-                <div class="mainWindow">
+                <div class="mainWindow2">
 
                     <!--Start Operator home window-->
                     <div ng-hide="oper0" class="textContainer">
                         Welcome to operator portal.
+                        <!--Tests-->
 
-
-
-                    </div>
+                        <!--End Tests-->
+                        </div>
 
                      <!--notification - Changes by operator-->
                     <div id="operatorNotification" class="successNotif" style="display:@ViewBag.showOpNotif">

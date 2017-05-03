@@ -225,9 +225,8 @@ function closeViewPhoneBook() {
 
 //END operator js functions
 
-//Location
-var x = document.getElementById("coordinatesContent");
-var y = document.getElementById("addressGps");
+//Location Functions
+
 var publicLatLng;
 var publicLat;
 var publicLng;
@@ -244,48 +243,31 @@ function getLocation() {
         if (lat != null) {
             document.getElementById("gpsIconOff").style.display = "none";
             document.getElementById("gpsIconOn").style.display = "inline";
-            alert("Latitude: " + lat + " , Longitude: " + lng);
-            x.innerHTML = "Latitude: " + lat + "<br>Longitude: " + lng;
 
         }
     });
 }
 
-
-
 function initMap() {
     getLocation();
-    var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 8,
-        center: { lat: publicLat, lng: publicLng }
-    });
     var geocoder = new google.maps.Geocoder;
     var infowindow = new google.maps.InfoWindow;
-    var x = document.getElementById('show');
-    //geocodeLatLng(geocoder, map, infowindow, x);
     document.getElementById('submit').addEventListener('click', function () {
-        geocodeLatLng(geocoder, map, infowindow, x);
+        geocodeLatLng(geocoder, infowindow);
     });
 }
 
-function geocodeLatLng(geocoder, map, infowindow, x) {
-    
+function geocodeLatLng(geocoder, infowindow) {
+
     var input = publicLatLng;
     var latlngStr = input.split(',', 2);
     var latlng = { lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1]) };
     geocoder.geocode({ 'location': latlng }, function (results, status) {
         if (status === 'OK') {
             if (results[1]) {
-                map.setZoom(11);
-                var marker = new google.maps.Marker({
-                    position: latlng,
-                    map: map
-                });
-                document.getElementById('latlng').value = results[0].formatted_address;
-                y.innerHTML = results[0].formatted_address;
+                document.getElementById('location1').value = results[0].formatted_address;
                 alert(results[0].formatted_address);
                 infowindow.setContent(results[0].formatted_address);
-                infowindow.open(map, marker);
             } else {
                 window.alert('No results found');
             }
@@ -294,3 +276,5 @@ function geocodeLatLng(geocoder, map, infowindow, x) {
         }
     });
 }
+
+//END Location Functions

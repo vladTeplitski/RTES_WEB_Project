@@ -1,5 +1,4 @@
-﻿
-<div class="row row-centered " style="margin-bottom: 25px;" ng-controller="emergFormController" id="shay">
+﻿<div class="row row-centered " style="margin-bottom: 25px;" ng-controller="emergFormController" id="shay">
 
 
     <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-xs-12 col-centered " style="background: rgba(78, 134, 183, 0.8); border-left: 5px solid #C9EC25; border-right: 5px solid #C9EC25; border-radius: 5px; margin-top: 5px; margin-bottom: 5px; padding-bottom: 5px;">
@@ -120,17 +119,23 @@
                         <label for="text" ID="hour">Hour: @ViewBag.hour1</label>
                     </div>
 
-                    <div class="rowForm1">
+                  
+
+
+                    <div class="rowForm1">                 
+         
+                         <input id="submit" type="button" value="Click To Get Location" class="emergFormBtn">
+                        <br />
                         <label for="text" ID="location">Location:</label>
                         <div class="formContainer" style="margin-left:2px;">
-                            <input ng-model="location1" class="form-control" name="location" id="location1" type="text" style="width:80%;display:inline;color:black;" placeholder="Please enter your location">
-                            <span ng-hide="!location1.length" Style="color:#057B28;padding-left:5px;position:relative;display:inline;" class="glyphicon glyphicon-ok form-control-feedback"></span>
-                            <span ng-show="!location1.length" Style="color:#FFC600;padding-left:5px;position:relative;display:inline;" class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
+                            <input ng-model="location1" class="form-control" name="location" id="location1" type="text" style="width:80%;display:inline;color:black;cursor:default;"  placeholder="Please enter your location" >
+                            <!--<span ng-hide="!location1.length" Style="color:#057B28;padding-left:5px;position:relative;display:inline;" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                            <span ng-show="!location1.length" Style="color:#FFC600;padding-left:5px;position:relative;display:inline;" class="glyphicon glyphicon-warning-sign form-control-feedback"></span>-->
                         </div>
 
                         <label for="text">Towing destination:</label>
 
-                        <br />
+                        
                         <div class="formContainer" style="margin-left:2px;">
                             <input class="form-control" name="towDest" ng-model="towDest" type="text" id="towDest" style="width:80%;display: inline;color:black;" placeholder="Enter Towing Destination" TextMode="SingleLine">
                             <span ng-hide="!towDest.length" Style="color:#057B28;padding-left:5px;position:relative;display:inline;" class="glyphicon glyphicon-ok form-control-feedback"></span>
@@ -436,6 +441,9 @@
                     </div>
                 End window for images upload -->
 
+    
+
+
                 <div class="emergFormBtn">
                     <i Style="font-size:20px;" class="fa fa-truck" ng-show="!callTowingSucceed"></i>
                     <i Style="font-size:18px;" class="glyphicon glyphicon-ok" ng-show="callTowingSucceed"></i>
@@ -443,10 +451,13 @@
                 </div>
 
                 <br />
-                <Button type="submit" Text="Submit" ng-disabled="myForm.$invalid" OnClick="location.href='@Url.Action("send_Details_Func", "client")'" class="btn btn-default" style="margin-left:41%;">Submit</Button>
+                <Button type="submit" id="newRep" Text="Submit" ng-disabled="myForm.$invalid" OnClick="location.href='@Url.Action("send_Details_Func", "client")'" class="btn btn-default" style="margin-left:41%;">Submit</Button>
         }
 
-    </div>
+   </div>
 
 </div>
 <!--end main new emergency report-->
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8jxvHszW9AW7xdcB7Ds-f5PPIRGfhmHw&callback=initMap">
+</script>

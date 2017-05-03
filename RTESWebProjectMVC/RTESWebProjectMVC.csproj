@@ -167,9 +167,11 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\appraiserController.cs" />
     <Compile Include="Controllers\baseController.cs" />
     <Compile Include="Controllers\clientController.cs" />
     <Compile Include="Controllers\operatorController.cs" />
+    <Compile Include="Controllers\truckDriverController.cs" />
     <Compile Include="Controllers\webController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -177,13 +179,13 @@
     <Compile Include="Models\abstract_user.cs">
       <DependentUpon>rtesEntities1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\case.cs">
-      <DependentUpon>rtesEntities1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\client.cs">
       <DependentUpon>rtesEntities1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\emergencyReport.cs">
+      <DependentUpon>rtesEntities1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\estimationForm.cs">
       <DependentUpon>rtesEntities1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\image.cs">
@@ -210,6 +212,12 @@
     </Compile>
     <Compile Include="Models\selectedInfo.cs" />
     <Compile Include="Models\third_party.cs">
+      <DependentUpon>rtesEntities1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\towingReportForm.cs">
+      <DependentUpon>rtesEntities1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\truckDriver.cs">
       <DependentUpon>rtesEntities1.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -302,6 +310,8 @@
     <Content Include="Views\operator\driversLocation.cshtml" />
     <Content Include="Views\operator\phoneBookPartial.cshtml" />
     <Content Include="Views\operator\shiftRegPartial.cshtml" />
+    <Content Include="Views\appraiser\appraiserHome.cshtml" />
+    <Content Include="Views\truckDriver\truckDriverHome.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

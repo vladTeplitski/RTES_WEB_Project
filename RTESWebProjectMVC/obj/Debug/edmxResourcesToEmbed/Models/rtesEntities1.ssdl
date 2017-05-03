@@ -16,18 +16,6 @@
     <Property Name="company" Type="varchar" MaxLength="50" />
     <Property Name="userPhoneNumber" Type="varchar" MaxLength="50" />
   </EntityType>
-  <EntityType Name="case">
-    <Key>
-      <PropertyRef Name="caseId" />
-    </Key>
-    <Property Name="caseId" Type="int" Nullable="false" />
-    <Property Name="caseAbstractUserId" Type="int" />
-    <Property Name="operatorComments" Type="text" />
-    <Property Name="statusCase" Type="tinyint" />
-    <Property Name="creation_date" Type="varchar" MaxLength="50" />
-    <Property Name="creation_time" Type="varchar" MaxLength="50" />
-    <Property Name="needsTowingService" Type="tinyint" />
-  </EntityType>
   <EntityType Name="client">
     <Key>
       <PropertyRef Name="abstractUserId" />
@@ -65,8 +53,17 @@
     <Property Name="accident_witness_phone" Type="varchar" MaxLength="50" />
     <Property Name="comments" Type="text" />
     <Property Name="callForTowing" Type="bit" Nullable="false" />
-    <Property Name="status" Type="int" Nullable="false" />
+    <Property Name="status" Type="int" />
     <Property Name="OperatorComment" Type="text" />
+  </EntityType>
+  <EntityType Name="estimationForm">
+    <Key>
+      <PropertyRef Name="reportID" />
+    </Key>
+    <Property Name="reportID" Type="int" Nullable="false" />
+    <Property Name="appraiserUserID" Type="int" />
+    <Property Name="estimationText" Type="text" />
+    <Property Name="date" Type="text" />
   </EntityType>
   <EntityType Name="image">
     <Key>
@@ -107,6 +104,28 @@
     <Property Name="insuranceAgentPhone" Type="varchar" MaxLength="50" />
     <Property Name="yearOfManufacture" Type="bigint" />
   </EntityType>
+  <EntityType Name="towingReportForm">
+    <Key>
+      <PropertyRef Name="reportID" />
+    </Key>
+    <Property Name="reportID" Type="int" Nullable="false" />
+    <Property Name="driverUserID" Type="int" />
+    <Property Name="arrivalTime" Type="text" />
+    <Property Name="date" Type="text" />
+    <Property Name="towingDestinationLocation" Type="text" />
+    <Property Name="comments" Type="text" />
+  </EntityType>
+  <EntityType Name="truckDriver">
+    <Key>
+      <PropertyRef Name="abstractUserId" />
+    </Key>
+    <Property Name="abstractUserId" Type="int" Nullable="false" />
+    <Property Name="cargo" Type="int" />
+    <Property Name="availability" Type="bit" />
+    <Property Name="workStatus" Type="bit" />
+    <Property Name="location" Type="text" />
+    <Property Name="TasksCounter" Type="int" />
+  </EntityType>
   <Association Name="FK_client_client">
     <End Role="client" Type="Self.client" Multiplicity="1" />
     <End Role="client1" Type="Self.client" Multiplicity="0..1" />
@@ -121,12 +140,14 @@
   </Association>
   <EntityContainer Name="rtesModelStoreContainer">
     <EntitySet Name="abstract_user" EntityType="Self.abstract_user" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="case" EntityType="Self.case" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="client" EntityType="Self.client" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="emergencyReport" EntityType="Self.emergencyReport" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="estimationForm" EntityType="Self.estimationForm" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="image" EntityType="Self.image" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="messagesTable" EntityType="Self.messagesTable" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="third_party" EntityType="Self.third_party" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="towingReportForm" EntityType="Self.towingReportForm" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="truckDriver" EntityType="Self.truckDriver" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_client_client" Association="Self.FK_client_client">
       <End Role="client" EntitySet="client" />
       <End Role="client1" EntitySet="client" />

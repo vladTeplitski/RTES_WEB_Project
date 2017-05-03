@@ -16,18 +16,6 @@
     <Property Name="company" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="userPhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
   </EntityType>
-  <EntityType Name="case">
-    <Key>
-      <PropertyRef Name="caseId" />
-    </Key>
-    <Property Name="caseId" Type="Int32" Nullable="false" />
-    <Property Name="caseAbstractUserId" Type="Int32" />
-    <Property Name="operatorComments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="statusCase" Type="Byte" />
-    <Property Name="creation_date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="creation_time" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="needsTowingService" Type="Byte" />
-  </EntityType>
   <EntityType Name="client">
     <Key>
       <PropertyRef Name="abstractUserId" />
@@ -67,7 +55,7 @@
     <Property Name="accident_witness_phone" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
     <Property Name="comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="callForTowing" Type="Boolean" Nullable="false" />
-    <Property Name="status" Type="Int32" Nullable="false" />
+    <Property Name="status" Type="Int32" />
     <Property Name="OperatorComment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="messagesTable">
@@ -115,7 +103,6 @@
   </Association>
   <EntityContainer Name="rtesEntities1" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="abstract_user" EntityType="Self.abstract_user" />
-    <EntitySet Name="cases" EntityType="Self.case" />
     <EntitySet Name="clients" EntityType="Self.client" />
     <EntitySet Name="emergencyReports" EntityType="Self.emergencyReport" />
     <EntitySet Name="messagesTables" EntityType="Self.messagesTable" />
@@ -125,6 +112,9 @@
       <End Role="client1" EntitySet="clients" />
     </AssociationSet>
     <EntitySet Name="images" EntityType="rtesModel.image" />
+    <EntitySet Name="estimationForms" EntityType="rtesModel.estimationForm" />
+    <EntitySet Name="truckDrivers" EntityType="rtesModel.truckDriver" />
+    <EntitySet Name="towingReportForms" EntityType="rtesModel.towingReportForm" />
   </EntityContainer>
   <EntityType Name="image">
     <Key>
@@ -133,5 +123,36 @@
     <Property Name="id" Type="Int32" />
     <Property Name="picture" Type="Binary" MaxLength="Max" FixedLength="false" />
     <Property Name="imgid" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="estimationForm">
+    <Key>
+      <PropertyRef Name="reportID" />
+    </Key>
+    <Property Name="reportID" Type="Int32" Nullable="false" />
+    <Property Name="appraiserUserID" Type="Int32" />
+    <Property Name="estimationText" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="date" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="truckDriver">
+    <Key>
+      <PropertyRef Name="abstractUserId" />
+    </Key>
+    <Property Name="abstractUserId" Type="Int32" Nullable="false" />
+    <Property Name="cargo" Type="Int32" />
+    <Property Name="availability" Type="Boolean" />
+    <Property Name="workStatus" Type="Boolean" />
+    <Property Name="location" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="TasksCounter" Type="Int32" />
+  </EntityType>
+  <EntityType Name="towingReportForm">
+    <Key>
+      <PropertyRef Name="reportID" />
+    </Key>
+    <Property Name="reportID" Type="Int32" Nullable="false" />
+    <Property Name="driverUserID" Type="Int32" />
+    <Property Name="arrivalTime" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="date" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="towingDestinationLocation" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
   </EntityType>
 </Schema>

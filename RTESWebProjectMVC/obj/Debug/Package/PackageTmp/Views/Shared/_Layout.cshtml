@@ -1,4 +1,5 @@
-﻿<!-- Default static layout -->
+﻿@using Jmelosegui.Mvc.GoogleMap
+<!-- Default static layout -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,9 +21,11 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <!---->
     
+
+
 </head>
 
-<body onload="getLocation(); loadControl();" class="bodyDesign" ng-app="myApp">
+<body onload="loadControl(); initMap();" class="bodyDesign" ng-app="myApp">
     
     <!--Loading animation-->
     <div id="spinner"></div>
@@ -73,6 +76,9 @@
                         <li id="clientZoneBtn" class="active aboutBtn navBtnMy" Style="display:@ViewBag.clientZone"><a data-toggle="tooltip" title="Go to client page" data-placement="bottom" Style="background-color:#4E86B7" class="hoverMy" href="@Url.Action("client","client")"><i class="glyphicon glyphicon-triangle-right rotateNav"></i>Client CP</a></li>
                         <li id="opZoneBtn" class="active aboutBtn" Style="display:@ViewBag.operatorZone"><a data-toggle="tooltip" title="Go to operator page" data-placement="bottom" Style="background-color:#4E86B7" class="hoverMy" href="@Url.Action("operatorHome","operator")"><i class="glyphicon glyphicon-triangle-right rotateNav"></i>Operator Zone</a></li>
                         
+                        <li id="driverZoneBtn" class="active aboutBtn" Style="display:@ViewBag.driverZone"><a data-toggle="tooltip" title="Go to Driver App" data-placement="bottom" Style="background-color:#4E86B7" class="hoverMy" href="@Url.Action("truckDriverHome","truckDriver")"><i class="glyphicon glyphicon-triangle-right rotateNav"></i>Driver App</a></li>
+                        <li id="appraiserZoneBtn" class="active aboutBtn" Style="display:@ViewBag.appraiserZone"><a data-toggle="tooltip" title="Go to appraiser page" data-placement="bottom" Style="background-color:#4E86B7" class="hoverMy" href="@Url.Action("appraiserHome","appraiser")"><i class="glyphicon glyphicon-triangle-right rotateNav"></i>Appraiser Portal</a></li>
+
                         <!--Information DropDown-->
                         <li class="dropdown" style="padding-left:10px;">
                             <a ng-click="$event.preventDefault();" class="dropdown-toggle" data-toggle="dropdown" href="#">Information <span class="caret"></span></a>
@@ -310,12 +316,6 @@
             <div class="row" style="height:3px;background-color:#B1D607"></div>
         </div>
 
-        <div style="border:1px solid lightgreen;background-color:forestgreen;border-radius:3px;">
-
-            <p id="coordinatesContent"></p>
-
-        </div>
-        
 
 
     </footer>
@@ -326,33 +326,23 @@
     @Scripts.Render("~/bundles/bootstrap") <!-- include bootstrap scripts -->
     @Scripts.Render("~/bundles/angular") <!-- include angular files -->
     @Scripts.Render("~/bundles/app") <!-- include application scripts -->
-    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+
+
+
 
     <!--Json files-->
     <script src="../json/infoTexts.json"></script>
 
+
+
+
+
     @RenderSection("scripts", required: false)
+
+
+
+
 </body>
 </html>
 
 
-<!--Location Services onload-->
-<script>
-
-
-
-function getLocation() {
-    navigator.geolocation.getCurrentPosition(function (pos) {
-        var lat = pos.coords.latitude;
-        var lng = pos.coords.longitude;
-        if (lat != null) {
-            document.getElementById("gpsIconOff").style.display = "none";
-            document.getElementById("gpsIconOn").style.display = "inline";
-            alert("Latitude: " + lat + " , Longitude: " + lng);
-            
-        }
-        else {
-        }
-    });
-}
-</script>

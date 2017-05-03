@@ -10,7 +10,7 @@ namespace RTESWebProjectMVC.Controllers
     public class operatorController : baseController
     {
         // GET: operator
-        public ActionResult operatorHome(string searchString)
+        public ActionResult operatorHome()
         {
             string userName;
             int userId;

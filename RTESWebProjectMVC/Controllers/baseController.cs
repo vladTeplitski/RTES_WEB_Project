@@ -28,6 +28,9 @@ namespace RTESWebProjectMVC.Controllers
             //init
             ViewBag.clientZone = "none";
             ViewBag.operatorZone = "none";
+            ViewBag.driverZone = "none";
+            ViewBag.appraiserZone = "none";
+
 
             //check session for logged in user
 
@@ -87,6 +90,16 @@ namespace RTESWebProjectMVC.Controllers
                     else if (user.role == "Operator")
                     {
                         ViewBag.operatorZone = "inline";
+                        ViewBag.showOptionsBtn = "block";   //show options button
+                    }
+                    else if (user.role == "Driver")
+                    {
+                        ViewBag.driverZone = "inline";
+                        ViewBag.showOptionsBtn = "block";   //show options button
+                    }
+                    else if (user.role == "Appraiser")
+                    {
+                        ViewBag.appraiserZone = "inline";
                         ViewBag.showOptionsBtn = "block";   //show options button
                     }
 

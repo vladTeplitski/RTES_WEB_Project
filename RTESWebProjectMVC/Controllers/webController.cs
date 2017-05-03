@@ -54,11 +54,18 @@ namespace RTESWebProjectMVC.Controllers
                     if (user.role == "Operator")
                     {
                         return RedirectToAction("operatorHome", "operator");
-                        
                     }
                     else if (user.role == "Client")
                     {
                         return RedirectToAction("client", "client");
+                    }
+                    else if (user.role == "Driver")
+                    {
+                        return RedirectToAction("truckDriverHome", "truckDriver");
+                    }
+                    else if (user.role == "Appraiser")
+                    {
+                        return RedirectToAction("appraiserHome", "appraiser");
                     }
                     else
                     {
