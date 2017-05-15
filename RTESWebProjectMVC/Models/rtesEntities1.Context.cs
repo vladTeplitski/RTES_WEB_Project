@@ -34,5 +34,6 @@ namespace RTESWebProjectMVC.Models
         public virtual DbSet<estimationForm> estimationForm { get; set; }
         public virtual DbSet<truckDriver> truckDriver { get; set; }
         public virtual DbSet<towingReportForm> towingReportForm { get; set; }
+        public virtual DbSet<taskList> taskList { get; set; }
     }
 }

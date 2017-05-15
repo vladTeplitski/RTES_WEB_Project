@@ -115,6 +115,8 @@
     <EntitySetMapping Name="truckDrivers">
       <EntityTypeMapping TypeName="rtesModel.truckDriver">
         <MappingFragment StoreEntitySet="truckDriver">
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
           <ScalarProperty Name="TasksCounter" ColumnName="TasksCounter" />
           <ScalarProperty Name="location" ColumnName="location" />
           <ScalarProperty Name="workStatus" ColumnName="workStatus" />
@@ -133,6 +135,16 @@
           <ScalarProperty Name="arrivalTime" ColumnName="arrivalTime" />
           <ScalarProperty Name="driverUserID" ColumnName="driverUserID" />
           <ScalarProperty Name="reportID" ColumnName="reportID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="taskLists">
+      <EntityTypeMapping TypeName="rtesModel.taskList">
+        <MappingFragment StoreEntitySet="taskList">
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="taskId" ColumnName="taskId" />
+          <ScalarProperty Name="reportId" ColumnName="reportId" />
+          <ScalarProperty Name="truckDriverId" ColumnName="truckDriverId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

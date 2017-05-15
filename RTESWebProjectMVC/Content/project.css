@@ -481,8 +481,42 @@ color:#F3F3F3;
     border-bottom:2px solid #B1D607;
     border-radius: 15px;
     text-align:center;
-    width:80%;
+    width:90%;
     margin:auto;
+    margin-bottom:20px;
+}
+
+.deleteMes{
+
+    background-color:#4E86B7;
+    margin:auto;
+    border:2px solid green;
+    width:60%;
+    height:50%;
+}
+
+div.gallery {
+    
+    margin: 5px;
+    margin-left:95px;
+    border: 2px solid #ccc;
+    float: left;
+    width: 180px;
+
+}
+
+div.gallery:hover {
+    border: 3px solid #B1D607;
+}
+
+div.gallery img {
+    width: 100%;
+    height: auto;
+}
+
+div.desc {
+    padding: 15px;
+    text-align: center;
 }
 
 .driverDetails .form-control{
@@ -815,10 +849,15 @@ border:1px solid #BDE30F;
 }
 
 .labelUploadButt{
-margin-left:30%;
+margin-left:110px;
+display:block;
 }
 
-/*26.4*/
+.labelUploadButt1{
+margin-left:125px;
+display:block;
+}
+
 .NotifOps{
     display:none;
     width:60%;
@@ -895,6 +934,32 @@ margin-left:30%;
     display:none;
 }
 
+.fieldReport{
+display:inline;
+color:black;
+}
+
+#year{
+margin-left:31px;
+color:black;
+}
+#fieldReport1,#fieldReport2,#location1{
+width:80%;
+display:inline;
+color:black;
+}
+
+.xclose{
+color:black;
+cursor:pointer;
+margin-left:95%;
+background-color:#C6EF0B;
+width:5%;
+border-radius: 12px;
+padding:4px;
+display:inline;
+}
+
 
 
 /*           Media query section           */
@@ -940,8 +1005,11 @@ margin-left:30%;
     overflow-y:scroll;
 }
 
-.labelUploadButt{
-margin-left:25%;
+.labelUploadButt {
+margin-left:145px;
+}
+.labelUploadButt1 {
+margin-left:155px;
 }
 
 
@@ -971,6 +1039,28 @@ margin-left:25%;
     #spinner{
         display:none;
     }
+
+    #fieldReport1,#fieldReport2,#location1{
+width:90%;
+display:inline;
+color:black;
+}
+
+    #year {
+        margin-left:11px;
+    }
+
+
+.formContainer{
+    width:100%;
+    margin:auto;
+    border-radius:5px;
+}
+
+.xclose{
+    margin-left:90%;
+    margin-top:10%;
+}
 
     .deviceConfigsGui{
     top:4px;
@@ -1114,9 +1204,33 @@ margin-left:25%;
     font-size:small;
     }
 
+
+.smallWindowUpload{
+    margin-left:5px;
+}
+.UploadWindow1{
+    width:90%;
+}
+
+
 .labelUploadButt{
-    margin-left:-15%;
+    margin-left:22px;
     }
+
+.labelUploadButt1 {
+margin-left:50px;
+}
+
+div.gallery {
+    
+    margin: 5px;
+    margin-left:45px;
+    border: 2px solid #ccc;
+    float: left;
+    width: 180px;
+
+}
+
 
     .UploadBtn{
        font-size:small;

@@ -399,3 +399,21 @@ myApp.controller('emergFormController', ['$scope', function ($scope) {
 
 }]);
 
+
+//truck driver app controller
+
+myApp.controller('truckDriverController', ['$scope', function ($scope) {
+
+
+    $scope.truck0 = false;
+    $scope.truck1 = true;
+
+    $scope.truckDriverClick = function (btn) {
+        if (btn == 1) {
+            $scope.truck0 = true;
+            $scope.truck1 = false;
+
+        }
+    }
+
+}]);

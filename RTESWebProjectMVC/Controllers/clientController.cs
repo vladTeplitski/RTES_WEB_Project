@@ -33,6 +33,15 @@ namespace RTESWebProjectMVC.Controllers
 
 
 
+                //div of message delete
+                ViewBag.messageDelete = "none";
+
+
+                if (TempData["delete"] != null)
+                {
+                    ViewBag.messageDelete = "block";
+                    TempData["delete"] = null;
+                }
                 //Build client page
 
                 using (var db = new Models.rtesEntities1())
@@ -134,7 +143,8 @@ namespace RTESWebProjectMVC.Controllers
 
         public ActionResult showReportInfo(int id)  //Show client report info window
         {
-            imageData[] img= new imageData[5]; ;
+
+            imageData[] img= new imageData[5]; 
             ViewBag.showClientRepInfo = "Block";  //show client report info panel
            // imageData img = new imageData();
             if (Request.IsAjaxRequest())
@@ -142,7 +152,7 @@ namespace RTESWebProjectMVC.Controllers
 
                 using (var db = new Models.rtesEntities1())
                 {
-                    // int x = Int32.Parse(id.ToString());
+                  
                     int x = id;
                     var reportsDb = db.emergencyReport.Where(i => i.reportID == x).ToList();
                     var thirdPartyDb = db.third_party.Where(i => i.emergencyReportId == x).ToList();
@@ -200,6 +210,7 @@ namespace RTESWebProjectMVC.Controllers
                 return PartialView("reportInfoPartial");
 
         }//end showReportInfo function
+
 
 
         public void messagesFromDB(int userId)  //show the client messages
@@ -262,7 +273,7 @@ namespace RTESWebProjectMVC.Controllers
 
         //create new report in db
         [HttpPost]
-        public ActionResult send_Details_Func(string location,string towDest,string witName,string witPhone, string comments,string myName,string driverID,string driverPhone,string driverLicenseNum,string address1,string carOwnerName,string carOwnerId,string carLicensePlate,string carCategory,string carModel,string color1,string year,string compName,string policyNum,string agentName,string agentPhone, bool checkBox1 = false)
+        public ActionResult send_Details_Func(string location,int lat,int lng,string towDest,string witName,string witPhone, string comments,string myName,string driverID,string driverPhone,string driverLicenseNum,string address1,string carOwnerName,string carOwnerId,string carLicensePlate,string carCategory,string carModel,string color1,string year,string compName,string policyNum,string agentName,string agentPhone, bool checkBox1 = false)
         {
             int checkStat;   
             using (var db = new Models.rtesEntities1())
@@ -276,6 +287,7 @@ namespace RTESWebProjectMVC.Controllers
 
                 if (checkBox1 == true)// Checks if need towing service
                 {
+                    findDriver(lat,lng);//find the tow truck driver for this report
                     checkStat = 0;//move to truck driver table
                 }
                 else checkStat = 1;//move to appraiser table
@@ -513,7 +525,47 @@ namespace RTESWebProjectMVC.Controllers
             return RedirectToAction("client", "client");
         }
         //end create new report in db
-       
+
+         //Algorithem
+        public void findDriver(int lat, int lng)
+        {
+            
+            int i;   
+            using (var db = new Models.rtesEntities1())
+            {
+                //gets all the drivers that working now
+                var driver = db.truckDriver.Where(t => t.workStatus == true).ToList();
+
+              // var  list = from v in db.truckDriver
+                //           join e in db.taskList on v.abstractUserId equals e.truckDriverId
+                //           where v.workStatus==true && v.TasksCounter<3
+                //           select new truckDriverList { driverId=v.abstractUserId,lan=v.Latitude ,lng= v.Longitude, tasksCount= v.TasksCounter };
+                //select v.abstractUserId).Distinct().ToList();
+               
+              
+                for (i=0;i< driver.Count; i++)
+                {
+                  
+                }
+            }
+        }
+
+
+        public ActionResult deleteMessages(int messageNum)
+        {
+            using (var db = new Models.rtesEntities1())
+            {
+                var deleteMessage = db.messagesTable.Where(i => i.msgNum == messageNum).FirstOrDefault();
+                db.messagesTable.Remove(deleteMessage);
+                db.SaveChanges();
+            }
+            TempData["delete"] = 1;
+            return RedirectToAction("client", "client");
+        }
+
+
+
+
 
     }
 

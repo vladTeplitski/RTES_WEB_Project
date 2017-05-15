@@ -415,7 +415,7 @@ namespace RTESWebProjectMVC.Controllers
                 //status: 0: open, 1: finished towing - moving to appraising, 2: End appraising -> move to final stage
 
                 //update reports list
-                var reports = db.emergencyReport.Where(t => t.status == 0 || t.status == 1 || t.status == 2).OrderByDescending(t => t.date).ThenBy(t => t.hour).ToList(); ;
+                var reports = db.emergencyReport.Where(t => t.status == 0 || t.status == 1 || t.status == 2).OrderByDescending(t => t.date).ThenBy(t => t.hour).ToList();
                     
 
                 if (reports.Any())

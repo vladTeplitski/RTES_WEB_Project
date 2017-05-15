@@ -277,4 +277,79 @@ function geocodeLatLng(geocoder, infowindow) {
     });
 }
 
+var address = "Shmu'el Salant St 16-18, Petah Tikva, Israel";   //TEST
+
+function addressToLocation() {
+
+    var geocoder = new google.maps.Geocoder();
+    geocoder.geocode(
+		{
+		    address: address
+		},
+		function (results, status) {
+
+		    var resultLocations = [];
+
+		    if (status == google.maps.GeocoderStatus.OK) {
+		        if (results) {
+		            var numOfResults = results.length;
+		            for (var i = 0; i < numOfResults; i++) {
+		                var result = results[i];
+
+		                document.getElementById('lat').value = result.geometry.location.lat();
+		                resultLocations.push(
+							{
+							    text: result.formatted_address,
+							    addressStr: result.formatted_address,
+							    location: result.geometry.location
+							}
+						);
+		            };
+		        }
+		    } else if (status == google.maps.GeocoderStatus.ZERO_RESULTS) {
+		        // address not found
+		        alert("address not found");
+		    }
+
+		}
+	);
+
+}
+
+
+
 //END Location Functions
+
+
+// Truck Driver functions
+var counter = 0;
+
+function driverAppSetRefreshes() {
+    $("#tasksContain").show();
+    truckFlag = 1;
+    
+    
+    refreshTasks = setInterval(function () { $('#tasksContain').load('/truckDriver/GetTasksList'); }, 5000); // every 5 sec
+    intervalGetLatLng = setInterval(function () { updateDriverLatLng(); }, 7000); // every 7 sec
+}
+
+function updateDriverLatLng() {
+    
+    getLocation();
+
+    document.getElementById("testingLoc").innerHTML = counter + "__   lat: " + publicLat + "___   lng: " + publicLng;
+    
+
+    $.ajax({
+        url: '/truckDriver/getCoordinates',
+        type: 'POST',
+        data: { latForm:publicLat, lngForm:publicLng},
+        success: function (data) {
+            alert("Data invoked");
+        },
+        error: function () {
+            alert("error");
+        }
+    });
+
+}

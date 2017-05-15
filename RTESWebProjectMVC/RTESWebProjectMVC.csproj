@@ -210,7 +210,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>rtesEntities1.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\selectedInfo.cs" />
+    <Compile Include="Models\taskList.cs">
+      <DependentUpon>rtesEntities1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tasksModel.cs" />
     <Compile Include="Models\third_party.cs">
       <DependentUpon>rtesEntities1.tt</DependentUpon>
     </Compile>
@@ -220,6 +223,7 @@
     <Compile Include="Models\truckDriver.cs">
       <DependentUpon>rtesEntities1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\truckDriverList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -312,6 +316,7 @@
     <Content Include="Views\operator\shiftRegPartial.cshtml" />
     <Content Include="Views\appraiser\appraiserHome.cshtml" />
     <Content Include="Views\truckDriver\truckDriverHome.cshtml" />
+    <Content Include="Views\truckDriver\tasksGuiPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

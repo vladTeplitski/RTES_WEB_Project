@@ -87,6 +87,15 @@
           <Property Name="content" Type="text" />
           <Property Name="date" Type="varchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="taskList">
+          <Key>
+            <PropertyRef Name="taskId" />
+          </Key>
+          <Property Name="truckDriverId" Type="int" />
+          <Property Name="reportId" Type="int" />
+          <Property Name="taskId" Type="int" Nullable="false" />
+          <Property Name="status" Type="int" />
+        </EntityType>
         <EntityType Name="third_party">
           <Key>
             <PropertyRef Name="emergencyReportId" />
@@ -130,6 +139,8 @@
           <Property Name="workStatus" Type="bit" />
           <Property Name="location" Type="text" />
           <Property Name="TasksCounter" Type="int" />
+          <Property Name="Latitude" Type="varchar(max)" />
+          <Property Name="Longitude" Type="varchar(max)" />
         </EntityType>
         <Association Name="FK_client_client">
           <End Role="client" Type="Self.client" Multiplicity="1" />
@@ -150,6 +161,7 @@
           <EntitySet Name="estimationForm" EntityType="Self.estimationForm" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="image" EntityType="Self.image" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="messagesTable" EntityType="Self.messagesTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="taskList" EntityType="Self.taskList" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="third_party" EntityType="Self.third_party" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="towingReportForm" EntityType="Self.towingReportForm" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="truckDriver" EntityType="Self.truckDriver" Schema="dbo" store:Type="Tables" />
@@ -277,6 +289,7 @@
           <EntitySet Name="estimationForms" EntityType="rtesModel.estimationForm" />
           <EntitySet Name="truckDrivers" EntityType="rtesModel.truckDriver" />
           <EntitySet Name="towingReportForms" EntityType="rtesModel.towingReportForm" />
+          <EntitySet Name="taskLists" EntityType="rtesModel.taskList" />
         </EntityContainer>
         <EntityType Name="image">
           <Key>
@@ -305,6 +318,8 @@
           <Property Name="workStatus" Type="Boolean" />
           <Property Name="location" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="TasksCounter" Type="Int32" />
+          <Property Name="Latitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Longitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="towingReportForm">
           <Key>
@@ -316,6 +331,15 @@
           <Property Name="date" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="towingDestinationLocation" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="taskList">
+          <Key>
+            <PropertyRef Name="taskId" />
+          </Key>
+          <Property Name="truckDriverId" Type="Int32" />
+          <Property Name="reportId" Type="Int32" />
+          <Property Name="taskId" Type="Int32" Nullable="false" />
+          <Property Name="status" Type="Int32" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -437,6 +461,8 @@
           <EntitySetMapping Name="truckDrivers">
             <EntityTypeMapping TypeName="rtesModel.truckDriver">
               <MappingFragment StoreEntitySet="truckDriver">
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
                 <ScalarProperty Name="TasksCounter" ColumnName="TasksCounter" />
                 <ScalarProperty Name="location" ColumnName="location" />
                 <ScalarProperty Name="workStatus" ColumnName="workStatus" />
@@ -455,6 +481,16 @@
                 <ScalarProperty Name="arrivalTime" ColumnName="arrivalTime" />
                 <ScalarProperty Name="driverUserID" ColumnName="driverUserID" />
                 <ScalarProperty Name="reportID" ColumnName="reportID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="taskLists">
+            <EntityTypeMapping TypeName="rtesModel.taskList">
+              <MappingFragment StoreEntitySet="taskList">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="taskId" ColumnName="taskId" />
+                <ScalarProperty Name="reportId" ColumnName="reportId" />
+                <ScalarProperty Name="truckDriverId" ColumnName="truckDriverId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

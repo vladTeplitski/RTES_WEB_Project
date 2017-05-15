@@ -82,6 +82,15 @@
     <Property Name="content" Type="text" />
     <Property Name="date" Type="varchar" MaxLength="50" />
   </EntityType>
+  <EntityType Name="taskList">
+    <Key>
+      <PropertyRef Name="taskId" />
+    </Key>
+    <Property Name="truckDriverId" Type="int" />
+    <Property Name="reportId" Type="int" />
+    <Property Name="taskId" Type="int" Nullable="false" />
+    <Property Name="status" Type="int" />
+  </EntityType>
   <EntityType Name="third_party">
     <Key>
       <PropertyRef Name="emergencyReportId" />
@@ -125,6 +134,8 @@
     <Property Name="workStatus" Type="bit" />
     <Property Name="location" Type="text" />
     <Property Name="TasksCounter" Type="int" />
+    <Property Name="Latitude" Type="varchar(max)" />
+    <Property Name="Longitude" Type="varchar(max)" />
   </EntityType>
   <Association Name="FK_client_client">
     <End Role="client" Type="Self.client" Multiplicity="1" />
@@ -145,6 +156,7 @@
     <EntitySet Name="estimationForm" EntityType="Self.estimationForm" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="image" EntityType="Self.image" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="messagesTable" EntityType="Self.messagesTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="taskList" EntityType="Self.taskList" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="third_party" EntityType="Self.third_party" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="towingReportForm" EntityType="Self.towingReportForm" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="truckDriver" EntityType="Self.truckDriver" Schema="dbo" store:Type="Tables" />

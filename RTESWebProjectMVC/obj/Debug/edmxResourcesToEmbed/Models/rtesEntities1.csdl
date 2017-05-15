@@ -115,6 +115,7 @@
     <EntitySet Name="estimationForms" EntityType="rtesModel.estimationForm" />
     <EntitySet Name="truckDrivers" EntityType="rtesModel.truckDriver" />
     <EntitySet Name="towingReportForms" EntityType="rtesModel.towingReportForm" />
+    <EntitySet Name="taskLists" EntityType="rtesModel.taskList" />
   </EntityContainer>
   <EntityType Name="image">
     <Key>
@@ -143,6 +144,8 @@
     <Property Name="workStatus" Type="Boolean" />
     <Property Name="location" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="TasksCounter" Type="Int32" />
+    <Property Name="Latitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Longitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="towingReportForm">
     <Key>
@@ -154,5 +157,14 @@
     <Property Name="date" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="towingDestinationLocation" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="taskList">
+    <Key>
+      <PropertyRef Name="taskId" />
+    </Key>
+    <Property Name="truckDriverId" Type="Int32" />
+    <Property Name="reportId" Type="Int32" />
+    <Property Name="taskId" Type="Int32" Nullable="false" />
+    <Property Name="status" Type="Int32" />
   </EntityType>
 </Schema>

@@ -12,15 +12,11 @@ namespace RTESWebProjectMVC.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class truckDriver
+    public partial class taskList
     {
-        public int abstractUserId { get; set; }
-        public Nullable<int> cargo { get; set; }
-        public Nullable<bool> availability { get; set; }
-        public Nullable<bool> workStatus { get; set; }
-        public string location { get; set; }
-        public Nullable<int> TasksCounter { get; set; }
-        public string Latitude { get; set; }
-        public string Longitude { get; set; }
+        public Nullable<int> truckDriverId { get; set; }
+        public Nullable<int> reportId { get; set; }
+        public int taskId { get; set; }
+        public Nullable<int> status { get; set; }
     }
 }
