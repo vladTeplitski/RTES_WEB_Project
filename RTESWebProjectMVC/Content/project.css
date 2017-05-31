@@ -646,9 +646,9 @@ label{
     display:none;
     position:fixed;
     left:50%;
-    top:15%;
-    margin-left:-165px;
-    width:330px;
+    top:5%;
+    margin-left:-200px;
+    width:400px;
     height:auto;
     padding:4px;
     border:1px solid #86B2D8;
@@ -658,6 +658,7 @@ label{
     color:white;
     font-size:small;
     z-index:200;
+    
 }
 
 
@@ -959,6 +960,18 @@ border-radius: 12px;
 padding:4px;
 display:inline;
 }
+
+/* 15.5 new classes - VLAD*/
+
+.clockCss{
+    position:absolute;
+    right:5px;
+    top:100px;
+}
+
+
+
+/* END 15.5 */
 
 
 

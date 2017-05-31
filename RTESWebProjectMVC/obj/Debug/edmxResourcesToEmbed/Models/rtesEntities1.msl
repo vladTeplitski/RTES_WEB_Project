@@ -44,6 +44,8 @@
     <EntitySetMapping Name="emergencyReports">
       <EntityTypeMapping TypeName="rtesModel.emergencyReport">
         <MappingFragment StoreEntitySet="emergencyReport">
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
           <ScalarProperty Name="OperatorComment" ColumnName="OperatorComment" />
           <ScalarProperty Name="status" ColumnName="status" />
           <ScalarProperty Name="reportID" ColumnName="reportID" />
@@ -115,6 +117,9 @@
     <EntitySetMapping Name="truckDrivers">
       <EntityTypeMapping TypeName="rtesModel.truckDriver">
         <MappingFragment StoreEntitySet="truckDriver">
+          <ScalarProperty Name="priority3" ColumnName="priority3" />
+          <ScalarProperty Name="priority2" ColumnName="priority2" />
+          <ScalarProperty Name="priority1" ColumnName="priority1" />
           <ScalarProperty Name="Longitude" ColumnName="Longitude" />
           <ScalarProperty Name="Latitude" ColumnName="Latitude" />
           <ScalarProperty Name="TasksCounter" ColumnName="TasksCounter" />

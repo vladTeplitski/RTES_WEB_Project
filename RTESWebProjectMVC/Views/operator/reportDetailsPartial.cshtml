@@ -1,19 +1,326 @@
 ﻿<!--Start User Details window-->
 <div id="mainOpRepDetailsContainer">
-    <div id="opRepDetailsContainer" class="infoTableClass opRepLabelJs" style="display:@ViewBag.showOpRepDetailsWindow">
-        <div class="reportLabelHead">
+    <div id="opRepDetailsContainer" class="infoTableClass opRepLabelJs" style="display:@ViewBag.showOpRepDetailsWindow;height:90%;">
+        <div class="reportLabelHead" style="height:30px;">
             <b><i Style="font-size:15px;margin-right:5px;" class="glyphicon glyphicon-th"></i>Report Details</b>
             <div onclick="closeViewRep()" class="x">x</div>
         </div>
 
-        <div class="tableContPartial">
-
             @ViewBag.opRepDetails
-            <table id="myTable" class="table table - striped tablePartial" style="font-size:small;">
+            <div class="tableContPartial" style="height:90%;overflow-y:auto;">
+                <table id="myTable" class="table table - striped tablePartial" style="font-size:small;">
 
-                
-            </table>
-        </div>
+                    @{
+
+                        if (ViewBag.operReportsDB != null)
+                        {
+                            foreach (var item in ViewBag.operReportsDB)
+                            {
+
+                                <tr id="updatePannelAngular" style="background-color:#5C91BF;">
+                                    <td>
+                                        Report ID:
+                                    </td>
+                                    <td>
+                                        @item.reportID
+                                    </td>
+                                </tr>
+                                <tr id="updatePannelAngular" style="background-color:#6DA0CD;">
+                                    <td>
+                                        Client ID:
+                                    </td>
+                                    <td>
+                                        @item.clientAbstractUserId
+                                    </td>
+                                </tr>
+                                <tr id="updatePannelAngular" style="background-color:#5C91BF;">
+                                    <td>
+                                        Date:
+                                    </td>
+                                    <td>
+                                        @item.date
+                                    </td>
+                                </tr>
+                                <tr id="updatePannelAngular" style="background-color:#6DA0CD;">
+                                    <td>
+                                        Hour:
+                                    </td>
+                                    <td>
+                                        @item.hour
+                                    </td>
+                                </tr>
+                                <tr id="updatePannelAngular" style="background-color:#5C91BF;">
+                                    <td>
+                                        Location:
+                                    </td>
+                                    <td>
+                                        @item.location
+                                    </td>
+                                </tr>
+                                <tr id="updatePannelAngular" style="background-color:#6DA0CD;">
+                                    <td>
+                                        Towing Dest:
+                                    </td>
+                                    <td>
+                                        @item.towing_destination
+                                    </td>
+                                </tr>
+                                <tr id="updatePannelAngular" style="background-color:#6DA0CD;">
+                                    <td>
+                                        Witness Name:
+                                    </td>
+                                    <td>
+                                        @item.accident_witness_name
+                                    </td>
+                                </tr>
+                                <tr id="updatePannelAngular" style="background-color:#6DA0CD;">
+                                    <td>
+                                        Witness Phone:
+                                    </td>
+                                    <td>
+                                        @item.accident_witness_phone
+                                    </td>
+                                </tr>
+                                <tr id="updatePannelAngular" style="background-color:#6DA0CD;">
+                                    <td>
+                                        Comments:
+                                    </td>
+                                    <td>
+                                        @item.comments
+                                    </td>
+                                </tr>
+                                <tr id="updatePannelAngular" style="background-color:#6DA0CD;">
+                                    <td>
+                                        Operator Comment:
+                                    </td>
+                                    <td>
+                                        @item.OperatorComment
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr id="updatePannelAngular">
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        }
+
+                        if (ViewBag.operThirdPartyDb != null)
+                        {
+                            foreach (var item in ViewBag.operThirdPartyDb)
+                            {
+                                <tr id="updatePannelAngular" style="background-color:#5C91BF;">
+                                    <td>
+                                        Driver Name:
+                                    </td>
+                                    <td>
+                                        @item.driverName
+                                    </td>
+                                </tr>
+                                <tr id="updatePannelAngular" style="background-color:#5C91BF;">
+                                    <td>
+                                        Driver ID:
+                                    </td>
+                                    <td>
+                                        @item.driverId
+                                    </td>
+                                </tr>
+                                <tr id="updatePannelAngular" style="background-color:#5C91BF;">
+                                    <td>
+                                        Car Owner Name:
+                                    </td>
+                                    <td>
+                                        @item.carOwnerName
+                                    </td>
+                                </tr>
+                                <tr id="updatePannelAngular" style="background-color:#5C91BF;">
+                                    <td>
+                                        Car Owner ID:
+                                    </td>
+                                    <td>
+                                        @item.carOwnerId
+                                    </td>
+                                </tr>
+                                <tr id="updatePannelAngular" style="background-color:#5C91BF;">
+                                    <td>
+                                        License Plate Number:
+                                    </td>
+                                    <td>
+                                        @item.licensePlateNumber
+                                    </td>
+                                </tr>
+                                <tr id="updatePannelAngular" style="background-color:#5C91BF;">
+                                    <td>
+                                        Car Category:
+                                    </td>
+                                    <td>
+                                        @item.carCategory
+                                    </td>
+                                </tr>
+                                <tr id="updatePannelAngular" style="background-color:#5C91BF;">
+                                    <td>
+                                        Car Model:
+                                    </td>
+                                    <td>
+                                        @item.carModel
+                                    </td>
+                                </tr>
+                                <tr id="updatePannelAngular" style="background-color:#5C91BF;">
+                                    <td>
+                                        Car Color:
+                                    </td>
+                                    <td>
+                                        @item.carColor
+                                    </td>
+                                </tr>
+                                <tr id="updatePannelAngular" style="background-color:#5C91BF;">
+                                    <td>
+                                        Driving LicenseNumber:
+                                    </td>
+                                    <td>
+                                        @item.drivingLicenseNumber
+                                    </td>
+                                </tr>
+                                <tr id="updatePannelAngular" style="background-color:#5C91BF;">
+                                    <td>
+                                        Insurance CompanyName:
+                                    </td>
+                                    <td>
+                                        @item.insuranceCompanyName
+                                    </td>
+                                </tr>
+                                <tr id="updatePannelAngular" style="background-color:#5C91BF;">
+                                    <td>
+                                        Insurance Policy Number:
+                                    </td>
+                                    <td>
+                                        @item.insurancePolicyNumber
+                                    </td>
+                                </tr>
+                                <tr id="updatePannelAngular" style="background-color:#5C91BF;">
+                                    <td>
+                                        Address:
+                                    </td>
+                                    <td>
+                                        @item.address
+                                    </td>
+                                </tr>
+                                <tr id="updatePannelAngular" style="background-color:#5C91BF;">
+                                    <td>
+                                        Phone Number:
+                                    </td>
+                                    <td>
+                                        @item.phoneNumber
+                                    </td>
+                                </tr>
+                                <tr id="updatePannelAngular" style="background-color:#5C91BF;">
+                                    <td>
+                                        Insurance Agent Name:
+                                    </td>
+                                    <td>
+                                        @item.insuranceAgentName
+                                    </td>
+                                </tr>
+                                <tr id="updatePannelAngular" style="background-color:#5C91BF;">
+                                    <td>
+                                        Insurance Agent Phone:
+                                    </td>
+                                    <td>
+                                        @item.insuranceAgentPhone
+                                    </td>
+                                </tr>
+                                <tr id="updatePannelAngular" style="background-color:#5C91BF;">
+                                    <td>
+                                        Year Of Manufacture:
+                                    </td>
+                                    <td>
+                                        @item.yearOfManufacture
+                                    </td>
+                                </tr>
+
+                            }
+
+
+                        }
+                        else
+                        {
+                            <tr id="updatePannelAngular">
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        }
+
+
+                    }
+                </table>
+
+
+
+
+                @using RTESWebProjectMVC.Models
+                @model imageData[]
+
+                @{
+                    if (Model[0] != null)
+                    {
+                        <div class="gallery">
+                            <a target="_blank" href="data:image;base64,@System.Convert.ToBase64String(Model[0].picture)">
+                                <img src="data:image;base64,@System.Convert.ToBase64String(Model[0].picture)" alt="Trolltunga Norway" width="300" height="200">
+                            </a>
+                            <div class="desc">Driver License</div>
+                        </div>
+
+                    }
+                    if (Model[1] != null)
+                    {
+                        <div class="gallery">
+                            <a target="_blank" href="data:image;base64,@System.Convert.ToBase64String(Model[1].picture)">
+                                <img src="data:image;base64,@System.Convert.ToBase64String(Model[1].picture)" alt="Forest" width="600" height="400">
+                            </a>
+                            <div class="desc">Vehicle License</div>
+                        </div>
+
+                    }
+                    if (Model[2] != null)
+                    {
+                        <div class="gallery">
+                            <a target="_blank" href="data:image;base64,@System.Convert.ToBase64String(Model[2].picture)">
+                                <img src="data:image;base64,@System.Convert.ToBase64String(Model[2].picture)" alt="Forest" width="600" height="400">
+                            </a>
+                            <div class="desc">Image 1</div>
+                        </div>
+
+                    }
+                    if (Model[3] != null)
+                    {
+                        <div class="gallery">
+                            <a target="_blank" href="data:image;base64,@System.Convert.ToBase64String(Model[3].picture)">
+                                <img src="data:image;base64,@System.Convert.ToBase64String(Model[3].picture)" alt="Forest" width="600" height="400">
+                            </a>
+                            <div class="desc">Image 2</div>
+                        </div>
+
+                    }
+                    if (Model[4] != null)
+                    {
+                        <div class="gallery">
+                            <a target="_blank" href="data:image;base64,@System.Convert.ToBase64String(Model[4].picture)">
+                                <img src="data:image;base64,@System.Convert.ToBase64String(Model[4].picture)" alt="Forest" width="600" height="400">
+                            </a>
+                            <div class="desc">Image 3</div>
+                        </div>
+
+                    }
+                }
+
+
+
+
+
+            </div>
+        
     </div>
 </div>
 <!--END User Details window-->

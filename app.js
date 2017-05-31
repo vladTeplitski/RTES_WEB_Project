@@ -380,21 +380,11 @@ myApp.controller('emergFormController', ['$scope', function ($scope) {
         $scope.UploadImages = !$scope.UploadImages;
     }
 
-  
-
-	  //shai-05.05.2017
-    $scope.ViewImagesUpload = function () {
-        $scope.UploadImages = !$scope.UploadImages;
+    $scope.closeViewImage = function () {
+        $scope.UploadImages = false;
     }
     //End Upload Images button
 
-
-    $scope.delete1 = function () {
-        angular.element(document.getElementById('fileInput1')).val(null);
-        //    angular.element(document.getElementById('fileInput1').val('').clone(true));
-    };
-	
-	
 
     //angular.element(document.getElementById('remove')).on('click', function () {
     //angular.element(document.getElementById('fileInput1')).val('');

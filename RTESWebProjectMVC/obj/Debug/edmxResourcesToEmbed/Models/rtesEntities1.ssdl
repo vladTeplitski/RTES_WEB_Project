@@ -55,6 +55,8 @@
     <Property Name="callForTowing" Type="bit" Nullable="false" />
     <Property Name="status" Type="int" />
     <Property Name="OperatorComment" Type="text" />
+    <Property Name="Latitude" Type="varchar(max)" />
+    <Property Name="Longitude" Type="varchar(max)" />
   </EntityType>
   <EntityType Name="estimationForm">
     <Key>
@@ -136,6 +138,9 @@
     <Property Name="TasksCounter" Type="int" />
     <Property Name="Latitude" Type="varchar(max)" />
     <Property Name="Longitude" Type="varchar(max)" />
+    <Property Name="priority1" Type="int" />
+    <Property Name="priority2" Type="int" />
+    <Property Name="priority3" Type="int" />
   </EntityType>
   <Association Name="FK_client_client">
     <End Role="client" Type="Self.client" Multiplicity="1" />

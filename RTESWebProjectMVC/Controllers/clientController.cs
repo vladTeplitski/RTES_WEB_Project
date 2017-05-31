@@ -44,6 +44,28 @@ namespace RTESWebProjectMVC.Controllers
                 }
                 //Build client page
 
+
+                //algorithm - client lat/lng
+
+
+                ViewBag.driverFlagModel = null;
+
+                if (Session["AlgFlag"] != null && Session["driverFlagModel"] != null)
+                {
+                    //pass the lng & lat of the client side
+                    ViewBag.clientLng = Session["clientLng"];
+                    ViewBag.clientLat = Session["clientLat"];
+                    ViewBag.driversList = Session["driversList"];
+                    ViewBag.driversListSize = Session["driversListSize"];
+                    ViewBag.driverFlagModel = 1;
+                    Session["AlgFlag"] = null;  //init flag
+                    Session["driverFlagModel"] = null;
+                }
+
+
+
+
+
                 using (var db = new Models.rtesEntities1())
                 {
                     userName = Session["user"].ToString();  //read the user name
@@ -76,6 +98,7 @@ namespace RTESWebProjectMVC.Controllers
 
 
                 }
+
                 return View();
             }
             else
@@ -273,7 +296,7 @@ namespace RTESWebProjectMVC.Controllers
 
         //create new report in db
         [HttpPost]
-        public ActionResult send_Details_Func(string location,int lat,int lng,string towDest,string witName,string witPhone, string comments,string myName,string driverID,string driverPhone,string driverLicenseNum,string address1,string carOwnerName,string carOwnerId,string carLicensePlate,string carCategory,string carModel,string color1,string year,string compName,string policyNum,string agentName,string agentPhone, bool checkBox1 = false)
+        public ActionResult send_Details_Func(string location,String lat,String lng,string towDest,string witName,string witPhone, string comments,string myName,string driverID,string driverPhone,string driverLicenseNum,string address1,string carOwnerName,string carOwnerId,string carLicensePlate,string carCategory,string carModel,string color1,string year,string compName,string policyNum,string agentName,string agentPhone, bool checkBox1 = false)
         {
             int checkStat;   
             using (var db = new Models.rtesEntities1())
@@ -287,7 +310,6 @@ namespace RTESWebProjectMVC.Controllers
 
                 if (checkBox1 == true)// Checks if need towing service
                 {
-                    findDriver(lat,lng);//find the tow truck driver for this report
                     checkStat = 0;//move to truck driver table
                 }
                 else checkStat = 1;//move to appraiser table
@@ -305,7 +327,9 @@ namespace RTESWebProjectMVC.Controllers
                     accident_witness_name = witName,
                     accident_witness_phone = witPhone,
                     callForTowing = checkBox1,
-                    status = checkStat
+                    status = checkStat,
+                    Latitude = lat,
+                    Longitude = lng
                 });       
                 db.SaveChanges();
 
@@ -522,32 +546,93 @@ namespace RTESWebProjectMVC.Controllers
             }
 
             TempData["reportNotifFlag"] = 1;
+
+            // Truck driver algorithm //
+
+            var db1 = new Models.rtesEntities1();
+                if (checkBox1 == true)// Checks if need towing service
+                {
+                    Session["AlgFlag"] = 1;
+                    Session["clientLng"] = lng;
+                    Session["clientLat"] = lat;
+
+                    var driver = db1.truckDriver.Where(t => t.workStatus == true).ToList();
+
+                    var list = from v in db1.truckDriver
+                               join e in db1.taskList on v.abstractUserId equals e.truckDriverId
+                               where v.workStatus == true && v.TasksCounter < 3
+                               select new truckDriverList { driverId = v.abstractUserId, lan = v.Latitude, lng = v.Longitude, reportId = (int)e.reportId};
+                    //select v.abstractUserId).Distinct().ToList();
+
+                    int listCnt = list.Count(); 
+
+                    Session["driversListSize"] = list.Count();  // list size
+
+                    Models.truckDriverList[] driversListModel = new Models.truckDriverList[listCnt];
+                    
+                
+
+                Session["driversList"] = list;  // the drivers list from db
+
+                    int i = 0;
+                    foreach(var y in list)
+                    {
+                        driversListModel[i] = y;
+                    
+                        var list2 = from t in db1.taskList
+                                    join e in db1.emergencyReport on t.reportId equals e.reportID
+                                    where t.truckDriverId == y.driverId
+                        //v in db1.emergencyReport
+
+                        //join  on t.truckDriverId equals x.abstractUserId
+
+                        select new { lat = e.Latitude , lng = e.Longitude};
+
+                    //get coordinates of each task for each selected truck driver
+                    //insert data to model
+
+                    driversListModel[i].tasksLat = new string[2];
+                    driversListModel[i].tasksLng = new string[2];
+
+                    driversListModel[i].tasksLat[0] = "0";
+                    driversListModel[i].tasksLng[0] = "0";
+                    driversListModel[i].tasksLat[1] = "0";
+                    driversListModel[i].tasksLng[1] = "0";
+
+
+                    int j = 0;
+                        foreach(var d in list2)
+                        {
+                            driversListModel[i].tasksLat[j] = d.lat;
+                            driversListModel[i].tasksLng[j] = d.lng;
+                            j++;
+                        }
+
+                    
+
+
+                    i++;
+                    }
+                Session["driverFlagModel"] = 1;
+
+                return PartialView("bufferView", driversListModel);
+                
+            }
             return RedirectToAction("client", "client");
+
+            // END Truck driver algorithm //
+
+
         }
         //end create new report in db
 
-         //Algorithem
-        public void findDriver(int lat, int lng)
+        public ActionResult algorithmFunc()  //Truck drivers assigning algorithm
         {
-            
-            int i;   
-            using (var db = new Models.rtesEntities1())
-            {
-                //gets all the drivers that working now
-                var driver = db.truckDriver.Where(t => t.workStatus == true).ToList();
 
-              // var  list = from v in db.truckDriver
-                //           join e in db.taskList on v.abstractUserId equals e.truckDriverId
-                //           where v.workStatus==true && v.TasksCounter<3
-                //           select new truckDriverList { driverId=v.abstractUserId,lan=v.Latitude ,lng= v.Longitude, tasksCount= v.TasksCounter };
-                //select v.abstractUserId).Distinct().ToList();
-               
-              
-                for (i=0;i< driver.Count; i++)
-                {
-                  
-                }
-            }
+
+
+
+            return RedirectToAction("client", "client");
         }
 
 
@@ -562,9 +647,6 @@ namespace RTESWebProjectMVC.Controllers
             TempData["delete"] = 1;
             return RedirectToAction("client", "client");
         }
-
-
-
 
 
     }

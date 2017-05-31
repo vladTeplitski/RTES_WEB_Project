@@ -95,7 +95,7 @@ namespace RTESWebProjectMVC.Controllers
         int count = 0;
 
         [HttpPost]
-        public ActionResult getCoordinates(string latForm, string lngForm)
+        public ActionResult getCoordinates(string latForm, string lngForm, string truckAddress)
         {
             int userId;
 
@@ -107,12 +107,13 @@ namespace RTESWebProjectMVC.Controllers
 
                 driver.Latitude = latForm;
                 driver.Longitude = lngForm;
+                driver.location = truckAddress;
 
                 db.SaveChanges();
 
                 count = count + 1;
                 ViewBag.counter = "Count= " + count;
-
+                ViewBag.loc123 = truckAddress;
 
             }
                 return Redirect(Request.UrlReferrer.PathAndQuery);  //get back to the present view

@@ -27,5 +27,7 @@ namespace RTESWebProjectMVC.Models
         public bool callForTowing { get; set; }
         public Nullable<int> status { get; set; }
         public string OperatorComment { get; set; }
+        public string Latitude { get; set; }
+        public string Longitude { get; set; }
     }
 }

@@ -60,6 +60,8 @@
           <Property Name="callForTowing" Type="bit" Nullable="false" />
           <Property Name="status" Type="int" />
           <Property Name="OperatorComment" Type="text" />
+          <Property Name="Latitude" Type="varchar(max)" />
+          <Property Name="Longitude" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="estimationForm">
           <Key>
@@ -141,6 +143,9 @@
           <Property Name="TasksCounter" Type="int" />
           <Property Name="Latitude" Type="varchar(max)" />
           <Property Name="Longitude" Type="varchar(max)" />
+          <Property Name="priority1" Type="int" />
+          <Property Name="priority2" Type="int" />
+          <Property Name="priority3" Type="int" />
         </EntityType>
         <Association Name="FK_client_client">
           <End Role="client" Type="Self.client" Multiplicity="1" />
@@ -231,6 +236,8 @@
           <Property Name="callForTowing" Type="Boolean" Nullable="false" />
           <Property Name="status" Type="Int32" />
           <Property Name="OperatorComment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Latitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Longitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="messagesTable">
           <Key>
@@ -320,6 +327,9 @@
           <Property Name="TasksCounter" Type="Int32" />
           <Property Name="Latitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Longitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="priority1" Type="Int32" />
+          <Property Name="priority2" Type="Int32" />
+          <Property Name="priority3" Type="Int32" />
         </EntityType>
         <EntityType Name="towingReportForm">
           <Key>
@@ -390,6 +400,8 @@
           <EntitySetMapping Name="emergencyReports">
             <EntityTypeMapping TypeName="rtesModel.emergencyReport">
               <MappingFragment StoreEntitySet="emergencyReport">
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
                 <ScalarProperty Name="OperatorComment" ColumnName="OperatorComment" />
                 <ScalarProperty Name="status" ColumnName="status" />
                 <ScalarProperty Name="reportID" ColumnName="reportID" />
@@ -461,6 +473,9 @@
           <EntitySetMapping Name="truckDrivers">
             <EntityTypeMapping TypeName="rtesModel.truckDriver">
               <MappingFragment StoreEntitySet="truckDriver">
+                <ScalarProperty Name="priority3" ColumnName="priority3" />
+                <ScalarProperty Name="priority2" ColumnName="priority2" />
+                <ScalarProperty Name="priority1" ColumnName="priority1" />
                 <ScalarProperty Name="Longitude" ColumnName="Longitude" />
                 <ScalarProperty Name="Latitude" ColumnName="Latitude" />
                 <ScalarProperty Name="TasksCounter" ColumnName="TasksCounter" />

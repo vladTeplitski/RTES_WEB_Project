@@ -22,5 +22,8 @@ namespace RTESWebProjectMVC.Models
         public Nullable<int> TasksCounter { get; set; }
         public string Latitude { get; set; }
         public string Longitude { get; set; }
+        public Nullable<int> priority1 { get; set; }
+        public Nullable<int> priority2 { get; set; }
+        public Nullable<int> priority3 { get; set; }
     }
 }

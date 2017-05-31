@@ -312,11 +312,10 @@
     <Content Include="Views\operator\addCommentPartial.cshtml" />
     <Content Include="Views\operator\operationsPartial.cshtml" />
     <Content Include="Views\operator\driversLocation.cshtml" />
-    <Content Include="Views\operator\phoneBookPartial.cshtml" />
-    <Content Include="Views\operator\shiftRegPartial.cshtml" />
     <Content Include="Views\appraiser\appraiserHome.cshtml" />
     <Content Include="Views\truckDriver\truckDriverHome.cshtml" />
     <Content Include="Views\truckDriver\tasksGuiPartial.cshtml" />
+    <Content Include="Views\client\bufferView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -57,6 +57,8 @@
     <Property Name="callForTowing" Type="Boolean" Nullable="false" />
     <Property Name="status" Type="Int32" />
     <Property Name="OperatorComment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Latitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Longitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="messagesTable">
     <Key>
@@ -146,6 +148,9 @@
     <Property Name="TasksCounter" Type="Int32" />
     <Property Name="Latitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="Longitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="priority1" Type="Int32" />
+    <Property Name="priority2" Type="Int32" />
+    <Property Name="priority3" Type="Int32" />
   </EntityType>
   <EntityType Name="towingReportForm">
     <Key>

@@ -11,7 +11,7 @@
         <EntityTypeShape EntityType="rtesModel.messagesTable" Width="1.5" PointX="9.75" PointY="4.875" IsExpanded="true" />
         <EntityTypeShape EntityType="rtesModel.third_party" Width="2.5" PointX="8.75" PointY="0.5" IsExpanded="true" />
         <AssociationConnector Association="rtesModel.FK_client_client" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="rtesModel.image" Width="1.5" PointX="6.125" PointY="4.25" />
+        <EntityTypeShape EntityType="rtesModel.image" Width="1.5" PointX="6.125" PointY="4.75" />
         <EntityTypeShape EntityType="rtesModel.estimationForm" Width="1.5" PointX="4.25" PointY="2.875" />
         <EntityTypeShape EntityType="rtesModel.truckDriver" Width="1.5" PointX="2.25" PointY="3.875" />
         <EntityTypeShape EntityType="rtesModel.towingReportForm" Width="1.5" PointX="4.25" PointY="0.5" />

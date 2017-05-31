@@ -77,8 +77,7 @@ namespace RTESWebProjectMVC.Controllers
                 return RedirectToAction("Login", "web");  //if not logged in, redirect to login
             }
         }//end operatorHome function
-
-
+        
         public void usersFromDB()  //show the client reports function
         {
 
@@ -103,8 +102,7 @@ namespace RTESWebProjectMVC.Controllers
                 }
             }
         }//end usersFromDB function
-
-
+        
         public ActionResult openMessageUser(String id)
         {
 
@@ -153,8 +151,7 @@ namespace RTESWebProjectMVC.Controllers
                 return RedirectToAction("Login", "web");  //if disconnected, redirect to login
             }
         }//end openMessageUser
-
-
+        
         public ActionResult sendMessage(String Message)
         {
             int resultId = 0;
@@ -193,8 +190,7 @@ namespace RTESWebProjectMVC.Controllers
             Session["msgNotif"] = "true";
             return RedirectToAction("operatorHome", "operator");
         }//end sendMessage
-
-
+        
         public void allReportsFromDb()  //init reports table from db
         {
             using (var db = new Models.rtesEntities1())
@@ -220,15 +216,14 @@ namespace RTESWebProjectMVC.Controllers
             }
 
         }//end allReportsFromDb
-
-
+        
         public ActionResult openReportDetails(String id)  // show selected report details
         {
             //
-            int x = Int32.Parse(id.ToString());  //convert search id input to integer
+            int y = Int32.Parse(id.ToString());  //convert search id input to integer
 
-            Session["selected"] = x;
-
+            Session["selected"] = y;
+            imageData[] img = new imageData[5];
             ViewBag.showOpRepDetailsWindow = "Block";
 
             if (Session["user"] != null)  //if logged in user
@@ -239,13 +234,50 @@ namespace RTESWebProjectMVC.Controllers
 
                     using (var db = new Models.rtesEntities1())  //db
                     {
-                        var resultData = db.abstract_user.Where(i => i.id == x).ToList();  //get the result from db
+                        var resultData = db.abstract_user.Where(i => i.id == y).ToList();  //get the result from db
 
-                        ViewBag.opRepDetails = "success window  "  + id;
+                        //ViewBag.opRepDetails = "success window  "  + id;
+
+
+                        int x = Convert.ToInt32(id);
+                        var reportsDb = db.emergencyReport.Where(i => i.reportID == x).ToList();
+                        var thirdPartyDb = db.third_party.Where(i => i.emergencyReportId == x).ToList();
+                        var imageDb = db.image.Where(i => i.id == x).DefaultIfEmpty();
+
+                        if (reportsDb.Any() && thirdPartyDb.Any())
+                        {
+                            ViewBag.operReportsDBAlert = "none"; // hide alert no reports
+                            ViewBag.operReportsDB = reportsDb;
+                            ViewBag.operThirdPartyDb = thirdPartyDb;
+
+                            if (imageDb != null)
+                            {
+                                //generate message number - key in db
+
+
+                                var imagesList = db.image.Where(i => i.id == x).ToList();
+                                for (int i = 0; i < imagesList.Count; i++)
+                                {
+                                    img[i] = new imageData();
+                                    img[i].picture = imagesList[i].picture;
+                                }
+
+                            }
+
+
+                        }
+                        else //no users in db
+                        {
+
+                            ViewBag.operAllReportsFromDbAlert = "inline"; // show alert
+
+                        }
+
+
 
                     }
 
-                    return PartialView("reportDetailsPartial");  //using partial view
+                    return PartialView("reportDetailsPartial", img);  //using partial view
                 }
                 else
                     return PartialView("reportDetailsPartial");
@@ -261,8 +293,7 @@ namespace RTESWebProjectMVC.Controllers
         //
 
     }//end openReportDetails
-
-
+        
         public ActionResult openUserDetailsGui(String id) //openUserDetails Gui
         {
 
@@ -297,8 +328,7 @@ namespace RTESWebProjectMVC.Controllers
                 return RedirectToAction("Login", "web");  //if disconnected, redirect to login
             }
         }//end openUserDetails Gui
-
-
+        
         public ActionResult openEditUserGui(String id) //editUserDetails Gui
         {
 
@@ -329,8 +359,7 @@ namespace RTESWebProjectMVC.Controllers
                 return RedirectToAction("Login", "web");  //if disconnected, redirect to login
             }
         }//end editUserDetails Gui
-
-
+        
         public ActionResult updateEditsFunc(String editUsrPass) // Update (save) the user edits (changes) function
         {
             int userId;
@@ -351,8 +380,7 @@ namespace RTESWebProjectMVC.Controllers
 
             return Redirect(Request.UrlReferrer.PathAndQuery);  //get back to the present view
         }//END updateEditsFunc
-
-
+        
         public ActionResult openCommentGui(String id) // open comment Gui
         {
 
@@ -381,8 +409,7 @@ namespace RTESWebProjectMVC.Controllers
                 return RedirectToAction("Login", "web");  //if disconnected, redirect to login
             }
         }//end add Comment Gui
-
-
+        
         public ActionResult sendComment(String CommentBox)  // send operator comment
         {
             int selectedRep = 0;
@@ -401,8 +428,7 @@ namespace RTESWebProjectMVC.Controllers
             Session["commentNotif"] = "true";
             return RedirectToAction("operatorHome", "operator");
         }//end send operator comment
-
-
+        
         [OutputCache(NoStore = true, Location = System.Web.UI.OutputCacheLocation.Client, Duration = 3)] // every 3 sec
         public ActionResult GetOperationsRoom()
 
@@ -487,8 +513,7 @@ namespace RTESWebProjectMVC.Controllers
 
 
         }
-
-
+        
         public ActionResult closeCase(String id)  // close whole case by operator - in operations room
         {
 

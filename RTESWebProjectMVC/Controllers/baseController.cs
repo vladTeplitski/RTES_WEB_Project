@@ -57,6 +57,10 @@ namespace RTESWebProjectMVC.Controllers
                     TempData["reportNotifFlag"] = null;
                 }
 
+
+
+
+
                 //end client inits
 
                 //show hiddent user cp fields

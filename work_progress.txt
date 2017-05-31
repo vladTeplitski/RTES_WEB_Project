@@ -15,9 +15,10 @@ V closed cases/open cases - db
 Operator
 --------
 * operator cant send empty message / comment - angular ?
-* buttons in operations room
-* report details copy/paste
+- Driver tracking - locations - only for active driver
 
+V report details
+V buttons in operations room - cooperate with refreshes
 V change report status
 V cant change settings to another operator
 V build operator panel
