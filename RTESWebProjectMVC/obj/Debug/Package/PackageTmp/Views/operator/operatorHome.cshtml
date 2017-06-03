@@ -32,25 +32,16 @@
         <div>
             <div ng-hide="btnPanel2" class="getStartedBoxOp" style="margin-top: 5px; margin-bottom: 5px;display:inline;">
 
-                <div ng-click="operatorClick(1)" onclick="hideOperations()" class="btnInfo" style="margin-left:10%;width:200px;float:left">
+                <div ng-click="operatorClick(1)" onclick="hideOperations(); stopRefresh()" class="btnInfo" style="margin-left:10%;width:200px;float:left">
                     <div style="margin-right:3px;display: inline;"><i class="glyphicon glyphicon-folder-open"></i></div>
                     Reports Library
                 </div>
 
-                <div ng-click="operatorClick(2)" onclick="hideOperations()" class="btnInfo" style="margin-left:5px;width:200px;float:left">
+                <div ng-click="operatorClick(2)" onclick="hideOperations(); stopRefresh()" class="btnInfo" style="margin-left:5px;width:200px;float:left">
                     <div style="margin-right:3px;display: inline;"><i class="glyphicon glyphicon-pencil"></i></div>
                     Users Management
                 </div>
 
-                <div onclick="" class="btnInfo" style="margin-left:5px;width:180px;float:left">
-                    <div style="margin-right:3px;display: inline;"><i class="glyphicon glyphicon-th-list"></i></div>
-                    @Ajax.ActionLink("Staff Phone Book", "openPhoneBook", "operator", null, new AjaxOptions { UpdateTargetId = "opsContainPartials" })
-                </div>
-
-                <div onclick="" class="btnInfo" style="margin-left:5px;width:210px;float:left">
-                    <div style="margin-right:3px;display: inline;"><i class="glyphicon glyphicon-ok-circle"></i></div>
-                    @Ajax.ActionLink("Shift Registration", "openShiftRegister", "operator", null, new AjaxOptions { UpdateTargetId = "opsContainPartials" })
-                </div>
                 <div style="clear:both;border:none;height:0px;margin:0px"></div>
 
             </div>

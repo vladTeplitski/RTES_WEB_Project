@@ -380,11 +380,21 @@ myApp.controller('emergFormController', ['$scope', function ($scope) {
         $scope.UploadImages = !$scope.UploadImages;
     }
 
-    $scope.closeViewImage = function () {
-        $scope.UploadImages = false;
+  
+
+	  //shai-05.05.2017
+    $scope.ViewImagesUpload = function () {
+        $scope.UploadImages = !$scope.UploadImages;
     }
     //End Upload Images button
 
+
+    $scope.delete1 = function () {
+        angular.element(document.getElementById('fileInput1')).val(null);
+        //    angular.element(document.getElementById('fileInput1').val('').clone(true));
+    };
+	
+	
 
     //angular.element(document.getElementById('remove')).on('click', function () {
     //angular.element(document.getElementById('fileInput1')).val('');
@@ -399,3 +409,21 @@ myApp.controller('emergFormController', ['$scope', function ($scope) {
 
 }]);
 
+
+//truck driver app controller
+
+myApp.controller('truckDriverController', ['$scope', function ($scope) {
+
+
+    $scope.truck0 = false;
+    $scope.truck1 = true;
+
+    $scope.truckDriverClick = function (btn) {
+        if (btn == 1) {
+            $scope.truck0 = true;
+            $scope.truck1 = false;
+
+        }
+    }
+
+}]);

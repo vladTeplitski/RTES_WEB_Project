@@ -1,5 +1,5 @@
 ﻿ <!--TASKS TABLE-->
-<div class="slotDriverTasks">
+<div class="slotDriverTasks" style="background-color:#EDEDED;padding:5px;border-radius:6px;border:1px solid #93C0E8;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
 
 
     <div id="userDetailsPanel" class="personalDetailsClass" style="margin:auto;margin-top:2px;width:92%;">
@@ -7,17 +7,40 @@
         <span style="margin-left:10px;">Scheduled Tasks</span>
     </div><br />
 
+    <div id="userDetailsPanel" class="personalDetailsClass" style="margin:auto;margin-top:2px;width:92%;width:150px;">
+        App status: 
+    <i id="appWorking" Style="color:#C4C4C4;font-size:15px;margin-left:15px" class="glyphicon glyphicon-record"></i>
+    
+   
+    </div><br />
+
+    <div id="restartDriverApp" onclick="restartApp();" class="personalDetailsClass" style="display:none;cursor:pointer;background-color:#E40000;border-color:#E40000;margin:auto;margin-top:2px;width:150px;">
+        Restart App:
+        <i id="appWorking" Style="color:white;font-size:15px;margin-left:15px" class="glyphicon glyphicon-refresh"></i>
+
+
+    </div>
+
+    <div>
+        
+    </div>
+
     <!--notif-->
-    <div id="reportNotif" class="NotifOps" style="display:@ViewBag.showTasksNotif">
+    <div id="reportNotif" class="NotifApp" style="display:@ViewBag.showTasksNotif">
         <b>No tasks.</b>
     </div>
 
+    <div id="reportNotif2" class="NotifApp">
+        <b>GPS is off! Turn on location services !!</b>
+    </div>
 
-    <table id="myTable10" class="table table - striped" style="display:@ViewBag.showTasks; font-size:small;color:black;">
+
+    <table id="myTable10" class="table table - striped" style="background-color:#4E86B7;width:90%;border-radius:5px;margin:auto;;display:@ViewBag.showTasks; font-size:small;color:black;">
         <tr>
-            <th>Report ID</th>
-            <th>Location</th>
-            <th>Client Name</th>
+            <th style="color:white;">Report ID</th>
+            <th style="color:white;">Location</th>
+            <th style="color:white;">Client Name</th>
+            <th style="color:white;">Function</th>
         </tr>
         @using RTESWebProjectMVC.Models
         @model tasksModel[]
@@ -30,7 +53,7 @@
                 for(i=0;i<3 && Model[i]!=null;i++)
                 {
                     <tr id="updatePannelAngular">
-                        <td>
+                        <td style="color:white;">
                             @Model[i].reportId
                         </td>
                         <td>
@@ -38,6 +61,10 @@
                         </td>
                         <td>
                             @Model[i].name
+                        </td>
+                        <td style="">
+                            <div><i Style="margin-left:5px;color:#2AFF00;font-size:13px;margin-right:6px" class="glyphicon glyphicon-ok"></i> Finish</div>
+                            <div><i Style="margin-left:5px;color:#FFC600;font-size:13px;margin-right:6px" class="glyphicon glyphicon-th-list"></i> Info</div>
                         </td>
                     </tr>
                 }
@@ -54,11 +81,10 @@
         }
     </table>
 
-    <div id="testingLoc" style="width:400px;height:300px;background-color:yellow;border:1px solid black;">
+    <!--
         
-
-        Location: @ViewBag.loc123
-    </div>
+    <div id="testingLoc" style="width:400px;height:300px;background-color:yellow;border:1px solid black;">
+    </div>-->
 
 
 

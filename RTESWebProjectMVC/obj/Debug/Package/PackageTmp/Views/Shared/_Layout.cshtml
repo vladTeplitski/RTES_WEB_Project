@@ -25,7 +25,7 @@
 
 </head>
 
-<body onload="loadControl(); initMap();" class="bodyDesign" ng-app="myApp">
+<body onload="loadControl(); initMap()" class="bodyDesign" ng-app="myApp">
     
     <!--Loading animation-->
     <div id="spinner"></div>
@@ -114,7 +114,6 @@
                         <li id="loginBtn"  style="display: @ViewBag.loginBtnDisp"><a class="hoverMy" href="@Url.Action("Login","web")"><span class="glyphicon glyphicon-log-in rotateNav"></span>Login</a></li>
                         <li id="logoutButton"  style="display: @ViewBag.logoutBtnDisp"><a class="hoverMy" href="@Url.Action("Logout","web")"><span class="glyphicon glyphicon-log-in rotateNav"></span>LogOut</a></li>
                     </ul>
-
 
                 </div>
             </div>

@@ -1,0 +1,67 @@
+﻿ <!--TASKS TABLE-->
+<div class="slotDriverTasks">
+
+
+    <div id="userDetailsPanel" class="personalDetailsClass" style="margin:auto;margin-top:2px;width:92%;">
+        <i Style="font-size:23px;" class="glyphicon glyphicon-th-list"></i>
+        <span style="margin-left:10px;">Scheduled Tasks</span>
+    </div><br />
+
+    <!--notif-->
+    <div id="reportNotif" class="NotifOps" style="display:@ViewBag.showTasksNotif">
+        <b>No tasks.</b>
+    </div>
+
+
+    <table id="myTable10" class="table table - striped" style="display:@ViewBag.showTasks; font-size:small;color:black;">
+        <tr>
+            <th>Report ID</th>
+            <th>Location</th>
+            <th>Client Name</th>
+        </tr>
+        @using RTESWebProjectMVC.Models
+        @model tasksModel[]
+
+        @{
+            int i = 0;
+
+            if (Model != null)
+            {
+                for(i=0;i<3 && Model[i]!=null;i++)
+                {
+                    <tr id="updatePannelAngular">
+                        <td>
+                            @Model[i].reportId
+                        </td>
+                        <td>
+                            @Model[i].location
+                        </td>
+                        <td>
+                            @Model[i].name
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr id="updatePannelAngular">
+                    <td>no data</td>
+                    <td>no data</td>
+                    <td>no data</td>
+                </tr>
+            }
+
+        }
+    </table>
+
+    <div id="testingLoc" style="width:400px;height:300px;background-color:yellow;border:1px solid black;">
+        
+
+        Location: @ViewBag.loc123
+    </div>
+
+
+
+
+</div>
+<!--END TASKS TABLE-->

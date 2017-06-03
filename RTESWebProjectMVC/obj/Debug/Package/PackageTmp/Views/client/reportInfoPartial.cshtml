@@ -257,44 +257,80 @@
             }
         </table>
 
-        @{
-            var images = (Dictionary<int, string>)ViewBag.Images;
+       
 
-            if (ViewBag.Images != null)
-            {
+       
+            @using RTESWebProjectMVC.Models
+            @model imageData[]
 
-                foreach (var item in images)
+            @{
+                if (Model[0] != null)
                 {
+                <div class="gallery">
+                  <a target="_blank" href="data:image;base64,@System.Convert.ToBase64String(Model[0].picture)" >
+                     <img src="data:image;base64,@System.Convert.ToBase64String(Model[0].picture)" alt="Trolltunga Norway" width="300" height="200">
+                  </a>
+                  <div class="desc">Driver License</div>
+                </div>
 
+                }
+                if (Model[1] != null)
+                {
+                 <div class="gallery">
+                   <a target="_blank" href="data:image;base64,@System.Convert.ToBase64String(Model[1].picture)">
+                      <img src="data:image;base64,@System.Convert.ToBase64String(Model[1].picture)" alt="Forest" width="600" height="400">
+                   </a>
+                   <div class="desc">Vehicle License</div>
+                 </div>
 
-                    @using RTESWebProjectMVC.Models
-                    @model imageData
+                }
+            if (Model[2] != null)
+                {
+                 <div class="gallery">
+                   <a target="_blank" href="data:image;base64,@System.Convert.ToBase64String(Model[2].picture)">
+                     <img src="data:image;base64,@System.Convert.ToBase64String(Model[2].picture)" alt="Forest" width="600" height="400">
+                   </a>
+                   <div class="desc">Image 1</div>
+                 </div>
 
-                    <img src="data:image;base64,@System.Convert.ToBase64String(Model.picture)" width="80" height="80" />
+                }
+            if (Model[3] != null)
+                {
+<div class="gallery">
+    <a target="_blank" href="data:image;base64,@System.Convert.ToBase64String(Model[3].picture)">
+        <img src="data:image;base64,@System.Convert.ToBase64String(Model[3].picture)" alt="Forest" width="600" height="400">
+    </a>
+    <div class="desc">Image 2</div>
+</div>
 
-
-                    // <img src = "@Html.Raw("data: image / jpg; base64," + images.Single().Value)" width = "80" height = "80" />
-                    ViewBag.testing2 = "Shay";
+                }
+            if (Model[4] != null)
+                {
+<div class="gallery">
+    <a target="_blank" href="data:image;base64,@System.Convert.ToBase64String(Model[4].picture)">
+        <img src="data:image;base64,@System.Convert.ToBase64String(Model[4].picture)" alt="Forest" width="600" height="400">
+    </a>
+    <div class="desc">Image 3</div>
+ </div>
 
                 }
             }
-        }
 
-        @ViewBag.testing
-        @ViewBag.testing2
+
+
+
+
+    </div>
+
+
+   
+
+
+
     </div>
 
 
 
-
-
-
-
-
-
-
-
-</div>
 
 <script type="text/javascript">
     function closeView() {

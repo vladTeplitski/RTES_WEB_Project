@@ -238,10 +238,21 @@ function getLocation() {  // get the Lat & Lng coordinates
         if (lat != null) {
             document.getElementById("gpsIconOff").style.display = "none";
             document.getElementById("gpsIconOn").style.display = "inline";
-
+            
         }
+        
     });
+    
 }
+
+
+function turnongps() {
+    var val = document.getElementById("gpsIconOn");
+    if (val.style.display == 'none') {
+        window.alert('Please turn on your gps!');
+    }
+}
+
 
 
 var geocoder;
@@ -338,32 +349,51 @@ function driverAppSetRefreshes() {
     truckFlag = 1;
     
     
-    //geocoder = new google.maps.Geocoder;  //google API geocoder istance //for driver tracking
-    //infowindow = new google.maps.InfoWindow;   //for driver tracking
-    //geocodeLatLng(geocoder, infowindow);  //for driver tracking
-
-      
-    refreshTasks = setInterval(function () { $('#tasksContain').load('/truckDriver/GetTasksList'); }, 5000); // every 5 sec
+    
+    refreshTasks = setInterval(function () {
+        $('#tasksContain').load('/truckDriver/GetTasksList');
+        document.getElementById("appWorking").style.color = "#3DFA23";
+    }, 5000); // every 5 sec
     intervalGetLatLng = setInterval(function () { updateDriverLatLng(); }, 7000); // every 7 sec, update the driver location
 }
+
+function driverAppStop() {  //Stop intervals
+    clearInterval(refreshTasks);
+    clearInterval(intervalGetLatLng);
+}
+
+function restartApp() {
+    location.reload();
+}
+
 
 
 function updateDriverLatLng() {
     
-    
-    document.getElementById("testingLoc").innerHTML = counter + "__   lat: " + publicLat + "___   lng: " + publicLng + "___Loc: " + driverAddress;
+    if (publicLat == undefined) {
+        driverAppStop();
+        document.getElementById("reportNotif2").style.display = "inline";
+        document.getElementById("myTable10").style.display = "none";
+        document.getElementById("appWorking").style.color = "#FA2323"; 
+        document.getElementById("restartDriverApp").style.display = "inline";
+    }
+    else {
+        document.getElementById("testingLoc").innerHTML = counter + "__   lat: " + publicLat + "___   lng: " + publicLng + "___Loc: " + driverAddress;
 
-    $.ajax({
-        url: '/truckDriver/getCoordinates',
-        type: 'POST',
-        data: { latForm: publicLat, lngForm: publicLng, truckAddress: driverAddress },
-        success: function (data) {
-            alert("Data invoked");
-        },
-        error: function () {
-            alert("error");
-        }
-    });
+        $.ajax({
+            url: '/truckDriver/getCoordinates',
+            type: 'POST',
+            data: { latForm: publicLat, lngForm: publicLng, truckAddress: driverAddress },
+            success: function (data) {
+                document.getElementById("appWorking").style.color = "#3DFA23";
+            },
+            error: function () {
+                document.getElementById("appWorking").style.color = "#FA2323";
+            }
+        });
+    }
+    
+
 
 }
 

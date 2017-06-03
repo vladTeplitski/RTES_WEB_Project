@@ -3,6 +3,12 @@
 
     <!--START Client Page-->
 
+
+
+   
+
+
+
     <div class="row bodyRow clientWindow">
 
         <!-- Start client buttons -->
@@ -57,8 +63,13 @@
                     <div ng-hide="client0" class="textContainer">
                         Welcome to client portal!
 
+                    </div>
+
+
+                    <div  class="deleteMes" style="display:@ViewBag.messageDelete;">
+                        <div onclick="closeDeleteNotif()" class="xclose">X</div>
+                        <label style="width:60%;display:inline;color:white;">Delete message was successful</label>
                         <br />
-                        
                     </div>
                     <!--END client main window-->
 
@@ -112,7 +123,8 @@
                                                 @item.location
                                             </td>
                                             <td>
-                                                @Ajax.ActionLink("click", "showReportInfo", "client",new { id = item.reportID },new AjaxOptions { UpdateTargetId = "divResult" })
+                                                @Ajax.ActionLink("Info", "showReportInfo", "client",new { id = item.reportID },new AjaxOptions { UpdateTargetId = "divResult" }, new { @class = "btnOps3" })
+                                               
                                             
                                                 <script>
                                                       function getView() {
@@ -148,11 +160,11 @@
                     <!-- Start personal Details-->
                     <div ng-hide="client3" class="textContainer">
 
-                        <div style="width: 80%; margin: 10px auto; text-align: center;">
-                            <Panel  CssClass="alert alert-danger" ID="noClientAccount" Visible="false">
+                        <!--<div style="width: 80%; margin: 10px auto; text-align: center;">
+                            <Panel  CssClass="alert alert-danger" ID="noClientAccount" >
                                 No details available!
                             </Panel>
-                        </div>
+                        </div>-->
                         <div  id="personalDetailsPanel" class="personalDetailsClass">
                             <i Style="font-size:23px;" class="glyphicon glyphicon-tasks"></i>
                             <span style="margin-left:10px;">Personal Details</span>
@@ -237,7 +249,7 @@
                     </div>
                     <!-- END personal Details-->
 
-
+ 
                     <!-- Start Messages container -->
                     <div ng-hide="client4" class="textContainer">
 
@@ -252,6 +264,11 @@
                                         There are no messages!
                                     </div>
                                 </div>
+
+
+                     
+
+                
 
                                 <!--Messages Table  -->
 
@@ -277,7 +294,9 @@
                                                 @item.content
                                             </td>
                                             <td>
-                                                @Ajax.ActionLink("click", "showReportInfo", "client", new { id = item.msgNum }, new AjaxOptions { UpdateTargetId = "divResult" })
+
+                                                <Button type="submit" Text="Submit" style="border-radius: 12px;margin-left:40%;" OnClick="location.href='@Url.Action("deleteMessages", "client",new { messageNum = item.msgNum})'" class="btn btn-default"><i class="glyphicon glyphicon-trash"></i></Button>
+                                               <!--<div ng-click="deleteMessage()" style="cursor:pointer;"><i class="glyphicon glyphicon-trash"></i></div>--> 
 
                                                 <script>
                                                       function getView() {
@@ -312,6 +331,7 @@
 
         </div>
     </div>
+
 </div>
 
 <!--END Client Page-->
@@ -324,5 +344,11 @@
         $('#reportNotif').hide();
 
     }
+
+    function closeDeleteNotif() {
+        $('.deleteMes').hide();
+    }
+
+
 </script>
 

@@ -118,7 +118,7 @@ function searchAllReportsByClientIdJs() {
     table = document.getElementById("allReportsTable");
     tr = table.getElementsByTagName("tr");
     for (i = 0; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName("td")[2];  // 3rd column
+        td = tr[i].getElementsByTagName("td")[3];  // 3rd column
         if (td) {
             if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
                 tr[i].style.display = "";
@@ -132,9 +132,12 @@ function searchAllReportsByClientIdJs() {
 //END search Javascript//
 
 
+/////////////////////////////////////////
 //operator js functions
+
 var refresh;
-var flag1=0;
+var flag1 = 0;
+
 function closeViewOpNotif() {
     $('#operatorNotification').hide();
 
@@ -142,7 +145,7 @@ function closeViewOpNotif() {
 
 function setRefreshes() {
     $("#opsContain").show();
-    flag = 1; // flag for: if the user if in operations room, interval should be activated
+    flag = 1; // flag for: if the user in operations room, interval should be activated
     refresh = setInterval(function () { $('#opsContain').load('/operator/GetOperationsRoom'); }, 3000); // every 3 sec
 }
 function stopRefresh() {
@@ -151,6 +154,7 @@ function stopRefresh() {
 function returnRefresh() {
         refresh = setInterval(function () { $('#opsContain').load('/operator/GetOperationsRoom'); }, 3000); // every 3 sec
 }
+
 
 //location dropdown refreshes
 var flagLoc = 0;
@@ -190,7 +194,7 @@ function closeView() {
 }
 function closeViewRep() {
     $('#opRepDetailsContainer').hide();
-    if (flag == 1) //if the user if in operations room, interval should be activated
+    if (flag == 1) //if the user is in operations room, interval should be activated
     {
         refresh = setInterval(function () { $('#opsContain').load('/operator/GetOperationsRoom'); }, 3000); // every 3 sec
     }
@@ -199,40 +203,31 @@ function closeViewRep() {
 function closeView2() {
     $('#userDetailsContainer').hide();
 }
-function closeViewDriversLocation() {
+function closeViewDriversDetails() {
     $('#DriversLocationContainer').hide();
-    if (flag == 1) //if the user if in operations room, interval should be activated
+    if (flag == 1) //if the user in operations room, interval should be activated
     {
         refresh = setInterval(function () { $('#opsContain').load('/operator/GetOperationsRoom'); }, 3000); // every 3 sec
     }
     flagLoc = 0;
 }
-function closeViewShiftReg() {
-    $('#shiftRegContainer').hide();
-    if (flag == 1) //if the user if in operations room, interval should be activated
-    {
-        refresh = setInterval(function () { $('#opsContain').load('/operator/GetOperationsRoom'); }, 3000); // every 3 sec
-    }
-}
-function closeViewPhoneBook() {
-    $('#PhoneBookContainer').hide();
-    if (flag == 1) //if the user if in operations room, interval should be activated
-    {
-        refresh = setInterval(function () { $('#opsContain').load('/operator/GetOperationsRoom'); }, 3000); // every 3 sec
-    }
-}
 
 
 //END operator js functions
 
+
+//////////////////////////////////////////////
 //Location Functions
 
 var publicLatLng;
 var publicLat;
 var publicLng;
 
+var driverFlag = 0;
 
-function getLocation() {
+var driverAddress = "Init22.."; //for driver tracking
+
+function getLocation() {  // get the Lat & Lng coordinates
     navigator.geolocation.getCurrentPosition(function (pos) {
         var lat = pos.coords.latitude;
         var lng = pos.coords.longitude;
@@ -248,25 +243,40 @@ function getLocation() {
     });
 }
 
+
+var geocoder;
+var infowindow;
+
+// main location init function
 function initMap() {
     getLocation();
-    var geocoder = new google.maps.Geocoder;
-    var infowindow = new google.maps.InfoWindow;
-    document.getElementById('submit').addEventListener('click', function () {
+    geocoder = new google.maps.Geocoder;  //google API geocoder istance
+    infowindow = new google.maps.InfoWindow;
+
+    document.getElementById('submit').addEventListener('click', function () { //submit id
+
         geocodeLatLng(geocoder, infowindow);
     });
+
+   
+
 }
 
 function geocodeLatLng(geocoder, infowindow) {
 
     var input = publicLatLng;
+
+    document.getElementById('lat').value = publicLat;
+    document.getElementById('lng').value = publicLng;
+
     var latlngStr = input.split(',', 2);
     var latlng = { lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1]) };
     geocoder.geocode({ 'location': latlng }, function (results, status) {
         if (status === 'OK') {
             if (results[1]) {
                 document.getElementById('location1').value = results[0].formatted_address;
-                alert(results[0].formatted_address);
+                //driverAddress = results[0].formatted_address;   //for driver tracking
+                //alert(results[0].formatted_address);   //new report alert
                 infowindow.setContent(results[0].formatted_address);
             } else {
                 window.alert('No results found');
@@ -277,4 +287,84 @@ function geocodeLatLng(geocoder, infowindow) {
     });
 }
 
+var address = "Shmu'el Salant St 16-18, Petah Tikva, Israel";   //TEST
+
+function addressToLocation() {
+
+    var geocoder = new google.maps.Geocoder();
+    geocoder.geocode(
+		{
+		    address: address
+		},
+		function (results, status) {
+
+		    var resultLocations = [];
+
+		    if (status == google.maps.GeocoderStatus.OK) {
+		        if (results) {
+		            var numOfResults = results.length;
+		            for (var i = 0; i < numOfResults; i++) {
+		                var result = results[i];
+
+		                document.getElementById('lat').value = result.geometry.location.lat();
+		                resultLocations.push(
+							{
+							    text: result.formatted_address,
+							    addressStr: result.formatted_address,
+							    location: result.geometry.location
+							}
+						);
+		            };
+		        }
+		    } else if (status == google.maps.GeocoderStatus.ZERO_RESULTS) {
+		        // address not found
+		        alert("address not found");
+		    }
+
+		}
+	);
+
+}
+
+
 //END Location Functions
+
+/////////////////////////////////////////
+// Truck Driver functions
+var counter = 0;
+
+function driverAppSetRefreshes() {
+    $("#tasksContain").show();
+    truckFlag = 1;
+    
+    
+    //geocoder = new google.maps.Geocoder;  //google API geocoder istance //for driver tracking
+    //infowindow = new google.maps.InfoWindow;   //for driver tracking
+    //geocodeLatLng(geocoder, infowindow);  //for driver tracking
+
+      
+    refreshTasks = setInterval(function () { $('#tasksContain').load('/truckDriver/GetTasksList'); }, 5000); // every 5 sec
+    intervalGetLatLng = setInterval(function () { updateDriverLatLng(); }, 7000); // every 7 sec, update the driver location
+}
+
+
+function updateDriverLatLng() {
+    
+    
+    document.getElementById("testingLoc").innerHTML = counter + "__   lat: " + publicLat + "___   lng: " + publicLng + "___Loc: " + driverAddress;
+
+    $.ajax({
+        url: '/truckDriver/getCoordinates',
+        type: 'POST',
+        data: { latForm: publicLat, lngForm: publicLng, truckAddress: driverAddress },
+        success: function (data) {
+            alert("Data invoked");
+        },
+        error: function () {
+            alert("error");
+        }
+    });
+
+}
+
+// END  Truck Driver functions

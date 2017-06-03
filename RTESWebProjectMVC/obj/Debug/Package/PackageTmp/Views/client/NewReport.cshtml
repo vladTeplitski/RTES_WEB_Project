@@ -1,4 +1,5 @@
-﻿<div class="row row-centered " style="margin-bottom: 25px;" ng-controller="emergFormController" id="shay">
+﻿
+<div class="row row-centered " style="margin-bottom: 25px;" ng-controller="emergFormController" id="shay">
 
 
     <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-xs-12 col-centered " style="background: rgba(78, 134, 183, 0.8); border-left: 5px solid #C9EC25; border-right: 5px solid #C9EC25; border-radius: 5px; margin-top: 5px; margin-bottom: 5px; padding-bottom: 5px;">
@@ -128,16 +129,25 @@
                         <br />
                         <label for="text" ID="location">Location:</label>
                         <div class="formContainer" style="margin-left:2px;">
-                            <input ng-model="location1" class="form-control" name="location" id="location1" type="text" style="width:80%;display:inline;color:black;cursor:default;"  placeholder="Please enter your location" >
+                            <input ng-model="location1" class="form-control " name="location" id="location1" type="text"   placeholder="Please enter your location" >
                             <!--<span ng-hide="!location1.length" Style="color:#057B28;padding-left:5px;position:relative;display:inline;" class="glyphicon glyphicon-ok form-control-feedback"></span>
                             <span ng-show="!location1.length" Style="color:#FFC600;padding-left:5px;position:relative;display:inline;" class="glyphicon glyphicon-warning-sign form-control-feedback"></span>-->
                         </div>
+
+                        <!--input for pass lat and lng coordinate to controller-->
+                        <div class="formContainer" style="margin-left:2px;">
+                            <input  class="form-control " name="lat" id="lat" type="text" placeholder="Please enter your location">        
+                        </div>
+                        <div class="formContainer" style="margin-left:2px;">
+                            <input  class="form-control " name="lng" id="lng" type="text" placeholder="Please enter your location">
+                        </div>
+                        <!--End-->
 
                         <label for="text">Towing destination:</label>
 
                         
                         <div class="formContainer" style="margin-left:2px;">
-                            <input class="form-control" name="towDest" ng-model="towDest" type="text" id="towDest" style="width:80%;display: inline;color:black;" placeholder="Enter Towing Destination" TextMode="SingleLine">
+                            <input class="form-control" name="towDest" ng-model="towDest" type="text" id="fieldReport2"  placeholder="Enter Towing Destination" TextMode="SingleLine">
                             <span ng-hide="!towDest.length" Style="color:#057B28;padding-left:5px;position:relative;display:inline;" class="glyphicon glyphicon-ok form-control-feedback"></span>
                             <span ng-show="!towDest.length" Style="color:#FFC600;padding-left:5px;position:relative;display:inline;" class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
                         </div>
@@ -146,7 +156,7 @@
 
                         <br />
                         <div class="formContainer" style="margin-left:2px;">
-                            <input class="form-control" name="witName" ng-model="witName" type="text" id="witName" style="width:80%;display: inline;color:black;" placeholder="Enter Witness Name" ng-pattern="onlyLetters" required>
+                            <input class="form-control" name="witName" ng-model="witName" type="text" id="fieldReport1"  placeholder="Enter Witness Name" ng-pattern="onlyLetters" required>
                             <span ng-hide="!witName.length" Style="color:#057B28;padding-left:5px;position:relative;display:inline;" class="glyphicon glyphicon-ok form-control-feedback"></span>
                             <span ng-show="!witName.length" Style="color:#FFC600;padding-left:5px;position:relative;display:inline;" class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
                             <div class="error" ng-show="myForm.witName.$dirty && myForm.witName.$error.pattern"><br /> </div>
@@ -156,7 +166,7 @@
 
                         <label for="text">Witness Phone Number:</label>
                         <div class="formContainer" style="margin-left:2px;">
-                            <input ng-model="witPhone" name="witPhone" class="form-control" type="text" id="witPhone" style="width:80%;display:inline;color:black;" placeholder="Enter Witness Phone Number" maxlength="10" ng-pattern="onlyNumbers" required>
+                            <input ng-model="witPhone" name="witPhone" class="form-control" type="text" id="fieldReport1"  placeholder="Enter Witness Phone Number" maxlength="10" ng-pattern="onlyNumbers" required>
                             <span ng-show="myForm.witPhone.$error.pattern && witPhone.length" Style="color:red;padding-left:5px;" class="glyphicon glyphicon-remove form-control-feedback"></span>
                             <span ng-hide="!witPhone.length" Style="color:#057B28;padding-left:5px;position:relative;display:inline;" class="glyphicon glyphicon-ok form-control-feedback"></span>
                             <span ng-show="!witPhone.length" Style="color:#FFC600;padding-left:5px;position:relative;display:inline;" class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
@@ -189,14 +199,14 @@
             <br />
 
             <!--slide down driver details div-->
-            <div style="margin-bottom: 20px;width:90%;" class="driverDetails" ng-show="showMe">
+            <div  class="driverDetails" ng-show="showMe">
                 <label for="text">Please enter the third part details:</label>
                 <br />
                 <label for="text">Driver Name:</label>
 
                 <br />
                 <div class="formContainer">
-                    <input id="driver_name" type="text" ng-model="myName" class="form-control" name="myName" style="display: inline;color:black;" placeholder="Enter Driver Name" ng-pattern="onlyLetters" required>
+                    <input id="driver_name" type="text" ng-model="myName" class="form-control" name="myName" style="display:inline;color:black;" placeholder="Enter Driver Name" ng-pattern="onlyLetters" required>
                     <span ng-hide="!myName.length " Style="color:#057B28;padding-left:5px;position:relative;display:inline;" class="glyphicon glyphicon-ok form-control-feedback"></span>
                     <span ng-show="myForm.myName.$error.pattern" Style="color:red;padding-left:5px;" class="glyphicon glyphicon-remove form-control-feedback"></span>
                     <span ng-show="!myName.length" Style="color:#FFC600;padding-left:5px;position:relative;display:inline;" class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
@@ -208,7 +218,7 @@
                 <div class="formContainer">
                     <input ng-model="driverID" name="driverID" class="form-control" type="text" id="driver_ID" style="display:inline;color:black;" placeholder="Enter Driver ID" maxlength="9" ng-pattern="onlyNumbers" required>
                     <span ng-show="myForm.driverID.$error.pattern && driverID.length" Style="color:red;padding-left:5px;" class="glyphicon glyphicon-remove form-control-feedback"></span>
-                    <span ng-hide="!driverID.length" ng-hide="driverIdSuccess" Style="color:#057B28;padding-left:5px;position:relative;display:inline;" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                    <span ng-hide="!driverID.length"  Style="color:#057B28;padding-left:5px;position:relative;display:inline;" class="glyphicon glyphicon-ok form-control-feedback"></span>
                     <span ng-show="!driverID.length" Style="color:#FFC600;padding-left:5px;position:relative;display:inline;" class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
                     <div class="error" ng-show="myForm.driverID.$dirty && myForm.driverID.$error.pattern"><br /> </div>
                     <span class="errorFields" ng-show="myForm.driverID.$invalid && !myForm.driverID.$pristine && myForm.driverID.$error.pattern"> Only numbers are allowed</span>
@@ -249,50 +259,50 @@
                 <i Style="font-size:20px;margin-right:10px;" class="fa fa-car"></i>
                 Car Details
             </div>
-
+            <br/>
             <!--slide down car details-->
-            <div style="margin-top: 20px;" class="carDetails" ng-show="myValue">
+            <div  class="carDetails" ng-show="myValue">
 
                 <label for="text">Car Owner Name:</label>
-                <div class="formContainer">
-                    <input ng-model="carOwnerName" name="carOwnerName" class="form-control" type="text" id="car_ownerName" style="width:90%;display:inline;color:black;" placeholder="Enter Car Owner Name" ng-pattern="onlyLetters" required>
+                <div class="formContainer" id="carOwn">
+                    <input ng-model="carOwnerName" name="carOwnerName" class="form-control" type="text" id="car_ownerName" style="display:inline;color:black;" placeholder="Enter Car Owner Name" ng-pattern="onlyLetters" required>
                     <span ng-hide="!carOwnerName.length" Style="color:#057B28;padding-left:5px;position:relative;display:inline;" class="glyphicon glyphicon-ok form-control-feedback"></span>
                     <span ng-show="!carOwnerName.length" Style="color:#FFC600;padding-left:5px;position:relative;display:inline;" class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
-                    <div class="error" ng-show="myForm.myName.$dirty"><br /> </div>
+                    <div class="error" ng-show="myForm.carOwnerName.$dirty && myForm.carOwnerName.$error.pattern"><br /> </div>
                     <span class="errorFields" ng-show="myForm.carOwnerName.$invalid && !myForm.carOwnerName.$pristine && myForm.carOwnerName.$error.pattern"> Only Alphabets are allowed</span>
                 </div>
 
                 <label for="text">Car Owner ID:</label>
                 <div class="formContainer">
-                    <input ng-model="carOwnerId" name="carOwnerId" class="form-control" type="text" id="car_ownerID" style="width:90%;display:inline;color:black;" placeholder="Enter Car Owner ID" maxlength="9" ng-pattern="onlyNumbers" required>
+                    <input ng-model="carOwnerId" name="carOwnerId" class="form-control" type="text" id="car_ownerID" style="display:inline;color:black;" placeholder="Enter Car Owner ID" maxlength="9" ng-pattern="onlyNumbers" required>
                     <span ng-hide="!carOwnerId.length" Style="color:#057B28;padding-left:5px;position:relative;display:inline;" class="glyphicon glyphicon-ok form-control-feedback"></span>
                     <span ng-show="!carOwnerId.length" Style="color:#FFC600;padding-left:5px;position:relative;display:inline;" class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
-                    <div class="error" ng-show="myForm.myName.$dirty"><br /> </div>
+                    <div class="error" ng-show="myForm.carOwnerId.$dirty && myForm.carOwnerId.$error.pattern"><br /> </div>
                     <span class="errorFields" ng-show="myForm.carOwnerId.$invalid && !myForm.carOwnerId.$pristine && myForm.carOwnerId.$error.pattern"> Only numbers are allowed</span>
                 </div>
 
                 <label for="text">License Plate Number:</label>
                 <div class="formContainer">
-                    <input ng-model="carLicensePlate" name="carLicensePlate" class="form-control" type="text" id="license_plateNum" style="width:90%;display:inline;color:black;" placeholder="Enter License Plate Number" maxlength="9" ng-pattern="onlyNumbers" required>
-                    <span ng-hide="!carLicensePlate.length" ng-hide="validName" Style="color:#057B28;padding-left:5px;position:relative;display:inline;" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                    <input ng-model="carLicensePlate" name="carLicensePlate" class="form-control" type="text" id="license_plateNum" style="display:inline;color:black;" placeholder="Enter License Plate Number" maxlength="9" ng-pattern="onlyNumbers" required>
+                    <span ng-hide="!carLicensePlate.length"  Style="color:#057B28;padding-left:5px;position:relative;display:inline;" class="glyphicon glyphicon-ok form-control-feedback"></span>
                     <span ng-show="!carLicensePlate.length" Style="color:#FFC600;padding-left:5px;position:relative;display:inline;" class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
-                    <div class="error" ng-show="myForm.myName.$dirty"><br /> </div>
+                    <div class="error" ng-show="myForm.carLicensePlate.$dirty && myForm.carLicensePlate.$error.pattern"><br /> </div>
                     <span class="errorFields" ng-show="myForm.carLicensePlate.$invalid && !myForm.carLicensePlate.$pristine && myForm.carLicensePlate.$error.pattern"> Only numbers are allowed</span>
                 </div>
 
                 <label for="text">Car Category:</label>
                 <div class="formContainer">
-                    <input ng-model="carCategory" name="carCategory" class="form-control" type="text" id="carCategory" style="width:90%;display:inline;color:black;" placeholder="Enter Car Category" ng-pattern="onlyLetters" required>
-                    <span ng-hide="!carCategory.length" ng-hide="validName" Style="color:#057B28;padding-left:5px;position:relative;display:inline;" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                    <input ng-model="carCategory" name="carCategory" class="form-control" type="text" id="carCategory" style="display:inline;color:black;" placeholder="Enter Car Category" ng-pattern="onlyLetters" required>
+                    <span ng-hide="!carCategory.length"  Style="color:#057B28;padding-left:5px;position:relative;display:inline;" class="glyphicon glyphicon-ok form-control-feedback"></span>
                     <span ng-show="!carCategory.length" Style="color:#FFC600;padding-left:5px;position:relative;display:inline;" class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
-                    <div class="error" ng-show="myForm.myName.$dirty"><br /> </div>
+                    <div class="error" ng-show="myForm.carCategory.$dirty && myForm.carCategory.$error.pattern"><br /> </div>
                     <span class="errorFields" ng-show="myForm.carCategory.$invalid && !myForm.carCategory.$pristine && myForm.carCategory.$error.pattern"> Only Alphabets are allowed</span>
                 </div>
 
                 <label for="text">Car Model:</label>
                 <div class="formContainer">
-                    <input ng-model="carModel" name="carModel" class="form-control" type="text" id="carModel" style="width:90%;display:inline;color:black;" placeholder="Enter Car Model">
-                    <span ng-hide="!carModel.length" ng-hide="validName" Style="color:#057B28;padding-left:5px;position:relative;display:inline;" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                    <input ng-model="carModel" name="carModel" class="form-control" type="text" id="carModel" style="display:inline;color:black;" placeholder="Enter Car Model">
+                    <span ng-hide="!carModel.length"  Style="color:#057B28;padding-left:5px;position:relative;display:inline;" class="glyphicon glyphicon-ok form-control-feedback"></span>
                     <span ng-show="!carModel.length" Style="color:#FFC600;padding-left:5px;position:relative;display:inline;" class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
                 </div>
 
@@ -313,10 +323,11 @@
                 <br />
 
                 <label for="text">Year Of Manu facture:</label>
-
-                <input class="form-control" type="number" name="year" id="year" min="1995" max="2017" style="color:black;width: 48%;padding-left:50px;" placeholder="Year Of Manu facture" />
-            </div>
-            <br />
+                <div class="formContainer">
+                    <input class="form-control" type="number" name="year" id="year" min="1995" max="2017"  placeholder="Year Of Manu facture" />
+                    </div>
+                </div>
+         
 
             <!--Start Insurance details-->
             <div ng-click="myFunc2()" id="insCompDtls" class="emergFormBtn insuranceDetailsButt" ng-show="insuranceDetailsBut">
@@ -334,7 +345,7 @@
                     <input ng-model="compName" name="compName" class="form-control" type="text" id="insuranceCompanyN" style="width:80%;display:inline;color:black;" placeholder="Enter Insurance Company Name" ng-pattern="onlyLetters" required>
                     <span ng-hide="!compName.length" Style="color:#057B28;padding-left:5px;position:relative;display:inline;" class="glyphicon glyphicon-ok form-control-feedback"></span>
                     <span ng-show="!compName.length" Style="color:#FFC600;padding-left:5px;position:relative;display:inline;" class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
-                    <div class="error" ng-show="myForm.myName.$dirty"><br /> </div>
+                    <div class="error" ng-show="myForm.compName.$dirty && myForm.compName.$error.pattern"><br /> </div>
                     <span class="errorFields" ng-show="myForm.compName.$invalid && !myForm.compName.$pristine && myForm.compName.$error.pattern"> Only Alphabets are allowed</span>
                 </div>
 
@@ -343,7 +354,7 @@
                     <input ng-model="policyNum" name="policyNum" class="form-control" type="text" id="insurancePolicyNum" style="width:80%;display:inline;color:black;" placeholder="Enter Insurance Policy Number" maxlength="10" ng-pattern="onlyNumbers" required>
                     <span ng-hide="!policyNum.length" Style="color:#057B28;padding-left:5px;position:relative;display:inline;" class="glyphicon glyphicon-ok form-control-feedback"></span>
                     <span ng-show="!policyNum.length" Style="color:#FFC600;padding-left:5px;position:relative;display:inline;" class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
-                    <div class="error" ng-show="myForm.myName.$dirty"><br /> </div>
+                    <div class="error" ng-show="myForm.policyNum.$dirty && myForm.policyNum.$error.pattern"><br /> </div>
                     <span class="errorFields" ng-show="myForm.policyNum.$invalid && !myForm.policyNum.$pristine && myForm.policyNum.$error.pattern"> Only numbers are allowed</span>
                 </div>
 
@@ -352,7 +363,7 @@
                     <input ng-model="agentName" name="agentName" class="form-control" id="insuranceAgentNa" type="text" style="width:80%;display:inline;color:black;" placeholder="Enter Insurance Agent Name" ng-pattern="onlyLetters" required>
                     <span ng-hide="!agentName.length" Style="color:#057B28;padding-left:5px;position:relative;display:inline;" class="glyphicon glyphicon-ok form-control-feedback"></span>
                     <span ng-show="!agentName.length" Style="color:#FFC600;padding-left:5px;position:relative;display:inline;" class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
-                    <div class="error" ng-show="myForm.myName.$dirty"><br /> </div>
+                    <div class="error" ng-show="myForm.agentName.$dirty && myForm.agentName.$error.pattern"><br /> </div>
                     <span class="errorFields" ng-show="myForm.agentName.$invalid && !myForm.agentName.$pristine && myForm.agentName.$error.pattern"> Only Alphabets are allowed</span>
                 </div>
 
@@ -361,7 +372,7 @@
                     <input ng-model="agentPhone" name="agentPhone" class="form-control" type="text" id="insuranceAgentPhone" style="width:80%;display:inline;color:black;" placeholder="Enter Insurance Agent Phone Number" maxlength="10" ng-pattern="onlyNumbers" required>
                     <span ng-hide="!agentPhone.length" Style="color:#057B28;padding-left:5px;position:relative;display:inline;" class="glyphicon glyphicon-ok form-control-feedback"></span>
                     <span ng-show="!agentPhone.length" Style="color:#FFC600;padding-left:5px;position:relative;display:inline;" class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
-                    <div class="error" ng-show="myForm.myName.$dirty"><br /> </div>
+                    <div class="error" ng-show="myForm.agentPhone.$dirty && myForm.agentPhone.$error.pattern"><br /> </div>
                     <span class="errorFields" ng-show="myForm.agentPhone.$invalid && !myForm.agentPhone.$pristine && myForm.agentPhone.$error.pattern"> Only numbers are allowed</span>
                 </div>
             </div>
@@ -381,9 +392,10 @@
                         <label style="display:block;">
                             <img id="blah" alt="your image" width="130" height="150" class="imgPreview" />
                         </label>
-                        <button type="reset" ng-click="angular.copy(files)" class="btn btn-default btn-sm" id="clear" style="display:block;margin-left:45%;">
-                            <span class="glyphicon glyphicon-trash"></span>
-                        </button>
+                
+                        <button type="reset" ng-click="delete1()" class="btn btn-default btn-sm" id="clear" style="display:block;margin-left:45%;">
+                            <i  class="glyphicon glyphicon-trash"></i>
+                        </button>     
                     </div>
                     <div class="smallWindowUpload">
                         <label style="display:block;" class="labelUploadButt">
@@ -397,9 +409,6 @@
                         </button>
                     </div>
                 </div>
-
-
-
 
               <!--Window for documents upload -->
 
@@ -426,20 +435,50 @@
 
             <!--End window for documents upload -->
 
-                <div class="UploadBtn" ng-click="showUploadImageWindow()">
+                <div class="UploadBtn" ng-click="ViewImagesUpload()">
                     <i Style="font-size:20px;" class="glyphicon glyphicon-picture"></i>
                     Upload Images
                 </div>
 
-               <!--  Window for images upload -->
-                <!-- <div class="UploadWindow" ng-show="UploadImages">
-                        <div class="reportLabelHead" style="background:#B1D607;">
-                            <b>Upload Images</b>
-                            <div ng-click= "closeViewImage()" class="x">x</div>
-                        </div>
-                        <input type = "file" class="filestyle" data-input="false" data-buttonText="Find file">
+                <div class="UploadWindow1" ng-show="UploadImages" style="margin-top:3px;">
+
+                    <div class="smallWindowUpload" >
+                        <label  class="labelUploadButt1">
+                            <input type="file" id="imgIn1" name="imgIn1" ng-model="files" class="filestyle" data-input="false" data-buttonText="Picture 1" value="" onchange="document.getElementById('pic1').src = window.URL.createObjectURL(this.files[0])">
+                        </label>
+                        <label style="display:block;">
+                            <img id="pic1" alt="your image" width="130" height="150" class="imgPreview" />
+                        </label>
+                        <button type="reset"  class="btn btn-default btn-sm" id="clear1" style="display:block;margin-left:45%;">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
                     </div>
-                End window for images upload -->
+                    <div class="smallWindowUpload">
+                        <label style="display:block;" class="labelUploadButt1">
+                            <input type="file" id="imgIn2" name="imgIn2" class="filestyle" data-input="false" data-buttonText="Picture 2" onchange="document.getElementById('pic2').src = window.URL.createObjectURL(this.files[0])">
+                        </label>
+                        <label style="display:block;">
+                            <img id="pic2" alt="your image" width="130" height="150" class="imgPreview" />
+                        </label>
+                        <button type="button" class="btn btn-default btn-sm" id="clear" style="display:block;margin-left:45%;">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                    </div>
+                    <div class="smallWindowUpload">
+                        <label style="display:block;" class="labelUploadButt1">
+                            <input type="file" id="imgIn3" name="imgIn3" class="filestyle" data-input="false" data-buttonText="Picture 3" onchange="document.getElementById('pic3').src = window.URL.createObjectURL(this.files[0])">
+                        </label>
+                        <label style="display:block;">
+                            <img id="pic3" alt="your image" width="130" height="150" class="imgPreview" />
+                        </label>
+                        <button type="button" class="btn btn-default btn-sm" id="clear" style="display:block;margin-left:45%;">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                    </div>
+                </div>
+
+
+            <!--End window for images upload -->
 
     
 
@@ -461,3 +500,4 @@
 <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8jxvHszW9AW7xdcB7Ds-f5PPIRGfhmHw&callback=initMap">
 </script>
+
