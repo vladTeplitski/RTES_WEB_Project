@@ -1,231 +1,242 @@
 ﻿<script src="~/Scripts/Functions/funcLib.js"></script>
+<link href="~/Content/algCSS.css" rel="stylesheet" />
 
 <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8jxvHszW9AW7xdcB7Ds-f5PPIRGfhmHw&callback=initMap">
 </script>
 
-
-
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&v=3&libraries=geometry"></script>
 
+<div class="algContainer">
+
+    <div class="progressBox">
+        <div style="cursor:default;padding:10px;color:#F3F3F3">Calculating service requests...</div>
+        <div class="loader" style="margin:auto;"></div>
+    </div>
 
 
-Algorithm buffer - partial view
+    <div id="testLngLatClientSide" style="position:absolute;top:300px;width:700px;height:auto;color:#4AFF12;background-color:black;border:1px solid black;">
+        <span style="color:red;"><b>Algorithm debug mode</b></span>
+        <br /><br />
+
+        <div id="test1"></div><br />
+        <div id="test2"></div><br />
+        <div id="test3"></div><br />
+        <div id="test4"></div><br />
+        <div id="test5"></div><br />
+        <div id="test6"></div><br />
+        <div id="test7"></div><br />
+        <div id="test8"></div><br />
+        <div id="test9"></div><br />
+        <br /><br />
+
+    </div>
 
 
-
-<div id="testLngLatClientSide" style="width:700px;height:auto;color:#4AFF12;background-color:black;border:1px solid black;">
-    <div id="test1"></div><br />
-    <div id="test2"></div><br />
-    <div id="test3"></div><br />
-    <div id="test4"></div><br />
-    <div id="test5"></div><br />
-    <div id="test6"></div><br />
-    <div id="test7"></div><br />
-    <div id="test8"></div><br />
-    <div id="test9"></div><br />
-    <br /><br />
-
-</div>
+    <br />
 
 
-<br />
+    @using RTESWebProjectMVC.Models
+    @model truckDriverList[]
+
+    @{
+
+        if (Model != null)
+        {
+
+            <script>
+
+                var finalDriverId;  //driver id - algorithm result to send to server
+                var finalReportId;  //report id - algorithm result to send to server
 
 
+                var clientLng =  '@(Session["clientLng"])';
+                var clientLat = '@(Session["clientLat"])';
 
-@using RTESWebProjectMVC.Models
-@model truckDriverList[]
+                var cnt = @(Session["driversListSize"]);
+                var i;
 
-@{
+                document.getElementById("test1").innerHTML = "Number of drivers ($cnt) = "+cnt;
+                document.getElementById("test2").innerHTML = "<br>"+"Client coordinates: Lng:" + clientLng + " Lat:" + clientLat + "<br><br>";
 
-    if (Model != null)
-    {
+                var para = [];
+                var para3 = [];
+                var para4 = [];
+                var para5 = [];
 
+                var driversArray = [];  // init an array for objects
 
-        <script>
+                function driverObj() { // init object for storing all drivers' details
+                    this.driverId = null;
+                    this.lan = null;
+                    this.lng = null;
+                    this.tasksCount = null;
+                    this.reportId = null;
+                    this.tasksLat = [];
+                    this.tasksLng = [];
+                };
 
+                var min=0;
+                var truckDriverId;
+                var i=0 ;
 
-        var clientLng =  '@(Session["clientLng"])';
-        var clientLat = '@(Session["clientLat"])';
-
-           
-
-        var cnt = @(Session["driversListSize"]);
-        var i;
-
-        document.getElementById("test1").innerHTML = "Number of drivers ($cnt) = "+cnt;
-        document.getElementById("test2").innerHTML = "<br>"+"Client coordinates: Lng:" + clientLng + " Lat:" + clientLat + "<br><br>";
-
-        var para = [];
-        var para3 = [];
-        var para4 = [];
-        var para5 = [];
-        
-        var driversArray = [];  // init an array for objects
-
-        function driverObj() { // init object for storing all drivers' details
-            this.driverId = null;
-            this.lan = null;
-            this.lng = null;
-            this.tasksCount = null;
-            this.reportId = null;
-            this.tasksLat = [];
-            this.tasksLng = [];
-        };
-
-        var min=0;
-        var truckDriverId;
-        var i=0 ;
-       
-            @foreach (var item in Model)  // switch to C#
+                @foreach (var item in Model)  // switch to C#
             {
              <text>  // switch to javascript
-            
-                    driversArray.push(new driverObj()); //create array of objects
 
+                driversArray.push(new driverObj()); //create array of objects
 
-            
-                    driversArray[i].driverId = @(item.driverId);
-                    driversArray[i].lan = @(item.lan);
-                    driversArray[i].lng = @(item.lng);
-                    driversArray[i].reportId = @(item.reportId);
-                    driversArray[i].tasksCount = @(item.tasksCount);
+                driversArray[i].driverId = @(item.driverId);
+                driversArray[i].lan = @(item.lan);
+                driversArray[i].lng = @(item.lng);
+                driversArray[i].reportId = @(item.reportId);
+                driversArray[i].tasksCount = @(item.tasksCount);
 
+                para3[i] = document.createElement("div");
+                para3[i].innerHTML = "Driver id:"+i+"_"+ driversArray[i].driverId + "__Driver Lat:" + driversArray[i].lan + "__Driver Lng:" + driversArray[i].lng + "__Report ID:" +driversArray[i].reportId + "__Tasks Count:" + driversArray[i].tasksCount + "<br>----";
+                document.getElementById("test3").appendChild(para3[i]);
 
-                    para3[i] = document.createElement("div");
-                    para3[i].innerHTML = "Driver id:"+i+"_"+ driversArray[i].driverId + "__Driver Lat:" + driversArray[i].lan + "__Driver Lng:" + driversArray[i].lng + "__Report ID:" +driversArray[i].reportId + "__Tasks Count:" + driversArray[i].tasksCount + "<br>----";
-                    document.getElementById("test3").appendChild(para3[i]);
-
-                    var x=0;
-                    @foreach (var item2 in item.tasksLat)
+                var x=0;
+                @foreach (var item2 in item.tasksLat)
                     {
                     <text>
 
-                        driversArray[i].tasksLat[x] = @(item2);
-                        x++;
+                driversArray[i].tasksLat[x] = @(item2);
+                x++;
 
-                    </text>
+                </text>
                     }
 
-                    var t=0;
-                     @foreach (var item3 in item.tasksLng)
+                var t=0;
+                @foreach (var item3 in item.tasksLng)
                     {
                     <text>
 
-                        driversArray[i].tasksLng[t] = @(item3);
-                        t++;
+                driversArray[i].tasksLng[t] = @(item3);
+                t++;
 
-                    </text>
+                </text>
                     }
 
-                    var sizeLat = driversArray[i].tasksLat.length;
-                    var n=0;
+                var sizeLat = driversArray[i].tasksLat.length;
+                var n=0;
 
-                    while(n<sizeLat)
-                    {
-                        para4[n] = document.createElement("div");
-                        para4[n].innerHTML = driversArray[i].driverId + "  task:" + n + "__lat:" + "_"+ driversArray[i].tasksLat[n];
-                        document.getElementById("test4").appendChild(para4[n]);
-                        n++;
-                    }
-
-                    var sizeLng = driversArray[i].tasksLng.length;
-                    var b=0;
-            
-                    while(b<sizeLng)
-                    {
-                        para5[b] = document.createElement("div");
-                        para5[b].innerHTML = driversArray[i].driverId + "  task:" + b + "__lng:" + "_"+ driversArray[i].tasksLng[b];
-                        document.getElementById("test5").appendChild(para5[b]);
-
-                        b++;
-                    }
-
-                    i++;
-
-                 </text>
-            }
-
-
-
-            //distances calculation
-
-            var distance = [];   //// distances of each driver from client ////
-            var tasksDistanceSum = [];  // for each driver, sum of distance between tasks
-            var tasksDistanceSumToClient;  // sum of driver -> tasks -> client
-
-            var j=0;
-            var para2 = [];
-            var para10 = [];
-
-            while(j<cnt)  //calculate distance between each driver to client & calculate the sum of tasks distances from driver
-            {
-                
-                distance[j] = calcDistance(driversArray[j].lan,driversArray[j].lng,clientLat,clientLng)
-
-
-                para2[j] = document.createElement("div");
-                para2[j].innerHTML = j + ")" + "Driver id: " + driversArray[j].driverId + "__Distance from client: " + (distance[j]/1000).toFixed(2) + " km  ";
-                document.getElementById("test6").appendChild(para2[j]);
-
-
-                var tasksSize = driversArray[j].tasksLat.length;
-                
-                tasksDistanceSum[j]=0; //init
-                if(tasksSize>0 && driversArray[j].tasksLat[0]!=0) // if there are more than 0 tasks, at first, calculate distance from driver to first task
+                while(n<sizeLat)
                 {
-                    tasksDistanceSum[j] = calcDistance(driversArray[j].lan,driversArray[j].lng,driversArray[j].tasksLat[0],driversArray[j].tasksLng[0]);
-                    tasksDistanceSumToClient = tasksDistanceSum[j] + calcDistance(driversArray[j].tasksLat[0],driversArray[j].tasksLng[0],clientLat,clientLng);  //driver -> task 1 -> client
-                    
-                    if(tasksSize==2 && driversArray[j].tasksLat[1]!=0) // there maybe only 2 tasks registered to a driver. calculate distance between registered tasks
-                    {
-                        tasksDistanceSum[j] += calcDistance(driversArray[j].tasksLat[0],driversArray[j].tasksLng[0],driversArray[j].tasksLat[1],driversArray[j].tasksLng[1]);
-                        tasksDistanceSumToClient = tasksDistanceSum[j] + calcDistance(driversArray[j].tasksLat[1],driversArray[j].tasksLng[1],clientLat,clientLng); //driver -> task 1 -> task 2 -> client
-                    }
+                    para4[n] = document.createElement("div");
+                    para4[n].innerHTML = driversArray[i].driverId + "  task:" + n + "__lat:" + "_"+ driversArray[i].tasksLat[n];
+                    document.getElementById("test4").appendChild(para4[n]);
+                    n++;
                 }
 
-                para10[j] = document.createElement("div");
-                para10[j].innerHTML = j + ")" + "Driver id: " + driversArray[j].driverId + "__tasks dstance sum: " + (tasksDistanceSum[j]/1000).toFixed(2) + " km  " + " __Total distance to client: " + (tasksDistanceSumToClient/1000).toFixed(2);
-                document.getElementById("test7").appendChild(para10[j]);
-                
+                var sizeLng = driversArray[i].tasksLng.length;
+                var b=0;
 
-                j++;
+                while(b<sizeLng)
+                {
+                    para5[b] = document.createElement("div");
+                    para5[b].innerHTML = driversArray[i].driverId + "  task:" + b + "__lng:" + "_"+ driversArray[i].tasksLng[b];
+                    document.getElementById("test5").appendChild(para5[b]);
+
+                    b++;
+                }
+
+                i++;
+
+                </text>
             }
 
+                //distances calculation
 
-            function calcDistance(fromlat,fromlng,tolat,tolng){  // calculate distance between two locations by lat & lng cordinates
-                var distance = google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(fromlat, fromlng), new google.maps.LatLng(tolat, tolng));
-                return distance;
-            }
+                var distance = [];   //// distances of each driver from client ////
+                var tasksDistanceSum = [];  // for each driver, sum of distance between tasks
+                var tasksDistanceSumToClient;  // sum of driver -> tasks -> client
+
+                var j=0;
+                var para2 = [];
+                var para10 = [];
+
+                while(j<cnt)  //calculate distance between each driver to client & calculate the sum of tasks distances from driver
+                {
+
+                    distance[j] = calcDistance(driversArray[j].lan,driversArray[j].lng,clientLat,clientLng)
+
+
+                    para2[j] = document.createElement("div");
+                    para2[j].innerHTML = j + ")" + "Driver id: " + driversArray[j].driverId + "__Distance from client: " + (distance[j]/1000).toFixed(2) + " km  ";
+                    document.getElementById("test6").appendChild(para2[j]);
+
+                    var tasksSize = driversArray[j].tasksLat.length;
+
+                    tasksDistanceSum[j]=0; //init
+                    if(tasksSize>0 && driversArray[j].tasksLat[0]!=0) // if there are more than 0 tasks, at first, calculate distance from driver to first task
+                    {
+                        tasksDistanceSum[j] = calcDistance(driversArray[j].lan,driversArray[j].lng,driversArray[j].tasksLat[0],driversArray[j].tasksLng[0]);
+                        tasksDistanceSumToClient = tasksDistanceSum[j] + calcDistance(driversArray[j].tasksLat[0],driversArray[j].tasksLng[0],clientLat,clientLng);  //driver -> task 1 -> client
+
+                        if(tasksSize==2 && driversArray[j].tasksLat[1]!=0) // there maybe only 2 tasks registered to a driver. calculate distance between registered tasks
+                        {
+                            tasksDistanceSum[j] += calcDistance(driversArray[j].tasksLat[0],driversArray[j].tasksLng[0],driversArray[j].tasksLat[1],driversArray[j].tasksLng[1]);
+                            tasksDistanceSumToClient = tasksDistanceSum[j] + calcDistance(driversArray[j].tasksLat[1],driversArray[j].tasksLng[1],clientLat,clientLng); //driver -> task 1 -> task 2 -> client
+                        }
+                    }
+
+                    para10[j] = document.createElement("div");
+                    para10[j].innerHTML = j + ")" + "Driver id: " + driversArray[j].driverId + "__tasks dstance sum: " + (tasksDistanceSum[j]/1000).toFixed(2) + " km  " + " __Total distance to client: " + (tasksDistanceSumToClient/1000).toFixed(2);
+                    document.getElementById("test7").appendChild(para10[j]);
+
+                    j++;
+                }
 
 
 
+                function calcDistance(fromlat,fromlng,tolat,tolng){  // calculate distance between two locations by lat & lng cordinates
+                    var distance = google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(fromlat, fromlng), new google.maps.LatLng(tolat, tolng));
+                    return distance;
+                }
 
-        </script>
+                function redirectToServer() { //send results to server side & redirect to main client view when algorithm done
+
+                    $.ajax({
+                        url: '/client/algorithmFunc',
+                        type: 'POST',
+                        data: { driverId: finalDriverId, reportId: finalReportId },
+                        success: function (data) {
+                            alert("Tow truck driver assigned successfully!");
+                        },
+                        error: function () {
+                            alert("Error: bufferView - Server ajax comunication failed.");
+                        }
+                    });
+
+                }
+
+
+
+            </script>
+        }
+        else
+        {
+
+            <script>
+                document.getElementById("testLngLatClientSide").innerHTML = "ERROR: MODEL NULL";
+
+            </script>
+
+        }
+
+
+        //coordinates library://
+        //karmiel: lat: 32.912957, lng: 35.282209
+        //haifa: lat: 32.79405, lng: 34.98957
+        //nazereth elit: lat: 32.71154, lng: 35.32481
+        //akko: lat: 32.934976899999995, lng: 35.0846818
+
+
+        //END algorithm
     }
-    else
-    {
-
-        <script>
-            document.getElementById("testLngLatClientSide").innerHTML = "MODEL NULL";
-
-        </script>
-
-
-    }
-
-
-    //coordinates library://
-    //karmiel: lat: 32.912957, lng: 35.282209
-    //haifa: lat: 32.79405, lng: 34.98957
-    //nazereth elit: lat: 32.71154, lng: 35.32481
-    //akko: lat: 32.934976899999995, lng: 35.0846818
-
-
-    //END algorithm
-    }
 
 
 
 
-
+</div>

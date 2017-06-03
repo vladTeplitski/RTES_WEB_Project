@@ -118,7 +118,7 @@ function searchAllReportsByClientIdJs() {
     table = document.getElementById("allReportsTable");
     tr = table.getElementsByTagName("tr");
     for (i = 0; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName("td")[2];  // 3rd column
+        td = tr[i].getElementsByTagName("td")[3];  // 3rd column
         if (td) {
             if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
                 tr[i].style.display = "";
@@ -203,7 +203,7 @@ function closeViewRep() {
 function closeView2() {
     $('#userDetailsContainer').hide();
 }
-function closeViewDriversLocation() {
+function closeViewDriversDetails() {
     $('#DriversLocationContainer').hide();
     if (flag == 1) //if the user in operations room, interval should be activated
     {

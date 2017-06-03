@@ -1,21 +1,13 @@
 to do:
 -----
-* build logo - RTES Portal
-* login angular validation
-* settings angular validation
-* keep user logged in - dont throw him out after x minutes.
-* remember user login info - keep him logged in
-* css late load - jquery problem - MOBILE
 
-V gps - location - javascript
-V closed cases/open cases - db
-
+* angular validation login
+* client - delete message notification - design
+* client - report details - empty images
 
 
 Operator
 --------
-* operator cant send empty message / comment - angular ?
-- Driver tracking - locations - only for active driver
 
 V report details
 V buttons in operations room - cooperate with refreshes

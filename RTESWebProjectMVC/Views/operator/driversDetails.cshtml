@@ -1,9 +1,9 @@
-﻿<!--Start Driver Locations window-->
+﻿<!--Start Driver Details window-->
 <div id="mainDriversLocationContainer">
     <div id="DriversLocationContainer" class="infoTableClass opRepLabelJs" style="display:@ViewBag.showDriversLocationWindow;width:450px;margin-left:-225px;">
         <div class="reportLabelHead">
-            <b><i Style="font-size:15px;margin-right:5px;" class="glyphicon glyphicon-record"></i>Drivers Location</b>
-            <div onclick="closeViewDriversLocation()" class="x">x</div>
+            <b><i Style="font-size:15px;margin-right:5px;" class="glyphicon glyphicon-record"></i>Available Drivers</b>
+            <div onclick="closeViewDriversDetails()" class="x">x</div>
         </div>
         
         <div class="tableContPartial">
@@ -11,37 +11,43 @@
 
                 <tr>
                     <th></th>
-                    <th>Driver</th>
-                    <th>Location</th>
+                    <th>Driver Name</th>
+                    <th>Cargo</th>
+                    <th>Phone</th>
                 </tr>
+
+                @using RTESWebProjectMVC.Models
+                @model driverDetails[]
 
 
                 @{
-
-                    if (ViewBag.driverLocationList != null)
+                    if (Model != null)
                     {
-                        foreach (var item in ViewBag.driverLocationList)
-                        {
+
+                            foreach (var item in Model)
+                            {
 
                             <tr id="updatePannelAngular" style="background-color:#5C91BF;">
                                 <td>
                                     <i Style="color:#35F643;font-size:10px;margin-right:5px;" class="glyphicon glyphicon-record"></i>
                                 </td>
                                 <td>
-                                    
+                                    @item.name
                                 </td>
                                 <td>
-
-
+                                    @item.cargo
+                                </td>
+                                <td>
+                                    @item.phone
                                 </td>
                             </tr>
-
                         }
                     }
                     else
                     {
                         <tr id="updatePannelAngular">
                             <td></td>
+                            <td>No info</td>
                             <td>No info</td>
                             <td>No info</td>
                         </tr>
@@ -51,4 +57,4 @@
         </div>
     </div>
 </div>
-<!--END Driver Locations window-->
+<!--END Driver Details window-->

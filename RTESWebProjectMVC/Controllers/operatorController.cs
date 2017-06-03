@@ -22,47 +22,47 @@ namespace RTESWebProjectMVC.Controllers
                 userId = (int)(Session["uid"]);    //convert session to int - read the id
                 var checkUser = db.abstract_user.Where(i => i.id == userId).FirstOrDefault();
 
-                if(checkUser.role=="Operator")  // access only for operators.
+                if (checkUser.role == "Operator")  // access only for operators.
                 {
 
-                base.initFunc();  //init the base functions - user CP
+                    base.initFunc();  //init the base functions - user CP
 
-                //init messages gui
-                ViewBag.usersFromDbAlert = "none";
-                ViewBag.showMsgANorifGui = "none";
-                if (Session["msgNotif"] != null && Session["selected"] != null && Session["selectedName"] != null)
-                {
-                    ViewBag.showMsgANorifGui = "inline";
-                    Session["msgNotif"] = null;
-                    ViewBag.sentId = Session["selected"];
-                    ViewBag.sentName = Session["selectedName"];
-                }
+                    //init messages gui
+                    ViewBag.usersFromDbAlert = "none";
+                    ViewBag.showMsgANorifGui = "none";
+                    if (Session["msgNotif"] != null && Session["selected"] != null && Session["selectedName"] != null)
+                    {
+                        ViewBag.showMsgANorifGui = "inline";
+                        Session["msgNotif"] = null;
+                        ViewBag.sentId = Session["selected"];
+                        ViewBag.sentName = Session["selectedName"];
+                    }
                     //END init messages gui
 
-                //init comments gui
-                ViewBag.showCommentNotifGui = "none";
-                if (Session["commentNotif"] != null && Session["selected"] != null)
-                {
-                    ViewBag.showCommentNotifGui = "inline";
-                    Session["commentNotif"] = null;
-                    ViewBag.sentId = Session["selected"];
-                    
-                }
+                    //init comments gui
+                    ViewBag.showCommentNotifGui = "none";
+                    if (Session["commentNotif"] != null && Session["selected"] != null)
+                    {
+                        ViewBag.showCommentNotifGui = "inline";
+                        Session["commentNotif"] = null;
+                        ViewBag.sentId = Session["selected"];
 
-                 //End init comments
-                 ViewBag.showClosedReportOpsNotif = "none";
-                 if (Session["commentNotifClose"] != null)
-                 {
+                    }
+
+                    //End init comments
+                    ViewBag.showClosedReportOpsNotif = "none";
+                    if (Session["commentNotifClose"] != null)
+                    {
                         ViewBag.showClosedReportOpsNotif = "inline";
                         Session["commentNotifClose"] = null;
-                 }
-                //init ops room notif
+                    }
+                    //init ops room notif
 
-                //END init ops room notif
+                    //END init ops room notif
 
-                //init functions
-                usersFromDB();   //update users list from db to view
-                allReportsFromDb(); //update existing reports list from db to view
+                    //init functions
+                    usersFromDB();   //update users list from db to view
+                    allReportsFromDb(); //update existing reports list from db to view
 
                     return View();
                 }
@@ -77,7 +77,7 @@ namespace RTESWebProjectMVC.Controllers
                 return RedirectToAction("Login", "web");  //if not logged in, redirect to login
             }
         }//end operatorHome function
-        
+
         public void usersFromDB()  //show the client reports function
         {
 
@@ -102,7 +102,7 @@ namespace RTESWebProjectMVC.Controllers
                 }
             }
         }//end usersFromDB function
-        
+
         public ActionResult openMessageUser(String id)
         {
 
@@ -113,37 +113,37 @@ namespace RTESWebProjectMVC.Controllers
             ViewBag.showMessageWindow = "Block";
 
             if (Session["user"] != null)  //if logged in user
-            { 
+            {
 
                 if (Request.IsAjaxRequest())  //validate ajax
                 {
 
                     using (var db = new Models.rtesEntities1())  //db
                     {
-                    
-                    var result = db.abstract_user.Where(i => i.id == x).FirstOrDefault();  //get the result from db
 
-                    if (result.id == x)  //if result found
-                    {
-                        ViewBag.showSearchResult = "inline";
-                        ViewBag.searchResultAlert = "none";  //no alert
-                        ViewBag.foundUserName = result.name + " " + result.familyName;
-                        ViewBag.foundUserId = result.id;
-                        ViewBag.foundUserEmail = result.email;
-                        Session["selectedName"] = result.name;
+                        var result = db.abstract_user.Where(i => i.id == x).FirstOrDefault();  //get the result from db
+
+                        if (result.id == x)  //if result found
+                        {
+                            ViewBag.showSearchResult = "inline";
+                            ViewBag.searchResultAlert = "none";  //no alert
+                            ViewBag.foundUserName = result.name + " " + result.familyName;
+                            ViewBag.foundUserId = result.id;
+                            ViewBag.foundUserEmail = result.email;
+                            Session["selectedName"] = result.name;
+                        }
+
+                        else  //no results
+                        {
+                            ViewBag.showSearchResult = "none";
+                            ViewBag.searchResultAlert = "inline";  //show alert for no results
+                        }
                     }
 
-                    else  //no results
-                    {
-                        ViewBag.showSearchResult = "none";
-                        ViewBag.searchResultAlert = "inline";  //show alert for no results
-                    }
-                }
-
-                return PartialView("messagePartial");  //using partial view
+                    return PartialView("messagePartial");  //using partial view
                 }
                 else
-                return PartialView("messagePartial");
+                    return PartialView("messagePartial");
 
             }
             else
@@ -151,7 +151,7 @@ namespace RTESWebProjectMVC.Controllers
                 return RedirectToAction("Login", "web");  //if disconnected, redirect to login
             }
         }//end openMessageUser
-        
+
         public ActionResult sendMessage(String Message)
         {
             int resultId = 0;
@@ -163,7 +163,7 @@ namespace RTESWebProjectMVC.Controllers
             using (var db = new Models.rtesEntities1())
             {
 
-               //generate message number - key in db
+                //generate message number - key in db
                 Random rand = new Random();
                 int msgNumber = 0;
                 msgNumber = rand.Next(1000, 100000);
@@ -190,14 +190,14 @@ namespace RTESWebProjectMVC.Controllers
             Session["msgNotif"] = "true";
             return RedirectToAction("operatorHome", "operator");
         }//end sendMessage
-        
+
         public void allReportsFromDb()  //init reports table from db
         {
             using (var db = new Models.rtesEntities1())
             {
 
                 //read from database
-                
+
                 var allReportsDB = db.emergencyReport.ToList();
 
                 if (allReportsDB.Any())
@@ -216,7 +216,7 @@ namespace RTESWebProjectMVC.Controllers
             }
 
         }//end allReportsFromDb
-        
+
         public ActionResult openReportDetails(String id)  // show selected report details
         {
             //
@@ -287,13 +287,13 @@ namespace RTESWebProjectMVC.Controllers
             {
                 return RedirectToAction("Login", "web");  //if disconnected, redirect to login
             }
-        
 
 
-        //
 
-    }//end openReportDetails
-        
+            //
+
+        }//end openReportDetails
+
         public ActionResult openUserDetailsGui(String id) //openUserDetails Gui
         {
 
@@ -328,7 +328,7 @@ namespace RTESWebProjectMVC.Controllers
                 return RedirectToAction("Login", "web");  //if disconnected, redirect to login
             }
         }//end openUserDetails Gui
-        
+
         public ActionResult openEditUserGui(String id) //editUserDetails Gui
         {
 
@@ -344,8 +344,8 @@ namespace RTESWebProjectMVC.Controllers
                 if (Request.IsAjaxRequest())  //validate ajax
                 {
 
-                        ViewBag.identify = x;
-                        Session["edituid"] = x;
+                    ViewBag.identify = x;
+                    Session["edituid"] = x;
 
 
                     return PartialView("editPartial");  //using partial view
@@ -359,7 +359,7 @@ namespace RTESWebProjectMVC.Controllers
                 return RedirectToAction("Login", "web");  //if disconnected, redirect to login
             }
         }//end editUserDetails Gui
-        
+
         public ActionResult updateEditsFunc(String editUsrPass) // Update (save) the user edits (changes) function
         {
             int userId;
@@ -369,18 +369,18 @@ namespace RTESWebProjectMVC.Controllers
             {
                 var user = db.abstract_user.Where(i => i.id == userId).FirstOrDefault();
 
-                    user.password = editUsrPass; //change the password in db
+                user.password = editUsrPass; //change the password in db
 
-                    db.SaveChanges();  //update database with the changes made
+                db.SaveChanges();  //update database with the changes made
 
-                    TempData["opEditedFlag"] = 1;  // flag - settings edited by operator ViewBag.showOpNotif
+                TempData["opEditedFlag"] = 1;  // flag - settings edited by operator ViewBag.showOpNotif
 
 
             }
 
             return Redirect(Request.UrlReferrer.PathAndQuery);  //get back to the present view
         }//END updateEditsFunc
-        
+
         public ActionResult openCommentGui(String id) // open comment Gui
         {
 
@@ -398,7 +398,7 @@ namespace RTESWebProjectMVC.Controllers
 
                     ViewBag.RepNum = x;
                     return PartialView("addCommentPartial");  //using partial view
-                    
+
                 }
                 else
                     return PartialView("addCommentPartial");
@@ -409,7 +409,7 @@ namespace RTESWebProjectMVC.Controllers
                 return RedirectToAction("Login", "web");  //if disconnected, redirect to login
             }
         }//end add Comment Gui
-        
+
         public ActionResult sendComment(String CommentBox)  // send operator comment
         {
             int selectedRep = 0;
@@ -428,7 +428,7 @@ namespace RTESWebProjectMVC.Controllers
             Session["commentNotif"] = "true";
             return RedirectToAction("operatorHome", "operator");
         }//end send operator comment
-        
+
         [OutputCache(NoStore = true, Location = System.Web.UI.OutputCacheLocation.Client, Duration = 3)] // every 3 sec
         public ActionResult GetOperationsRoom()
 
@@ -442,7 +442,7 @@ namespace RTESWebProjectMVC.Controllers
 
                 //update reports list
                 var reports = db.emergencyReport.Where(t => t.status == 0 || t.status == 1 || t.status == 2).OrderByDescending(t => t.date).ThenBy(t => t.hour).ToList();
-                    
+
 
                 if (reports.Any())
                 {
@@ -458,7 +458,7 @@ namespace RTESWebProjectMVC.Controllers
 
                 //update towing events list
                 var towingEvents = db.emergencyReport.Where(t => t.status == 0 && t.callForTowing == true).OrderByDescending(t => t.date).OrderByDescending(t => t.hour).ToList();
-                
+
 
                 if (towingEvents.Any())
                 {
@@ -513,7 +513,7 @@ namespace RTESWebProjectMVC.Controllers
 
 
         }
-        
+
         public ActionResult closeCase(String id)  // close whole case by operator - in operations room
         {
 
@@ -528,14 +528,14 @@ namespace RTESWebProjectMVC.Controllers
                 db.SaveChanges();  // save changes to db
             }
 
-            
+
             Session["commentNotifClose"] = "true";
 
 
             return RedirectToAction("operatorHome", "operator");
         }//end closeCase
 
-        public ActionResult openDriversLocation()  // show Driver Locations list
+        public ActionResult openDriversDetails()  // show Drivers Details list
         {
             //
 
@@ -548,15 +548,30 @@ namespace RTESWebProjectMVC.Controllers
                 if (Request.IsAjaxRequest())  //validate ajax
                 {
 
-                    //using (var db = new Models.rtesEntities1())  //db
-                    //{
+                    var db = new Models.rtesEntities1();  // init db
                     
-                    //}
+                        var resultData = from a in db.abstract_user  //get all drivers from db
+                                         join t in db.truckDriver on a.id equals t.abstractUserId
+                                         where t.workStatus == true
+                                         select new driverDetails {  cargo = (int)t.cargo, name = a.name, phone = a.userPhoneNumber };
 
-                    return PartialView("driversLocation");  //using partial view
+                        int resultsCnt = resultData.Count();
+                        Models.driverDetails[] driverDetailsModel = new Models.driverDetails[resultsCnt];
+
+
+                        int i = 0;
+                        foreach (var y in resultData)
+                        {
+                            driverDetailsModel[i] = y;
+                            i++;
+                        }
+
+                    
+
+                    return PartialView("driversDetails", driverDetailsModel);  //using partial view
                 }
                 else
-                    return PartialView("driversLocation");
+                    return PartialView("driversDetails");
 
             }
             else
@@ -567,70 +582,6 @@ namespace RTESWebProjectMVC.Controllers
 
         }//end openDriversLocation
 
-        public ActionResult openShiftRegister()  // show shift registration window
-        {
-            //
-
-
-            ViewBag.showShiftRegWindow = "Block";
-
-            if (Session["user"] != null)  //if logged in user
-            {
-
-                if (Request.IsAjaxRequest())  //validate ajax
-                {
-
-                    //using (var db = new Models.rtesEntities1())  //db
-                    //{
-
-                    //}
-
-                    return PartialView("shiftRegPartial");  //using partial view
-                }
-                else
-                    return PartialView("shiftRegPartial");
-
-            }
-            else
-            {
-                return RedirectToAction("Login", "web");  //if disconnected, redirect to login
-            }
-
-
-        }//end shiftRegister
-
-        public ActionResult openPhoneBook()  // show phone book window
-        {
-            //
-
-
-            ViewBag.showPhoneWindow = "Block";
-
-            if (Session["user"] != null)  //if logged in user
-            {
-
-                if (Request.IsAjaxRequest())  //validate ajax
-                {
-
-                    //using (var db = new Models.rtesEntities1())  //db
-                    //{
-
-                    //}
-
-                    return PartialView("phoneBookPartial");  //using partial view
-                }
-                else
-                    return PartialView("phoneBookPartial");
-
-            }
-            else
-            {
-                return RedirectToAction("Login", "web");  //if disconnected, redirect to login
-            }
-
-
-        }//end openPhoneBook
 
     }
-
 }

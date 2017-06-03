@@ -626,7 +626,7 @@ namespace RTESWebProjectMVC.Controllers
         }
         //end create new report in db
 
-        public ActionResult algorithmFunc()  //Truck drivers assigning algorithm
+        public ActionResult algorithmFunc(String driverId, String reportId)  //Truck drivers assigning algorithm
         {
 
 
