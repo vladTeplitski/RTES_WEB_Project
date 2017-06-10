@@ -151,6 +151,15 @@
                             <span ng-hide="!towDest.length" Style="color:#057B28;padding-left:5px;position:relative;display:inline;" class="glyphicon glyphicon-ok form-control-feedback"></span>
                             <span ng-show="!towDest.length" Style="color:#FFC600;padding-left:5px;position:relative;display:inline;" class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
                         </div>
+                        <div class="formContainer" style="margin-left:2px;">
+                            <input class="form-control " name="latDest" id="latDest" type="text" placeholder="latDest">
+                        </div>
+                        <div class="formContainer" style="margin-left:2px;">
+                            <input class="form-control " name="lngDest" id="lngDest" type="text" placeholder="lngDest">
+                        </div>
+                        
+                        <input id="destBtn" name="destBtn" type="button" value="Click To Set Destination" onclick="setDestinationCoordeinates();" class="emergFormBtn">
+                        <br />
 
                         <label for="text">Witness Name:</label>
 

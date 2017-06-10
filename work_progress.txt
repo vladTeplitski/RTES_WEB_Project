@@ -5,21 +5,14 @@ to do:
 * client - delete message notification - design
 * client - report details - empty images
 
+* truck driver: ajax finish & close buttons
 
 Operator
 --------
 
-V report details
-V buttons in operations room - cooperate with refreshes
-V change report status
-V cant change settings to another operator
-V build operator panel
-V refresh reports each (x seconds) - check project !
-
 
 client
 ------
-* Delete images - new report
 
 V remove settings
 V add option to messages - delete messages - with icon
@@ -32,8 +25,3 @@ android
 -------
 
 
-
-Truck Driver
-------------
-* Disign
-* Check truck driver

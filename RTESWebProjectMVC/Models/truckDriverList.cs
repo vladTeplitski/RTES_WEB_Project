@@ -12,10 +12,12 @@ namespace RTESWebProjectMVC.Models
         public String lng { get; set; }
         public int tasksCount { get; set; }
         public int distance { get; set; }
-        public int reportId { get; set; }
+        public string[] reportId { get; set; }
         public string[] tasksLat { get; set; }
         public string[] tasksLng { get; set; }
-
+        public string[] tasksLatDest { get; set; }
+        public string[] tasksLngDest { get; set; }
+        public int cargo { get; set; }
 
     }
 }

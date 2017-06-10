@@ -29,6 +29,10 @@
         <div id="test8"></div><br />
         <div id="test9"></div><br />
         <br /><br />
+        <div id="testAlg1"></div><br />
+        <div id="testAlg2"></div><br />
+        <div id="testAlg3"></div><br />
+        <div id="testAlg4"></div><br />
 
     </div>
 
@@ -53,7 +57,7 @@
                 var clientLng =  '@(Session["clientLng"])';
                 var clientLat = '@(Session["clientLat"])';
 
-                var cnt = @(Session["driversListSize"]);
+                var cnt = '@(Model.Length)'
                 var i;
 
                 document.getElementById("test1").innerHTML = "Number of drivers ($cnt) = "+cnt;
@@ -63,6 +67,7 @@
                 var para3 = [];
                 var para4 = [];
                 var para5 = [];
+                var para700 = [];
 
                 var driversArray = [];  // init an array for objects
 
@@ -71,9 +76,13 @@
                     this.lan = null;
                     this.lng = null;
                     this.tasksCount = null;
-                    this.reportId = null;
+                    this.cargo = null;
+                    this.reportId = [];
                     this.tasksLat = [];
                     this.tasksLng = [];
+                    this.tasksDestLat = [];
+                    this.tasksDestLng = [];
+                    this.distanceResult =null;
                 };
 
                 var min=0;
@@ -89,12 +98,25 @@
                 driversArray[i].driverId = @(item.driverId);
                 driversArray[i].lan = @(item.lan);
                 driversArray[i].lng = @(item.lng);
-                driversArray[i].reportId = @(item.reportId);
+                driversArray[i].cargo = @(item.cargo);
+
                 driversArray[i].tasksCount = @(item.tasksCount);
 
                 para3[i] = document.createElement("div");
-                para3[i].innerHTML = "Driver id:"+i+"_"+ driversArray[i].driverId + "__Driver Lat:" + driversArray[i].lan + "__Driver Lng:" + driversArray[i].lng + "__Report ID:" +driversArray[i].reportId + "__Tasks Count:" + driversArray[i].tasksCount + "<br>----";
+                para3[i].innerHTML = "Driver id:"+i+"_"+ driversArray[i].driverId + "__Driver Lat:" + driversArray[i].lan + "__Driver Lng:" + driversArray[i].lng + "__Tasks Count:" + driversArray[i].tasksCount +  " __Cargo: " + driversArray[i].cargo +"<br>----";
                 document.getElementById("test3").appendChild(para3[i]);
+
+
+                var m=0;
+                @foreach (var item100 in item.reportId)
+                {
+                    <text>
+
+                driversArray[i].reportId[m] = @(item100);
+                    m++;
+
+                    </text>
+                }
 
                 var x=0;
                 @foreach (var item2 in item.tasksLat)
@@ -118,13 +140,37 @@
                 </text>
                     }
 
+
+                var e=0;
+                @foreach (var item101 in item.tasksLatDest)
+                {
+                    <text>
+
+                    driversArray[i].tasksDestLat[e] = @(item101);
+                    e++;
+
+                </text>
+                }
+
+                var h=0;
+                @foreach (var item102 in item.tasksLngDest)
+                {
+                    <text>
+
+                    driversArray[i].tasksDestLng[h] = @(item102);
+                    h++;
+
+                    </text>
+                }
+
+
                 var sizeLat = driversArray[i].tasksLat.length;
                 var n=0;
 
                 while(n<sizeLat)
                 {
                     para4[n] = document.createElement("div");
-                    para4[n].innerHTML = driversArray[i].driverId + "  task:" + n + "__lat:" + "_"+ driversArray[i].tasksLat[n];
+                    para4[n].innerHTML = driversArray[i].driverId + " __Report ID:" + driversArray[i].reportId[n] + "  task:" + n + "__lat:" + "_"+ driversArray[i].tasksLat[n];
                     document.getElementById("test4").appendChild(para4[n]);
                     n++;
                 }
@@ -135,10 +181,21 @@
                 while(b<sizeLng)
                 {
                     para5[b] = document.createElement("div");
-                    para5[b].innerHTML = driversArray[i].driverId + "  task:" + b + "__lng:" + "_"+ driversArray[i].tasksLng[b];
+                    para5[b].innerHTML = driversArray[i].driverId  + " __Report ID:" + driversArray[i].reportId[b] +  "  task:" + b + "__lng:" + "_"+ driversArray[i].tasksLng[b];
                     document.getElementById("test5").appendChild(para5[b]);
 
                     b++;
+                }
+
+                var u=0;
+                var sizeDest = driversArray[i].tasksDestLng.length;
+                while(u<sizeLng)
+                {
+                    para700[u] = document.createElement("div");
+                    para700[u].innerHTML = driversArray[i].driverId  + " __Report ID:" + driversArray[i].reportId[u] +  "  task:" + u + "__Dest lat:" + "_"+ driversArray[i].tasksDestLat[u]+ "__Dest lng:" + "_"+ driversArray[i].tasksDestLng[u];
+                    document.getElementById("test9").appendChild(para700[u]);
+
+                    u++;
                 }
 
                 i++;
@@ -187,6 +244,102 @@
 
                     j++;
                 }
+
+                var paraAlg1 = [];
+                var i = 0;
+                for(i=0;i<cnt;i++)  //Main algorithm loop
+                {
+
+                    if(driversArray[i].cargo==0 && driversArray[i].tasksCount==0) //distance only between driver->client
+                    {
+                        driversArray[i].distanceResult = calcDistance(driversArray[i].lan,driversArray[i].lng,clientLat,clientLng);
+                        driversArray[i].distanceResult =((driversArray[i].distanceResult)/1000).toFixed(2);
+                    }
+
+
+
+                    else if(driversArray[i].cargo==1 && driversArray[i].tasksCount==1) //10km of "fair approach"
+                    {
+                        var x = calcDistance(driversArray[i].lan,driversArray[i].lng,driversArray[i].tasksDestLat[0],driversArray[i].tasksDestLng[0]); // driver->unload
+                        var y = calcDistance(driversArray[i].lan,driversArray[i].lng,clientLat,clientLng) + calcDistance(clientLat,clientLng,driversArray[i].tasksDestLat[0],driversArray[i].tasksDestLng[0]); // driver->client->unload
+                        var z = y - x;
+
+                        if(z<0)
+                        {
+                            z=z*(-1);
+                        }
+
+                        z = (z/1000);
+                        if(z<=10)  //go to client and than unload
+                        {
+                            driversArray[i].distanceResult = calcDistance(driversArray[i].lan,driversArray[i].lng,clientLat,clientLng);  // driver->client
+                        }
+                        else //go to unload and than to client
+                        {
+                            driversArray[i].distanceResult = calcDistance(driversArray[i].lan,driversArray[i].lng,driversArray[i].tasksDestLat[0],driversArray[i].tasksDestLng[0]) + calcDistance(driversArray[i].tasksDestLat[0],driversArray[i].tasksDestLng[0],clientLat,clientLng)  // driver -> unload -> client
+                        }
+
+                        driversArray[i].distanceResult =((driversArray[i].distanceResult)/1000).toFixed(2);
+                    }
+
+
+
+
+                    else if(driversArray[i].cargo==1 && driversArray[i].tasksCount==2)
+                    {
+                        var x = calcDistance(driversArray[i].lan,driversArray[i].lng,driversArray[i].tasksDestLat[0],driversArray[i].tasksDestLng[0]) + calcDistance(driversArray[i].tasksDestLat[0],driversArray[i].tasksDestLng[0],driversArray[i].tasksLat[1],driversArray[i].tasksLng[1]) + calcDistance(driversArray[i].tasksLat[1],driversArray[i].tasksLng[1],clientLat,clientLng);  // driver -> unload 1 -> load 2 -> client
+                        var y = calcDistance(driversArray[i].lan,driversArray[i].lng,driversArray[i].tasksLat[1],driversArray[i].tasksLng[1]) + calcDistance(driversArray[i].tasksLat[1],driversArray[i].tasksLng[1],driversArray[i].tasksDestLat[1],driversArray[i].tasksDestLng[1]) + calcDistance(driversArray[i].tasksDestLat[1],driversArray[i].tasksDestLng[1],clientLat,clientLng); // driver > load 2 -> unload 2 -> client
+                        
+                        if(x<y)
+                        {
+                            driversArray[i].distanceResult = x;
+                        }
+                        else{
+                            driversArray[i].distanceResult = y;
+                        }
+
+                        driversArray[i].distanceResult =((driversArray[i].distanceResult)/1000).toFixed(2);
+                    }
+
+
+
+
+
+
+                    else if(driversArray[i].cargo==2 && driversArray[i].tasksCount==2)
+                    {
+                        var x = calcDistance(driversArray[i].lan,driversArray[i].lng,driversArray[i].tasksDestLat[0],driversArray[i].tasksDestLng[0]) + calcDistance(driversArray[i].tasksDestLat[0],driversArray[i].tasksDestLng[0],clientLat,clientLng);  // driver -> unload 1 -> client
+                        var y = calcDistance(driversArray[i].lan,driversArray[i].lng,driversArray[i].tasksDestLat[1],driversArray[i].tasksDestLng[1]) + calcDistance(driversArray[i].tasksDestLat[1],driversArray[i].tasksDestLng[1],clientLat,clientLng);  // driver -> unload 2 -> client
+                        var z = calcDistance(driversArray[i].lan,driversArray[i].lng,driversArray[i].tasksDestLat[0],driversArray[i].tasksDestLng[0]) + calcDistance(driversArray[i].tasksDestLat[0],driversArray[i].tasksDestLng[0],driversArray[i].tasksDestLat[1],driversArray[i].tasksDestLng[1]) + calcDistance(driversArray[i].tasksDestLat[1],driversArray[i].tasksDestLng[1],clientLat,clientLng); // driver -> unload 1 -> unload 2 -> client
+                    
+                    }
+
+
+
+
+
+                    else if(driversArray[i].cargo==0 && driversArray[i].tasksCount==1)
+                    {
+
+                    }
+
+
+
+
+
+                    else if(driversArray[i].cargo==0 && driversArray[i].tasksCount==2)
+                    {
+
+                    }
+
+
+                }
+
+
+
+
+
+
 
 
 

@@ -44,6 +44,8 @@
     <EntitySetMapping Name="emergencyReports">
       <EntityTypeMapping TypeName="rtesModel.emergencyReport">
         <MappingFragment StoreEntitySet="emergencyReport">
+          <ScalarProperty Name="lngDest" ColumnName="lngDest" />
+          <ScalarProperty Name="latDest" ColumnName="latDest" />
           <ScalarProperty Name="Longitude" ColumnName="Longitude" />
           <ScalarProperty Name="Latitude" ColumnName="Latitude" />
           <ScalarProperty Name="OperatorComment" ColumnName="OperatorComment" />

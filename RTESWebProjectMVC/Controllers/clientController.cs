@@ -296,7 +296,7 @@ namespace RTESWebProjectMVC.Controllers
 
         //create new report in db
         [HttpPost]
-        public ActionResult send_Details_Func(string location,String lat,String lng,string towDest,string witName,string witPhone, string comments,string myName,string driverID,string driverPhone,string driverLicenseNum,string address1,string carOwnerName,string carOwnerId,string carLicensePlate,string carCategory,string carModel,string color1,string year,string compName,string policyNum,string agentName,string agentPhone, bool checkBox1 = false)
+        public ActionResult send_Details_Func(string location,String lat,String lng, String latDest, String lngDest, string towDest,string witName,string witPhone, string comments,string myName,string driverID,string driverPhone,string driverLicenseNum,string address1,string carOwnerName,string carOwnerId,string carLicensePlate,string carCategory,string carModel,string color1,string year,string compName,string policyNum,string agentName,string agentPhone, bool checkBox1 = false)
         {
             int checkStat;   
             using (var db = new Models.rtesEntities1())
@@ -329,7 +329,9 @@ namespace RTESWebProjectMVC.Controllers
                     callForTowing = checkBox1,
                     status = checkStat,
                     Latitude = lat,
-                    Longitude = lng
+                    Longitude = lng,
+                    latDest = latDest,
+                    lngDest = lngDest
                 });       
                 db.SaveChanges();
 
@@ -561,7 +563,7 @@ namespace RTESWebProjectMVC.Controllers
                     var list = from v in db1.truckDriver
                                join e in db1.taskList on v.abstractUserId equals e.truckDriverId
                                where v.workStatus == true && v.TasksCounter < 3
-                               select new truckDriverList { driverId = v.abstractUserId, lan = v.Latitude, lng = v.Longitude, reportId = (int)e.reportId};
+                               select new truckDriverList { driverId = v.abstractUserId, lan = v.Latitude, lng = v.Longitude, tasksCount=(int)v.TasksCounter , cargo=(int)v.cargo};
                     //select v.abstractUserId).Distinct().ToList();
 
                     int listCnt = list.Count(); 
@@ -582,22 +584,27 @@ namespace RTESWebProjectMVC.Controllers
                         var list2 = from t in db1.taskList
                                     join e in db1.emergencyReport on t.reportId equals e.reportID
                                     where t.truckDriverId == y.driverId
-                        //v in db1.emergencyReport
-
-                        //join  on t.truckDriverId equals x.abstractUserId
-
-                        select new { lat = e.Latitude , lng = e.Longitude};
+                                    select new { lat = e.Latitude , lng = e.Longitude, reportId = e.reportID , latDestin = e.latDest, lngDestin = e.lngDest};
 
                     //get coordinates of each task for each selected truck driver
                     //insert data to model
 
                     driversListModel[i].tasksLat = new string[2];
                     driversListModel[i].tasksLng = new string[2];
+                    driversListModel[i].reportId = new string[2];
+                    driversListModel[i].tasksLatDest = new string[2];
+                    driversListModel[i].tasksLngDest = new string[2];
 
                     driversListModel[i].tasksLat[0] = "0";
                     driversListModel[i].tasksLng[0] = "0";
                     driversListModel[i].tasksLat[1] = "0";
                     driversListModel[i].tasksLng[1] = "0";
+                    driversListModel[i].reportId[1] = "0";
+                    driversListModel[i].reportId[0] = "0";
+                    driversListModel[i].tasksLatDest[0] = "0";
+                    driversListModel[i].tasksLatDest[1] = "0";
+                    driversListModel[i].tasksLngDest[1] = "0";
+                    driversListModel[i].tasksLngDest[0] = "0";
 
 
                     int j = 0;
@@ -605,7 +612,10 @@ namespace RTESWebProjectMVC.Controllers
                         {
                             driversListModel[i].tasksLat[j] = d.lat;
                             driversListModel[i].tasksLng[j] = d.lng;
-                            j++;
+                            driversListModel[i].reportId[j] = d.reportId.ToString();
+                            driversListModel[i].tasksLatDest[j] = d.latDestin;
+                            driversListModel[i].tasksLngDest[j] = d.lngDestin;
+                        j++;
                         }
 
                     
@@ -613,9 +623,15 @@ namespace RTESWebProjectMVC.Controllers
 
                     i++;
                     }
+
+
+                //remove duplicates - fixed & final array
+                Models.truckDriverList[] driversListModelDistinct = driversListModel.GroupBy(x => x.driverId).Select(x => x.First()).ToArray();
+
+
                 Session["driverFlagModel"] = 1;
 
-                return PartialView("bufferView", driversListModel);
+                return PartialView("bufferView", driversListModelDistinct);
                 
             }
             return RedirectToAction("client", "client");

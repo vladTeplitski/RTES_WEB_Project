@@ -57,6 +57,8 @@
     <Property Name="OperatorComment" Type="text" />
     <Property Name="Latitude" Type="varchar(max)" />
     <Property Name="Longitude" Type="varchar(max)" />
+    <Property Name="latDest" Type="varchar(max)" />
+    <Property Name="lngDest" Type="varchar(max)" />
   </EntityType>
   <EntityType Name="estimationForm">
     <Key>

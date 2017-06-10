@@ -264,8 +264,8 @@ function initMap() {
     geocoder = new google.maps.Geocoder;  //google API geocoder istance
     infowindow = new google.maps.InfoWindow;
 
-    document.getElementById('submit').addEventListener('click', function () { //submit id
-
+    document.getElementById('submit').addEventListener('click', function () {
+        
         geocodeLatLng(geocoder, infowindow);
     });
 
@@ -286,8 +286,6 @@ function geocodeLatLng(geocoder, infowindow) {
         if (status === 'OK') {
             if (results[1]) {
                 document.getElementById('location1').value = results[0].formatted_address;
-                //driverAddress = results[0].formatted_address;   //for driver tracking
-                //alert(results[0].formatted_address);   //new report alert
                 infowindow.setContent(results[0].formatted_address);
             } else {
                 window.alert('No results found');
@@ -298,14 +296,20 @@ function geocodeLatLng(geocoder, infowindow) {
     });
 }
 
-var address = "Shmu'el Salant St 16-18, Petah Tikva, Israel";   //TEST
+var address = "Yarka, Israel";   //TEST
 
-function addressToLocation() {
+function setDestinationCoordeinates() {
+    var addr = document.getElementById('fieldReport2').value;
+    addressToLocation(addr);
+}
+
+
+function addressToLocation(addr) {
 
     var geocoder = new google.maps.Geocoder();
     geocoder.geocode(
 		{
-		    address: address
+		    address: addr
 		},
 		function (results, status) {
 
@@ -317,7 +321,8 @@ function addressToLocation() {
 		            for (var i = 0; i < numOfResults; i++) {
 		                var result = results[i];
 
-		                document.getElementById('lat').value = result.geometry.location.lat();
+		                document.getElementById('latDest').value = result.geometry.location.lat();
+		                document.getElementById('lngDest').value = result.geometry.location.lng();
 		                resultLocations.push(
 							{
 							    text: result.formatted_address,

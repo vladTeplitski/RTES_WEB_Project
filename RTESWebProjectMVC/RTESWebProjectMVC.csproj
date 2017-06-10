@@ -252,6 +252,7 @@
     </Content>
     <Content Include="Scripts\Functions\app.js" />
     <Content Include="Scripts\Functions\funcLib.js" />
+    <Content Include="ClassDiagram.cd" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\jmelosegui.googlemap.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />

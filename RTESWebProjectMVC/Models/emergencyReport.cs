@@ -29,5 +29,7 @@ namespace RTESWebProjectMVC.Models
         public string OperatorComment { get; set; }
         public string Latitude { get; set; }
         public string Longitude { get; set; }
+        public string latDest { get; set; }
+        public string lngDest { get; set; }
     }
 }
