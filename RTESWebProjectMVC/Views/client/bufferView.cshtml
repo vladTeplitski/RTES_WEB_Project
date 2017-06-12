@@ -1,5 +1,11 @@
 ﻿<script src="~/Scripts/Functions/funcLib.js"></script>
 <link href="~/Content/algCSS.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-2.1.4.intellisense.js"></script>
+<script src="~/Scripts/jquery-2.1.4.js"></script>
+<script src="~/Scripts/jquery-2.1.4.min.js"></script>
+<script src="~/Scripts/Lib/jquery.unobtrusive-ajax.js"></script>
+<script src="~/Scripts/Lib/jquery.unobtrusive-ajax.min.js"></script>
+<link href="~/Content/project.css" rel="stylesheet" />
 
 <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8jxvHszW9AW7xdcB7Ds-f5PPIRGfhmHw&callback=initMap">
@@ -12,9 +18,15 @@
     <div class="progressBox">
         <div style="cursor:default;padding:10px;color:#F3F3F3">Calculating service requests...</div>
         <div class="loader" style="margin:auto;"></div>
+
+        <br />
+        <Button type="submit" id="redirectBack" Text="Finish Assign" OnClick="location.href='@Url.Action("client", "client")'" class="btn btn-default" style="margin-left:41%;display:none">Finish Assigning</Button>
     </div>
+    
 
 
+
+    <br />
     <div id="testLngLatClientSide" style="position:absolute;top:300px;width:700px;height:auto;color:#4AFF12;background-color:black;border:1px solid black;">
         <span style="color:red;"><b>Algorithm debug mode</b></span>
         <br /><br />
@@ -55,6 +67,7 @@
 
                 var clientLng =  '@(Session["clientLng"])';
                 var clientLat = '@(Session["clientLat"])';
+                var clientReportId = '@(Session["clientRepIdNOW"])';
 
                 var cnt = '@(Model.Length)'
                 var i;
@@ -82,6 +95,18 @@
                     this.tasksDestLat = [];
                     this.tasksDestLng = [];
                     this.distanceResult =null;
+                    this.prior1 = null;
+                    this.prior1Role= null;
+                    this.prior2 = null;
+                    this.prior2Role= null;
+                    this.prior3 = null;
+                    this.prior3Role= null;
+                    this.prior4 = null;
+                    this.prior4Role= null;
+                    this.prior5 = null;
+                    this.prior5Role= null;
+                    this.prior6 = null;
+                    this.prior6Role= null;
                 };
 
                 var min=0;
@@ -98,6 +123,19 @@
                 driversArray[i].lan = @(item.lan);
                 driversArray[i].lng = @(item.lng);
                 driversArray[i].cargo = @(item.cargo);
+
+                driversArray[i].prior1= 0; 
+                driversArray[i].prior2= 0;
+                driversArray[i].prior3= 0;
+                driversArray[i].prior4= 0;
+                driversArray[i].prior5= 0;
+                driversArray[i].prior6= 0;
+                driversArray[i].prior1Role= 0;
+                driversArray[i].prior2Role= 0;
+                driversArray[i].prior3Role= 0;
+                driversArray[i].prior4Role= 0;
+                driversArray[i].prior5Role= 0;
+                driversArray[i].prior6Role= 0;
 
                 driversArray[i].tasksCount = @(item.tasksCount);
 
@@ -244,7 +282,8 @@
                     j++;
                 }
 
-                
+                var load = "Load";   //init priority role
+                var unload = "Unload"; //init priority role
                 var i = 0;
                 for(i=0;i<cnt;i++)  //Main algorithm loop
                 {
@@ -253,6 +292,11 @@
                     {
                         driversArray[i].distanceResult = calcDistance(driversArray[i].lan,driversArray[i].lng,clientLat,clientLng);
                         driversArray[i].distanceResult =((driversArray[i].distanceResult)/1000).toFixed(2);
+
+                        driversArray[i].prior1 = clientReportId;
+                        driversArray[i].prior1Role = load;
+                        driversArray[i].prior2 = clientReportId;
+                        driversArray[i].prior2Role = unload;
                     }
 
 
@@ -272,10 +316,26 @@
                         if(z<=10)  //go to client and than unload
                         {
                             driversArray[i].distanceResult = calcDistance(driversArray[i].lan,driversArray[i].lng,clientLat,clientLng);  // driver->client
+
+                            driversArray[i].prior1 = clientReportId;
+                            driversArray[i].prior1Role = load;
+                            driversArray[i].prior2 = driversArray[i].reportId[0];
+                            driversArray[i].prior2Role = unload;
+                            driversArray[i].prior3 = clientReportId;
+                            driversArray[i].prior3Role = unload;
+
                         }
                         else //go to unload and than to client
                         {
                             driversArray[i].distanceResult = calcDistance(driversArray[i].lan,driversArray[i].lng,driversArray[i].tasksDestLat[0],driversArray[i].tasksDestLng[0]) + calcDistance(driversArray[i].tasksDestLat[0],driversArray[i].tasksDestLng[0],clientLat,clientLng)  // driver -> unload -> client
+
+                            driversArray[i].prior1 = driversArray[i].reportId[0];
+                            driversArray[i].prior1Role = unload;
+                            driversArray[i].prior2 = clientReportId;
+                            driversArray[i].prior2Role = load;
+                            driversArray[i].prior3 = clientReportId;
+                            driversArray[i].prior3Role = unload;
+
                         }
 
                         driversArray[i].distanceResult =((driversArray[i].distanceResult)/1000).toFixed(2);
@@ -288,13 +348,36 @@
                     {
                         var x = calcDistance(driversArray[i].lan,driversArray[i].lng,driversArray[i].tasksDestLat[0],driversArray[i].tasksDestLng[0]) + calcDistance(driversArray[i].tasksDestLat[0],driversArray[i].tasksDestLng[0],driversArray[i].tasksLat[1],driversArray[i].tasksLng[1]) + calcDistance(driversArray[i].tasksLat[1],driversArray[i].tasksLng[1],clientLat,clientLng);  // driver -> unload 1 -> load 2 -> client
                         var y = calcDistance(driversArray[i].lan,driversArray[i].lng,driversArray[i].tasksLat[1],driversArray[i].tasksLng[1]) + calcDistance(driversArray[i].tasksLat[1],driversArray[i].tasksLng[1],driversArray[i].tasksDestLat[1],driversArray[i].tasksDestLng[1]) + calcDistance(driversArray[i].tasksDestLat[1],driversArray[i].tasksDestLng[1],clientLat,clientLng); // driver > load 2 -> unload 2 -> client
-                        
+
                         if(x<y)
                         {
-                            driversArray[i].distanceResult = x;
+                            driversArray[i].distanceResult = x; //driver -> unload 1 -> load 2 -> client
+
+                            driversArray[i].prior1 = driversArray[i].reportId[0];
+                            driversArray[i].prior1Role = unload;
+                            driversArray[i].prior2 = driversArray[i].reportId[1];
+                            driversArray[i].prior2Role = load;
+                            driversArray[i].prior3 = clientReportId;
+                            driversArray[i].prior3Role = load;
+                            driversArray[i].prior4 = driversArray[i].reportId[1];
+                            driversArray[i].prior4Role = unload;
+                            driversArray[i].prior5 = clientReportId;
+                            driversArray[i].prior5Role = unload;
+
                         }
                         else{
-                            driversArray[i].distanceResult = y;
+                            driversArray[i].distanceResult = y; // driver > load 2 -> unload 2 -> client
+
+                            driversArray[i].prior1 = driversArray[i].reportId[1];
+                            driversArray[i].prior1Role = load;
+                            driversArray[i].prior2 = driversArray[i].reportId[1];
+                            driversArray[i].prior2Role = unload;
+                            driversArray[i].prior3 = clientReportId;
+                            driversArray[i].prior3Role = load;
+                            driversArray[i].prior4 = driversArray[i].reportId[0];
+                            driversArray[i].prior4Role = unload;
+                            driversArray[i].prior5 = clientReportId;
+                            driversArray[i].prior5Role = unload;
                         }
 
                         driversArray[i].distanceResult =((driversArray[i].distanceResult)/1000).toFixed(2);
@@ -306,16 +389,43 @@
                         var x = calcDistance(driversArray[i].lan,driversArray[i].lng,driversArray[i].tasksDestLat[0],driversArray[i].tasksDestLng[0]) + calcDistance(driversArray[i].tasksDestLat[0],driversArray[i].tasksDestLng[0],clientLat,clientLng);  // driver -> unload 1 -> client
                         var y = calcDistance(driversArray[i].lan,driversArray[i].lng,driversArray[i].tasksDestLat[1],driversArray[i].tasksDestLng[1]) + calcDistance(driversArray[i].tasksDestLat[1],driversArray[i].tasksDestLng[1],clientLat,clientLng);  // driver -> unload 2 -> client
                         var z = calcDistance(driversArray[i].lan,driversArray[i].lng,driversArray[i].tasksDestLat[0],driversArray[i].tasksDestLng[0]) + calcDistance(driversArray[i].tasksDestLat[0],driversArray[i].tasksDestLng[0],driversArray[i].tasksDestLat[1],driversArray[i].tasksDestLng[1]) + calcDistance(driversArray[i].tasksDestLat[1],driversArray[i].tasksDestLng[1],clientLat,clientLng); // driver -> unload 1 -> unload 2 -> client
-                    
+
                         if(x<y && x<z)
                         {
-                            driversArray[i].distanceResult=x;
+                            driversArray[i].distanceResult=x; // driver -> unload 1 -> client
+
+                            driversArray[i].prior1 = driversArray[i].reportId[0];
+                            driversArray[i].prior1Role = unload;
+                            driversArray[i].prior2 = clientReportId;
+                            driversArray[i].prior2Role = load;
+                            driversArray[i].prior3 = driversArray[i].reportId[1];
+                            driversArray[i].prior3Role = unload;
+                            driversArray[i].prior4 = clientReportId;
+                            driversArray[i].prior4Role = unload;
                         }
                         else if(y<x && y<z){
-                            driversArray[i].distanceResult=y;
+                            driversArray[i].distanceResult=y; // driver -> unload 2 -> client
+
+                            driversArray[i].prior1 = driversArray[i].reportId[1];
+                            driversArray[i].prior1Role = unload;
+                            driversArray[i].prior2 = clientReportId;
+                            driversArray[i].prior2Role = load;
+                            driversArray[i].prior3 = driversArray[i].reportId[0];
+                            driversArray[i].prior3Role = unload;
+                            driversArray[i].prior4 = clientReportId;
+                            driversArray[i].prior4Role = unload;
                         }
                         else if(z<x && z<y){
-                            driversArray[i].distanceResult=z;
+                            driversArray[i].distanceResult=z; // driver -> unload 1 -> unload 2 -> client
+
+                            driversArray[i].prior1 = driversArray[i].reportId[0];
+                            driversArray[i].prior1Role = unload;
+                            driversArray[i].prior2 = driversArray[i].reportId[1];
+                            driversArray[i].prior2Role = unload;
+                            driversArray[i].prior3 = clientReportId;
+                            driversArray[i].prior3Role = load;
+                            driversArray[i].prior4 = clientReportId;
+                            driversArray[i].prior4Role = unload;
                         }
 
                         driversArray[i].distanceResult =((driversArray[i].distanceResult)/1000).toFixed(2);
@@ -337,10 +447,29 @@
 
                         if(z<=10){
                             driversArray[i].distanceResult = y;//load client->load task 1
+
+                            driversArray[i].prior1 = clientReportId;
+                            driversArray[i].prior1Role = load;
+                            driversArray[i].prior2 = driversArray[i].reportId[0];
+                            driversArray[i].prior2Role = load;
+                            driversArray[i].prior3 = clientReportId;
+                            driversArray[i].prior3Role = unload;
+                            driversArray[i].prior4 = driversArray[i].reportId[0];
+                            driversArray[i].prior4Role = unload;
                         }
                         else
                         {
                             driversArray[i].distanceResult = x;//load task 1->load client
+
+                            driversArray[i].prior1 = driversArray[i].reportId[0];
+                            driversArray[i].prior1Role = load;
+                            driversArray[i].prior2 = clientReportId;
+                            driversArray[i].prior2Role = load;
+                            driversArray[i].prior3 = driversArray[i].reportId[0];
+                            driversArray[i].prior3Role = unload;
+                            driversArray[i].prior4 = clientReportId;
+                            driversArray[i].prior4Role = unload;
+
                         }
 
                         driversArray[i].distanceResult =((driversArray[i].distanceResult)/1000).toFixed(2);
@@ -354,10 +483,36 @@
 
 
                         if(x<y){
-                            driversArray[i].distanceResult = x;
+                            driversArray[i].distanceResult = x; //loadtask1->load task2->load client
+
+                            driversArray[i].prior1 = driversArray[i].reportId[0];
+                            driversArray[i].prior1Role = load;
+                            driversArray[i].prior2 = driversArray[i].reportId[1];
+                            driversArray[i].prior2Role = load;
+                            driversArray[i].prior3 = clientReportId;
+                            driversArray[i].prior3Role = load;
+                            driversArray[i].prior4 = driversArray[i].reportId[0];
+                            driversArray[i].prior4Role = unload;
+                            driversArray[i].prior5 = driversArray[i].reportId[1];
+                            driversArray[i].prior5Role = unload;
+                            driversArray[i].prior6 = clientReportId;
+                            driversArray[i].prior6Role = unload;
                         }
                         else if(x>y){
-                            driversArray[i].distanceResult = y;
+                            driversArray[i].distanceResult = y; //load task1->load client->load task2
+
+                            driversArray[i].prior1 = driversArray[i].reportId[0];
+                            driversArray[i].prior1Role = load;
+                            driversArray[i].prior2 = clientReportId;
+                            driversArray[i].prior2Role = load;
+                            driversArray[i].prior3 = driversArray[i].reportId[1];
+                            driversArray[i].prior3Role = load;
+                            driversArray[i].prior4 = driversArray[i].reportId[0];
+                            driversArray[i].prior4Role = unload;
+                            driversArray[i].prior5 = clientReportId;
+                            driversArray[i].prior5Role = unload;
+                            driversArray[i].prior6 = driversArray[i].reportId[1];
+                            driversArray[i].prior6Role = unload;
 
                         }
                         driversArray[i].distanceResult =((driversArray[i].distanceResult)/1000).toFixed(2);
@@ -370,6 +525,18 @@
                 var finalDriverId=driversArray[0].driverId;  //init driver id - algorithm result to send to server
                 var finalReportId=driversArray[0].reportId;  //init report id - algorithm result to send to server
                 var finaldistance=driversArray[0].distanceResult;
+                var priority1=driversArray[0].prior1;
+                var priority2=driversArray[0].prior2;
+                var priority3=driversArray[0].prior3;
+                var priority4=driversArray[0].prior4;
+                var priority5=driversArray[0].prior5;
+                var priority6=driversArray[0].prior6;
+                var priority1Role=driversArray[0].prior1Role;
+                var priority2Role=driversArray[0].prior2Role;
+                var priority3Role=driversArray[0].prior3Role;
+                var priority4Role=driversArray[0].prior4Role;
+                var priority5Role=driversArray[0].prior5Role;
+                var priority6Role=driversArray[0].prior6Role;
                 var minDist=driversArray[0].distanceResult;
 
                 for(u=0;u<cnt;u++){   //calculate the shortest route from all available  drivers
@@ -378,37 +545,34 @@
                         finalDriverId=driversArray[u].driverId;
                         finalReportId=driversArray[u].reportId;
                         finaldistance=driversArray[u].distanceResult;
+                        priority1=driversArray[u].prior1;
+                        priority2=driversArray[u].prior2;
+                        priority3=driversArray[u].prior3;
+                        priority4=driversArray[u].prior4;
+                        priority5=driversArray[u].prior5;
+                        priority6=driversArray[u].prior6;
+                        priority1Role=driversArray[u].prior1Role;
+                        priority2Role=driversArray[u].prior2Role;
+                        priority3Role=driversArray[u].prior3Role;
+                        priority4Role=driversArray[u].prior4Role;
+                        priority5Role=driversArray[u].prior5Role;
+                        priority6Role=driversArray[u].prior6Role;
                     }
                 }
 
                 var paraAlg1; //print shortest route driver
                 paraAlg1 = document.createElement("div");
-                paraAlg1.innerHTML = "Driver id: " + finalDriverId + "__report: " + finalReportId + " __Total distance to client: " + finaldistance + " km" + "__array[0].distance=" + driversArray[0].distanceResult + "__array[1].distance=" + driversArray[1].distanceResult;
+                paraAlg1.innerHTML = "Driver id: " + finalDriverId + "__report: " + finalReportId + " __Total distance to client: " + finaldistance + " km" + "<br>" + " _Chosen priorities:" + priority1 + " Role:" + priority1Role + "," + priority2 + " Role:" +  priority2Role + "," + priority3 + " Role:" +  priority3Role+ "," + priority4 + " Role:" +  priority4Role + "," + priority5 + " Role:" +  priority5Role + "," + priority6 + " Role:" +  priority6Role  + "<br><br>" +"__array[0].distance=" + driversArray[0].distanceResult + "<br>" +" _priorities of 0:" + driversArray[0].prior1 + " Role:" +  driversArray[0].prior1Role + "," + driversArray[0].prior2 + " Role:" +  driversArray[0].prior2Role  + "," + driversArray[0].prior3 + " Role:" +  driversArray[0].prior3Role+ "," + driversArray[0].prior4 + " Role:" +  driversArray[0].prior4Role+ "," + driversArray[0].prior5 + " Role:" + driversArray[0].prior5Role+ "," + driversArray[0].prior6 + " Role:" + driversArray[0].prior6Role + "__array[1].distance=" + driversArray[1].distanceResult  + "<br>" + " _priorities of 1:" + driversArray[1].prior1 + " Role:" +  driversArray[1].prior1Role + "," + driversArray[1].prior2 + " Role:" +  driversArray[1].prior2Role  + "," + driversArray[1].prior3 + " Role:" +  driversArray[1].prior3Role + " ,"  + driversArray[1].prior4 + " Role:" +  driversArray[1].prior4Role + "," + driversArray[1].prior5 + driversArray[1].prior5Role  + " Role:" +  "," + driversArray[1].prior6 + driversArray[1].prior6Role;
                 document.getElementById("testAlg1").appendChild(paraAlg1);
 
+
+                redirectToServer(finalDriverId, finalReportId, finaldistance, priority1, priority2, priority3, priority4, priority5, priority6, priority1Role, priority2Role, priority3Role, priority4Role, priority5Role, priority6Role)
 
 
                 function calcDistance(fromlat,fromlng,tolat,tolng){  // calculate distance between two locations by lat & lng cordinates
                     var distance = google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(fromlat, fromlng), new google.maps.LatLng(tolat, tolng));
                     return distance;
                 }
-
-                function redirectToServer() { //send results to server side & redirect to main client view when algorithm done
-
-                    $.ajax({
-                        url: '/client/algorithmFunc',
-                        type: 'POST',
-                        data: { driverId: finalDriverId, reportId: finalReportId },
-                        success: function (data) {
-                            alert("Tow truck driver assigned successfully!");
-                        },
-                        error: function () {
-                            alert("Error: bufferView - Server ajax comunication failed.");
-                        }
-                    });
-
-                }
-
 
 
             </script>

@@ -19,6 +19,19 @@ namespace RTESWebProjectMVC.Models
         public string[] tasksLngDest { get; set; }
         public int cargo { get; set; }
 
+        public int prior1 { get; set; }
+        public int prior2 { get; set; }
+        public int prior3 { get; set; }
+        public int prior4 { get; set; }
+        public int prior5 { get; set; }
+        public int prior6 { get; set; }
+        public String prior1Role { get; set; }
+        public String prior2Role { get; set; }
+        public String prior3Role { get; set; }
+        public String prior4Role { get; set; }
+        public String prior5Role { get; set; }
+        public String prior6Role { get; set; }
+
 
     }
 }

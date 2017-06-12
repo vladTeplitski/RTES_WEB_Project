@@ -120,6 +120,9 @@
     <EntitySet Name="truckDrivers" EntityType="rtesModel.truckDriver" />
     <EntitySet Name="towingReportForms" EntityType="rtesModel.towingReportForm" />
     <EntitySet Name="taskLists" EntityType="rtesModel.taskList" />
+    <EntitySet Name="appraisers" EntityType="rtesModel.appraiser" />
+    <EntitySet Name="appraiserReports" EntityType="rtesModel.appraiserReport" />
+    <EntitySet Name="appraiserTaskLists" EntityType="rtesModel.appraiserTaskList" />
   </EntityContainer>
   <EntityType Name="image">
     <Key>
@@ -153,6 +156,15 @@
     <Property Name="priority1" Type="Int32" />
     <Property Name="priority2" Type="Int32" />
     <Property Name="priority3" Type="Int32" />
+    <Property Name="priority4" Type="Int32" />
+    <Property Name="priority5" Type="Int32" />
+    <Property Name="priority6" Type="Int32" />
+    <Property Name="priority1Role" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="priority2Role" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="priority3Role" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="priority4Role" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="priority5Role" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="priority6Role" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="towingReportForm">
     <Key>
@@ -173,5 +185,56 @@
     <Property Name="reportId" Type="Int32" />
     <Property Name="taskId" Type="Int32" Nullable="false" />
     <Property Name="status" Type="Int32" />
+  </EntityType>
+  <EntityType Name="appraiser">
+    <Key>
+      <PropertyRef Name="appraiserID" />
+    </Key>
+    <Property Name="appraiserID" Type="Int32" Nullable="false" />
+    <Property Name="taskCount" Type="Int32" />
+    <Property Name="Latitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Longitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="region" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="appraiserReport">
+    <Key>
+      <PropertyRef Name="appraiserReportId" />
+    </Key>
+    <Property Name="appraiserReportId" Type="Int32" Nullable="false" />
+    <Property Name="emergencyReportID" Type="Int32" />
+    <Property Name="appraiserId" Type="Int32" />
+    <Property Name="summaryDamage1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="amount1" Type="Int32" />
+    <Property Name="picture1" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="summaryDamage2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="amount2" Type="Int32" />
+    <Property Name="picture2" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="sumTotal" Type="Int32" />
+    <Property Name="comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="summaryDamage3" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="amount3" Type="Int32" />
+    <Property Name="picture3" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="summaryDamage4" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="amount4" Type="Int32" />
+    <Property Name="picture4" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="summaryDamage5" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="amount5" Type="Int32" />
+    <Property Name="picture5" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="appraiserTaskList">
+    <Key>
+      <PropertyRef Name="taskID" />
+    </Key>
+    <Property Name="appraID" Type="Int32" Nullable="false" />
+    <Property Name="taskID" Type="Int32" Nullable="false" />
+    <Property Name="location" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Latitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Longitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="status" Type="Int32" />
+    <Property Name="clientName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="clientPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="destinationJob" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="reportId" Type="Int32" />
   </EntityType>
 </Schema>

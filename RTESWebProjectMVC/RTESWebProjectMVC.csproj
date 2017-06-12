@@ -179,6 +179,15 @@
     <Compile Include="Models\abstract_user.cs">
       <DependentUpon>rtesEntities1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\appraiser.cs">
+      <DependentUpon>rtesEntities1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\appraiserReport.cs">
+      <DependentUpon>rtesEntities1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\appraiserTaskList.cs">
+      <DependentUpon>rtesEntities1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\client.cs">
       <DependentUpon>rtesEntities1.tt</DependentUpon>
     </Compile>

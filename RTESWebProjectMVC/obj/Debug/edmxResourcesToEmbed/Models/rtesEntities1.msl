@@ -119,6 +119,15 @@
     <EntitySetMapping Name="truckDrivers">
       <EntityTypeMapping TypeName="rtesModel.truckDriver">
         <MappingFragment StoreEntitySet="truckDriver">
+          <ScalarProperty Name="priority6Role" ColumnName="priority6Role" />
+          <ScalarProperty Name="priority5Role" ColumnName="priority5Role" />
+          <ScalarProperty Name="priority4Role" ColumnName="priority4Role" />
+          <ScalarProperty Name="priority3Role" ColumnName="priority3Role" />
+          <ScalarProperty Name="priority2Role" ColumnName="priority2Role" />
+          <ScalarProperty Name="priority1Role" ColumnName="priority1Role" />
+          <ScalarProperty Name="priority6" ColumnName="priority6" />
+          <ScalarProperty Name="priority5" ColumnName="priority5" />
+          <ScalarProperty Name="priority4" ColumnName="priority4" />
           <ScalarProperty Name="priority3" ColumnName="priority3" />
           <ScalarProperty Name="priority2" ColumnName="priority2" />
           <ScalarProperty Name="priority1" ColumnName="priority1" />
@@ -152,6 +161,60 @@
           <ScalarProperty Name="taskId" ColumnName="taskId" />
           <ScalarProperty Name="reportId" ColumnName="reportId" />
           <ScalarProperty Name="truckDriverId" ColumnName="truckDriverId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="appraisers">
+      <EntityTypeMapping TypeName="rtesModel.appraiser">
+        <MappingFragment StoreEntitySet="appraiser">
+          <ScalarProperty Name="region" ColumnName="region" />
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="taskCount" ColumnName="taskCount" />
+          <ScalarProperty Name="appraiserID" ColumnName="appraiserID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="appraiserReports">
+      <EntityTypeMapping TypeName="rtesModel.appraiserReport">
+        <MappingFragment StoreEntitySet="appraiserReport">
+          <ScalarProperty Name="picture5" ColumnName="picture5" />
+          <ScalarProperty Name="amount5" ColumnName="amount5" />
+          <ScalarProperty Name="summaryDamage5" ColumnName="summaryDamage5" />
+          <ScalarProperty Name="picture4" ColumnName="picture4" />
+          <ScalarProperty Name="amount4" ColumnName="amount4" />
+          <ScalarProperty Name="summaryDamage4" ColumnName="summaryDamage4" />
+          <ScalarProperty Name="picture3" ColumnName="picture3" />
+          <ScalarProperty Name="amount3" ColumnName="amount3" />
+          <ScalarProperty Name="summaryDamage3" ColumnName="summaryDamage3" />
+          <ScalarProperty Name="comments" ColumnName="comments" />
+          <ScalarProperty Name="sumTotal" ColumnName="sumTotal" />
+          <ScalarProperty Name="picture2" ColumnName="picture2" />
+          <ScalarProperty Name="amount2" ColumnName="amount2" />
+          <ScalarProperty Name="summaryDamage2" ColumnName="summaryDamage2" />
+          <ScalarProperty Name="picture1" ColumnName="picture1" />
+          <ScalarProperty Name="amount1" ColumnName="amount1" />
+          <ScalarProperty Name="summaryDamage1" ColumnName="summaryDamage1" />
+          <ScalarProperty Name="appraiserId" ColumnName="appraiserId" />
+          <ScalarProperty Name="emergencyReportID" ColumnName="emergencyReportID" />
+          <ScalarProperty Name="appraiserReportId" ColumnName="appraiserReportId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="appraiserTaskLists">
+      <EntityTypeMapping TypeName="rtesModel.appraiserTaskList">
+        <MappingFragment StoreEntitySet="appraiserTaskList">
+          <ScalarProperty Name="reportId" ColumnName="reportId" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="destinationJob" ColumnName="destinationJob" />
+          <ScalarProperty Name="clientPhone" ColumnName="clientPhone" />
+          <ScalarProperty Name="clientName" ColumnName="clientName" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="location" ColumnName="location" />
+          <ScalarProperty Name="taskID" ColumnName="taskID" />
+          <ScalarProperty Name="appraID" ColumnName="appraID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -25,5 +25,14 @@ namespace RTESWebProjectMVC.Models
         public Nullable<int> priority1 { get; set; }
         public Nullable<int> priority2 { get; set; }
         public Nullable<int> priority3 { get; set; }
+        public Nullable<int> priority4 { get; set; }
+        public Nullable<int> priority5 { get; set; }
+        public Nullable<int> priority6 { get; set; }
+        public string priority1Role { get; set; }
+        public string priority2Role { get; set; }
+        public string priority3Role { get; set; }
+        public string priority4Role { get; set; }
+        public string priority5Role { get; set; }
+        public string priority6Role { get; set; }
     }
 }

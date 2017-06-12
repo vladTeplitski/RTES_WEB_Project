@@ -16,6 +16,57 @@
     <Property Name="company" Type="varchar" MaxLength="50" />
     <Property Name="userPhoneNumber" Type="varchar" MaxLength="50" />
   </EntityType>
+  <EntityType Name="appraiser">
+    <Key>
+      <PropertyRef Name="appraiserID" />
+    </Key>
+    <Property Name="appraiserID" Type="int" Nullable="false" />
+    <Property Name="taskCount" Type="int" />
+    <Property Name="Latitude" Type="varchar(max)" />
+    <Property Name="Longitude" Type="varchar(max)" />
+    <Property Name="region" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="appraiserReport">
+    <Key>
+      <PropertyRef Name="appraiserReportId" />
+    </Key>
+    <Property Name="appraiserReportId" Type="int" Nullable="false" />
+    <Property Name="emergencyReportID" Type="int" />
+    <Property Name="appraiserId" Type="int" />
+    <Property Name="summaryDamage1" Type="varchar(max)" />
+    <Property Name="amount1" Type="int" />
+    <Property Name="picture1" Type="varbinary(max)" />
+    <Property Name="summaryDamage2" Type="varchar(max)" />
+    <Property Name="amount2" Type="int" />
+    <Property Name="picture2" Type="varbinary(max)" />
+    <Property Name="sumTotal" Type="int" />
+    <Property Name="comments" Type="varchar(max)" />
+    <Property Name="summaryDamage3" Type="varchar(max)" />
+    <Property Name="amount3" Type="int" />
+    <Property Name="picture3" Type="varbinary(max)" />
+    <Property Name="summaryDamage4" Type="varchar(max)" />
+    <Property Name="amount4" Type="int" />
+    <Property Name="picture4" Type="varbinary(max)" />
+    <Property Name="summaryDamage5" Type="varchar(max)" />
+    <Property Name="amount5" Type="int" />
+    <Property Name="picture5" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="appraiserTaskList">
+    <Key>
+      <PropertyRef Name="taskID" />
+    </Key>
+    <Property Name="appraID" Type="int" Nullable="false" />
+    <Property Name="taskID" Type="int" Nullable="false" />
+    <Property Name="location" Type="text" />
+    <Property Name="Latitude" Type="varchar(max)" />
+    <Property Name="Longitude" Type="varchar(max)" />
+    <Property Name="status" Type="int" />
+    <Property Name="clientName" Type="varchar" MaxLength="50" />
+    <Property Name="clientPhone" Type="varchar" MaxLength="50" />
+    <Property Name="destinationJob" Type="varchar" MaxLength="50" />
+    <Property Name="date" Type="varchar" MaxLength="50" />
+    <Property Name="reportId" Type="int" />
+  </EntityType>
   <EntityType Name="client">
     <Key>
       <PropertyRef Name="abstractUserId" />
@@ -141,8 +192,17 @@
     <Property Name="Latitude" Type="varchar(max)" />
     <Property Name="Longitude" Type="varchar(max)" />
     <Property Name="priority1" Type="int" />
+    <Property Name="priority1Role" Type="varchar(max)" />
     <Property Name="priority2" Type="int" />
+    <Property Name="priority2Role" Type="varchar(max)" />
     <Property Name="priority3" Type="int" />
+    <Property Name="priority3Role" Type="varchar(max)" />
+    <Property Name="priority4" Type="int" />
+    <Property Name="priority4Role" Type="varchar(max)" />
+    <Property Name="priority5" Type="int" />
+    <Property Name="priority5Role" Type="varchar(max)" />
+    <Property Name="priority6" Type="int" />
+    <Property Name="priority6Role" Type="varchar(max)" />
   </EntityType>
   <Association Name="FK_client_client">
     <End Role="client" Type="Self.client" Multiplicity="1" />
@@ -158,6 +218,9 @@
   </Association>
   <EntityContainer Name="rtesModelStoreContainer">
     <EntitySet Name="abstract_user" EntityType="Self.abstract_user" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="appraiser" EntityType="Self.appraiser" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="appraiserReport" EntityType="Self.appraiserReport" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="appraiserTaskList" EntityType="Self.appraiserTaskList" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="client" EntityType="Self.client" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="emergencyReport" EntityType="Self.emergencyReport" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="estimationForm" EntityType="Self.estimationForm" Schema="dbo" store:Type="Tables" />

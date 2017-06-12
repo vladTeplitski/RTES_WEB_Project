@@ -21,6 +21,57 @@
           <Property Name="company" Type="varchar" MaxLength="50" />
           <Property Name="userPhoneNumber" Type="varchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="appraiser">
+          <Key>
+            <PropertyRef Name="appraiserID" />
+          </Key>
+          <Property Name="appraiserID" Type="int" Nullable="false" />
+          <Property Name="taskCount" Type="int" />
+          <Property Name="Latitude" Type="varchar(max)" />
+          <Property Name="Longitude" Type="varchar(max)" />
+          <Property Name="region" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="appraiserReport">
+          <Key>
+            <PropertyRef Name="appraiserReportId" />
+          </Key>
+          <Property Name="appraiserReportId" Type="int" Nullable="false" />
+          <Property Name="emergencyReportID" Type="int" />
+          <Property Name="appraiserId" Type="int" />
+          <Property Name="summaryDamage1" Type="varchar(max)" />
+          <Property Name="amount1" Type="int" />
+          <Property Name="picture1" Type="varbinary(max)" />
+          <Property Name="summaryDamage2" Type="varchar(max)" />
+          <Property Name="amount2" Type="int" />
+          <Property Name="picture2" Type="varbinary(max)" />
+          <Property Name="sumTotal" Type="int" />
+          <Property Name="comments" Type="varchar(max)" />
+          <Property Name="summaryDamage3" Type="varchar(max)" />
+          <Property Name="amount3" Type="int" />
+          <Property Name="picture3" Type="varbinary(max)" />
+          <Property Name="summaryDamage4" Type="varchar(max)" />
+          <Property Name="amount4" Type="int" />
+          <Property Name="picture4" Type="varbinary(max)" />
+          <Property Name="summaryDamage5" Type="varchar(max)" />
+          <Property Name="amount5" Type="int" />
+          <Property Name="picture5" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="appraiserTaskList">
+          <Key>
+            <PropertyRef Name="taskID" />
+          </Key>
+          <Property Name="appraID" Type="int" Nullable="false" />
+          <Property Name="taskID" Type="int" Nullable="false" />
+          <Property Name="location" Type="text" />
+          <Property Name="Latitude" Type="varchar(max)" />
+          <Property Name="Longitude" Type="varchar(max)" />
+          <Property Name="status" Type="int" />
+          <Property Name="clientName" Type="varchar" MaxLength="50" />
+          <Property Name="clientPhone" Type="varchar" MaxLength="50" />
+          <Property Name="destinationJob" Type="varchar" MaxLength="50" />
+          <Property Name="date" Type="varchar" MaxLength="50" />
+          <Property Name="reportId" Type="int" />
+        </EntityType>
         <EntityType Name="client">
           <Key>
             <PropertyRef Name="abstractUserId" />
@@ -146,8 +197,17 @@
           <Property Name="Latitude" Type="varchar(max)" />
           <Property Name="Longitude" Type="varchar(max)" />
           <Property Name="priority1" Type="int" />
+          <Property Name="priority1Role" Type="varchar(max)" />
           <Property Name="priority2" Type="int" />
+          <Property Name="priority2Role" Type="varchar(max)" />
           <Property Name="priority3" Type="int" />
+          <Property Name="priority3Role" Type="varchar(max)" />
+          <Property Name="priority4" Type="int" />
+          <Property Name="priority4Role" Type="varchar(max)" />
+          <Property Name="priority5" Type="int" />
+          <Property Name="priority5Role" Type="varchar(max)" />
+          <Property Name="priority6" Type="int" />
+          <Property Name="priority6Role" Type="varchar(max)" />
         </EntityType>
         <Association Name="FK_client_client">
           <End Role="client" Type="Self.client" Multiplicity="1" />
@@ -163,6 +223,9 @@
         </Association>
         <EntityContainer Name="rtesModelStoreContainer">
           <EntitySet Name="abstract_user" EntityType="Self.abstract_user" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="appraiser" EntityType="Self.appraiser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="appraiserReport" EntityType="Self.appraiserReport" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="appraiserTaskList" EntityType="Self.appraiserTaskList" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="client" EntityType="Self.client" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="emergencyReport" EntityType="Self.emergencyReport" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="estimationForm" EntityType="Self.estimationForm" Schema="dbo" store:Type="Tables" />
@@ -301,6 +364,9 @@
           <EntitySet Name="truckDrivers" EntityType="rtesModel.truckDriver" />
           <EntitySet Name="towingReportForms" EntityType="rtesModel.towingReportForm" />
           <EntitySet Name="taskLists" EntityType="rtesModel.taskList" />
+          <EntitySet Name="appraisers" EntityType="rtesModel.appraiser" />
+          <EntitySet Name="appraiserReports" EntityType="rtesModel.appraiserReport" />
+          <EntitySet Name="appraiserTaskLists" EntityType="rtesModel.appraiserTaskList" />
         </EntityContainer>
         <EntityType Name="image">
           <Key>
@@ -334,6 +400,15 @@
           <Property Name="priority1" Type="Int32" />
           <Property Name="priority2" Type="Int32" />
           <Property Name="priority3" Type="Int32" />
+          <Property Name="priority4" Type="Int32" />
+          <Property Name="priority5" Type="Int32" />
+          <Property Name="priority6" Type="Int32" />
+          <Property Name="priority1Role" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="priority2Role" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="priority3Role" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="priority4Role" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="priority5Role" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="priority6Role" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="towingReportForm">
           <Key>
@@ -354,6 +429,57 @@
           <Property Name="reportId" Type="Int32" />
           <Property Name="taskId" Type="Int32" Nullable="false" />
           <Property Name="status" Type="Int32" />
+        </EntityType>
+        <EntityType Name="appraiser">
+          <Key>
+            <PropertyRef Name="appraiserID" />
+          </Key>
+          <Property Name="appraiserID" Type="Int32" Nullable="false" />
+          <Property Name="taskCount" Type="Int32" />
+          <Property Name="Latitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Longitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="region" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="appraiserReport">
+          <Key>
+            <PropertyRef Name="appraiserReportId" />
+          </Key>
+          <Property Name="appraiserReportId" Type="Int32" Nullable="false" />
+          <Property Name="emergencyReportID" Type="Int32" />
+          <Property Name="appraiserId" Type="Int32" />
+          <Property Name="summaryDamage1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="amount1" Type="Int32" />
+          <Property Name="picture1" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="summaryDamage2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="amount2" Type="Int32" />
+          <Property Name="picture2" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="sumTotal" Type="Int32" />
+          <Property Name="comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="summaryDamage3" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="amount3" Type="Int32" />
+          <Property Name="picture3" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="summaryDamage4" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="amount4" Type="Int32" />
+          <Property Name="picture4" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="summaryDamage5" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="amount5" Type="Int32" />
+          <Property Name="picture5" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="appraiserTaskList">
+          <Key>
+            <PropertyRef Name="taskID" />
+          </Key>
+          <Property Name="appraID" Type="Int32" Nullable="false" />
+          <Property Name="taskID" Type="Int32" Nullable="false" />
+          <Property Name="location" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Latitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Longitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="clientName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="clientPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="destinationJob" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="reportId" Type="Int32" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -479,6 +605,15 @@
           <EntitySetMapping Name="truckDrivers">
             <EntityTypeMapping TypeName="rtesModel.truckDriver">
               <MappingFragment StoreEntitySet="truckDriver">
+                <ScalarProperty Name="priority6Role" ColumnName="priority6Role" />
+                <ScalarProperty Name="priority5Role" ColumnName="priority5Role" />
+                <ScalarProperty Name="priority4Role" ColumnName="priority4Role" />
+                <ScalarProperty Name="priority3Role" ColumnName="priority3Role" />
+                <ScalarProperty Name="priority2Role" ColumnName="priority2Role" />
+                <ScalarProperty Name="priority1Role" ColumnName="priority1Role" />
+                <ScalarProperty Name="priority6" ColumnName="priority6" />
+                <ScalarProperty Name="priority5" ColumnName="priority5" />
+                <ScalarProperty Name="priority4" ColumnName="priority4" />
                 <ScalarProperty Name="priority3" ColumnName="priority3" />
                 <ScalarProperty Name="priority2" ColumnName="priority2" />
                 <ScalarProperty Name="priority1" ColumnName="priority1" />
@@ -512,6 +647,60 @@
                 <ScalarProperty Name="taskId" ColumnName="taskId" />
                 <ScalarProperty Name="reportId" ColumnName="reportId" />
                 <ScalarProperty Name="truckDriverId" ColumnName="truckDriverId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="appraisers">
+            <EntityTypeMapping TypeName="rtesModel.appraiser">
+              <MappingFragment StoreEntitySet="appraiser">
+                <ScalarProperty Name="region" ColumnName="region" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="taskCount" ColumnName="taskCount" />
+                <ScalarProperty Name="appraiserID" ColumnName="appraiserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="appraiserReports">
+            <EntityTypeMapping TypeName="rtesModel.appraiserReport">
+              <MappingFragment StoreEntitySet="appraiserReport">
+                <ScalarProperty Name="picture5" ColumnName="picture5" />
+                <ScalarProperty Name="amount5" ColumnName="amount5" />
+                <ScalarProperty Name="summaryDamage5" ColumnName="summaryDamage5" />
+                <ScalarProperty Name="picture4" ColumnName="picture4" />
+                <ScalarProperty Name="amount4" ColumnName="amount4" />
+                <ScalarProperty Name="summaryDamage4" ColumnName="summaryDamage4" />
+                <ScalarProperty Name="picture3" ColumnName="picture3" />
+                <ScalarProperty Name="amount3" ColumnName="amount3" />
+                <ScalarProperty Name="summaryDamage3" ColumnName="summaryDamage3" />
+                <ScalarProperty Name="comments" ColumnName="comments" />
+                <ScalarProperty Name="sumTotal" ColumnName="sumTotal" />
+                <ScalarProperty Name="picture2" ColumnName="picture2" />
+                <ScalarProperty Name="amount2" ColumnName="amount2" />
+                <ScalarProperty Name="summaryDamage2" ColumnName="summaryDamage2" />
+                <ScalarProperty Name="picture1" ColumnName="picture1" />
+                <ScalarProperty Name="amount1" ColumnName="amount1" />
+                <ScalarProperty Name="summaryDamage1" ColumnName="summaryDamage1" />
+                <ScalarProperty Name="appraiserId" ColumnName="appraiserId" />
+                <ScalarProperty Name="emergencyReportID" ColumnName="emergencyReportID" />
+                <ScalarProperty Name="appraiserReportId" ColumnName="appraiserReportId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="appraiserTaskLists">
+            <EntityTypeMapping TypeName="rtesModel.appraiserTaskList">
+              <MappingFragment StoreEntitySet="appraiserTaskList">
+                <ScalarProperty Name="reportId" ColumnName="reportId" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="destinationJob" ColumnName="destinationJob" />
+                <ScalarProperty Name="clientPhone" ColumnName="clientPhone" />
+                <ScalarProperty Name="clientName" ColumnName="clientName" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="taskID" ColumnName="taskID" />
+                <ScalarProperty Name="appraID" ColumnName="appraID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

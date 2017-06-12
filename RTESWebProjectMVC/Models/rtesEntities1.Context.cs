@@ -28,12 +28,15 @@ namespace RTESWebProjectMVC.Models
         public virtual DbSet<abstract_user> abstract_user { get; set; }
         public virtual DbSet<client> client { get; set; }
         public virtual DbSet<emergencyReport> emergencyReport { get; set; }
-        public virtual DbSet<messagesTable> messagesTable { get; set; }
+        public virtual DbSet<messagesTable> messagesTable{ get; set; }
         public virtual DbSet<third_party> third_party { get; set; }
         public virtual DbSet<image> image { get; set; }
-        public virtual DbSet<estimationForm> estimationForm { get; set; }
+        public virtual DbSet<estimationForm> estimationForm{ get; set; }
         public virtual DbSet<truckDriver> truckDriver { get; set; }
         public virtual DbSet<towingReportForm> towingReportForm { get; set; }
         public virtual DbSet<taskList> taskList { get; set; }
+        public virtual DbSet<appraiser> appraiser { get; set; }
+        public virtual DbSet<appraiserReport> appraiserReport { get; set; }
+        public virtual DbSet<appraiserTaskList> appraiserTaskList { get; set; }
     }
 }

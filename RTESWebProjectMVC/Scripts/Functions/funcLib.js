@@ -402,4 +402,24 @@ function updateDriverLatLng() {
 
 }
 
+
+
+function redirectToServer(finalDriverId, finalReportId, finaldistance, priority1, priority2, priority3, priority4, priority5, priority6, priority1Role, priority2Role, priority3Role, priority4Role, priority5Role, priority6Role) { //send results to server side & redirect to main client view when algorithm done
+
+    $.ajax({
+        url: '/client/algorithmFunc',
+        type: 'POST',
+        data: { driverId: finalDriverId, reportId: finalReportId, distance: finaldistance, prior1: priority1, prior2: priority2, prior3: priority3, prior4: priority4, prior5: priority5, prior6: priority6, prior1Role: priority1Role, prior2Role: priority2Role, prior3Role: priority3Role, prior4Role: priority4Role, prior5Role: priority5Role, prior6Role: priority6Role },
+        success: function (data) {
+            alert("Tow truck driver assigned successfully!");
+            document.getElementById("redirectBack").style.display = "inline";
+        },
+        error: function () {
+            alert("Error: bufferView - Server ajax comunication failed.");
+        }
+    });
+
+}
+
+
 // END  Truck Driver functions

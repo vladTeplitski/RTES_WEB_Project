@@ -293,10 +293,8 @@ namespace RTESWebProjectMVC.Controllers
         }//end NewReport function
 
 
-
-        //create new report in db
         [HttpPost]
-        public ActionResult send_Details_Func(string location,String lat,String lng, String latDest, String lngDest, string towDest,string witName,string witPhone, string comments,string myName,string driverID,string driverPhone,string driverLicenseNum,string address1,string carOwnerName,string carOwnerId,string carLicensePlate,string carCategory,string carModel,string color1,string year,string compName,string policyNum,string agentName,string agentPhone, bool checkBox1 = false)
+        public ActionResult send_Details_Func(String location,String lat,String lng, String latDest, String lngDest, string towDest,string witName,string witPhone, string comments,string myName,string driverID,string driverPhone,string driverLicenseNum,string address1,string carOwnerName,string carOwnerId,string carLicensePlate,string carCategory,string carModel,string color1,string year,string compName,string policyNum,string agentName,string agentPhone, bool checkBox1 = false)
         {
             int checkStat;   
             using (var db = new Models.rtesEntities1())
@@ -307,6 +305,7 @@ namespace RTESWebProjectMVC.Controllers
                 var maxId = db.emergencyReport.DefaultIfEmpty().Max(r => r == null ? 0 : r.reportID); //get the max report Id
                 x = Convert.ToInt32(maxId.ToString());//convert type of string to int
                 x = x + 1;
+                Session["clientRepIdNOW"] = x;
 
                 if (checkBox1 == true)// Checks if need towing service
                 {
@@ -563,8 +562,7 @@ namespace RTESWebProjectMVC.Controllers
                     var list = from v in db1.truckDriver
                                join e in db1.taskList on v.abstractUserId equals e.truckDriverId
                                where v.workStatus == true && v.TasksCounter < 3
-                               select new truckDriverList { driverId = v.abstractUserId, lan = v.Latitude, lng = v.Longitude, tasksCount=(int)v.TasksCounter , cargo=(int)v.cargo};
-                    //select v.abstractUserId).Distinct().ToList();
+                               select new truckDriverList { driverId = v.abstractUserId, lan = v.Latitude, lng = v.Longitude, tasksCount=(int)v.TasksCounter , cargo=(int)v.cargo, prior1 =(int)v.priority1, prior2 = (int)v.priority2, prior3= (int)v.priority3, prior4 = (int)v.priority4, prior5 = (int)v.priority5, prior6 = (int)v.priority6, prior1Role = v.priority1Role, prior2Role = v.priority2Role, prior3Role = v.priority3Role, prior4Role = v.priority4Role, prior5Role = v.priority5Role, prior6Role = v.priority6Role };
 
                     int listCnt = list.Count(); 
 
@@ -642,13 +640,44 @@ namespace RTESWebProjectMVC.Controllers
         }
         //end create new report in db
 
-        public ActionResult algorithmFunc(String driverId, String reportId)  //Truck drivers assigning algorithm
+       
+        [HttpPost]
+        public void algorithmFunc(int driverId, int reportId, String distance, int prior1, int prior2, int prior3, int prior4, int prior5, int prior6, String prior1Role, String prior2Role, String prior3Role, String prior4Role, String prior5Role, String prior6Role)  //Truck drivers assigning algorithm
         {
 
+            var db = new Models.rtesEntities1();
 
+            var truckDriverTable = db.truckDriver.Where(i => i.abstractUserId == driverId).FirstOrDefault();
 
+            truckDriverTable.TasksCounter = truckDriverTable.TasksCounter + 1;
+            truckDriverTable.priority1 = prior1;
+            truckDriverTable.priority1Role = prior1Role;
+            truckDriverTable.priority2 = prior2;
+            truckDriverTable.priority2Role = prior2Role;
+            truckDriverTable.priority3 = prior3;
+            truckDriverTable.priority3Role = prior3Role;
+            truckDriverTable.priority4 = prior4;
+            truckDriverTable.priority4Role = prior4Role;
+            truckDriverTable.priority5 = prior5;
+            truckDriverTable.priority5Role = prior5Role;
+            truckDriverTable.priority6 = prior6;
+            truckDriverTable.priority6Role = prior6Role;
 
-            return RedirectToAction("client", "client");
+            var y = 0;
+            var maxId = db.taskList.DefaultIfEmpty().Max(r => r == null ? 0 : r.taskId); //get the max report Id
+            y= Convert.ToInt32(maxId.ToString());//convert type of string to int
+            y = y + 1;
+
+            db.taskList.Add(new Models.taskList()
+            {
+                truckDriverId = driverId,
+                reportId = x,
+                taskId = y,
+                status=0
+            });
+
+            db.SaveChanges();
+
         }
 
 
