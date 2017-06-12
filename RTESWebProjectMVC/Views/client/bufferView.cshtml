@@ -50,8 +50,7 @@
 
             <script>
 
-                var finalDriverId;  //driver id - algorithm result to send to server
-                var finalReportId;  //report id - algorithm result to send to server
+
 
 
                 var clientLng =  '@(Session["clientLng"])';
@@ -245,7 +244,7 @@
                     j++;
                 }
 
-                var paraAlg1 = [];
+                
                 var i = 0;
                 for(i=0;i<cnt;i++)  //Main algorithm loop
                 {
@@ -302,44 +301,90 @@
                     }
 
 
-
-
-
-
                     else if(driversArray[i].cargo==2 && driversArray[i].tasksCount==2)
                     {
                         var x = calcDistance(driversArray[i].lan,driversArray[i].lng,driversArray[i].tasksDestLat[0],driversArray[i].tasksDestLng[0]) + calcDistance(driversArray[i].tasksDestLat[0],driversArray[i].tasksDestLng[0],clientLat,clientLng);  // driver -> unload 1 -> client
                         var y = calcDistance(driversArray[i].lan,driversArray[i].lng,driversArray[i].tasksDestLat[1],driversArray[i].tasksDestLng[1]) + calcDistance(driversArray[i].tasksDestLat[1],driversArray[i].tasksDestLng[1],clientLat,clientLng);  // driver -> unload 2 -> client
                         var z = calcDistance(driversArray[i].lan,driversArray[i].lng,driversArray[i].tasksDestLat[0],driversArray[i].tasksDestLng[0]) + calcDistance(driversArray[i].tasksDestLat[0],driversArray[i].tasksDestLng[0],driversArray[i].tasksDestLat[1],driversArray[i].tasksDestLng[1]) + calcDistance(driversArray[i].tasksDestLat[1],driversArray[i].tasksDestLng[1],clientLat,clientLng); // driver -> unload 1 -> unload 2 -> client
                     
+                        if(x<y && x<z)
+                        {
+                            driversArray[i].distanceResult=x;
+                        }
+                        else if(y<x && y<z){
+                            driversArray[i].distanceResult=y;
+                        }
+                        else if(z<x && z<y){
+                            driversArray[i].distanceResult=z;
+                        }
+
+                        driversArray[i].distanceResult =((driversArray[i].distanceResult)/1000).toFixed(2);
                     }
-
-
-
 
 
                     else if(driversArray[i].cargo==0 && driversArray[i].tasksCount==1)
                     {
+                        var x = calcDistance(driversArray[i].lan,driversArray[i].lng,driversArray[i].tasksLat[0],driversArray[i].tasksLng[0]) + calcDistance(driversArray[i].tasksLat[0],driversArray[i].tasksLng[0],clientLat,clientLng);
+                        var y = calcDistance(driversArray[i].lan,driversArray[i].lng,clientLat,clientLng);
+                        var z = y - x;
 
+                        if(z<0)
+                        {
+                            z=z*(-1);
+                        }
+
+                        z=z/1000;   //convert to km
+
+                        if(z<=10){
+                            driversArray[i].distanceResult = y;//load client->load task 1
+                        }
+                        else
+                        {
+                            driversArray[i].distanceResult = x;//load task 1->load client
+                        }
+
+                        driversArray[i].distanceResult =((driversArray[i].distanceResult)/1000).toFixed(2);
                     }
-
-
-
 
 
                     else if(driversArray[i].cargo==0 && driversArray[i].tasksCount==2)
                     {
+                        var x=calcDistance(driversArray[i].lan,driversArray[i].lng,driversArray[i].tasksDestLat[0],driversArray[i].tasksDestLng[0])+ calcDistance(driversArray[i].lng,driversArray[i].tasksDestLat[0],driversArray[i].tasksDestLng[0],driversArray[i].tasksDestLat[1],driversArray[i].tasksDestLng[1])+  calcDistance(driversArray[i].tasksDestLat[1],driversArray[i].tasksDestLng[1],clientLat,clientLng);//loadtask1->load task2->load client
+                        var y=calcDistance(driversArray[i].lan,driversArray[i].lng,driversArray[i].tasksDestLat[0],driversArray[i].tasksDestLng[0])+ calcDistance(driversArray[i].tasksDestLat[0],driversArray[i].tasksDestLng[0],clientLat,clientLng)+calcDistance(clientLat,clientLng,driversArray[i].tasksDestLat[1],driversArray[i].tasksDestLng[1]);//load task1->load client->load task2
 
+
+                        if(x<y){
+                            driversArray[i].distanceResult = x;
+                        }
+                        else if(x>y){
+                            driversArray[i].distanceResult = y;
+
+                        }
+                        driversArray[i].distanceResult =((driversArray[i].distanceResult)/1000).toFixed(2);
                     }
 
 
                 }
 
+                var u;
+                var finalDriverId=driversArray[0].driverId;  //init driver id - algorithm result to send to server
+                var finalReportId=driversArray[0].reportId;  //init report id - algorithm result to send to server
+                var finaldistance=driversArray[0].distanceResult;
+                var minDist=driversArray[0].distanceResult;
 
+                for(u=0;u<cnt;u++){   //calculate the shortest route from all available  drivers
+                    if(minDist>driversArray[u].distanceResult){
+                        minDist=driversArray[u].distanceResult;
+                        finalDriverId=driversArray[u].driverId;
+                        finalReportId=driversArray[u].reportId;
+                        finaldistance=driversArray[u].distanceResult;
+                    }
+                }
 
-
-
-
+                var paraAlg1; //print shortest route driver
+                paraAlg1 = document.createElement("div");
+                paraAlg1.innerHTML = "Driver id: " + finalDriverId + "__report: " + finalReportId + " __Total distance to client: " + finaldistance + " km" + "__array[0].distance=" + driversArray[0].distanceResult + "__array[1].distance=" + driversArray[1].distanceResult;
+                document.getElementById("testAlg1").appendChild(paraAlg1);
 
 
 

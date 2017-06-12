@@ -19,5 +19,6 @@ namespace RTESWebProjectMVC.Models
         public string[] tasksLngDest { get; set; }
         public int cargo { get; set; }
 
+
     }
 }
