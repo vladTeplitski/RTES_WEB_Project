@@ -41,14 +41,12 @@ $(document).ready(function () {
 
 });
 
-
 //System loading control
 function loadControl() {
     
     $(window).on('load', function () { $("#spinner").fadeOut('slow'); });
     
 }
-
 
 //Start search Javascript//
 
@@ -131,7 +129,6 @@ function searchAllReportsByClientIdJs() {
 
 //END search Javascript//
 
-
 /////////////////////////////////////////
 //operator js functions
 
@@ -155,7 +152,6 @@ function returnRefresh() {
         refresh = setInterval(function () { $('#opsContain').load('/operator/GetOperationsRoom'); }, 3000); // every 3 sec
 }
 
-
 //location dropdown refreshes
 var flagLoc = 0;
 function stopRefreshLoc() {
@@ -169,7 +165,6 @@ function returnRefreshLoc() {
     }
     
 }
-
 
 function hideOperations() {
     $("#opsContain").hide();
@@ -212,7 +207,6 @@ function closeViewDriversDetails() {
     flagLoc = 0;
 }
 
-
 //END operator js functions
 
 
@@ -245,14 +239,12 @@ function getLocation() {  // get the Lat & Lng coordinates
     
 }
 
-
-function turnongps() {
+function turnongps() {   // Main turn on gps function
     var val = document.getElementById("gpsIconOn");
     if (val.style.display == 'none') {
         window.alert('Please turn on your gps!');
     }
 }
-
 
 
 var geocoder;
@@ -273,7 +265,7 @@ function initMap() {
 
 }
 
-function geocodeLatLng(geocoder, infowindow) {
+function geocodeLatLng(geocoder, infowindow) {   //GeoCode Function
 
     var input = publicLatLng;
 
@@ -298,13 +290,13 @@ function geocodeLatLng(geocoder, infowindow) {
 
 var address = "Yarka, Israel";   //TEST
 
-function setDestinationCoordeinates() {
+function setDestinationCoordeinates() { // Bind function
     var addr = document.getElementById('fieldReport2').value;
     addressToLocation(addr);
 }
 
 
-function addressToLocation(addr) {
+function addressToLocation(addr) {  // convert text address to coordinates
 
     var geocoder = new google.maps.Geocoder();
     geocoder.geocode(
@@ -336,25 +328,20 @@ function addressToLocation(addr) {
 		        // address not found
 		        alert("address not found");
 		    }
-
 		}
 	);
-
 }
 
+//END Location Service Functions
 
-//END Location Functions
-
-/////////////////////////////////////////
+//////////////////////////////////
 // Truck Driver functions
 var counter = 0;
 
-function driverAppSetRefreshes() {
+function driverAppSetRefreshes() { //Set refreshes interval of truck driver application
     $("#tasksContain").show();
     truckFlag = 1;
-    
-    
-    
+
     refreshTasks = setInterval(function () {
         $('#tasksContain').load('/truckDriver/GetTasksList');
         document.getElementById("appWorking").style.color = "#3DFA23";
@@ -362,18 +349,16 @@ function driverAppSetRefreshes() {
     intervalGetLatLng = setInterval(function () { updateDriverLatLng(); }, 7000); // every 7 sec, update the driver location
 }
 
-function driverAppStop() {  //Stop intervals
+function driverAppStop() {  //Stop refresh intervals
     clearInterval(refreshTasks);
     clearInterval(intervalGetLatLng);
 }
 
-function restartApp() {
+function restartApp() {   //Function to reload driver application in case of gps failure
     location.reload();
 }
 
-
-
-function updateDriverLatLng() {
+function updateDriverLatLng() { //dynamic update - driver coordinates  -   AJAX
     
     if (publicLat == undefined) {
         driverAppStop();
@@ -397,12 +382,11 @@ function updateDriverLatLng() {
             }
         });
     }
-    
-
-
 }
+// END  Truck Driver functions
 
 
+//Truck drivers Algorithm - bind client with server  - AJAX
 
 function redirectToServer(finalDriverId, finalReportId, finaldistance, priority1, priority2, priority3, priority4, priority5, priority6, priority1Role, priority2Role, priority3Role, priority4Role, priority5Role, priority6Role) { //send results to server side & redirect to main client view when algorithm done
 
@@ -420,6 +404,4 @@ function redirectToServer(finalDriverId, finalReportId, finaldistance, priority1
     });
 
 }
-
-
-// END  Truck Driver functions
+//END Algorithm bind client with server
