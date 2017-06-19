@@ -204,14 +204,12 @@
     <EntitySetMapping Name="appraiserTaskLists">
       <EntityTypeMapping TypeName="rtesModel.appraiserTaskList">
         <MappingFragment StoreEntitySet="appraiserTaskList">
+          <ScalarProperty Name="hour" ColumnName="hour" />
           <ScalarProperty Name="reportId" ColumnName="reportId" />
           <ScalarProperty Name="date" ColumnName="date" />
-          <ScalarProperty Name="destinationJob" ColumnName="destinationJob" />
           <ScalarProperty Name="clientPhone" ColumnName="clientPhone" />
           <ScalarProperty Name="clientName" ColumnName="clientName" />
           <ScalarProperty Name="status" ColumnName="status" />
-          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
-          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
           <ScalarProperty Name="location" ColumnName="location" />
           <ScalarProperty Name="taskID" ColumnName="taskID" />
           <ScalarProperty Name="appraID" ColumnName="appraID" />

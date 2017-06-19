@@ -58,14 +58,12 @@
     <Property Name="appraID" Type="int" Nullable="false" />
     <Property Name="taskID" Type="int" Nullable="false" />
     <Property Name="location" Type="text" />
-    <Property Name="Latitude" Type="varchar(max)" />
-    <Property Name="Longitude" Type="varchar(max)" />
     <Property Name="status" Type="int" />
     <Property Name="clientName" Type="varchar" MaxLength="50" />
     <Property Name="clientPhone" Type="varchar" MaxLength="50" />
-    <Property Name="destinationJob" Type="varchar" MaxLength="50" />
-    <Property Name="date" Type="varchar" MaxLength="50" />
     <Property Name="reportId" Type="int" />
+    <Property Name="date" Type="varchar" MaxLength="50" />
+    <Property Name="hour" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="client">
     <Key>

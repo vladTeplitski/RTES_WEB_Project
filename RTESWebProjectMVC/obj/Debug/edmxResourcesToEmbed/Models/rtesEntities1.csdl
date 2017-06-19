@@ -228,13 +228,11 @@
     <Property Name="appraID" Type="Int32" Nullable="false" />
     <Property Name="taskID" Type="Int32" Nullable="false" />
     <Property Name="location" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="Latitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="Longitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="status" Type="Int32" />
     <Property Name="clientName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="clientPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="destinationJob" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="reportId" Type="Int32" />
+    <Property Name="hour" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
   </EntityType>
 </Schema>

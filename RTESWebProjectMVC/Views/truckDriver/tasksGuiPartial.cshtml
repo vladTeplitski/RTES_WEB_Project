@@ -37,34 +37,160 @@
 
     <table id="myTable10" class="table table - striped" style="background-color:#4E86B7;width:90%;border-radius:5px;margin:auto;;display:@ViewBag.showTasks; font-size:small;color:black;">
         <tr>
+            <th style="color:white;">Priority</th>
             <th style="color:white;">Report ID</th>
-            <th style="color:white;">Location</th>
-            <th style="color:white;">Client Name</th>
-            <th style="color:white;">Function</th>
+            <th style="color:white;">Action</th>
         </tr>
         @using RTESWebProjectMVC.Models
-        @model tasksModel[]
+        @model tasksOrder
 
         @{
-            int i = 0;
+            var i = 0;
+            var action1 = 0;
+            var action2 = 0;
+            var action3 = 0;
+            var action4 = 0;
+            var action5 = 0;
+            var action6 = 0;
 
             if (Model != null)
             {
-                for(i=0;i<3 && Model[i]!=null;i++)
+                if (Model.priority1 != 0)
                 {
+                    i++;
+                    if (Model.priority1Role == "Unload")
+                    {
+                        action1 = 1;
+                    }
                     <tr id="updatePannelAngular">
+                        
                         <td style="color:white;">
-                            @Model[i].reportId
+                            @i
                         </td>
                         <td>
-                            @Model[i].location
+                            @Model.priority1
                         </td>
                         <td>
-                            @Model[i].name
+                            @Model.priority1Role
                         </td>
                         <td style="">
-                            <div><i Style="margin-left:5px;color:#2AFF00;font-size:13px;margin-right:6px" class="glyphicon glyphicon-ok"></i> Finish</div>
-                            <div><i Style="margin-left:5px;color:#FFC600;font-size:13px;margin-right:6px" class="glyphicon glyphicon-th-list"></i> Info</div>
+                            
+                            <div><i Style="margin-left:5px;color:#2AFF00;font-size:13px;margin-right:6px" class="glyphicon glyphicon-ok"></i>@Ajax.ActionLink("Info", "taskInfoDriver", "truckDriver", new { reportId = Model.priority1 }, new AjaxOptions { UpdateTargetId = "resultGui" }, new { onclick = "tasksStopRefresh()" })</div>
+                            <div><i Style="margin-left:5px;color:#FFC600;font-size:13px;margin-right:6px" class="glyphicon glyphicon-th-list"></i>@Html.ActionLink("Finish", "finishTaskDriver", "truckDriver", new { reportId = Model.priority1, act = action1 }, new { onclick = "tasksStopRefresh()" })</div>
+                        </td>
+                    </tr>
+                }
+                if (Model.priority2 != 0) {
+                    i++;
+                    if (Model.priority2Role == "Unload")
+                    {
+                        action2 = 1;
+                    }
+                    <tr id="updatePannelAngular">
+                        <td style="color:white;">
+                            @i
+                        </td>
+                        <td>
+                            @Model.priority2
+                        </td>
+                        <td>
+                            @Model.priority2Role
+                        </td>
+                        <td style="">
+                            <div><i Style="margin-left:5px;color:#2AFF00;font-size:13px;margin-right:6px" class="glyphicon glyphicon-ok"></i>@Ajax.ActionLink("Info", "taskInfoDriver", "truckDriver", new { reportId = Model.priority2 }, new AjaxOptions { UpdateTargetId = "resultGui" }, new { onclick = "tasksStopRefresh()" })</div>
+                            <div><i Style="margin-left:5px;color:#FFC600;font-size:13px;margin-right:6px" class="glyphicon glyphicon-th-list"></i>@Html.ActionLink("Finish", "finishTaskDriver", "truckDriver", new { reportId = Model.priority2, act = action2 }, new { onclick = "tasksStopRefresh()" })</div>
+                        </td>
+                    </tr>
+                }
+                if (Model.priority3 != 0)
+                {
+                    i++;
+                    if (Model.priority3Role == "Unload")
+                    {
+                        action3 = 1;
+                    }
+                    <tr id="updatePannelAngular">
+                        <td style="color:white;">
+                            @i
+                        </td>
+                        <td>
+                            @Model.priority3
+                        </td>
+                        <td>
+                            @Model.priority3Role
+                        </td>
+                        <td style="">
+                            <div><i Style="margin-left:5px;color:#2AFF00;font-size:13px;margin-right:6px" class="glyphicon glyphicon-ok"></i>@Ajax.ActionLink("Info", "taskInfoDriver", "truckDriver", new { reportId = Model.priority3 }, new AjaxOptions { UpdateTargetId = "resultGui" }, new { onclick = "tasksStopRefresh()" })</div>
+                            <div><i Style="margin-left:5px;color:#FFC600;font-size:13px;margin-right:6px" class="glyphicon glyphicon-th-list"></i>@Html.ActionLink("Finish", "finishTaskDriver", "truckDriver", new { reportId = Model.priority3, act = action3 }, new { onclick = "tasksStopRefresh()" })</div>
+                        </td>
+                    </tr>
+                }
+                if (Model.priority4 != 0)
+                {
+                    i++;
+                    if (Model.priority4Role == "Unload")
+                    {
+                        action4 = 1;
+                    }
+                    <tr id="updatePannelAngular">
+                        <td style="color:white;">
+                            @i
+                        </td>
+                        <td>
+                            @Model.priority4
+                        </td>
+                        <td>
+                            @Model.priority4Role
+                        </td>
+                        <td style="">
+                            <div><i Style="margin-left:5px;color:#2AFF00;font-size:13px;margin-right:6px" class="glyphicon glyphicon-ok"></i>@Ajax.ActionLink("Info", "taskInfoDriver", "truckDriver", new { reportId = Model.priority4 }, new AjaxOptions { UpdateTargetId = "resultGui" }, new { onclick = "tasksStopRefresh()" })</div>
+                            <div><i Style="margin-left:5px;color:#FFC600;font-size:13px;margin-right:6px" class="glyphicon glyphicon-th-list"></i>@Html.ActionLink("Finish", "finishTaskDriver", "truckDriver", new { reportId = Model.priority4, act = action4 }, new { onclick = "tasksStopRefresh()" })</div>
+                        </td>
+                    </tr>
+                }
+                if (Model.priority5 != 0)
+                {
+                    i++;
+                    if (Model.priority5Role == "Unload")
+                    {
+                        action5 = 1;
+                    }
+                    <tr id="updatePannelAngular">
+                        <td style="color:white;">
+                            @i
+                        </td>
+                        <td>
+                            @Model.priority5
+                        </td>
+                        <td>
+                            @Model.priority5Role
+                        </td>
+                        <td style="">
+                            <div><i Style="margin-left:5px;color:#2AFF00;font-size:13px;margin-right:6px" class="glyphicon glyphicon-ok"></i>@Ajax.ActionLink("Info", "taskInfoDriver", "truckDriver", new { reportId = Model.priority5 }, new AjaxOptions { UpdateTargetId = "resultGui" }, new { onclick = "tasksStopRefresh()" })</div>
+                            <div><i Style="margin-left:5px;color:#FFC600;font-size:13px;margin-right:6px" class="glyphicon glyphicon-th-list"></i>@Html.ActionLink("Finish", "finishTaskDriver", "truckDriver", new { reportId = Model.priority5, act = action5 }, new { onclick = "tasksStopRefresh()" })</div>
+                        </td>
+                    </tr>
+                }
+                if (Model.priority6 != 0)
+                {
+                    i++;
+                    if (Model.priority6Role == "Unload")
+                    {
+                        action6 = 1;
+                    }
+                    <tr id="updatePannelAngular">
+                        <td style="color:white;">
+                            @i
+                        </td>
+                        <td>
+                            @Model.priority6
+                        </td>
+                        <td>
+                            @Model.priority6Role
+                        </td>
+                        <td style="">
+                            <div><i Style="margin-left:5px;color:#2AFF00;font-size:13px;margin-right:6px" class="glyphicon glyphicon-ok"></i>@Ajax.ActionLink("Info", "taskInfoDriver", "truckDriver", new { reportId = Model.priority6 }, new AjaxOptions { UpdateTargetId = "resultGui" }, new { onclick = "tasksStopRefresh()" })</div>
+                            <div><i Style="margin-left:5px;color:#FFC600;font-size:13px;margin-right:6px" class="glyphicon glyphicon-th-list"></i>@Html.ActionLink("Finish", "finishTaskDriver", "truckDriver", new { reportId = Model.priority6, act = action6 }, new { onclick = "tasksStopRefresh()" })</div>
                         </td>
                     </tr>
                 }
@@ -72,6 +198,7 @@
             else
             {
                 <tr id="updatePannelAngular">
+                    <td>no data</td>
                     <td>no data</td>
                     <td>no data</td>
                     <td>no data</td>
@@ -86,6 +213,8 @@
     <div id="testingLoc" style="width:400px;height:300px;background-color:yellow;border:1px solid black;">
     </div>-->
 
+    <!--Partial Views-->
+    
 
 
 

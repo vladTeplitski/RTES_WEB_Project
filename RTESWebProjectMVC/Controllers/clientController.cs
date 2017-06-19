@@ -659,7 +659,7 @@ namespace RTESWebProjectMVC.Controllers
             db.taskList.Add(new Models.taskList()
             {
                 truckDriverId = driverId,
-                reportId = x,
+                reportId = reportId,
                 taskId = y,
                 status=0
             });

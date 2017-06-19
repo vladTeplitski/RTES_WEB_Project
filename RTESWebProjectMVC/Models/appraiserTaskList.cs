@@ -17,13 +17,11 @@ namespace RTESWebProjectMVC.Models
         public int appraID { get; set; }
         public int taskID { get; set; }
         public string location { get; set; }
-        public string Latitude { get; set; }
-        public string Longitude { get; set; }
         public Nullable<int> status { get; set; }
         public string clientName { get; set; }
         public string clientPhone { get; set; }
-        public string destinationJob { get; set; }
         public string date { get; set; }
         public Nullable<int> reportId { get; set; }
+        public string hour { get; set; }
     }
 }

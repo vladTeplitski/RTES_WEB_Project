@@ -152,6 +152,9 @@ function returnRefresh() {
         refresh = setInterval(function () { $('#opsContain').load('/operator/GetOperationsRoom'); }, 3000); // every 3 sec
 }
 
+
+
+
 //location dropdown refreshes
 var flagLoc = 0;
 function stopRefreshLoc() {
@@ -337,6 +340,7 @@ function addressToLocation(addr) {  // convert text address to coordinates
 //////////////////////////////////
 // Truck Driver functions
 var counter = 0;
+var refreshTasks;
 
 function driverAppSetRefreshes() { //Set refreshes interval of truck driver application
     $("#tasksContain").show();
@@ -383,6 +387,26 @@ function updateDriverLatLng() { //dynamic update - driver coordinates  -   AJAX
         });
     }
 }
+
+//buttons control
+
+function tasksStopRefresh() {
+    clearInterval(refreshTasks);
+    clearInterval(intervalGetLatLng);
+}
+
+function closeTasksInfoPartial() {
+    $('#TasksInfoPartialContainer').hide();
+    if (truckFlag == 1) //if the user in driver app, interval should be activated
+    {
+        refreshTasks = setInterval(function () {
+            $('#tasksContain').load('/truckDriver/GetTasksList');
+            document.getElementById("appWorking").style.color = "#3DFA23";
+        }, 5000); // every 5 sec
+        intervalGetLatLng = setInterval(function () { updateDriverLatLng(); }, 7000); // every 7 sec, update the driver location
+    }
+}
+
 // END  Truck Driver functions
 
 
