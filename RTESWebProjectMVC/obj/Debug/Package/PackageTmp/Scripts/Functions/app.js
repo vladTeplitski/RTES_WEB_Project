@@ -427,3 +427,54 @@ myApp.controller('truckDriverController', ['$scope', function ($scope) {
     }
 
 }]);
+
+
+
+
+//Appraiser app controller
+
+myApp.controller('appraiserController', ['$scope', function ($scope) {
+
+
+    // $scope.inputCounter = 0;
+
+
+    // $scope.description1 = false;
+    //s $scope.description2 = false;
+    //$scope.description3 = false;
+
+    $scope.showDescription1 = function () {
+        $scope.description1 = !$scope.description1;
+    }
+
+
+    $scope.showDescription2 = function () {
+        $scope.description2 = !$scope.description2;
+    }
+
+    $scope.showDescription3 = function () {
+        $scope.description3 = !$scope.description3;
+    }
+    $scope.showDescription4 = function () {
+        $scope.description4 = !$scope.description4;
+    }
+    $scope.showDescription5 = function () {
+        $scope.description5 = !$scope.description5;
+    }
+    $scope.onlyLetters = /^[a-zA-Z]+$/;
+    $scope.onlyNumbers = /^[0-9]*$/;
+
+    //$scope.add = function () {
+    // $scope.inputTemplate = {
+    // id: 'subject-' + $scope.inputCounter,
+    // name: ''
+    //  };
+    // if ($scope.inputCounter < 5) {
+    //   $scope.description2 = true;
+    //   $scope.description3 = true;
+    //}
+    // $scope.inputCounter += 1;
+    // $scope.inputs.push($scope.inputTemplate);
+    //};
+
+}]);

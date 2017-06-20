@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="RTESWebProjectMVC.BundleConfig">
+    <Position X="2.25" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\BundleConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RTESWebProjectMVC.FilterConfig">
+    <Position X="2.25" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\FilterConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RTESWebProjectMVC.RouteConfig" Collapsed="true">
+    <Position X="2.25" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Start\RouteConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RTESWebProjectMVC.MvcApplication">
+    <Position X="2.25" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIBAAAAAAAAAA=</HashCode>
+      <FileName>Global.asax.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RTESWebProjectMVC.Controllers.appraiserController">
+    <Position X="7.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAA=</HashCode>
+      <FileName>Controllers\appraiserController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RTESWebProjectMVC.Controllers.baseController" Collapsed="true">
+    <Position X="5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAQAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\baseController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RTESWebProjectMVC.Controllers.clientController">
+    <Position X="0.5" Y="2" Width="2" />
+    <TypeIdentifier>
+      <HashCode>gAAAAABAACAAAAAASAAAAAAAAAAIIAQBAIBABAEAgAA=</HashCode>
+      <FileName>Controllers\clientController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RTESWebProjectMVC.Controllers.operatorController">
+    <Position X="3" Y="2" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AIAABAAgAQAAAAIoAAAAAAAgAQAAAAAAAGAAEAAAAgA=</HashCode>
+      <FileName>Controllers\operatorController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RTESWebProjectMVC.Controllers.truckDriverController">
+    <Position X="5.5" Y="2" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAABAAAAIAAAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\truckDriverController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RTESWebProjectMVC.Controllers.webController">
+    <Position X="9.5" Y="2" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAIgAgAAAIAAAKAAAAAAAEQAAAAAAA=</HashCode>
+      <FileName>Controllers\webController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RTESWebProjectMVC.Models.driverDetails">
+    <Position X="9.25" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAgAAAAAQAAAAA=</HashCode>
+      <FileName>Models\driverDetails.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RTESWebProjectMVC.Models.imageData">
+    <Position X="4" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Models\imageData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RTESWebProjectMVC.Models.abstract_user">
+    <Position X="0.5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQEAAAAAAAAAAAgAAAAgBAAAAKEAAAAAAAAAgAAAgQ=</HashCode>
+      <FileName>Models\abstract_user.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RTESWebProjectMVC.Models.client">
+    <Position X="4" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQIAAAAgCCBAHIAAgIAgAACAAAAAAgAAAQIAAAAAAII=</HashCode>
+      <FileName>Models\client.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RTESWebProjectMVC.Models.emergencyReport">
+    <Position X="5.75" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQhAAAAAEAAAACABAAIAAACAAAABEAADAACAQAAAII=</HashCode>
+      <FileName>Models\emergencyReport.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RTESWebProjectMVC.Models.estimationForm">
+    <Position X="9.25" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACAAAAAACAAAAAAAAACAAAAAQAAAAA=</HashCode>
+      <FileName>Models\estimationForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RTESWebProjectMVC.Models.image">
+    <Position X="5.75" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Models\image.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RTESWebProjectMVC.Models.messagesTable">
+    <Position X="12.75" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAQAIAAA=</HashCode>
+      <FileName>Models\messagesTable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RTESWebProjectMVC.Models.taskList">
+    <Position X="9.25" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAEAAAAAACAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>Models\taskList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RTESWebProjectMVC.Models.third_party">
+    <Position X="7.5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACIAAAAgGCCAgAAAgAAgAAGABEoAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Models\third_party.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RTESWebProjectMVC.Models.towingReportForm">
+    <Position X="0.5" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAACAAAAgAAAAABAAAAAAAAAAAQAAAAE=</HashCode>
+      <FileName>Models\towingReportForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RTESWebProjectMVC.Models.truckDriver">
+    <Position X="11" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEQAAIAAAAAIABACAQAAEAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Models\truckDriver.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RTESWebProjectMVC.Models.tasksModel">
+    <Position X="12.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAkAAAAAABCAAAAgAAAAACCAACEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\tasksModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RTESWebProjectMVC.Models.truckDriverList">
+    <Position X="11" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEIAEAEAACAAAAAAAAAAEAAEAAAAAAAAwAARAAAAA=</HashCode>
+      <FileName>Models\truckDriverList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

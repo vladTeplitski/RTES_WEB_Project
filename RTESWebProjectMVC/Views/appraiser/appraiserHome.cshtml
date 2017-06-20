@@ -1,63 +1,130 @@
-﻿<div class="container-fluid" ng-controller="truckDriverController">
+﻿<div class="container-fluid" ng-controller="appraiserController">
 
     <!--START Appraiser Page-->
 
 
     <div class="row bodyRow operatorWindow">
 
-        <!-- Start Appraiser buttons -->
-        <div ng-hide="btnPanel" class="col-lg-3 col-lg-offset-1 col-md-4 col-md-offset-0 col-xs-8 col-xs-offset-2 opButtonsCont1">
-            <div class="getStartedBox" style="position: relative; margin-top: 8px; margin-bottom: 8px;">
 
-                <div ng-click="appraiserClick(3)" class="btnInfo">
-                    <div style="display: inline; position: absolute; left: 8px;"><i class="glyphicon glyphicon-folder-open"></i></div>
-                    Btn1
-                </div>
+        <!--notif-->
+        <div id="reportNotif" class="NotifOpsAppraiserHome" style="display:@ViewBag.showTasksMessage">
+            <b>No tasks.</b>
+        </div>
 
-                <div ng-click="appraiserClick(1)" class="btnInfo">
-                    <div style="display: inline; position: absolute; left: 8px;"><i class="glyphicon glyphicon-folder-open"></i></div>
-                    Btn2
-                </div>
-
-                <div ng-click="appraiserClick(2)" class="btnInfo">
-                    <div style="display: inline; position: absolute; left: 8px;"><i class="glyphicon glyphicon-pencil"></i></div>
-                    Btn3
-                </div>
+        <div style="margin: 3px auto; text-align: center; padding: 8px 0px">
+            <div class="opMobileDeviceAlert2 alert alert-danger panelDanger" ID="pnlMessage">
+                This section is available only in tablet or desktop mode.
             </div>
         </div>
-        <!-- END Appraiser buttons -->
 
 
-        <div class="col-lg-6 col-lg-offset-1 col-md-6 col-md-offset-1 col-xs-12">
+        <!--<div id="divResult1"></div>-->
+    @{
 
-            <div class="mainWindow">
+        <script>
 
-                <!--Start Appraiser home window-->
-                <div ng-hide="truck0" class="textContainer">
-                    Welcome to Appraiser home.
+      
+        var flag = '@(Session["appraiserFlag"])'
 
-                </div>
-                <!--END Appraiser home window-->
-
-
-                <!--Start Appraiser window 1 -->
-                <div ng-hide="appraiser1" class="textContainer" style="overflow:auto;">
+       // var appraiserFlag = flag;
+            refreshAppraiser();
 
 
+        function refreshAppraiser() {
+
+            refreshAppr = setInterval(function () {
+                if (flag == 1) {
+                    location.reload();
+                }
+            }, 60000); // every 5 sec
+        }
 
 
-                </div>
-                <!--END Appraiser window 1 -->
-
-                <!--Start Appraiser window 2 -->
-                <div ng-hide="appraiser2" class="textContainer">
 
 
-                </div>
-                <!--END Appraiser window 2 -->
+
+        </script>
 
 
-            </div><!--Main window div-->
+
+    }
+
+        <div class="notOnSmartPhones col-lg-10 col-lg-offset-1 col-md-6 col-md-offset-1 col-xs-12" id="divTable">
+                  
+            <!--<div class="mainWindow" style="background-color:#4E86B7;">-->
+                <table class="table table-bordered" id="appraiserTable" style="display:@ViewBag.showTasksTable;border-radius:3px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);margin-bottom:10px;"  >
+                    <thead>
+                        <tr style="background-color:#4E86B7;color:white;">
+                            <th># </th>
+                            <th><i Style="font-size:12px;margin-right:5px;" class="glyphicon glyphicon-list-alt"></i>Report ID</th>
+                            <th><i Style="font-size:12px;margin-right:5px;" class="glyphicon glyphicon-edit"></i>Client Name</th>
+                            <th><i Style="font-size:12px;margin-right:5px;" class="glyphicon glyphicon-phone-alt"></i>Client Phone</th>
+                            <th><i Style="font-size:12px;margin-right:5px;" class="glyphicon glyphicon-record"></i>Loction</th>
+                            <th><i Style="font-size:12px;margin-right:5px;" class="glyphicon glyphicon-wrench"></i>Function</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                   @{
+                       var i = 0;
+                       var date = ViewBag.date2;
+                       var hour = ViewBag.hour2;
+                       if (ViewBag.appraiserTasks != null)
+                       {
+
+                           foreach (var item in ViewBag.appraiserTasks)
+                           {
+                               i++;
+                         <tr  id="updatePannelAngular">
+                            <th style="background-color:#4E86B7;color:white;" scope="row">@i</th>
+                        <td>
+
+                       @item.reportId
+
+                      </td>
+                     <td>
+                     @item.clientName
+                    </td>
+                     <td>
+                    @item.clientPhone
+                </td>
+                <td>
+                    @item.location
+                </td>
+                <td>
+                    <a ID="reportButton" href="@Url.Action("openForm","appraiser",new { report = item.reportId })">
+                        <div class="btnInfo" style="margin:auto;display:block;width:80px;height:30px;font-size:medium;padding-top:2px;">
+                          Report
+                        </div>
+                    </a>
+                    <script>
+                         function getView() {
+                             $('#divResult1').show();
+                               }
+                    </script>
+
+                </td>
+            </tr>
+                             }
+                       }
+
+               }
+
+
+
+                       <!-- <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>mdo</td>
+                        </tr>-->
+                      
+                    </tbody>
+                </table>
+
+
+
+            <!--</div>Main window div-->
         </div><!--bootstrap col content div-->
     </div> <!--End Appraiser Page-->
 </div><!--Main container-->

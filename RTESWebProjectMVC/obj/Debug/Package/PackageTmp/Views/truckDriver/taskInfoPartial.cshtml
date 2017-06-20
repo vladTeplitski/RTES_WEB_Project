@@ -1,0 +1,90 @@
+﻿<!--Start User Details window-->
+<div id="mainUserDetailsContainer">
+    <div id="TasksInfoPartialContainer" class="infoTableClass opRepLabelJs" style="display:@ViewBag.showtasksInfoPartial">
+        <div class="reportLabelHead">
+            <b><i Style="font-size:15px;margin-right:5px;" class="glyphicon glyphicon-list-alt"></i>Task Details</b>
+            <div onclick="closeTasksInfoPartial()" class="x">x</div>
+        </div>
+
+        <div class="tableContPartial">
+            <table id="myTable" class="table table - striped tablePartial" style="font-size:small;">
+
+                @using RTESWebProjectMVC.Models
+                @model taskClientInfo
+
+                @{
+
+                    if (Model != null)
+                    {
+                            <tr id="updatePannelAngular" style="background-color:#5C91BF;">
+                                <td>
+                                    Client Name:
+                                </td>
+                                <td>
+                                    @Model.name
+                                </td>
+                            </tr>
+                            <tr id="updatePannelAngular" style="background-color:#6DA0CD;">
+                                <td>
+                                    Phone Number:
+                                </td>
+                                <td>
+                                    @Model.phone
+                                </td>
+                            </tr>
+                            <tr id="updatePannelAngular" style="background-color:#5C91BF;">
+                                <td>
+                                    Location:
+                                </td>
+                                <td>
+                                    @Model.location
+                                </td>
+                            </tr>
+                            <tr id="updatePannelAngular" style="background-color:#6DA0CD;">
+                                <td>
+                                    Client ID:
+                                </td>
+                                <td>
+                                    @Model.clientId
+                                </td>
+                            </tr>
+                            <tr id="updatePannelAngular" style="background-color:#5C91BF;">
+                                <td>
+                                    License Plate:
+                                </td>
+                                <td>
+                                    @Model.licensePlate
+                                </td>
+                            </tr>
+                            <tr id="updatePannelAngular" style="background-color:#6DA0CD;">
+                                <td>
+                                    Car Model:
+                                </td>
+                                <td>
+                                    @Model.carModel
+                                </td>
+                            </tr>
+                            <tr id="updatePannelAngular" style="background-color:#5C91BF;">
+                                <td>
+                                    Car Category:
+                                </td>
+                                <td>
+                                    @Model.category
+                                </td>
+                            </tr>
+                    }
+                    else
+                    {
+                        <tr id="updatePannelAngular">
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    }
+                }
+            </table>
+        </div>
+    </div>
+</div>

@@ -331,6 +331,7 @@
     <Content Include="Views\truckDriver\tasksGuiPartial.cshtml" />
     <Content Include="Views\client\bufferView.cshtml" />
     <Content Include="Views\truckDriver\taskInfoPartial.cshtml" />
+    <Content Include="Views\appraiser\appraiserReport.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -105,8 +105,8 @@
                             <a Style="display:@ViewBag.showOptionsBtn" ng-click="$event.preventDefault();" class="dropdown-toggle" data-toggle="dropdown" href="#"><i Style="font-size:20px;" class="glyphicon glyphicon-cog"></i><span class="caret"></span></a>
                             <ul class="dropdown-menu" style="background-color:#4786BD;border:1px solid #74B2E8;margin-top:-10px;border-radius:3px;">
                                 <li class="opt1" ng-click="$event.preventDefault();" style=""><a href="#"><i Style="font-size:14px;margin-right:5px;" class="material-icons">build</i>Settings</a></li>
-                                <li class="opt2" ng-click="$event.preventDefault();"><a href="#"><i Style="font-size:14px;margin-right:5px;" class="material-icons">radio_button_unchecked</i>Option 2</a></li>
-                                <li class="opt3" ng-click="$event.preventDefault();"><a href="#"><i Style="font-size:14px;margin-right:5px;" class="material-icons">radio_button_unchecked</i>Option 3</a></li>
+                                <!--<li class="opt2" ng-click="$event.preventDefault();"><a href="#"><i Style="font-size:14px;margin-right:5px;" class="material-icons">radio_button_unchecked</i>Option 2</a></li>-->
+                                <!--<li class="opt3" ng-click="$event.preventDefault();"><a href="#"><i Style="font-size:14px;margin-right:5px;" class="material-icons">radio_button_unchecked</i>Option 3</a></li>-->
                             </ul>
                         </li>
 
@@ -137,7 +137,7 @@
                 <div style="display: inline; position: absolute; left: 8px;"><i Style="cursor:default" class="glyphicon glyphicon-list-alt hoveringIcon"></i></div>
                 @ViewBag.companyLabel
             </div>
-            <div toolstyle="toolcssBottom" toolinfo="Messages from system" tooltip data-placement="bottom" runat="server" id="openCasesPanel" class="col-lg-3 col-md-5 col-md-offset-0 col-xs-8 col-xs-offset-2 userBox" style="display: @ViewBag.messagesPanelDisp">
+            <div toolstyle="toolcssBottom" toolinfo="Messages from system" tooltip data-placement="bottom"  id="openCasesPanel" class="col-lg-3 col-md-5 col-md-offset-0 col-xs-8 col-xs-offset-2 userBox" style="display: @ViewBag.messagesPanelDisp">
                 <div style="display: inline; position: absolute; left: 8px;"><i Style="cursor:default" class="glyphicon glyphicon-envelope hoveringIcon"></i></div>
                 @ViewBag.msgsNumLabel
             </div>

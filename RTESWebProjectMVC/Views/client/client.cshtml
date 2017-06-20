@@ -51,10 +51,37 @@
                 </div>
 
                 <br />
-                <b>Emergency form sent successfully.</b>
+                <b>Emergency form sent successfully.</b> 
+                <br />
+                <div class="appraiserNotification" style="display:@ViewBag.showScheduleAppraiserNotif">
+                    <b>Appraiser on the way</b>
+                    <br/>
+                    <b>Appraiser Name: @ViewBag.appraiserName</b>
+                    <br />
+                    <b>Appraiser Phone: @ViewBag.appraiserPhone</b> 
+                </div>          
                 <br />
             </div>
             <!-- END Client notifications-->
+
+
+            <!-- Client notifications about appraiser details
+            <div  class="appraiserNotif" >
+                <div class="successNotifHeader">
+                    <b><i Style="font-size:15px;margin-right:5px;" class="glyphicon glyphicon-ok"></i>Notfication</b>
+                    <div onclick="closereportNotif()" class="x">x</div>
+                </div>
+
+                <br />
+                <b>Appraiser on the way</b>
+                <b>Appraiser Name:@ViewBag.appraiserName</b>
+                <b>Appraiser Phone: @ViewBag.appraiserPhone</b>           
+                <br />
+            </div>-->
+            <!-- END Client notifications about appraiser details-->
+
+
+
 
             <div class="mainWindow" style="margin-top: 8px;">
                 <form id="settingsForm">
@@ -169,7 +196,7 @@
                             <i Style="font-size:23px;" class="glyphicon glyphicon-tasks"></i>
                             <span style="margin-left:10px;">Personal Details</span>
                         </div><br />
-                        <table  class="table table-striped" id="TableDetails2" style="cursor:default">
+                        <table  class="table table-striped" id="TableDetails2" style="cursor:default;font-size:small;">
 
                             <tr class="colT">
                                 <th>Car Category:</th>
@@ -266,13 +293,9 @@
                                 </div>
 
 
-                     
-
-                
-
                                 <!--Messages Table  -->
 
-                        <table class="table table - striped" style="font-size:small;display:@ViewBag.showMsgDb">
+                            <table class="table table - striped" style="font-size:small;display:@ViewBag.showMsgDb">
                             <tr>
                                 <th>Date</th>
                                 <th>Message</th>
@@ -295,7 +318,7 @@
                                             </td>
                                             <td>
 
-                                                <Button type="submit" Text="Submit" style="border-radius: 12px;margin-left:40%;" OnClick="location.href='@Url.Action("deleteMessages", "client",new { messageNum = item.msgNum})'" class="btn btn-default"><i class="glyphicon glyphicon-trash"></i></Button>
+                                                <Button type="submit" Text="Submit" style="border-radius: 8px;margin-left:40%;background-color:#5A95C9;color:white;box-shadow:none;border:1px solid #669FD2;padding:4px;" OnClick="location.href='@Url.Action("deleteMessages", "client",new { messageNum = item.msgNum})'"><i Style="font-size:medium" class="glyphicon glyphicon-trash"></i></Button>
                                                <!--<div ng-click="deleteMessage()" style="cursor:pointer;"><i class="glyphicon glyphicon-trash"></i></div>--> 
 
                                                 <script>

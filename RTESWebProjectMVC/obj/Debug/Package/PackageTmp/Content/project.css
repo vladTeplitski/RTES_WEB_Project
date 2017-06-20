@@ -70,6 +70,10 @@ button::-moz-focus-inner {/*remove dotted border on firefox 46+ */
 
 }
 
+    .opMobileDeviceAlert2{
+        display:none;
+    }
+
 .slot1{
     background-color:#E9E9E9;
     margin-top:3px;
@@ -399,7 +403,7 @@ color:#F3F3F3;
     height:40px;
     margin:2px;
     margin-top:8px;
-    background-color:#ba1200;
+    background-color:#B1D607;
     border:1px solid #C9EC25;
     border-radius:5px;
     color:#FFFFFF;
@@ -412,6 +416,8 @@ color:#F3F3F3;
 .bodyRow{
     margin-top:5px;
 }
+
+
 
 .bottomRow{
     position:fixed;
@@ -533,6 +539,13 @@ div.desc {
     margin:auto;
     border-radius:5px;
 }
+/*shai-17.06.2017*/
+.formContainer1{
+    width:70%;
+    margin:auto;
+    border-radius:5px;
+}
+/*End-17.06.2017*/
 
 .carDetails  .form-control{
     border:2px solid white;
@@ -706,7 +719,7 @@ label{
     top:15%;
     margin-left:-165px;
     width:330px;
-    height:100px;
+    height:150px;
     padding:4px;
     border:1px solid #4CEB66;
     border-radius:12px;
@@ -728,7 +741,7 @@ label{
 
 .reportLabelHead{
     padding:2px;
-    height:15%;
+    height:25px;;
     background-color:#6B9BC5;
     border-bottom:1px solid #86B2D8;
     border-radius:12px;
@@ -880,6 +893,25 @@ display:block;
     z-index:200;
 }
 
+.NotifApp{
+    position:relative;
+    left:50%;
+    margin-left:-150px;
+    display:none;
+    width:300px;
+    height:50px;
+    padding:15px;
+    
+    border:1px solid #F99393;
+    border-radius:12px;
+    background-color:#FC4F4F;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    color:white;
+    font-size:small;
+    
+}
+
+
 .btnOps{
     border:1px solid #5A95C9;
     background-color:#5A95C9;
@@ -972,9 +1004,88 @@ display:inline;
     top:100px;
 }
 
-
-
 /* END 15.5 */
+
+
+#appraiserTable{
+    margin-top:15px;
+   background-color:#5A95C9;
+}
+
+.NotifOpsAppraiserHome{
+    display:none;
+    width:150px;
+    height:50px;
+    padding:15px;
+
+    margin:80%;
+    margin-left:50%;
+    
+
+    border:1px solid #4CEB66;
+    border-radius:12px;
+    background-color:#2EE64C;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    color:white;
+    font-size:small;
+    
+    z-index:200;
+}
+
+.labelUploadButt2{
+margin-left:230px;
+display:block;
+}
+
+
+.imgPreview{
+    display:inline;
+    margin-left:250px;
+    margin-bottom:5px;
+border:1px solid #BDE30F;
+}
+.smallWindowUploadAppraiser{
+    display:block;
+    margin-left:10px;
+    border-top:8px solid #B1D607;
+    border-bottom:8px solid #B1D607;
+    border-radius: 15px;
+    margin-top:10px;
+
+}
+
+#subject ,#amount{
+    display:inline;
+    color:black;
+    width:80%;
+    margin-left:-90px;
+}
+
+/*shai-16.06.2017*/
+.appraiserNotif{
+    display:none;
+    position:fixed;
+    left:50%;
+    top:30%;
+    margin-left:-165px;
+    width:330px;
+    height:100px;
+    padding:4px;
+    border:1px solid #4CEB66;
+    border-radius:12px;
+    background-color:#2EE64C;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    color:white;
+    font-size:small;
+    z-index:200;
+}
+
+.appraiserNotification{
+    display:none;
+}
+
+
+/*End-16.06.2017*/
 
 
 
@@ -1028,6 +1139,20 @@ margin-left:145px;
 margin-left:155px;
 }
 
+/*shai-17.06.2017-change*/
+#subject ,#amount{
+    display:inline;
+    color:black;
+    width:85%;
+    margin-right:-5px;
+}
+
+#imgApp1{
+margin-right:-20px;
+
+}
+/*End-17.06.2017-change*/
+
 
 
 }
@@ -1072,7 +1197,13 @@ color:black;
     margin:auto;
     border-radius:5px;
 }
-
+/*shai-17.06.2017*/
+.formContainer1{
+    width:100%;
+    margin:auto;
+    border-radius:5px;
+}
+/*End-17.06.2017*/
 .xclose{
     margin-left:90%;
     margin-top:10%;
@@ -1200,6 +1331,10 @@ color:black;
 
     }
 
+
+
+
+
     .loginAlertBoxCss{
         width: 90%; 
     }
@@ -1264,6 +1399,13 @@ div.gallery {
         top:0;
         margin-top:0;
         margin-left:0;
+    }
+    .notOnSmartPhones{
+        display:none;
+    }
+    .opMobileDeviceAlert2{
+        display:inline;
+        font-size:x-small;
     }
 
 

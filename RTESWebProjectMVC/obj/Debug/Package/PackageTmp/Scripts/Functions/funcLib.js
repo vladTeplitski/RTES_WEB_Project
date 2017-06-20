@@ -41,14 +41,12 @@ $(document).ready(function () {
 
 });
 
-
 //System loading control
 function loadControl() {
     
     $(window).on('load', function () { $("#spinner").fadeOut('slow'); });
     
 }
-
 
 //Start search Javascript//
 
@@ -131,7 +129,6 @@ function searchAllReportsByClientIdJs() {
 
 //END search Javascript//
 
-
 /////////////////////////////////////////
 //operator js functions
 
@@ -156,6 +153,8 @@ function returnRefresh() {
 }
 
 
+
+
 //location dropdown refreshes
 var flagLoc = 0;
 function stopRefreshLoc() {
@@ -169,7 +168,6 @@ function returnRefreshLoc() {
     }
     
 }
-
 
 function hideOperations() {
     $("#opsContain").hide();
@@ -212,7 +210,6 @@ function closeViewDriversDetails() {
     flagLoc = 0;
 }
 
-
 //END operator js functions
 
 
@@ -238,9 +235,18 @@ function getLocation() {  // get the Lat & Lng coordinates
         if (lat != null) {
             document.getElementById("gpsIconOff").style.display = "none";
             document.getElementById("gpsIconOn").style.display = "inline";
-
+            
         }
+        
     });
+    
+}
+
+function turnongps() {   // Main turn on gps function
+    var val = document.getElementById("gpsIconOn");
+    if (val.style.display == 'none') {
+        window.alert('Please turn on your gps!');
+    }
 }
 
 
@@ -253,8 +259,8 @@ function initMap() {
     geocoder = new google.maps.Geocoder;  //google API geocoder istance
     infowindow = new google.maps.InfoWindow;
 
-    document.getElementById('submit').addEventListener('click', function () { //submit id
-
+    document.getElementById('submit').addEventListener('click', function () {
+        
         geocodeLatLng(geocoder, infowindow);
     });
 
@@ -262,7 +268,7 @@ function initMap() {
 
 }
 
-function geocodeLatLng(geocoder, infowindow) {
+function geocodeLatLng(geocoder, infowindow) {   //GeoCode Function
 
     var input = publicLatLng;
 
@@ -275,8 +281,6 @@ function geocodeLatLng(geocoder, infowindow) {
         if (status === 'OK') {
             if (results[1]) {
                 document.getElementById('location1').value = results[0].formatted_address;
-                //driverAddress = results[0].formatted_address;   //for driver tracking
-                //alert(results[0].formatted_address);   //new report alert
                 infowindow.setContent(results[0].formatted_address);
             } else {
                 window.alert('No results found');
@@ -287,14 +291,20 @@ function geocodeLatLng(geocoder, infowindow) {
     });
 }
 
-var address = "Shmu'el Salant St 16-18, Petah Tikva, Israel";   //TEST
+var address = "Yarka, Israel";   //TEST
 
-function addressToLocation() {
+function setDestinationCoordeinates() { // Bind function
+    var addr = document.getElementById('fieldReport2').value;
+    addressToLocation(addr);
+}
+
+
+function addressToLocation(addr) {  // convert text address to coordinates
 
     var geocoder = new google.maps.Geocoder();
     geocoder.geocode(
 		{
-		    address: address
+		    address: addr
 		},
 		function (results, status) {
 
@@ -306,7 +316,8 @@ function addressToLocation() {
 		            for (var i = 0; i < numOfResults; i++) {
 		                var result = results[i];
 
-		                document.getElementById('lat').value = result.geometry.location.lat();
+		                document.getElementById('latDest').value = result.geometry.location.lat();
+		                document.getElementById('lngDest').value = result.geometry.location.lng();
 		                resultLocations.push(
 							{
 							    text: result.formatted_address,
@@ -320,51 +331,101 @@ function addressToLocation() {
 		        // address not found
 		        alert("address not found");
 		    }
-
 		}
 	);
-
 }
 
+//END Location Service Functions
 
-//END Location Functions
-
-/////////////////////////////////////////
+//////////////////////////////////
 // Truck Driver functions
 var counter = 0;
+var refreshTasks;
 
-function driverAppSetRefreshes() {
+function driverAppSetRefreshes() { //Set refreshes interval of truck driver application
     $("#tasksContain").show();
     truckFlag = 1;
-    
-    
-    //geocoder = new google.maps.Geocoder;  //google API geocoder istance //for driver tracking
-    //infowindow = new google.maps.InfoWindow;   //for driver tracking
-    //geocodeLatLng(geocoder, infowindow);  //for driver tracking
 
-      
-    refreshTasks = setInterval(function () { $('#tasksContain').load('/truckDriver/GetTasksList'); }, 5000); // every 5 sec
+    refreshTasks = setInterval(function () {
+        $('#tasksContain').load('/truckDriver/GetTasksList');
+        document.getElementById("appWorking").style.color = "#3DFA23";
+    }, 5000); // every 5 sec
     intervalGetLatLng = setInterval(function () { updateDriverLatLng(); }, 7000); // every 7 sec, update the driver location
 }
 
+function driverAppStop() {  //Stop refresh intervals
+    clearInterval(refreshTasks);
+    clearInterval(intervalGetLatLng);
+}
 
-function updateDriverLatLng() {
+function restartApp() {   //Function to reload driver application in case of gps failure
+    location.reload();
+}
+
+function updateDriverLatLng() { //dynamic update - driver coordinates  -   AJAX
     
-    
-    document.getElementById("testingLoc").innerHTML = counter + "__   lat: " + publicLat + "___   lng: " + publicLng + "___Loc: " + driverAddress;
+    if (publicLat == undefined) {
+        driverAppStop();
+        document.getElementById("reportNotif2").style.display = "inline";
+        document.getElementById("myTable10").style.display = "none";
+        document.getElementById("appWorking").style.color = "#FA2323"; 
+        document.getElementById("restartDriverApp").style.display = "inline";
+    }
+    else {
+        document.getElementById("testingLoc").innerHTML = counter + "__   lat: " + publicLat + "___   lng: " + publicLng + "___Loc: " + driverAddress;
+
+        $.ajax({
+            url: '/truckDriver/getCoordinates',
+            type: 'POST',
+            data: { latForm: publicLat, lngForm: publicLng, truckAddress: driverAddress },
+            success: function (data) {
+                document.getElementById("appWorking").style.color = "#3DFA23";
+            },
+            error: function () {
+                document.getElementById("appWorking").style.color = "#FA2323";
+            }
+        });
+    }
+}
+
+//buttons control
+
+function tasksStopRefresh() {
+    clearInterval(refreshTasks);
+    clearInterval(intervalGetLatLng);
+}
+
+function closeTasksInfoPartial() {
+    $('#TasksInfoPartialContainer').hide();
+    if (truckFlag == 1) //if the user in driver app, interval should be activated
+    {
+        refreshTasks = setInterval(function () {
+            $('#tasksContain').load('/truckDriver/GetTasksList');
+            document.getElementById("appWorking").style.color = "#3DFA23";
+        }, 5000); // every 5 sec
+        intervalGetLatLng = setInterval(function () { updateDriverLatLng(); }, 7000); // every 7 sec, update the driver location
+    }
+}
+
+// END  Truck Driver functions
+
+
+//Truck drivers Algorithm - bind client with server  - AJAX
+
+function redirectToServer(finalDriverId, finalReportId, finaldistance, priority1, priority2, priority3, priority4, priority5, priority6, priority1Role, priority2Role, priority3Role, priority4Role, priority5Role, priority6Role) { //send results to server side & redirect to main client view when algorithm done
 
     $.ajax({
-        url: '/truckDriver/getCoordinates',
+        url: '/client/algorithmFunc',
         type: 'POST',
-        data: { latForm: publicLat, lngForm: publicLng, truckAddress: driverAddress },
+        data: { driverId: finalDriverId, reportId: finalReportId, distance: finaldistance, prior1: priority1, prior2: priority2, prior3: priority3, prior4: priority4, prior5: priority5, prior6: priority6, prior1Role: priority1Role, prior2Role: priority2Role, prior3Role: priority3Role, prior4Role: priority4Role, prior5Role: priority5Role, prior6Role: priority6Role },
         success: function (data) {
-            alert("Data invoked");
+            alert("Tow truck driver assigned successfully!");
+            document.getElementById("redirectBack").style.display = "inline";
         },
         error: function () {
-            alert("error");
+            alert("Error: bufferView - Server ajax comunication failed.");
         }
     });
 
 }
-
-// END  Truck Driver functions
+//END Algorithm bind client with server

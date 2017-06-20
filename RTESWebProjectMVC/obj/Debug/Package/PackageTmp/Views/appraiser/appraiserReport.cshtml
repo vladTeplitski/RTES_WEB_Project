@@ -1,0 +1,275 @@
+﻿
+<div class="row row-centered " style="margin-bottom: 25px;" ng-controller="appraiserController" id="shay">
+
+
+    <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-xs-12 col-centered " style="background: rgba(78, 134, 183, 0.8); border-left: 5px solid #C9EC25; border-right: 5px solid #C9EC25; border-radius: 5px; margin-top: 5px; margin-bottom: 5px; padding-bottom: 5px;">
+
+        <br />
+        <div id="reportsInSystem" class="personalDetailsClass" style="width:80%;margin:auto;text-align:center">
+            <i Style="font-size:20px;color:#DDDDDD" class="glyphicon glyphicon-list-alt"></i>
+            <span style="margin-left:10px;font-size:15px;margin-top:10px;"><b>Appraiser Report</b></span>
+        </div><br />
+
+
+
+        <!--Start Emergency Form -->
+        @using (Html.BeginForm("createReport", "appraiser", null, FormMethod.Post, new { enctype = "multipart/form-data", @name = "myForm1", @id = "loForm1" }))
+        {
+
+                <!--Relevant real time information -->
+            <div id="Div1" class="personalDetailsClass" style="margin-top:20px; border-color:white;">
+
+                <div style="margin-left:10px;font-size:15px;margin-top:10px;">
+
+                    <div class="rowForm">
+                        <label for="text" ID="date">Report ID: @ViewBag.report</label>
+                    </div>
+
+                    <div class="rowForm">
+                        <label for="text" ID="date">Date: @ViewBag.date2 </label>
+                    </div>
+
+                    <div class="rowForm">
+                        <label for="text" ID="hour">Hour: @ViewBag.hour2 </label>
+                    </div>
+                    </div>
+
+                    <!-- First form-->
+
+                    <div ng-click="showDescription1()" id="desc1" class="emergFormBtn insuranceDetailsButt">
+                        <i Style="font-size:20px;margin-right:10px;" class="glyphicon glyphicon-plus"></i>
+                        Add Description 1
+                    </div>
+
+                    <div class="rowForm1"  style="border:1px solid #6295C2;margin:2px;background-color:#5493CB;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);padding:13px;" ng-show="description1">
+
+                        <label for="text" >Summary of damage:</label>
+                        <div class="formContainer" id="subjectT">
+                            <input ng-model="subject" name="subject" id="subject" class="form-control" type="text" placeholder="Enter Damage Description"  required>
+                            <span ng-show="subject.length" Style="color:red;padding-left:5px;" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                            <span ng-hide="!subject.length" Style="color:#057B28;padding-left:5px;position:relative;display:inline;" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                            <span ng-show="!subject.length" Style="color:#FFC600;padding-left:5px;position:relative;display:inline;" class="glyphicon glyphicon-warning-sign form-control-feedback"></span>                   
+                        </div>
+
+
+                        <label for="text">Amount:</label>
+                        <div class="formContainer">
+                            <input ng-model="amount" name="amount" id="amount" class="form-control" type="text"  placeholder="Enter Evaluation" ng-pattern="onlyNumbers" required>
+                            <span ng-hide="!amount.length" Style="color:#057B28;padding-left:5px;position:relative;display:inline;" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                            <span ng-show="!amount.length" Style="color:#FFC600;padding-left:5px;position:relative;display:inline;" class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
+                            <div class="error" ng-show="myForm1.amount.$dirty && myForm1.amount.$error.pattern"><br /> </div>
+                            <span class="errorFields" ng-show="myForm1.amount.$invalid && !myForm1.amount.$pristine && myForm1.amount.$error.pattern"> Only numbers are allowed</span>
+                        </div>
+                        <br />
+                        <div class="smallWindowUploadAppraiser" style="margin:auto">
+                            <label class="labelUploadButt2" style="margin-left:39%;display:block">
+                                <input type="file" id="imgApp1" name="imgApp1" ng-model="files" class="filestyle " data-input="false"  data-buttonText="Picture" value="" onchange="document.getElementById('pic-').src = window.URL.createObjectURL(this.files[0])">
+                            </label>
+                                <img id="pic-" alt="your image" width="130" height="150" class="imgPreview" /><br />
+                            </div>
+                            <button type="reset" class="btn btn-default btn-sm" id="clear1" style="display:block;margin-left:45%;margin-top:5px;margin-bottom:5px;">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+
+                        </div>
+                        <br/>
+                    
+                    <!-- Second form-->
+
+                    <div ng-click="showDescription2()" id="desc2" class="emergFormBtn insuranceDetailsButt">
+                        <i Style="font-size:20px;margin-right:10px;" class="glyphicon glyphicon-plus"></i>
+                        Add Description 2
+                    </div>
+
+                    
+                    <br />
+                    <div class="rowForm1" style="border:1px solid #6295C2;margin:2px;background-color:#5493CB;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);padding:13px;" ng-show="description2">
+
+                            <label for="text">Summary of damage:</label>
+                            <div class="formContainer" id="subjectT">
+                                <input ng-model="subject2" name="subject2" id="subject" class="form-control" type="text" placeholder="Enter Damage Description" required>
+                                <span ng-show="subject2.length" Style="color:red;padding-left:5px;" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                                <span ng-hide="!subject2.length" Style="color:#057B28;padding-left:5px;position:relative;display:inline;" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                <span ng-show="!subject2.length" Style="color:#FFC600;padding-left:5px;position:relative;display:inline;" class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
+                            </div>
+
+
+                            <label for="text">Amount:</label>
+                            <div class="formContainer">
+                                <input ng-model="amount2" name="amount2" id="amount" class="form-control" type="text" placeholder="Enter Evaluation" ng-pattern="onlyNumbers" required>
+                                <span ng-hide="!amount2.length" Style="color:#057B28;padding-left:5px;position:relative;display:inline;" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                <span ng-show="!amount2.length" Style="color:#FFC600;padding-left:5px;position:relative;display:inline;" class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
+                                <div class="error" ng-show="myForm1.amount2.$dirty && myForm1.amount2.$error.pattern"><br /> </div>
+                                <span class="errorFields" ng-show="myForm1.amount2.$invalid && !myForm1.amount2.$pristine && myForm1.amount2.$error.pattern"> Only numbers are allowed</span>
+                            </div><br />
+
+                            <div class="smallWindowUploadAppraiser" style="margin:auto">
+                                <label class="labelUploadButt2" style="margin-left:39%;display:block">
+                                    <input type="file" id="imgApp2" name="imgApp2" ng-model="files" class="filestyle" data-input="false" data-buttonText="Picture" value="" onchange="document.getElementById('pic-2').src = window.URL.createObjectURL(this.files[0])">
+                                </label>
+
+                                <img id="pic-2" alt="your image" width="130" height="150" class="imgPreview" />
+
+                                <button type="reset" class="btn btn-default btn-sm" id="clear1" style="display:block;margin-left:45%;margin-top:5px;margin-bottom:5px;">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+
+                            </div>
+                            <br />
+                        </div>
+
+                        <!-- Third form-->
+
+                        <div ng-click="showDescription3()" id="desc3" class="emergFormBtn insuranceDetailsButt">
+                            <i Style="font-size:20px;margin-right:10px;" class="glyphicon glyphicon-plus"></i>
+                            Add Description 3
+                        </div>
+
+                        <br />
+                    <div class="rowForm1" style="border:1px solid #6295C2;margin:2px;background-color:#5493CB;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);padding:13px;" ng-show="description3">
+
+                            <label for="text">Summary of damage:</label>
+                            <div class="formContainer" id="subjectT">
+                                <input ng-model="subject3" name="subject3" id="subject" class="form-control" type="text" placeholder="Enter Damage Description">
+                                <span ng-show="subject3.length" Style="color:red;padding-left:5px;" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                                <span ng-hide="!subject3.length" Style="color:#057B28;padding-left:5px;position:relative;display:inline;" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                <span ng-show="!subject3.length" Style="color:#FFC600;padding-left:5px;position:relative;display:inline;" class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
+                            </div>
+
+
+                            <label for="text">Amount:</label>
+                            <div class="formContainer">
+                                <input ng-model="amount3" name="amount3" id="amount" class="form-control" type="text" placeholder="Enter Evaluation" ng-pattern="onlyNumbers">
+                                <span ng-hide="!amount3.length" Style="color:#057B28;padding-left:5px;position:relative;display:inline;" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                <span ng-show="!amount3.length" Style="color:#FFC600;padding-left:5px;position:relative;display:inline;" class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
+                                <div class="error" ng-show="myForm1.amount3.$dirty && myForm1.amount3.$error.pattern"><br /> </div>
+                                <span class="errorFields" ng-show="myForm1.amount3.$invalid && !myForm1.amount3.$pristine && myForm1.amount3.$error.pattern"> Only numbers are allowed</span>
+                            </div><br />
+
+                            <div class="smallWindowUploadAppraiser" style="margin:auto">
+                                <label class="labelUploadButt2" style="margin-left:39%;display:block">
+                                    <input type="file" id="imgApp3" name="imgApp3" ng-model="files" class="filestyle" data-input="false" data-buttonText="Picture" value="" onchange="document.getElementById('pic-2').src = window.URL.createObjectURL(this.files[0])">
+                                </label>
+
+                                <img id="pic-2" alt="your image" width="130" height="150" class="imgPreview" />
+
+                                <button type="reset" class="btn btn-default btn-sm" id="clear1" style="display:block;margin-left:45%;margin-top:5px;margin-bottom:5px;">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+
+                            </div>
+                            <br />
+                        </div>
+
+
+
+                        <!-- Fourth form-->
+
+                        <div ng-click="showDescription4()" id="desc4" class="emergFormBtn insuranceDetailsButt">
+                            <i Style="font-size:20px;margin-right:10px;" class="glyphicon glyphicon-plus"></i>
+                            Add Description 4
+                        </div>
+
+                        <br />
+                    <div class="rowForm1" style="border:1px solid #6295C2;margin:2px;background-color:#5493CB;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);padding:13px;" ng-show="description4">
+
+                            <label for="text">Summary of damage:</label>
+                            <div class="formContainer" id="subjectT">
+                                <input ng-model="subject4" name="subject4" id="subject" class="form-control" type="text" placeholder="Enter Damage Description">
+                                <span ng-show="subject4.length" Style="color:red;padding-left:5px;" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                                <span ng-hide="!subject4.length" Style="color:#057B28;padding-left:5px;position:relative;display:inline;" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                <span ng-show="!subject4.length" Style="color:#FFC600;padding-left:5px;position:relative;display:inline;" class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
+                            </div>
+
+
+                            <label for="text">Amount:</label>
+                            <div class="formContainer">
+                                <input ng-model="amount4" name="amount4" id="amount" class="form-control" type="text" placeholder="Enter Evaluation" ng-pattern="onlyNumbers">
+                                <span ng-hide="!amount4.length" Style="color:#057B28;padding-left:5px;position:relative;display:inline;" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                <span ng-show="!amount4.length" Style="color:#FFC600;padding-left:5px;position:relative;display:inline;" class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
+                                <div class="error" ng-show="myForm1.amount4.$dirty && myForm1.amount4.$error.pattern"><br /> </div>
+                                <span class="errorFields" ng-show="myForm1.amount4.$invalid && !myForm1.amount4.$pristine && myForm1.amount4.$error.pattern"> Only numbers are allowed</span>
+                            </div><br />
+
+                            <div class="smallWindowUploadAppraiser" style="margin:auto">
+                                <label class="labelUploadButt2" style="margin-left:39%;display:block">
+                                    <input type="file" id="imgApp4" name="imgApp4" ng-model="files" class="filestyle" data-input="false" data-buttonText="Picture" value="" onchange="document.getElementById('pic-4').src = window.URL.createObjectURL(this.files[0])">
+                                </label>
+
+                                <img id="pic-4" alt="your image" width="130" height="150" class="imgPreview" />
+
+                                <button type="reset" class="btn btn-default btn-sm" id="clear1" style="display:block;margin-left:45%;margin-top:5px;margin-bottom:5px;">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+
+                            </div>
+                            <br />
+                        </div>
+
+
+                        <!-- Five form-->
+                        <div ng-click="showDescription5()" id="desc4" class="emergFormBtn insuranceDetailsButt">
+                            <i Style="font-size:20px;margin-right:10px;" class="glyphicon glyphicon-plus"></i>
+                            Add Description 5
+                        </div>
+
+                        <br />
+                    <div class="rowForm1" style="border:1px solid #6295C2;margin:2px;background-color:#5493CB;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);padding:13px;" ng-show="description5">
+
+                            <label for="text">Summary of damage:</label>
+                            <div class="formContainer" id="subjectT">
+                                <input ng-model="subject5" name="subject5" id="subject" class="form-control" type="text" placeholder="Enter Damage Description">
+                                <span ng-show="subject5.length" Style="color:red;padding-left:5px;" class="glyphicon glyphicon-remove form-control-feedback"></span>
+                                <span ng-hide="!subject5.length" Style="color:#057B28;padding-left:5px;position:relative;display:inline;" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                <span ng-show="!subject5.length" Style="color:#FFC600;padding-left:5px;position:relative;display:inline;" class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
+                            </div>
+
+
+                            <label for="text">Amount:</label>
+                            <div class="formContainer">
+                                <input ng-model="amount5" name="amount5" id="amount" class="form-control" type="text" placeholder="Enter Evaluation" ng-pattern="onlyNumbers" required>
+                                <span ng-hide="!amount5.length" Style="color:#057B28;padding-left:5px;position:relative;display:inline;" class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                <span ng-show="!amount5.length" Style="color:#FFC600;padding-left:5px;position:relative;display:inline;" class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
+                                <div class="error" ng-show="myForm1.amount5.$dirty && myForm1.amount5.$error.pattern"><br /> </div>
+                                <span class="errorFields" ng-show="myForm1.amount5.$invalid && !myForm1.amount5.$pristine && myForm1.amount5.$error.pattern"> Only numbers are allowed</span>
+                            </div><br />
+
+                            <div class="smallWindowUploadAppraiser" style="margin:auto">
+                                <label class="labelUploadButt2" style="margin-left:39%;display:block">
+                                    <input type="file" id="imgApp5" name="imgApp5" ng-model="files" class="filestyle" data-input="false" data-buttonText="Picture" value="" onchange="document.getElementById('pic-5').src = window.URL.createObjectURL(this.files[0])">
+                                </label>
+
+                                <img id="pic-5" alt="your image" width="130" height="150" class="imgPreview" />
+
+                                <button type="reset" class="btn btn-default btn-sm" id="clear1" style="display:block;margin-left:45%;margin-top:5px;margin-bottom:5px;">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+
+                            </div>
+                            <br />
+                        </div>
+
+
+
+                        <!-- <button type="button" id="add" ng-click="add()">Add</button>-->
+                        <br />
+
+                        <label for="text" style="font-size:20px;"><strong>Sum Total:</strong></label>
+                        <p style="font-size:20px;margin-left:30px;"><strong>{{amount--amount2--amount3--amount4--amount5}}$</strong></p>
+                        <br />
+                        <input name="sumTotal" id="sumTotal" class="form-control" type="text" style="display:none;color:black;width:50%;" value="{{amount--amount2--amount3--amount4--amount5}}">
+
+
+                        <label for="text" style="display:inline;">Comments:</label>
+                        <textarea id="TextArea1" name="comments" class="form-control" rows="5" cols="30" placeholder="Comments here..." style="color:#000000;width:70%;">  </textarea>
+                        <br />
+                    </div>        
+
+            <div>
+                <Button type="submit" id="newRep" Text="Submit" ng-disabled="myForm.$invalid" OnClick="location.href='@Url.Action("createReport", "appraiser")'" class="btn btn-default" style="display:block;margin:auto;margin-top:5px;">Submit</Button>
+            </div>
+        }
+
+    </div>
+</div>
+<!--end main new appraiser report-->

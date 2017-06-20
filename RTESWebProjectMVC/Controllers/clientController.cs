@@ -63,8 +63,14 @@ namespace RTESWebProjectMVC.Controllers
                 }
 
 
-
-
+                if (Session["showScheduleAppraiserNotif"]!= null)
+                {
+                    ViewBag.showScheduleAppraiserNotif = "inline";               
+                    ViewBag.appraiserPhone = Session["appraiserPhone"];
+                    ViewBag.appraiserName = Session["appraiserName"];
+                    Session["showScheduleAppraiserNotif"] = null;
+                }
+                Session["showScheduleAppraiserNotif"] = null;
 
                 using (var db = new Models.rtesEntities1())
                 {
@@ -77,7 +83,8 @@ namespace RTESWebProjectMVC.Controllers
                     var user = db.abstract_user.Where(i => i.id == userId).FirstOrDefault();
                     var client = db.client.Where(i => i.abstractUserId == userId).DefaultIfEmpty().First();
 
-
+                    Session["clientPhone"] = user.userPhoneNumber;//get the client phone number for appraiser.
+                    Session["clientName"] = user.name;//get the client name for appraiser.
 
                     if (client != null)  //if client account exists
                     {
@@ -300,12 +307,53 @@ namespace RTESWebProjectMVC.Controllers
                 x = Convert.ToInt32(maxId.ToString());//convert type of string to int
                 x = x + 1;
                 Session["clientRepIdNOW"] = x;
+                ViewBag.showScheduleAppraiserNotif = "none";
 
                 if (checkBox1 == true)// Checks if need towing service
                 {
                     checkStat = 0;//move to truck driver table
                 }
-                else checkStat = 1;//move to appraiser table
+                else
+                {         //move to appraiser table and scheduling appraiser to this case.
+                    checkStat = 1;//move to appraiser table
+
+                    string clientPhone = Session["clientPhone"].ToString();
+                    string clientName = Session["clientName"].ToString();
+                    string locationClient = towDest;
+                    var y = 0;                                       
+                    var maxId1 = db.appraiserTaskList.DefaultIfEmpty().Max(r => r == null ? 0 : r.taskID); //get the max report Id
+                    y = Convert.ToInt32(maxId1.ToString());//convert type of string to int
+                    y = y + 1;
+
+                        var appr = (from p in db.appraiser
+                                    orderby p.taskCount
+                                    select p.appraiserID).First();
+
+
+                    int appraiserID = Convert.ToInt32(appr.ToString());
+
+                        db.appraiserTaskList.Add(new Models.appraiserTaskList()
+                        {
+                            reportId = x,
+                            taskID = y,
+                            location = locationClient,
+                            clientName= clientName,
+                            clientPhone = clientPhone,
+                            status=0,
+                            appraID = appraiserID
+
+                        });
+
+                    var updateTaskCount = db.appraiser.Where(i => i.appraiserID == appraiserID).FirstOrDefault();
+                    updateTaskCount.taskCount = updateTaskCount.taskCount + 1;
+                    var appraiserDetails = db.abstract_user.Where(g => g.id == updateTaskCount.appraiserID).FirstOrDefault();
+
+                    Session["appraiserPhone"] = appraiserDetails.userPhoneNumber;
+                    Session["appraiserName"] = appraiserDetails.name;
+                    Session["showScheduleAppraiserNotif"] = 1;
+                    db.SaveChanges();
+
+                    }
 
 
                 DateTime now1 = DateTime.Now;
@@ -659,7 +707,7 @@ namespace RTESWebProjectMVC.Controllers
             db.taskList.Add(new Models.taskList()
             {
                 truckDriverId = driverId,
-                reportId = reportId,
+                reportId = x,
                 taskId = y,
                 status=0
             });
