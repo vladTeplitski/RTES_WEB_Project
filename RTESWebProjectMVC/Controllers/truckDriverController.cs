@@ -29,8 +29,12 @@ namespace RTESWebProjectMVC.Controllers
 
                     //init functions//
 
-                    
 
+                    if (Session["showCloseTruckNotif"] != null)
+                    {
+
+                        ViewBag.showCloseTruckNotif = "inline";
+                    }
 
                     //END init functions//
 
@@ -323,7 +327,7 @@ namespace RTESWebProjectMVC.Controllers
 
                 }
 
-
+                Session["showCloseTruckNotif"] = 1;
 
                 db.SaveChanges();  // save changes to db
                     
