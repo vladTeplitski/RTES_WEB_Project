@@ -599,7 +599,7 @@ namespace RTESWebProjectMVC.Controllers
                     var driver = db1.truckDriver.Where(t => t.workStatus == true).ToList();
 
                     var list = from v in db1.truckDriver
-                               join e in db1.taskList on v.abstractUserId equals e.truckDriverId
+                               //join e in db1.taskList on v.abstractUserId equals e.truckDriverId
                                where v.workStatus == true && v.TasksCounter < 3
                                select new truckDriverList { driverId = v.abstractUserId, lan = v.Latitude, lng = v.Longitude, tasksCount=(int)v.TasksCounter , cargo=(int)v.cargo, prior1 =(int)v.priority1, prior2 = (int)v.priority2, prior3= (int)v.priority3, prior4 = (int)v.priority4, prior5 = (int)v.priority5, prior6 = (int)v.priority6, prior1Role = v.priority1Role, prior2Role = v.priority2Role, prior3Role = v.priority3Role, prior4Role = v.priority4Role, prior5Role = v.priority5Role, prior6Role = v.priority6Role };
 

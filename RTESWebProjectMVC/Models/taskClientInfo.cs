@@ -15,6 +15,7 @@ namespace RTESWebProjectMVC.Models
         public String category { get; set; }
         public int licensePlate { get; set; }
 
+        public String destination { get; set; }
 
     }
 }

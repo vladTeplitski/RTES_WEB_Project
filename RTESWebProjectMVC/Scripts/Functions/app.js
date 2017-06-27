@@ -68,7 +68,7 @@ myApp.controller('mainController', ['$scope', function ($scope) {
         $scope.notValidUser = true;
     };
     $scope.loginFieldclick = function () {
-        $scope.loginText = "User name must contain only letters!";
+        $scope.loginText = "Please enter your user name!";
     };
 
     $scope.loginPass = function () {

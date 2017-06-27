@@ -363,7 +363,7 @@ namespace RTESWebProjectMVC.Controllers
                                         join c in db.client on a.id equals c.abstractUserId
                                         join r in db.emergencyReport on c.abstractUserId equals r.clientAbstractUserId
                                         where r.reportID == x
-                                        select new Models.taskClientInfo { carModel = c.carModel, clientId=a.id, location = r.location, name = a.name , phone = a.userPhoneNumber, category = c.carCategory, licensePlate=(int)c.licensePlate };
+                                        select new Models.taskClientInfo { destination=r.towing_destination, carModel = c.carModel, clientId=a.id, location = r.location, name = a.name , phone = a.userPhoneNumber, category = c.carCategory, licensePlate=(int)c.licensePlate };
 
                         foreach (var z in getinfo)
                         {
