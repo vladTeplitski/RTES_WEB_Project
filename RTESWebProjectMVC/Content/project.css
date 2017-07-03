@@ -539,13 +539,12 @@ div.desc {
     margin:auto;
     border-radius:5px;
 }
-/*shai-17.06.2017*/
+
 .formContainer1{
     width:70%;
     margin:auto;
     border-radius:5px;
 }
-/*End-17.06.2017*/
 
 .carDetails  .form-control{
     border:2px solid white;
@@ -730,6 +729,25 @@ label{
     z-index:200;
 }
 
+.successNotif1{
+    display:none;
+    position:fixed;
+    left:50%;
+    top:15%;
+    margin-left:-165px;
+    width:330px;
+    height:150px;
+    padding:4px;
+    border:1px solid #4CEB66;
+    border-radius:12px;
+    background-color:#2EE64C;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    color:white;
+    font-size:small;
+    z-index:200;
+}
+
+
 .successNotifHeader{
     padding:2px;
     height:auto;
@@ -797,13 +815,10 @@ label{
 }
 
 
-
-/* Validation */
 .errorFields{
     color:red;
     font-size:small;
 }
-/* END Validation */
 
 .errorFields{
     color:red;
@@ -997,15 +1012,12 @@ padding:4px;
 display:inline;
 }
 
-/* 15.5 new classes - VLAD*/
 
 .clockCss{
     position:absolute;
     right:5px;
     top:100px;
 }
-
-/* END 15.5 */
 
 
 #appraiserTable{
@@ -1062,7 +1074,6 @@ border:1px solid #BDE30F;
     margin-left:-90px;
 }
 
-/*shai-16.06.2017*/
 .appraiserNotif{
     display:none;
     position:fixed;
@@ -1084,10 +1095,6 @@ border:1px solid #BDE30F;
 .appraiserNotification{
     display:none;
 }
-
-
-/*End-16.06.2017*/
-
 
 
 /*           Media query section           */
@@ -1140,7 +1147,6 @@ margin-left:145px;
 margin-left:155px;
 }
 
-/*shai-17.06.2017-change*/
 #subject ,#amount{
     display:inline;
     color:black;
@@ -1152,9 +1158,6 @@ margin-left:155px;
 margin-right:-20px;
 
 }
-/*End-17.06.2017-change*/
-
-
 
 }
 
@@ -1182,7 +1185,7 @@ margin-right:-20px;
         display:none;
     }
 
-    #fieldReport1,#fieldReport2,#location1{
+#fieldReport1,#fieldReport2,#location1{
 width:90%;
 display:inline;
 color:black;
@@ -1198,13 +1201,13 @@ color:black;
     margin:auto;
     border-radius:5px;
 }
-/*shai-17.06.2017*/
+
 .formContainer1{
     width:100%;
     margin:auto;
     border-radius:5px;
 }
-/*End-17.06.2017*/
+
 .xclose{
     margin-left:90%;
     margin-top:10%;
@@ -1331,9 +1334,6 @@ color:black;
         width:100%;
 
     }
-
-
-
 
 
     .loginAlertBoxCss{

@@ -388,7 +388,7 @@ namespace RTESWebProjectMVC.Controllers
                 HttpPostedFileBase img3 = Request.Files["imgIn3"];
 
 
-                if (file != null)
+                if (file != null && file.ContentLength>0)
                 {
                     int imgNumber = 0;
 
@@ -423,7 +423,7 @@ namespace RTESWebProjectMVC.Controllers
                 }
 
 
-                if (file2 != null)
+                if (file2 != null && file2.ContentLength > 0)
                 {
                     int contentLength2 = file2.ContentLength;
 
@@ -456,7 +456,7 @@ namespace RTESWebProjectMVC.Controllers
                 }
 
 
-                if (img1 != null)
+                if (img1 != null && img1.ContentLength > 0)
                 {
                     int contentLengthImg1 = img1.ContentLength;
 
@@ -488,7 +488,7 @@ namespace RTESWebProjectMVC.Controllers
                     db.SaveChanges();
                 }
 
-                if (img2 != null)
+                if (img2 != null && img2.ContentLength > 0)
                 {
                     int contentLengthImg2 = img2.ContentLength;
 
@@ -521,7 +521,7 @@ namespace RTESWebProjectMVC.Controllers
                 }
 
 
-                if (img3 != null)
+                if (img3 != null && img3.ContentLength > 0)
                 {
                     int contentLengthImg3 = img3.ContentLength;
 
@@ -711,6 +711,34 @@ namespace RTESWebProjectMVC.Controllers
                 taskId = y,
                 status=0
             });
+
+            var driverDetils = db.abstract_user.Where(j => j.id == truckDriverTable.abstractUserId).FirstOrDefault();
+
+
+            //generate message number - key in db
+            Random rand = new Random();
+            int msgNumber = 0;
+            msgNumber = rand.Next(1000, 100000);
+            var msgsDb = db.messagesTable.Where(i => i.msgNum == msgNumber).DefaultIfEmpty().First();
+            while (msgsDb != null)
+            {
+                msgNumber = rand.Next(1000, 100000);
+                msgsDb = db.messagesTable.Where(i => i.msgNum == msgNumber).DefaultIfEmpty().First();
+
+            }
+
+            var clientID = Convert.ToInt32(Session["uid"]);
+
+            Models.messagesTable msg = new Models.messagesTable
+            {
+                msgNum = msgNumber,    //add the new message generated number
+                userID = clientID,
+                content = "Truck driver is assigned! " + "Driver name: " + driverDetils.name + "  Driver phone: " + driverDetils.userPhoneNumber,
+                date = DateTime.Now.ToString()  //get current date
+            };
+            db.messagesTable.Add(msg); //add new row to db
+            db.SaveChanges();
+            Session["msgNotif"] = "true";
 
             db.SaveChanges();   //save to db
 

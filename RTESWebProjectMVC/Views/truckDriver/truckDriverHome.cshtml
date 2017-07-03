@@ -43,7 +43,7 @@
                 <div id="resultGui"></div>
 
                 <!-- Truck driver notifications-->
-                <div id="closeTruckNotif" class="successNotif1" style="display:none">
+                <div id="closeTruckNotif" class="successNotif1" style="display:@ViewBag.showCloseTruckNotif">
                     <div class="successNotifHeader">
                         <b><i Style="font-size:15px;margin-right:5px;" class="glyphicon glyphicon-ok"></i>Notfication</b>
                         <div onclick="closereportNotif()" class="x">x</div>
@@ -61,3 +61,10 @@
         </div><!--bootstrap col content div-->
     </div> <!--End truck driver Page-->
 </div><!--Main container-->
+
+<script type="text/javascript">
+    function closereportNotif() {
+        $('#closeTruckNotif').hide();
+
+    }
+</script>

@@ -350,7 +350,10 @@ function driverAppSetRefreshes() { //Set refreshes interval of truck driver appl
         $('#tasksContain').load('/truckDriver/GetTasksList');
         document.getElementById("appWorking").style.color = "#3DFA23";
     }, 5000); // every 5 sec
-    intervalGetLatLng = setInterval(function () { updateDriverLatLng(); }, 7000); // every 7 sec, update the driver location
+    intervalGetLatLng = setInterval(function () {
+        updateDriverLatLng();
+        document.getElementById("appWorking").style.color = "#E5E735";
+    }, 7000); // every 7 sec, update the driver location
 }
 
 function driverAppStop() {  //Stop refresh intervals
@@ -372,8 +375,6 @@ function updateDriverLatLng() { //dynamic update - driver coordinates  -   AJAX
         document.getElementById("restartDriverApp").style.display = "inline";
     }
     else {
-        document.getElementById("testingLoc").innerHTML = counter + "__   lat: " + publicLat + "___   lng: " + publicLng + "___Loc: " + driverAddress;
-
         $.ajax({
             url: '/truckDriver/getCoordinates',
             type: 'POST',
