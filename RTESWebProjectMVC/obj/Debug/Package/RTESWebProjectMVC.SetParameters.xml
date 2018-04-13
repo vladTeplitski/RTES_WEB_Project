@@ -1,7 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <parameters>
   <setParameter name="IIS Web Application Name" value="Default Web Site/" />
-  <setParameter name="DefaultConnection-Web.config Connection String" value="Data Source=(LocalDb)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\aspnet-RTESWebProjectMVC-20170325012604.mdf;Initial Catalog=aspnet-RTESWebProjectMVC-20170325012604;Integrated Security=True" />
-  <setParameter name="ec2amaz-ur1qpf7.rtes.dbo-Web.config Connection String" value="metadata=res://*/Models.rtesEntities1.csdl|res://*/Models.rtesEntities1.ssdl|res://*/Models.rtesEntities1.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=EC2AMAZ-UR1QPF7;initial catalog=rtes;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot;" />
-  <setParameter name="rtesEntities1-Web.config Connection String" value="metadata=res://*/Models.rtesEntities1.csdl|res://*/Models.rtesEntities1.ssdl|res://*/Models.rtesEntities1.msl;provider=System.Data.SqlClient;provider connection string='data source=&quot;rteswebproject.cof8z1sjrckr.us-west-2.rds.amazonaws.com, 1433&quot;;initial catalog=rtes;persist security info=True;user id=rtes1989;password=Vladshai89;MultipleActiveResultSets=True;App=EntityFramework'" />
+  <setParameter name="rtesEntities1-Web.config Connection String" value="metadata=res://*/Models.rtesEntities1.csdl|res://*/Models.rtesEntities1.ssdl|res://*/Models.rtesEntities1.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=project2018.cnt9mrpo9wmq.us-west-2.rds.amazonaws.com,1433;initial catalog=rtes;persist security info=True;user id=vlad;password=sun2load;multipleactiveresultsets=True;application name=EntityFramework&quot;" />
 </parameters>

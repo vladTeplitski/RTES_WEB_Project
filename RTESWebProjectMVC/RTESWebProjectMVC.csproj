@@ -179,30 +179,30 @@
     <Compile Include="Models\abstract_user.cs">
       <DependentUpon>rtesEntities1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\appraiser.cs">
+    <Compile Include="Models\appraiserReports.cs">
       <DependentUpon>rtesEntities1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\appraiserReport.cs">
+    <Compile Include="Models\appraisers.cs">
       <DependentUpon>rtesEntities1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\appraiserTaskList.cs">
+    <Compile Include="Models\appraiserTaskLists.cs">
       <DependentUpon>rtesEntities1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\client.cs">
+    <Compile Include="Models\clients.cs">
       <DependentUpon>rtesEntities1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\driverDetails.cs" />
-    <Compile Include="Models\emergencyReport.cs">
+    <Compile Include="Models\emergencyReports.cs">
       <DependentUpon>rtesEntities1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\estimationForm.cs">
-      <DependentUpon>rtesEntities1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\image.cs">
+    <Compile Include="Models\estimationForms.cs">
       <DependentUpon>rtesEntities1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\imageData.cs" />
-    <Compile Include="Models\messagesTable.cs">
+    <Compile Include="Models\images.cs">
+      <DependentUpon>rtesEntities1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\messagesTables.cs">
       <DependentUpon>rtesEntities1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\rtesEntities1.Context.cs">
@@ -221,7 +221,7 @@
       <DependentUpon>rtesEntities1.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\taskClientInfo.cs" />
-    <Compile Include="Models\taskList.cs">
+    <Compile Include="Models\taskLists.cs">
       <DependentUpon>rtesEntities1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tasksModel.cs" />
@@ -229,13 +229,13 @@
     <Compile Include="Models\third_party.cs">
       <DependentUpon>rtesEntities1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\towingReportForm.cs">
-      <DependentUpon>rtesEntities1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\truckDriver.cs">
+    <Compile Include="Models\towingReportForms.cs">
       <DependentUpon>rtesEntities1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\truckDriverList.cs" />
+    <Compile Include="Models\truckDrivers.cs">
+      <DependentUpon>rtesEntities1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -256,6 +256,7 @@
       <DependentUpon>rtesEntities1.edmx</DependentUpon>
       <LastGenOutput>rtesEntities1.Context.cs</LastGenOutput>
     </Content>
+    <Content Include="Models\rtesEntities1.edmx.sql" />
     <Content Include="Models\rtesEntities1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>rtesEntities1.edmx</DependentUpon>

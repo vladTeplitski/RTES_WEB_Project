@@ -1,5 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="rtesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="rtesEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="abstract_user" EntityType="rtesModel.abstract_user" />
+    <EntitySet Name="appraiserReports" EntityType="rtesModel.appraiserReports" />
+    <EntitySet Name="appraisers" EntityType="rtesModel.appraisers" />
+    <EntitySet Name="appraiserTaskLists" EntityType="rtesModel.appraiserTaskLists" />
+    <EntitySet Name="clients" EntityType="rtesModel.clients" />
+    <EntitySet Name="emergencyReports" EntityType="rtesModel.emergencyReports" />
+    <EntitySet Name="estimationForms" EntityType="rtesModel.estimationForms" />
+    <EntitySet Name="images" EntityType="rtesModel.images" />
+    <EntitySet Name="messagesTables" EntityType="rtesModel.messagesTables" />
+    <EntitySet Name="taskLists" EntityType="rtesModel.taskLists" />
+    <EntitySet Name="third_party" EntityType="rtesModel.third_party" />
+    <EntitySet Name="towingReportForms" EntityType="rtesModel.towingReportForms" />
+    <EntitySet Name="truckDrivers" EntityType="rtesModel.truckDrivers" />
+    <AssociationSet Name="FK_client_client" Association="rtesModel.FK_client_client">
+      <End Role="clients" EntitySet="clients" />
+      <End Role="clients1" EntitySet="clients" />
+    </AssociationSet>
+  </EntityContainer>
   <EntityType Name="abstract_user">
     <Key>
       <PropertyRef Name="id" />
@@ -16,187 +35,7 @@
     <Property Name="company" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="userPhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
   </EntityType>
-  <EntityType Name="client">
-    <Key>
-      <PropertyRef Name="abstractUserId" />
-    </Key>
-    <Property Name="abstractUserId" Type="Int32" Nullable="false" />
-    <Property Name="insuranceCompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="licensePlate" Type="Int32" />
-    <Property Name="carCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="carModel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="originalTowingDestination" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="insurancePolicyNum" Type="Int32" />
-    <Property Name="clientDrivingLicenseNumber" Type="Int32" />
-    <Property Name="policyEndDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="updates" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="emergencyReportId" Type="Int32" />
-    <Property Name="carOwnerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="carOwnerId" Type="Int32" />
-    <Property Name="carLicenseNumber" Type="Int32" />
-    <Property Name="insuranceAgentName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="insuranceAgentPhoneNum" Type="Int32" />
-    <Property Name="carManufactureYear" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="client1" Relationship="Self.FK_client_client" FromRole="client" ToRole="client1" />
-    <NavigationProperty Name="client2" Relationship="Self.FK_client_client" FromRole="client1" ToRole="client" />
-  </EntityType>
-  <EntityType Name="emergencyReport">
-    <Key>
-      <PropertyRef Name="reportID" />
-    </Key>
-    <Property Name="reportID" Type="Int32" Nullable="false" />
-    <Property Name="clientAbstractUserId" Type="Int32" Nullable="false" />
-    <Property Name="caseCaseId" Type="Int32" />
-    <Property Name="date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="hour" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="location" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="towing_destination" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="accident_witness_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="accident_witness_phone" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-    <Property Name="comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="callForTowing" Type="Boolean" Nullable="false" />
-    <Property Name="status" Type="Int32" />
-    <Property Name="OperatorComment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="Latitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="Longitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="latDest" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="lngDest" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-  </EntityType>
-  <EntityType Name="messagesTable">
-    <Key>
-      <PropertyRef Name="msgNum" />
-    </Key>
-    <Property Name="msgNum" Type="Int32" Nullable="false" />
-    <Property Name="userID" Type="Int32" />
-    <Property Name="content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-  </EntityType>
-  <EntityType Name="third_party">
-    <Key>
-      <PropertyRef Name="emergencyReportId" />
-    </Key>
-    <Property Name="emergencyReportId" Type="Int32" Nullable="false" />
-    <Property Name="driverName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="driverId" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-    <Property Name="carOwnerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="carOwnerId" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-    <Property Name="licensePlateNumber" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-    <Property Name="carCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="carModel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="carColor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="drivingLicenseNumber" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-    <Property Name="insuranceCompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="insurancePolicyNumber" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-    <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="phoneNumber" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-    <Property Name="insuranceAgentName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="insuranceAgentPhone" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-    <Property Name="yearOfManufacture" Type="Int32" />
-  </EntityType>
-  <Association Name="FK_client_client">
-    <End Role="client" Type="Self.client" Multiplicity="1" />
-    <End Role="client1" Type="Self.client" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="client">
-        <PropertyRef Name="abstractUserId" />
-      </Principal>
-      <Dependent Role="client1">
-        <PropertyRef Name="abstractUserId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <EntityContainer Name="rtesEntities1" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="abstract_user" EntityType="Self.abstract_user" />
-    <EntitySet Name="clients" EntityType="Self.client" />
-    <EntitySet Name="emergencyReports" EntityType="Self.emergencyReport" />
-    <EntitySet Name="messagesTables" EntityType="Self.messagesTable" />
-    <EntitySet Name="third_party" EntityType="Self.third_party" />
-    <AssociationSet Name="FK_client_client" Association="Self.FK_client_client">
-      <End Role="client" EntitySet="clients" />
-      <End Role="client1" EntitySet="clients" />
-    </AssociationSet>
-    <EntitySet Name="images" EntityType="rtesModel.image" />
-    <EntitySet Name="estimationForms" EntityType="rtesModel.estimationForm" />
-    <EntitySet Name="truckDrivers" EntityType="rtesModel.truckDriver" />
-    <EntitySet Name="towingReportForms" EntityType="rtesModel.towingReportForm" />
-    <EntitySet Name="taskLists" EntityType="rtesModel.taskList" />
-    <EntitySet Name="appraisers" EntityType="rtesModel.appraiser" />
-    <EntitySet Name="appraiserReports" EntityType="rtesModel.appraiserReport" />
-    <EntitySet Name="appraiserTaskLists" EntityType="rtesModel.appraiserTaskList" />
-  </EntityContainer>
-  <EntityType Name="image">
-    <Key>
-      <PropertyRef Name="imgid" />
-    </Key>
-    <Property Name="id" Type="Int32" />
-    <Property Name="picture" Type="Binary" MaxLength="Max" FixedLength="false" />
-    <Property Name="imgid" Type="Int32" Nullable="false" />
-  </EntityType>
-  <EntityType Name="estimationForm">
-    <Key>
-      <PropertyRef Name="reportID" />
-    </Key>
-    <Property Name="reportID" Type="Int32" Nullable="false" />
-    <Property Name="appraiserUserID" Type="Int32" />
-    <Property Name="estimationText" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="date" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-  </EntityType>
-  <EntityType Name="truckDriver">
-    <Key>
-      <PropertyRef Name="abstractUserId" />
-    </Key>
-    <Property Name="abstractUserId" Type="Int32" Nullable="false" />
-    <Property Name="cargo" Type="Int32" />
-    <Property Name="availability" Type="Boolean" />
-    <Property Name="workStatus" Type="Boolean" />
-    <Property Name="location" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="TasksCounter" Type="Int32" />
-    <Property Name="Latitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="Longitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="priority1" Type="Int32" />
-    <Property Name="priority2" Type="Int32" />
-    <Property Name="priority3" Type="Int32" />
-    <Property Name="priority4" Type="Int32" />
-    <Property Name="priority5" Type="Int32" />
-    <Property Name="priority6" Type="Int32" />
-    <Property Name="priority1Role" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="priority2Role" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="priority3Role" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="priority4Role" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="priority5Role" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="priority6Role" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-  </EntityType>
-  <EntityType Name="towingReportForm">
-    <Key>
-      <PropertyRef Name="reportID" />
-    </Key>
-    <Property Name="reportID" Type="Int32" Nullable="false" />
-    <Property Name="driverUserID" Type="Int32" />
-    <Property Name="arrivalTime" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="date" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="towingDestinationLocation" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-  </EntityType>
-  <EntityType Name="taskList">
-    <Key>
-      <PropertyRef Name="taskId" />
-    </Key>
-    <Property Name="truckDriverId" Type="Int32" />
-    <Property Name="reportId" Type="Int32" />
-    <Property Name="taskId" Type="Int32" Nullable="false" />
-    <Property Name="status" Type="Int32" />
-  </EntityType>
-  <EntityType Name="appraiser">
-    <Key>
-      <PropertyRef Name="appraiserID" />
-    </Key>
-    <Property Name="appraiserID" Type="Int32" Nullable="false" />
-    <Property Name="taskCount" Type="Int32" />
-    <Property Name="Latitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="Longitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="region" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-  </EntityType>
-  <EntityType Name="appraiserReport">
+  <EntityType Name="appraiserReports">
     <Key>
       <PropertyRef Name="appraiserReportId" />
     </Key>
@@ -221,7 +60,17 @@
     <Property Name="amount5" Type="Int32" />
     <Property Name="picture5" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
-  <EntityType Name="appraiserTaskList">
+  <EntityType Name="appraisers">
+    <Key>
+      <PropertyRef Name="appraiserID" />
+    </Key>
+    <Property Name="appraiserID" Type="Int32" Nullable="false" />
+    <Property Name="taskCount" Type="Int32" />
+    <Property Name="Latitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Longitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="region" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="appraiserTaskLists">
     <Key>
       <PropertyRef Name="taskID" />
     </Key>
@@ -235,4 +84,155 @@
     <Property Name="reportId" Type="Int32" />
     <Property Name="hour" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
   </EntityType>
+  <EntityType Name="clients">
+    <Key>
+      <PropertyRef Name="abstractUserId" />
+    </Key>
+    <Property Name="abstractUserId" Type="Int32" Nullable="false" />
+    <Property Name="insuranceCompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="licensePlate" Type="Int32" />
+    <Property Name="carCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="carModel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="originalTowingDestination" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="insurancePolicyNum" Type="Int32" />
+    <Property Name="clientDrivingLicenseNumber" Type="Int32" />
+    <Property Name="policyEndDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="updates" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="emergencyReportId" Type="Int32" />
+    <Property Name="carOwnerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="carOwnerId" Type="Int32" />
+    <Property Name="carLicenseNumber" Type="Int32" />
+    <Property Name="insuranceAgentName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="insuranceAgentPhoneNum" Type="Int32" />
+    <Property Name="carManufactureYear" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="clients1" Relationship="rtesModel.FK_client_client" FromRole="clients" ToRole="clients1" />
+    <NavigationProperty Name="clients2" Relationship="rtesModel.FK_client_client" FromRole="clients1" ToRole="clients" />
+  </EntityType>
+  <EntityType Name="emergencyReports">
+    <Key>
+      <PropertyRef Name="reportID" />
+    </Key>
+    <Property Name="reportID" Type="Int32" Nullable="false" />
+    <Property Name="clientAbstractUserId" Type="Int32" Nullable="false" />
+    <Property Name="caseCaseId" Type="Int32" />
+    <Property Name="date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="hour" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="location" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="towing_destination" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="accident_witness_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="accident_witness_phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="callForTowing" Type="Boolean" Nullable="false" />
+    <Property Name="status" Type="Int32" />
+    <Property Name="OperatorComment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Latitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Longitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="latDest" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="lngDest" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="estimationForms">
+    <Key>
+      <PropertyRef Name="reportID" />
+    </Key>
+    <Property Name="reportID" Type="Int32" Nullable="false" />
+    <Property Name="appraiserUserID" Type="Int32" />
+    <Property Name="estimationText" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="date" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="images">
+    <Key>
+      <PropertyRef Name="imgid" />
+    </Key>
+    <Property Name="id" Type="Int32" />
+    <Property Name="picture" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="imgid" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="messagesTables">
+    <Key>
+      <PropertyRef Name="msgNum" />
+    </Key>
+    <Property Name="msgNum" Type="Int32" Nullable="false" />
+    <Property Name="userID" Type="Int32" />
+    <Property Name="content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="taskLists">
+    <Key>
+      <PropertyRef Name="taskId" />
+    </Key>
+    <Property Name="truckDriverId" Type="Int32" />
+    <Property Name="reportId" Type="Int32" />
+    <Property Name="taskId" Type="Int32" Nullable="false" />
+    <Property Name="status" Type="Int32" />
+  </EntityType>
+  <EntityType Name="third_party">
+    <Key>
+      <PropertyRef Name="emergencyReportId" />
+    </Key>
+    <Property Name="emergencyReportId" Type="Int32" Nullable="false" />
+    <Property Name="driverName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="driverId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="carOwnerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="carOwnerId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="licensePlateNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="carCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="carModel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="carColor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="drivingLicenseNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="insuranceCompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="insurancePolicyNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="phoneNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="insuranceAgentName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="insuranceAgentPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="yearOfManufacture" Type="Int32" />
+  </EntityType>
+  <EntityType Name="towingReportForms">
+    <Key>
+      <PropertyRef Name="reportID" />
+    </Key>
+    <Property Name="reportID" Type="Int32" Nullable="false" />
+    <Property Name="driverUserID" Type="Int32" />
+    <Property Name="arrivalTime" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="date" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="towingDestinationLocation" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="truckDrivers">
+    <Key>
+      <PropertyRef Name="abstractUserId" />
+    </Key>
+    <Property Name="abstractUserId" Type="Int32" Nullable="false" />
+    <Property Name="cargo" Type="Int32" />
+    <Property Name="availability" Type="Boolean" />
+    <Property Name="workStatus" Type="Boolean" />
+    <Property Name="location" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="TasksCounter" Type="Int32" />
+    <Property Name="Latitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Longitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="priority1" Type="Int32" />
+    <Property Name="priority2" Type="Int32" />
+    <Property Name="priority3" Type="Int32" />
+    <Property Name="priority4" Type="Int32" />
+    <Property Name="priority5" Type="Int32" />
+    <Property Name="priority6" Type="Int32" />
+    <Property Name="priority1Role" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="priority2Role" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="priority3Role" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="priority4Role" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="priority5Role" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="priority6Role" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="FK_client_client">
+    <End Type="rtesModel.clients" Role="clients" Multiplicity="1" />
+    <End Type="rtesModel.clients" Role="clients1" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="clients">
+        <PropertyRef Name="abstractUserId" />
+      </Principal>
+      <Dependent Role="clients1">
+        <PropertyRef Name="abstractUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

@@ -175,7 +175,7 @@ namespace RTESWebProjectMVC.Controllers
 
                 }
 
-                Models.messagesTable msg = new Models.messagesTable
+                Models.messagesTables msg = new Models.messagesTables
                 {
                     msgNum = msgNumber,    //add the new message generated number
                     userID = resultId,

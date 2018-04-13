@@ -131,7 +131,7 @@ namespace RTESWebProjectMVC.Controllers
             byte[] byteFile4=null;
             byte[] byteFile5=null;
 
-            if (img1 != null)
+            if (img1 != null && img1.ContentLength>0)
             {
                 int contentLength = img1.ContentLength;
 
@@ -140,7 +140,7 @@ namespace RTESWebProjectMVC.Controllers
                 img1.InputStream.Read(byteFile1, 0, contentLength);
             }
 
-            if (img2 != null)
+            if (img2 != null && img2.ContentLength > 0)
             {
                 int contentLength2 = img2.ContentLength;
 
@@ -149,7 +149,7 @@ namespace RTESWebProjectMVC.Controllers
                 img2.InputStream.Read(byteFile2, 0, contentLength2);
             }
 
-            if (img3 != null)
+            if (img3 != null && img3.ContentLength > 0)
             {
                 int contentLength3 = img3.ContentLength;
 
@@ -158,7 +158,7 @@ namespace RTESWebProjectMVC.Controllers
                 img3.InputStream.Read(byteFile3, 0, contentLength3);
             }
 
-            if (img4 != null)
+            if (img4 != null && img4.ContentLength > 0)
             {
                 int contentLength4 = img4.ContentLength;
 
@@ -167,7 +167,7 @@ namespace RTESWebProjectMVC.Controllers
                 img4.InputStream.Read(byteFile4, 0, contentLength4);
             }
 
-            if (img5 != null)
+            if (img5 != null && img5.ContentLength > 0)
             {
                 int contentLength5 = img5.ContentLength;
 
@@ -179,7 +179,7 @@ namespace RTESWebProjectMVC.Controllers
             if (form != null)
             {
 
-                db.appraiserReport.Add(new Models.appraiserReport()
+                db.appraiserReport.Add(new Models.appraiserReports()
                 {
                     appraiserId = (int)(Session["uid"]),
                     appraiserReportId = x,

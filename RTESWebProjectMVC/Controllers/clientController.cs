@@ -332,7 +332,7 @@ namespace RTESWebProjectMVC.Controllers
 
                     int appraiserID = Convert.ToInt32(appr.ToString());
 
-                        db.appraiserTaskList.Add(new Models.appraiserTaskList()
+                        db.appraiserTaskList.Add(new Models.appraiserTaskLists()
                         {
                             reportId = x,
                             taskID = y,
@@ -357,7 +357,7 @@ namespace RTESWebProjectMVC.Controllers
 
 
                 DateTime now1 = DateTime.Now;
-                db.emergencyReport.Add(new Models.emergencyReport() {
+                db.emergencyReport.Add(new Models.emergencyReports() {
                     reportID = x,
                     clientAbstractUserId = userId,
                     date = now1.ToString("dd.MM.yyyy"),
@@ -411,7 +411,7 @@ namespace RTESWebProjectMVC.Controllers
                     }
                     //END random image number
 
-                    db.image.Add(new Models.image()
+                    db.image.Add(new Models.images()
                     {
                         id = x,
                         imgid = imgNumber,
@@ -423,7 +423,7 @@ namespace RTESWebProjectMVC.Controllers
                 }
 
 
-                if (file2 != null && file2.ContentLength > 0)
+                if (file2 != null && file2.ContentLength>0)
                 {
                     int contentLength2 = file2.ContentLength;
 
@@ -444,7 +444,7 @@ namespace RTESWebProjectMVC.Controllers
                     }
                     //END random image number
 
-                    db.image.Add(new Models.image()
+                    db.image.Add(new Models.images()
                     {
                         id = x,
                         imgid = imgNumber,
@@ -456,7 +456,7 @@ namespace RTESWebProjectMVC.Controllers
                 }
 
 
-                if (img1 != null && img1.ContentLength > 0)
+                if (img1 != null && img1.ContentLength>0)
                 {
                     int contentLengthImg1 = img1.ContentLength;
 
@@ -477,7 +477,7 @@ namespace RTESWebProjectMVC.Controllers
                     }
                     //END random image number
 
-                    db.image.Add(new Models.image()
+                    db.image.Add(new Models.images()
                     {
                         id = x,
                         imgid = imgNumber,
@@ -488,7 +488,7 @@ namespace RTESWebProjectMVC.Controllers
                     db.SaveChanges();
                 }
 
-                if (img2 != null && img2.ContentLength > 0)
+                if (img2 != null && img2.ContentLength>0)
                 {
                     int contentLengthImg2 = img2.ContentLength;
 
@@ -509,7 +509,7 @@ namespace RTESWebProjectMVC.Controllers
                     }
                     //END random image number
 
-                    db.image.Add(new Models.image()
+                    db.image.Add(new Models.images()
                     {
                         id = x,
                         imgid = imgNumber,
@@ -521,7 +521,7 @@ namespace RTESWebProjectMVC.Controllers
                 }
 
 
-                if (img3 != null && img3.ContentLength > 0)
+                if (img3 != null && img3.ContentLength>0)
                 {
                     int contentLengthImg3 = img3.ContentLength;
 
@@ -542,7 +542,7 @@ namespace RTESWebProjectMVC.Controllers
                     }
                     //END random image number
 
-                    db.image.Add(new Models.image()
+                    db.image.Add(new Models.images()
                     {
                         id = x,
                         imgid = imgNumber,
@@ -682,6 +682,9 @@ namespace RTESWebProjectMVC.Controllers
 
             var db = new Models.rtesEntities1();   //create db instance
 
+
+            var reportNum=(int)Session["clientRepIdNOW"];
+
             var truckDriverTable = db.truckDriver.Where(i => i.abstractUserId == driverId).FirstOrDefault();
 
             
@@ -699,19 +702,21 @@ namespace RTESWebProjectMVC.Controllers
             truckDriverTable.priority6 = prior6;
             truckDriverTable.priority6Role = prior6Role;
 
+            db.SaveChanges();
+
             var y = 0;
             var maxId = db.taskList.DefaultIfEmpty().Max(r => r == null ? 0 : r.taskId); //get the max report Id
             y= Convert.ToInt32(maxId.ToString());//convert type of string to int
             y = y + 1;
 
-            db.taskList.Add(new Models.taskList()
+            db.taskList.Add(new Models.taskLists()
             {
                 truckDriverId = driverId,
-                reportId = x,
+                reportId = reportNum,
                 taskId = y,
                 status=0
             });
-
+            
             var driverDetils = db.abstract_user.Where(j => j.id == truckDriverTable.abstractUserId).FirstOrDefault();
 
 
@@ -727,9 +732,9 @@ namespace RTESWebProjectMVC.Controllers
 
             }
 
-            var clientID = Convert.ToInt32(Session["uid"]);
+            var clientID= Convert.ToInt32(Session["uid"]);
 
-            Models.messagesTable msg = new Models.messagesTable
+            Models.messagesTables msg = new Models.messagesTables
             {
                 msgNum = msgNumber,    //add the new message generated number
                 userID = clientID,
@@ -737,9 +742,8 @@ namespace RTESWebProjectMVC.Controllers
                 date = DateTime.Now.ToString()  //get current date
             };
             db.messagesTable.Add(msg); //add new row to db
-            db.SaveChanges();
+           
             Session["msgNotif"] = "true";
-
             db.SaveChanges();   //save to db
 
         }

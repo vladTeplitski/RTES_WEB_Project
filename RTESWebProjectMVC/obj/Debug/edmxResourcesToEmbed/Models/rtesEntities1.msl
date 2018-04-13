@@ -4,180 +4,23 @@
     <EntitySetMapping Name="abstract_user">
       <EntityTypeMapping TypeName="rtesModel.abstract_user">
         <MappingFragment StoreEntitySet="abstract_user">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="familyName" ColumnName="familyName" />
-          <ScalarProperty Name="email" ColumnName="email" />
-          <ScalarProperty Name="address" ColumnName="address" />
-          <ScalarProperty Name="gender" ColumnName="gender" />
-          <ScalarProperty Name="status" ColumnName="status" />
-          <ScalarProperty Name="password" ColumnName="password" />
-          <ScalarProperty Name="role" ColumnName="role" />
-          <ScalarProperty Name="company" ColumnName="company" />
           <ScalarProperty Name="userPhoneNumber" ColumnName="userPhoneNumber" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="clients">
-      <EntityTypeMapping TypeName="rtesModel.client">
-        <MappingFragment StoreEntitySet="client">
-          <ScalarProperty Name="abstractUserId" ColumnName="abstractUserId" />
-          <ScalarProperty Name="insuranceCompanyName" ColumnName="insuranceCompanyName" />
-          <ScalarProperty Name="licensePlate" ColumnName="licensePlate" />
-          <ScalarProperty Name="carCategory" ColumnName="carCategory" />
-          <ScalarProperty Name="carModel" ColumnName="carModel" />
-          <ScalarProperty Name="originalTowingDestination" ColumnName="originalTowingDestination" />
-          <ScalarProperty Name="insurancePolicyNum" ColumnName="insurancePolicyNum" />
-          <ScalarProperty Name="clientDrivingLicenseNumber" ColumnName="clientDrivingLicenseNumber" />
-          <ScalarProperty Name="policyEndDate" ColumnName="policyEndDate" />
-          <ScalarProperty Name="updates" ColumnName="updates" />
-          <ScalarProperty Name="emergencyReportId" ColumnName="emergencyReportId" />
-          <ScalarProperty Name="carOwnerName" ColumnName="carOwnerName" />
-          <ScalarProperty Name="carOwnerId" ColumnName="carOwnerId" />
-          <ScalarProperty Name="carLicenseNumber" ColumnName="carLicenseNumber" />
-          <ScalarProperty Name="insuranceAgentName" ColumnName="insuranceAgentName" />
-          <ScalarProperty Name="insuranceAgentPhoneNum" ColumnName="insuranceAgentPhoneNum" />
-          <ScalarProperty Name="carManufactureYear" ColumnName="carManufactureYear" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="emergencyReports">
-      <EntityTypeMapping TypeName="rtesModel.emergencyReport">
-        <MappingFragment StoreEntitySet="emergencyReport">
-          <ScalarProperty Name="lngDest" ColumnName="lngDest" />
-          <ScalarProperty Name="latDest" ColumnName="latDest" />
-          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
-          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
-          <ScalarProperty Name="OperatorComment" ColumnName="OperatorComment" />
+          <ScalarProperty Name="company" ColumnName="company" />
+          <ScalarProperty Name="role" ColumnName="role" />
+          <ScalarProperty Name="password" ColumnName="password" />
           <ScalarProperty Name="status" ColumnName="status" />
-          <ScalarProperty Name="reportID" ColumnName="reportID" />
-          <ScalarProperty Name="clientAbstractUserId" ColumnName="clientAbstractUserId" />
-          <ScalarProperty Name="caseCaseId" ColumnName="caseCaseId" />
-          <ScalarProperty Name="date" ColumnName="date" />
-          <ScalarProperty Name="hour" ColumnName="hour" />
-          <ScalarProperty Name="location" ColumnName="location" />
-          <ScalarProperty Name="towing_destination" ColumnName="towing_destination" />
-          <ScalarProperty Name="accident_witness_name" ColumnName="accident_witness_name" />
-          <ScalarProperty Name="accident_witness_phone" ColumnName="accident_witness_phone" />
-          <ScalarProperty Name="comments" ColumnName="comments" />
-          <ScalarProperty Name="callForTowing" ColumnName="callForTowing" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="messagesTables">
-      <EntityTypeMapping TypeName="rtesModel.messagesTable">
-        <MappingFragment StoreEntitySet="messagesTable">
-          <ScalarProperty Name="msgNum" ColumnName="msgNum" />
-          <ScalarProperty Name="userID" ColumnName="userID" />
-          <ScalarProperty Name="content" ColumnName="content" />
-          <ScalarProperty Name="date" ColumnName="date" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="third_party">
-      <EntityTypeMapping TypeName="rtesModel.third_party">
-        <MappingFragment StoreEntitySet="third_party">
-          <ScalarProperty Name="emergencyReportId" ColumnName="emergencyReportId" />
-          <ScalarProperty Name="driverName" ColumnName="driverName" />
-          <ScalarProperty Name="driverId" ColumnName="driverId" />
-          <ScalarProperty Name="carOwnerName" ColumnName="carOwnerName" />
-          <ScalarProperty Name="carOwnerId" ColumnName="carOwnerId" />
-          <ScalarProperty Name="licensePlateNumber" ColumnName="licensePlateNumber" />
-          <ScalarProperty Name="carCategory" ColumnName="carCategory" />
-          <ScalarProperty Name="carModel" ColumnName="carModel" />
-          <ScalarProperty Name="carColor" ColumnName="carColor" />
-          <ScalarProperty Name="drivingLicenseNumber" ColumnName="drivingLicenseNumber" />
-          <ScalarProperty Name="insuranceCompanyName" ColumnName="insuranceCompanyName" />
-          <ScalarProperty Name="insurancePolicyNumber" ColumnName="insurancePolicyNumber" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
           <ScalarProperty Name="address" ColumnName="address" />
-          <ScalarProperty Name="phoneNumber" ColumnName="phoneNumber" />
-          <ScalarProperty Name="insuranceAgentName" ColumnName="insuranceAgentName" />
-          <ScalarProperty Name="insuranceAgentPhone" ColumnName="insuranceAgentPhone" />
-          <ScalarProperty Name="yearOfManufacture" ColumnName="yearOfManufacture" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="images">
-      <EntityTypeMapping TypeName="rtesModel.image">
-        <MappingFragment StoreEntitySet="image">
-          <ScalarProperty Name="imgid" ColumnName="imgid" />
-          <ScalarProperty Name="picture" ColumnName="picture" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="familyName" ColumnName="familyName" />
+          <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="id" ColumnName="id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="estimationForms">
-      <EntityTypeMapping TypeName="rtesModel.estimationForm">
-        <MappingFragment StoreEntitySet="estimationForm">
-          <ScalarProperty Name="date" ColumnName="date" />
-          <ScalarProperty Name="estimationText" ColumnName="estimationText" />
-          <ScalarProperty Name="appraiserUserID" ColumnName="appraiserUserID" />
-          <ScalarProperty Name="reportID" ColumnName="reportID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="truckDrivers">
-      <EntityTypeMapping TypeName="rtesModel.truckDriver">
-        <MappingFragment StoreEntitySet="truckDriver">
-          <ScalarProperty Name="priority6Role" ColumnName="priority6Role" />
-          <ScalarProperty Name="priority5Role" ColumnName="priority5Role" />
-          <ScalarProperty Name="priority4Role" ColumnName="priority4Role" />
-          <ScalarProperty Name="priority3Role" ColumnName="priority3Role" />
-          <ScalarProperty Name="priority2Role" ColumnName="priority2Role" />
-          <ScalarProperty Name="priority1Role" ColumnName="priority1Role" />
-          <ScalarProperty Name="priority6" ColumnName="priority6" />
-          <ScalarProperty Name="priority5" ColumnName="priority5" />
-          <ScalarProperty Name="priority4" ColumnName="priority4" />
-          <ScalarProperty Name="priority3" ColumnName="priority3" />
-          <ScalarProperty Name="priority2" ColumnName="priority2" />
-          <ScalarProperty Name="priority1" ColumnName="priority1" />
-          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
-          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
-          <ScalarProperty Name="TasksCounter" ColumnName="TasksCounter" />
-          <ScalarProperty Name="location" ColumnName="location" />
-          <ScalarProperty Name="workStatus" ColumnName="workStatus" />
-          <ScalarProperty Name="availability" ColumnName="availability" />
-          <ScalarProperty Name="cargo" ColumnName="cargo" />
-          <ScalarProperty Name="abstractUserId" ColumnName="abstractUserId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="towingReportForms">
-      <EntityTypeMapping TypeName="rtesModel.towingReportForm">
-        <MappingFragment StoreEntitySet="towingReportForm">
-          <ScalarProperty Name="comments" ColumnName="comments" />
-          <ScalarProperty Name="towingDestinationLocation" ColumnName="towingDestinationLocation" />
-          <ScalarProperty Name="date" ColumnName="date" />
-          <ScalarProperty Name="arrivalTime" ColumnName="arrivalTime" />
-          <ScalarProperty Name="driverUserID" ColumnName="driverUserID" />
-          <ScalarProperty Name="reportID" ColumnName="reportID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="taskLists">
-      <EntityTypeMapping TypeName="rtesModel.taskList">
-        <MappingFragment StoreEntitySet="taskList">
-          <ScalarProperty Name="status" ColumnName="status" />
-          <ScalarProperty Name="taskId" ColumnName="taskId" />
-          <ScalarProperty Name="reportId" ColumnName="reportId" />
-          <ScalarProperty Name="truckDriverId" ColumnName="truckDriverId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="appraisers">
-      <EntityTypeMapping TypeName="rtesModel.appraiser">
-        <MappingFragment StoreEntitySet="appraiser">
-          <ScalarProperty Name="region" ColumnName="region" />
-          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
-          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
-          <ScalarProperty Name="taskCount" ColumnName="taskCount" />
-          <ScalarProperty Name="appraiserID" ColumnName="appraiserID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="appraiserReports">
-      <EntityTypeMapping TypeName="rtesModel.appraiserReport">
-        <MappingFragment StoreEntitySet="appraiserReport">
+      <EntityTypeMapping TypeName="rtesModel.appraiserReports">
+        <MappingFragment StoreEntitySet="appraiserReports">
           <ScalarProperty Name="picture5" ColumnName="picture5" />
           <ScalarProperty Name="amount5" ColumnName="amount5" />
           <ScalarProperty Name="summaryDamage5" ColumnName="summaryDamage5" />
@@ -201,9 +44,20 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="appraisers">
+      <EntityTypeMapping TypeName="rtesModel.appraisers">
+        <MappingFragment StoreEntitySet="appraisers">
+          <ScalarProperty Name="region" ColumnName="region" />
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="taskCount" ColumnName="taskCount" />
+          <ScalarProperty Name="appraiserID" ColumnName="appraiserID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="appraiserTaskLists">
-      <EntityTypeMapping TypeName="rtesModel.appraiserTaskList">
-        <MappingFragment StoreEntitySet="appraiserTaskList">
+      <EntityTypeMapping TypeName="rtesModel.appraiserTaskLists">
+        <MappingFragment StoreEntitySet="appraiserTaskLists">
           <ScalarProperty Name="hour" ColumnName="hour" />
           <ScalarProperty Name="reportId" ColumnName="reportId" />
           <ScalarProperty Name="date" ColumnName="date" />
@@ -213,6 +67,152 @@
           <ScalarProperty Name="location" ColumnName="location" />
           <ScalarProperty Name="taskID" ColumnName="taskID" />
           <ScalarProperty Name="appraID" ColumnName="appraID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="clients">
+      <EntityTypeMapping TypeName="rtesModel.clients">
+        <MappingFragment StoreEntitySet="clients">
+          <ScalarProperty Name="carManufactureYear" ColumnName="carManufactureYear" />
+          <ScalarProperty Name="insuranceAgentPhoneNum" ColumnName="insuranceAgentPhoneNum" />
+          <ScalarProperty Name="insuranceAgentName" ColumnName="insuranceAgentName" />
+          <ScalarProperty Name="carLicenseNumber" ColumnName="carLicenseNumber" />
+          <ScalarProperty Name="carOwnerId" ColumnName="carOwnerId" />
+          <ScalarProperty Name="carOwnerName" ColumnName="carOwnerName" />
+          <ScalarProperty Name="emergencyReportId" ColumnName="emergencyReportId" />
+          <ScalarProperty Name="updates" ColumnName="updates" />
+          <ScalarProperty Name="policyEndDate" ColumnName="policyEndDate" />
+          <ScalarProperty Name="clientDrivingLicenseNumber" ColumnName="clientDrivingLicenseNumber" />
+          <ScalarProperty Name="insurancePolicyNum" ColumnName="insurancePolicyNum" />
+          <ScalarProperty Name="originalTowingDestination" ColumnName="originalTowingDestination" />
+          <ScalarProperty Name="carModel" ColumnName="carModel" />
+          <ScalarProperty Name="carCategory" ColumnName="carCategory" />
+          <ScalarProperty Name="licensePlate" ColumnName="licensePlate" />
+          <ScalarProperty Name="insuranceCompanyName" ColumnName="insuranceCompanyName" />
+          <ScalarProperty Name="abstractUserId" ColumnName="abstractUserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="emergencyReports">
+      <EntityTypeMapping TypeName="rtesModel.emergencyReports">
+        <MappingFragment StoreEntitySet="emergencyReports">
+          <ScalarProperty Name="lngDest" ColumnName="lngDest" />
+          <ScalarProperty Name="latDest" ColumnName="latDest" />
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="OperatorComment" ColumnName="OperatorComment" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="callForTowing" ColumnName="callForTowing" />
+          <ScalarProperty Name="comments" ColumnName="comments" />
+          <ScalarProperty Name="accident_witness_phone" ColumnName="accident_witness_phone" />
+          <ScalarProperty Name="accident_witness_name" ColumnName="accident_witness_name" />
+          <ScalarProperty Name="towing_destination" ColumnName="towing_destination" />
+          <ScalarProperty Name="location" ColumnName="location" />
+          <ScalarProperty Name="hour" ColumnName="hour" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="caseCaseId" ColumnName="caseCaseId" />
+          <ScalarProperty Name="clientAbstractUserId" ColumnName="clientAbstractUserId" />
+          <ScalarProperty Name="reportID" ColumnName="reportID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="estimationForms">
+      <EntityTypeMapping TypeName="rtesModel.estimationForms">
+        <MappingFragment StoreEntitySet="estimationForms">
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="estimationText" ColumnName="estimationText" />
+          <ScalarProperty Name="appraiserUserID" ColumnName="appraiserUserID" />
+          <ScalarProperty Name="reportID" ColumnName="reportID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="images">
+      <EntityTypeMapping TypeName="rtesModel.images">
+        <MappingFragment StoreEntitySet="images">
+          <ScalarProperty Name="imgid" ColumnName="imgid" />
+          <ScalarProperty Name="picture" ColumnName="picture" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="messagesTables">
+      <EntityTypeMapping TypeName="rtesModel.messagesTables">
+        <MappingFragment StoreEntitySet="messagesTables">
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="content" ColumnName="content" />
+          <ScalarProperty Name="userID" ColumnName="userID" />
+          <ScalarProperty Name="msgNum" ColumnName="msgNum" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="taskLists">
+      <EntityTypeMapping TypeName="rtesModel.taskLists">
+        <MappingFragment StoreEntitySet="taskLists">
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="taskId" ColumnName="taskId" />
+          <ScalarProperty Name="reportId" ColumnName="reportId" />
+          <ScalarProperty Name="truckDriverId" ColumnName="truckDriverId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="third_party">
+      <EntityTypeMapping TypeName="rtesModel.third_party">
+        <MappingFragment StoreEntitySet="third_party">
+          <ScalarProperty Name="yearOfManufacture" ColumnName="yearOfManufacture" />
+          <ScalarProperty Name="insuranceAgentPhone" ColumnName="insuranceAgentPhone" />
+          <ScalarProperty Name="insuranceAgentName" ColumnName="insuranceAgentName" />
+          <ScalarProperty Name="phoneNumber" ColumnName="phoneNumber" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="insurancePolicyNumber" ColumnName="insurancePolicyNumber" />
+          <ScalarProperty Name="insuranceCompanyName" ColumnName="insuranceCompanyName" />
+          <ScalarProperty Name="drivingLicenseNumber" ColumnName="drivingLicenseNumber" />
+          <ScalarProperty Name="carColor" ColumnName="carColor" />
+          <ScalarProperty Name="carModel" ColumnName="carModel" />
+          <ScalarProperty Name="carCategory" ColumnName="carCategory" />
+          <ScalarProperty Name="licensePlateNumber" ColumnName="licensePlateNumber" />
+          <ScalarProperty Name="carOwnerId" ColumnName="carOwnerId" />
+          <ScalarProperty Name="carOwnerName" ColumnName="carOwnerName" />
+          <ScalarProperty Name="driverId" ColumnName="driverId" />
+          <ScalarProperty Name="driverName" ColumnName="driverName" />
+          <ScalarProperty Name="emergencyReportId" ColumnName="emergencyReportId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="towingReportForms">
+      <EntityTypeMapping TypeName="rtesModel.towingReportForms">
+        <MappingFragment StoreEntitySet="towingReportForms">
+          <ScalarProperty Name="comments" ColumnName="comments" />
+          <ScalarProperty Name="towingDestinationLocation" ColumnName="towingDestinationLocation" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="arrivalTime" ColumnName="arrivalTime" />
+          <ScalarProperty Name="driverUserID" ColumnName="driverUserID" />
+          <ScalarProperty Name="reportID" ColumnName="reportID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="truckDrivers">
+      <EntityTypeMapping TypeName="rtesModel.truckDrivers">
+        <MappingFragment StoreEntitySet="truckDrivers">
+          <ScalarProperty Name="priority6Role" ColumnName="priority6Role" />
+          <ScalarProperty Name="priority5Role" ColumnName="priority5Role" />
+          <ScalarProperty Name="priority4Role" ColumnName="priority4Role" />
+          <ScalarProperty Name="priority3Role" ColumnName="priority3Role" />
+          <ScalarProperty Name="priority2Role" ColumnName="priority2Role" />
+          <ScalarProperty Name="priority1Role" ColumnName="priority1Role" />
+          <ScalarProperty Name="priority6" ColumnName="priority6" />
+          <ScalarProperty Name="priority5" ColumnName="priority5" />
+          <ScalarProperty Name="priority4" ColumnName="priority4" />
+          <ScalarProperty Name="priority3" ColumnName="priority3" />
+          <ScalarProperty Name="priority2" ColumnName="priority2" />
+          <ScalarProperty Name="priority1" ColumnName="priority1" />
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="TasksCounter" ColumnName="TasksCounter" />
+          <ScalarProperty Name="location" ColumnName="location" />
+          <ScalarProperty Name="workStatus" ColumnName="workStatus" />
+          <ScalarProperty Name="availability" ColumnName="availability" />
+          <ScalarProperty Name="cargo" ColumnName="cargo" />
+          <ScalarProperty Name="abstractUserId" ColumnName="abstractUserId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

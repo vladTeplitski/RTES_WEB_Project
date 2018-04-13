@@ -277,7 +277,7 @@ namespace RTESWebProjectMVC.Controllers
 
                     int appraiserID = Convert.ToInt32(appr.ToString());
 
-                    db.appraiserTaskList.Add(new Models.appraiserTaskList()
+                    db.appraiserTaskList.Add(new Models.appraiserTaskLists()
                     {
                         reportId = x,
                         taskID = u,
@@ -314,7 +314,7 @@ namespace RTESWebProjectMVC.Controllers
 
                         }
 
-                        Models.messagesTable msg = new Models.messagesTable
+                        Models.messagesTables msg = new Models.messagesTables
                         {
                             msgNum = msgNumber,    //add the new message generated number
                             userID = clientDetails.id,
