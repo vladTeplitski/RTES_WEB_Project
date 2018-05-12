@@ -133,7 +133,6 @@ D:\Coding\RTES_WEB_Project\RTESWebProjectMVC\bin\roslyn\System.Reflection.Metada
 D:\Coding\RTES_WEB_Project\RTESWebProjectMVC\bin\roslyn\vbc.exe
 D:\Coding\RTES_WEB_Project\RTESWebProjectMVC\bin\roslyn\VBCSCompiler.exe
 D:\Coding\RTES_WEB_Project\RTESWebProjectMVC\bin\roslyn\VBCSCompiler.exe.config
-D:\Coding\RTES_WEB_Project\RTESWebProjectMVC\bin\RTESWebProjectMVC.dll.config
 D:\Coding\RTES_WEB_Project\RTESWebProjectMVC\bin\RTESWebProjectMVC.dll
 D:\Coding\RTES_WEB_Project\RTESWebProjectMVC\bin\RTESWebProjectMVC.pdb
 D:\Coding\RTES_WEB_Project\RTESWebProjectMVC\bin\Antlr3.Runtime.dll
@@ -178,7 +177,9 @@ D:\Coding\RTES_WEB_Project\RTESWebProjectMVC\bin\EntityFramework.xml
 D:\Coding\RTES_WEB_Project\RTESWebProjectMVC\bin\EntityFramework.SqlServer.xml
 D:\Coding\RTES_WEB_Project\RTESWebProjectMVC\bin\Microsoft.AspNet.Identity.Core.xml
 D:\Coding\RTES_WEB_Project\RTESWebProjectMVC\bin\Microsoft.AspNet.Identity.EntityFramework.xml
-D:\Coding\RTES_WEB_Project\RTESWebProjectMVC\obj\Debug\RTESWebProjectMVC.csprojResolveAssemblyReference.cache
 D:\Coding\RTES_WEB_Project\RTESWebProjectMVC\obj\Debug\RTESWebProjectMVC.dll
 D:\Coding\RTES_WEB_Project\RTESWebProjectMVC\obj\Debug\RTESWebProjectMVC.pdb
 D:\Coding\RTES_WEB_Project\RTESWebProjectMVC\bin\Jmelosegui.Mvc.GoogleMap.dll
+D:\Coding\RTES_WEB_Project\RTESWebProjectMVC\obj\Debug\RTESWebProjectMVC.csprojAssemblyReference.cache
+D:\Coding\RTES_WEB_Project\RTESWebProjectMVC\obj\Debug\RTESWebProjectMVC.csproj.CoreCompileInputs.cache
+D:\Coding\RTES_WEB_Project\RTESWebProjectMVC\obj\Debug\RTESWebProjectMVC.csproj.CopyComplete
